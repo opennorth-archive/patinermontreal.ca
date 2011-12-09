@@ -4,6 +4,7 @@ class CreatePatinoires < ActiveRecord::Migration
       t.string :nom
       t.string :description
       t.string :genre
+      t.string :disambiguation
       t.boolean :ouvert
       t.boolean :deblaye
       t.boolean :arrose
@@ -12,6 +13,7 @@ class CreatePatinoires < ActiveRecord::Migration
       t.string :parc
       t.string :adresse
       t.integer :tel
+      t.integer :ext
       t.float :lat
       t.float :lng
       t.references :arrondissement
