@@ -1,4 +1,6 @@
+# coding: utf-8
 namespace :import do
+  desc 'Add manually-entered rinks'
   task :static => :environment do
     {
       'Beaconsfield' => {
@@ -177,7 +179,7 @@ namespace :import do
             parc: 'Ecclestone',
             adresse: '130, rue Argyle',
             tel: 5146302718,
-            #extra: ['chalet'],
+            extra: ['chalet'],
             lat: 45.461907,
             lng: -73.856835,
           },
@@ -186,7 +188,7 @@ namespace :import do
             parc: 'Héritage',
             adresse: 'chemin Lantier',
             tel: 5146302703,
-            #extra: ['chalet'],
+            extra: ['chalet'],
             # corrected
             lat: 45.441239,
             lng: -73.898443,
@@ -196,7 +198,7 @@ namespace :import do
             parc: 'Holleuffer',
             adresse: '75, rue Charlevoix',
             tel: 5146302714,
-            #extra: ['chalet'],
+            extra: ['chalet'],
             # corrected
             lat: 45.450467,
             lng: -73.880075,
@@ -206,7 +208,7 @@ namespace :import do
             parc: 'Kirkland',
             adresse: '81, rue Park Ridge',
             tel: 5146302749,
-            #extra: ['chalet'],
+            extra: ['chalet'],
             # corrected
             lat: 45.444209,
             lng: -73.860484,
@@ -219,13 +221,13 @@ namespace :import do
             genre: 'PSE',
             parc: 'Hodgson Field',
             adresse: '220 Bedbrook',
-            #extra: ['chalet'],
+            extra: ['chalet'],
           },
           {
             genre: 'PPL',
             parc: 'Hodgson Field',
             adresse: '220 Bedbrook',
-            #extra: ['chalet'],
+            extra: ['chalet'],
           },
           {
             genre: 'PSE',
@@ -366,6 +368,7 @@ namespace :import do
       arrondissement = Arrondissement.find_or_create_by_nom_arr nom_arr
       hash[:extra] ||= {}
       hash[:patinoires].each do |attributes|
+        attributes.delete :extra
         unless Patinoire.find_by_parc_and_genre_and_arrondissement_id attributes[:parc], attributes[:genre], arrondissement.id
           arrondissement.patinoires.create! attributes.merge(hash[:extra])
         end
@@ -373,6 +376,7 @@ namespace :import do
     end
   end
 
+  desc 'Add rinks from Sherlock'
   task :sherlock => :environment do
     require 'iconv'
     require 'open-uri'

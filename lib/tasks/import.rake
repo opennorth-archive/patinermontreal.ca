@@ -24,6 +24,7 @@
 #  17 Villeray–Saint-Michel–Parc-Extension has 16, not 15 (15 in XML: no Sainte-Yvette, no PSE at Nicolas-Tillemont, but has PSE at Perrault)
 # 290 rinks total
 namespace :import do
+  desc 'Add rinks from donnees.ville.montreal.qc.ca'
   task :xml => :environment do
     Nokogiri::XML(RestClient.get('http://depot.ville.montreal.qc.ca/patinoires/data.xml')).css('patinoire').each do |node|
       # add m dash, except for Ahuntsic-Cartierville
@@ -71,6 +72,7 @@ namespace :import do
     end
   end
 
+  desc 'Add Dorval rinks'
   task :dorval => :environment do
     arrondissement = Arrondissement.find_or_create_by_nom_arr 'Dorval'
 

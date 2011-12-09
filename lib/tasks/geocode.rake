@@ -1,5 +1,6 @@
 # coding: utf-8
 namespace :location do
+  desc 'Add missing addresses and coordinates'
   task :fix => :environment do
     { 'Bassin Bonsecours' => '350 rue St-Paul Est',
       'François-Perrault' => '7501, rue François-Perrault',
@@ -40,6 +41,7 @@ namespace :location do
     end
   end
 
+  desc 'Geocode addresses'
   task :geocode => :environment do
     parser = URI::Parser.new
     Patinoire.nongeocoded.map(&:adresse).each do |adresse|
