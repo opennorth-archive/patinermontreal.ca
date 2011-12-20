@@ -8,7 +8,17 @@
     bundle exec rake import:dorval
     bundle exec rake import:static
     bundle exec rake location:fix
+    bundle exec rake location:geocommons
     bundle exec rake location:geocode
+
+It is normal to see the following output:
+
+    "2" unextracted from "Parc Lasalle, 805, rue Saint-Antoine (2 PSE) (chalet)"
+    "Parc de La Vérendrye, 5900, rue Drake (PPL) (chalet)" matches no rink. Creating!
+    "Parc de la Cité Jardin, boulevard Rosemont/41e Avenue (PPL et C) (chalet pas toujours ouvert)" matches no rink. Creating!
+    "Bassin Bonsecours* (Vieux-Port) (Métro Champ-de-Mars) (chalet)" matches no rink. Creating!
+    "Parc Nicolas-Tillemont, 7833, avenue des Érables (PSE) (chalet)" matches no rink. Creating!
+    "Parc Sainte-Yvette, 8950, 10e Avenue (PPL) (chalet)" matches no rink. Creating!
 
 # Deployment
 
@@ -21,16 +31,9 @@
     heroku run rake import:dorval
     heroku run rake import:static
     heroku run rake location:fix
+    heroku run rake location:geocommons
     heroku run rake location:geocode
 
-# Data Sources
+# Misc.
 
-* [Ville de Montréal](http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires)
-* [Ville de Beaconsfield](www.beaconsfield.ca/FRANCAIS/culture/sports_loisirs_parcs_terrains.html)
-* [Ville de Côte-Saint-Luc](http://www.cotesaintluc.org/Parks)
-* [Ville de Dorval](http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808)
-* [Ville de Kirkland](http://www.ville.kirkland.qc.ca/client/page2.asp?page=24&clef=7&clef2=11)
-* [Ville de Pointe-Claire](http://www.ville.pointe-claire.qc.ca/library/File/Loisirs/PatinoiresExtrEtOvaleFr.pdf)
-* [Ville de Sainte-Anne-de-Bellevue](http://www.ville.sainte-anne-de-bellevue.qc.ca/Loisirs,-sports-et-culture/Installations-sportives-et-recreatives-(parcs).aspx)
-* [Ville de Senneville](http://www.villagesenneville.qc.ca/node/30)
-* [Patinoires extérieures, Sherlock: La banque d'information municipale](http://www11.ville.montreal.qc.ca/sherlock2/servlet/template/sherlock%2CAfficherDocumentInternet.vm/nodocument/154)
+* [Data sources](https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=html)

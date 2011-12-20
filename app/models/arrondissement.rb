@@ -9,9 +9,6 @@ class Arrondissement < ActiveRecord::Base
 
   before_save :set_cle
 
-  scope :nongeocoded, where(lat: nil)
-  scope :geocoded, where('lat IS NOT NULL')
-
 private
 
   def set_cle

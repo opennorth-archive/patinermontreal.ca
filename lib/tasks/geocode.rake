@@ -16,6 +16,7 @@ namespace :location do
     end
 
     # http://www.ville.ddo.qc.ca/en/googlemap_arenas.html
+    # @todo remove once geocoding spreadsheet done
     { 'Coolbrooke' => '45.4985265013565,-73.79211902618408',
       'du Centenaire' => '45.486884125312414,-73.81670951843262',
       'Edward Janiszewski' => '45.48671112612774,-73.83962631225586',
@@ -34,35 +35,151 @@ namespace :location do
       'Westwood' => '45.48899015973809,-73.7934923171997',
     }.each do |parc,coordinates|
       arrondissement = Arrondissement.find_by_nom_arr! 'Dollard-des-Ormeaux'
-      attributes[:lat], attributes[:lng] = coordinates.split(',').map(&:to_f)
+      lat, lng = coordinates.split(',').map(&:to_f)
       Patinoire.where(parc: parc, arrondissement_id: arrondissement.id).each do |patinoire|
-        patinoire.update_attributes attributes
+        patinoire.update_attributes lat: lat, lng: lng
+      end
+    end
+  end
+
+  desc 'Geocode rinks using GeoCommons data'
+  task :geocommons => :environment do
+    require 'csv'
+    require 'open-uri'
+    CSV.parse(open('http://geocommons.com/overlays/14564.csv'), headers: true).select{|row|
+      # Select only outdoor rinks.
+      row['name'][/\b(Rink|Patinoire)\b/] &&
+      # Get just the rinks near Montreal.
+      45.4 <= row['latitude'].to_f && row['latitude'].to_f <= 45.71 && -73.98 <= row['longitude'].to_f && row['longitude'].to_f <= -73.47
+    }.each do |row|
+      parc = {
+        'd`a-Ma-Baie' => 'À-Ma-Baie',
+        'de la Rive-Boisee' => 'de la Rive-Boisée',
+        'Garibaldi' => 'Guiseppe-Garibaldi',
+        'Heritage' => 'Héritage',
+        'Seguin' => 'Séguin',
+      }.reduce(row['name']) do |string,(from,to)|
+        string.sub(from, to)
+      end.gsub(/\A(Parc|Patinoire) | (Park Rink|Rink)\z/, '').decode_html_entities
+
+      patinoires = Patinoire.where(parc: parc).all
+      if patinoires.empty?
+        puts %(No rinks with parc "#{parc}")
+      end
+      patinoires.each do |patinoire|
+        patinoire.update_attributes lat: row['latitude'].to_f, lng: row['longitude'].to_f
+      end
+    end
+  end
+
+  desc 'Export table for Google Spreadsheets collaboration'
+  task :export => :environment do
+    require 'csv'
+    parser = URI::Parser.new
+    CSV.open('export.csv', 'wb', col_sep: "\t") do |csv|
+      csv << %w(parc genre note google)
+      Patinoire.where('adresse IS NOT NULL').includes(:arrondissement).order(:nom).each do |patinoire|
+        q = {
+          '/' => ' & ',
+          /\b(coin|entre|et)\b/ => '&',
+          /\A(coin|derrière l'aréna,) / => '', # remove needless words
+          /, (L'Île-Bizard|PAT|RDP|Roxboro|Sainte-Geneviève)\b/ => '', # remove arrondissement
+        }.reduce(patinoire.adresse) do |string,(from,to)|
+          string.gsub(from, to)
+        end
+        q.sub!(/(.+)(?:,| &) (.+) & (.+)/, '\1 & \2')
+        q = parser.escape("#{q}, #{patinoire.arrondissement.nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
+
+        csv << [patinoire.parc, patinoire.genre, patinoire.disambiguation, "http://maps.google.com/maps?q=#{q}"]
       end
     end
   end
 
   desc 'Geocode addresses'
   task :geocode => :environment do
+    require 'open-uri'
+    cache = {}
     parser = URI::Parser.new
-    Patinoire.nongeocoded.map(&:adresse).each do |adresse|
-      param = {
+    Patinoire.nongeocoded.where('adresse IS NOT NULL').includes(:arrondissement).each do |patinoire|
+      nom_arr = patinoire.arrondissement.nom_arr
+
+      raw = {
         '/' => ' & ',
         /\b(\d+)e\b/ => '\1', # "8e avenue" confuses geocoder
         /\b(coin|entre|et)\b/ => '&',
         /\A(coin|derrière l'aréna,) / => '', # remove needless words
         /, (L'Île-Bizard|PAT|RDP|Roxboro|Sainte-Geneviève)\b/ => '', # remove arrondissement
-      }.reduce(adresse) do |string,(from,to)|
+      }.reduce(patinoire.adresse) do |string,(from,to)|
         string.gsub(from, to)
       end
+      raw.sub!(/(.+)(?:,| &) (.+) & (.+)/, '\1 & \2')
+      q = parser.escape("#{raw}, #{nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
 
-      param.sub!(/(.+)(?:,| &) (.+) & (.+)/, '\1 & \2')
+      request = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&language=fr&bounds=45.40,-73.98%7C45.71,-73.47&region=ca&address=#{q}"
+      response = cache[request] || ActiveSupport::JSON.decode(open(request).read)
+      cache[request] = response
 
-      # TODO
-      geocoding = Geocoding.find_or_create_by_request("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&bounds=45.40,-73.98%7C45.71,-73.47&region=ca&address=" + parser.escape("#{adresse}, #{parc.arrondissement}", /[^#{URI::PATTERN::UNRESERVED}]/u).gsub('%C2%96', '%E2%80%93')) # avoid INVALID_REQUEST
-      if geocoding.response_object['status'] == 'OK'
-        puts "TOO_MANY_RESULTS:\n#{parc.geocoding.request}\n#{parc.geocoding.results.inspect}" unless parc.geocoding.result
+      if response['status'] == 'OK'
+        results = response['results'].select{|result| result['address_components'].select{|component| %w(Communauté-Urbaine-de-Montréal Montréal Montreal).include? component['long_name'] }.present? }
+        if results.size == 1
+          result = results.first
+          response_nom_arr       = result['address_components'].find{|x| x['types'].include? 'locality'}['long_name']
+          response_street_number = result['address_components'].find{|x| x['types'].include? 'street_number'}.andand['long_name']
+          response_route         = result['address_components'].find{|x| x['types'].include? 'route'}.andand['long_name']
+
+          response_nom_arr = {
+            "L'Île-Bizard" => "L'Île-Bizard—Sainte-Geneviève",
+            'Sainte-Geneviève' => "L'Île-Bizard—Sainte-Geneviève",
+            'Pierrefonds' => 'Pierrefonds-Roxboro',
+            'Roxboro' => 'Pierrefonds-Roxboro',
+          }.reduce(response_nom_arr) do |string,(from,to)|
+            string.sub(from, to)
+          end
+          if response_route
+            response_route = {
+              'Alexis Carrel' => 'Alexis-Carrel',
+              'André Ampère' => 'André-Ampère',
+              'Beaubien Est' => 'Beaubien', # no such thing as Ouest
+              'Bishop Power' => 'Bishop-Power',
+              'Calixa Lavallée' => 'Calixa-Lavallée',
+              'de la Rive Boisée' => 'de la Rive-Boisée',
+              'de Saint Firmin' => 'de Saint-Firmin',
+              'Elizabeth' => 'Élizabeth',
+              'Émile Legrand' => 'Émile-Legrand',
+              'François Perrault' => 'François-Perrault',
+              'Gabrielle Roy' => 'Gabrielle-Roy',
+              'Jean Gascon' => 'Jean-Gascon',
+              'Marie le Ber' => 'Marie-Le Ber',
+              'P M Favier' => 'P.-M.-Favier',
+              'Saint Antoine' => 'Saint-Antoine',
+              'Saint Dominique' => 'Saint-Dominique',
+              'Saint Jean Baptiste' => 'Saint-Jean-Baptiste',
+              'Saint Kevin' => 'Saint-Kevin',
+              'Saint Louis' => 'Saint-Louis',
+              'Saint Pierre' => 'Saint-Pierre',
+            }.reduce(response_route) do |string,(from,to)|
+              string.sub(from, to)
+            end
+          end
+
+          if response_route.nil?
+            puts %(No route for #{raw})
+          elsif response_street_number.nil? && raw[/\d/]
+            puts %(No street number for #{raw})
+          elsif response_nom_arr != 'Montréal' && !response_nom_arr[/#{Regexp.escape nom_arr}/i]
+            puts %("#{response_nom_arr}" doesn't match "#{nom_arr}")
+          elsif !response_street_number.nil? && !raw[/\A#{Regexp.escape response_street_number}\b/]
+            puts %("#{response_street_number}" doesn't match "#{raw}")
+          elsif !raw[/#{Regexp.escape response_route}/i]
+            puts %("#{response_route}" doesn't match "#{raw}")
+          else
+            patinoire.update_attributes lat: result['geometry']['location']['lat'], lng: result['geometry']['location']['lng']
+          end
+        else
+          puts "Too many results for #{raw}"
+        end
       else
-        puts "#{parc.geocoding.response_object['status']}\n#{parc.geocoding.request}"
+        puts "#{response['status']}"
       end
     end
   end

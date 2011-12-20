@@ -27,6 +27,9 @@ class Patinoire < ActiveRecord::Base
   before_validation :set_nom_and_description
   before_save :normalize
 
+  scope :nongeocoded, where(lat: nil)
+  scope :geocoded, where('lat IS NOT NULL')
+
 private
   PREPOSITIONS = /\A(de la|de|des|du)\b/i
 

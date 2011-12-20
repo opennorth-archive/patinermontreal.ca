@@ -27,7 +27,7 @@ namespace :import do
   desc 'Add rinks from donnees.ville.montreal.qc.ca'
   task :xml => :environment do
     Nokogiri::XML(RestClient.get('http://depot.ville.montreal.qc.ca/patinoires/data.xml')).css('patinoire').each do |node|
-      # add m dash, except for Ahuntsic-Cartierville
+      # Add m-dash, except for Ahuntsic-Cartierville.
       nom_arr = node.at_css('nom_arr').text.sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville').gsub(' - ', '—')
 
       arrondissement = Arrondissement.find_or_initialize_by_nom_arr nom_arr
@@ -44,6 +44,7 @@ namespace :import do
       patinoire.disambiguation = patinoire.nom[/\b(nord|sud|\APetite|\AGrande|no \d)\b/i, 1].andand.downcase
       # Help disambiguate rinks imported from Sherlock.
       patinoire.disambiguation = 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
+      # Expand/correct park names.
       patinoire.parc = {
         'Beauséjour'             => 'de Beauséjour',
         'C-de-la-Rousselière'    => 'Clémentine-De La Rousselière',
@@ -64,7 +65,7 @@ namespace :import do
       if patinoire.nom == 'Aire de patinage libre, Kent (sud) (PSE)'
         patinoire.genre = 'PPL'
       end
-      # There is no "no 2"
+      # There is no "no 2".
       if patinoire.nom == 'Patinoire de patin libre no 1, Le Prévost (PPL)'
         patinoire.disambiguation = nil
       end
@@ -90,14 +91,15 @@ namespace :import do
       text = tr.at_css('td:eq(1)').text
       attributes = {
         genre: text['Patinoire récréative et de hockey'] ? 'PSE' : 'PPL',
-        parc: tr.at_css('strong').sub(/\AParc /, ''),
+        parc: tr.at_css('strong').text.sub(/\AParc /, ''),
         adresse: tr.at_css('p').children[1].text,
         tel: text[/\(514\) \d{3}-\d{4}/].delete('^0-9'),
-        ouverte: tr.at_css('td:eq(2)').text.gsub(/[[:space:]]/, '').present?,
+        ouvert: tr.at_css('td:eq(2)').text.gsub(/[[:space:]]/, '').present?,
         condition: condition,
       }
 
       # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_arenas.html
+      # @todo remove once geocoding spreadsheet done
       coordinates = {
         'Surrey' => '45.453809,-73.772700',
         'Courtland' => '45.444130,-73.767014',
