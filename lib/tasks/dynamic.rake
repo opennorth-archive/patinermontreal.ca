@@ -73,7 +73,7 @@ namespace :import do
     end
   end
 
-  desc 'Add Dorval rinks'
+  desc 'Add rinks from ville.dorval.qc.ca'
   task :dorval => :environment do
     arrondissement = Arrondissement.find_or_create_by_nom_arr 'Dorval'
 

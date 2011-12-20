@@ -72,12 +72,28 @@ namespace :location do
     end
   end
 
-  desc 'Export table for Google Spreadsheets collaboration'
+  desc 'Import table from Google Spreadsheets'
+  task :import => :environment do
+    require 'csv'
+    require 'open-uri'
+    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=1&output=csv').read, headers: true) do |row|
+      matches = Arrondissement.where(nom_arr: row['nom_arr']).first.patinoires.where(parc: row['parc'], genre: row['genre'], disambiguation: row['disambiguation']).all
+      if matches.size > 1
+        puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches many rinks)
+      elsif matches.size == 0
+        puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches no rinks)
+      else
+        matches.first.update_attributes lat: row['lat'].to_f, lng: row['lng'].to_f
+      end
+    end
+  end
+
+  desc 'Export table for Google Spreadsheets'
   task :export => :environment do
     require 'csv'
     parser = URI::Parser.new
     CSV.open('export.csv', 'wb', col_sep: "\t") do |csv|
-      csv << %w(parc genre note google)
+      csv << %w(nom_arr parc genre disambiguation google)
       Patinoire.where('adresse IS NOT NULL').includes(:arrondissement).order(:nom).each do |patinoire|
         q = {
           '/' => ' & ',
@@ -90,12 +106,12 @@ namespace :location do
         q.sub!(/(.+)(?:,| &) (.+) & (.+)/, '\1 & \2')
         q = parser.escape("#{q}, #{patinoire.arrondissement.nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
 
-        csv << [patinoire.parc, patinoire.genre, patinoire.disambiguation, "http://maps.google.com/maps?q=#{q}"]
+        csv << [patinoire.arrondissement.nom_arr, patinoire.parc, patinoire.genre, patinoire.disambiguation, "http://maps.google.com/maps?q=#{q}"]
       end
     end
   end
 
-  desc 'Geocode addresses'
+  desc 'Geocode rinks using addresses'
   task :geocode => :environment do
     require 'open-uri'
     cache = {}
@@ -105,7 +121,6 @@ namespace :location do
 
       raw = {
         '/' => ' & ',
-        /\b(\d+)e\b/ => '\1', # "8e avenue" confuses geocoder
         /\b(coin|entre|et)\b/ => '&',
         /\A(coin|derrière l'aréna,) / => '', # remove needless words
         /, (L'Île-Bizard|PAT|RDP|Roxboro|Sainte-Geneviève)\b/ => '', # remove arrondissement

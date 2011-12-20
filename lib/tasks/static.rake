@@ -1,7 +1,7 @@
 # coding: utf-8
 namespace :import do
   # Imports rinks straight-forwardly from spreadsheet.
-  desc 'Add manually-entered rinks'
+  desc 'Add rinks from Google Spreadsheets'
   task :static => :environment do
     require 'csv'
     require 'open-uri'
@@ -208,6 +208,7 @@ namespace :import do
         if text['*']
           attributes[:disambiguation] = 'réfrigérée'
         end          
+        attributes[:parc].slice!(/\A(Parc|Patinoire) /)
 
         arrondissement = Arrondissement.find_by_nom_arr(nom_arr) || Arrondissement.create!(nom_arr: nom_arr)
         update_patinoires arrondissement, attributes, text
