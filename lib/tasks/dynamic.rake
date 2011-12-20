@@ -25,7 +25,7 @@
 # 290 rinks total
 namespace :import do
   desc 'Add rinks from donnees.ville.montreal.qc.ca'
-  task :xml => :environment do
+  task :donnees => :environment do
     Nokogiri::XML(RestClient.get('http://depot.ville.montreal.qc.ca/patinoires/data.xml')).css('patinoire').each do |node|
       # Add m-dash, except for Ahuntsic-Cartierville.
       nom_arr = node.at_css('nom_arr').text.sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville').gsub(' - ', '—')
@@ -39,7 +39,7 @@ namespace :import do
       %w(ouvert deblaye arrose resurface condition).each do |attribute|
         patinoire[attribute] = node.at_css(attribute).text
       end
-      patinoire.description = patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?,/, 1]
+      patinoire.description = patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?[,-]/, 1].sub('Pat. avec bandes', 'Patinoire avec bandes')
       patinoire.genre = patinoire.nom[/\((PP|PPL|PSE)\)\z/, 1]
       patinoire.disambiguation = patinoire.nom[/\b(nord|sud|\APetite|\AGrande|no \d)\b/i, 1].andand.downcase
       # Help disambiguate rinks imported from Sherlock.

@@ -3,7 +3,7 @@
     git clone git://github.com/opennorth/patinermontreal.ca.git
     bundle
     bundle exec rake db:migrate
-    bundle exec rake import:xml
+    bundle exec rake import:donnees
     bundle exec rake import:sherlock
     bundle exec rake import:dorval
     bundle exec rake import:static
@@ -26,7 +26,7 @@ It is normal to see the following output:
     heroku create --stack cedar APP_NAME
     git push heroku master
     heroku run rake db:migrate
-    heroku run rake import:xml
+    heroku run rake import:donnees
     heroku run rake import:sherlock
     heroku run rake import:dorval
     heroku run rake import:static
