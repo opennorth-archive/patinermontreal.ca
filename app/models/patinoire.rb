@@ -2,7 +2,7 @@
 class Patinoire < ActiveRecord::Base
   belongs_to :arrondissement
 
-  validates_presence_of :nom, :description, :genre, :parc, :arrondissement_id
+  validates_presence_of :nom, :description, :genre, :parc, :source, :arrondissement_id
   validates_uniqueness_of :nom, scope: :arrondissement_id
   validates_inclusion_of :description, in: [
       'Aire de patinage libre',
@@ -20,6 +20,22 @@ class Patinoire < ActiveRecord::Base
       'PPL',
       'PSE',
     ], allow_blank: true
+  validates_inclusion_of :disambiguation, in: [
+      'nord',
+      'sud',
+      'petite',
+      'grande',
+      'no 1',
+      'no 2',
+      'no 3',
+      'réfrigérée',
+    ], allow_blank: true
+  validates_inclusion_of :source, in: [
+      'donnees.ville.montreal.qc.ca',
+      'ville.montreal.qc.ca',
+      'ville.dorval.qc.ca',
+      'docs.google.com',
+    ]
   validates_inclusion_of :condition, in: %w(Excellente Bonne Mauvaise N/A), allow_blank: true
   validates_numericality_of :tel, only_integer: true, allow_blank: true
   validates_length_of :tel, is: 10, allow_blank: true

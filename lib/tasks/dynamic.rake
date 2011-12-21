@@ -33,6 +33,7 @@ namespace :import do
       arrondissement = Arrondissement.find_or_initialize_by_nom_arr nom_arr
       arrondissement.cle = node.at_css('cle').text
       arrondissement.date_maj = Time.parse node.at_css('date_maj').text
+      arrondissement.source = 'donnees.ville.montreal.qc.ca'
       arrondissement.save!
 
       patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id node.at_css('nom').text, arrondissement.id
@@ -60,6 +61,7 @@ namespace :import do
       }.reduce(patinoire.nom[/, ([^(]+) \(/, 1]) do |string,(from,to)|
         string.sub(from, to)
       end
+      patinoire.parc.slice!(/\AParc /i)
 
       # "Aire de patinage libre" with "PSE" is nonsense.
       if patinoire.nom == 'Aire de patinage libre, Kent (sud) (PSE)'
@@ -69,13 +71,16 @@ namespace :import do
       if patinoire.nom == 'Patinoire de patin libre no 1, Le Prévost (PPL)'
         patinoire.disambiguation = nil
       end
+      patinoire.source = 'donnees.ville.montreal.qc.ca'
       patinoire.save!
     end
   end
 
   desc 'Add rinks from ville.dorval.qc.ca'
   task :dorval => :environment do
-    arrondissement = Arrondissement.find_or_create_by_nom_arr 'Dorval'
+    arrondissement = Arrondissement.find_or_initialize_by_nom_arr 'Dorval'
+    arrondissement.source = 'ville.dorval.qc.ca'
+    arrondissement.save!
 
     Nokogiri::HTML(RestClient.get('http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808')).css('tr:gt(2)').each do |tr|
       condition = 'N/A'
@@ -96,6 +101,7 @@ namespace :import do
         tel: text[/\(514\) \d{3}-\d{4}/].delete('^0-9'),
         ouvert: tr.at_css('td:eq(2)').text.gsub(/[[:space:]]/, '').present?,
         condition: condition,
+        source: 'ville.dorval.qc.ca',
       }
 
       # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_arenas.html

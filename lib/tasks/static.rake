@@ -6,7 +6,9 @@ namespace :import do
     require 'csv'
     require 'open-uri'
     CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=0&output=csv').read, headers: true) do |row|
-      arrondissement = Arrondissement.find_or_create_by_nom_arr row['nom_arr']
+      arrondissement = Arrondissement.find_or_initialize_by_nom_arr row['nom_arr']
+      arrondissement.source = 'docs.google.com'
+      arrondissement.save!
 
       row.delete('nom_arr')
       row.delete('extra')
@@ -14,6 +16,7 @@ namespace :import do
 
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id row['parc'], row['genre'], arrondissement.id
       patinoire.attributes = row.to_hash
+      patinoire.source = 'docs.google.com'
       patinoire.save!
     end
   end
@@ -60,6 +63,7 @@ namespace :import do
         end
 
         args = attributes.slice(:genre, :disambiguation, :parc, :adresse, :tel, :ext)
+        args[:source] = 'ville.montreal.qc.ca'
 
         # Special case.
         if text[/2 PSE/]
@@ -179,7 +183,10 @@ namespace :import do
         end
 
         # Create boroughs and rinks.
-        arrondissement = Arrondissement.find_by_nom_arr(nom_arr) || Arrondissement.create!(nom_arr: nom_arr)
+        arrondissement = Arrondissement.find_or_initialize_by_nom_arr nom_arr
+        arrondissement.source ||= 'ville.montreal.qc.ca'
+        arrondissement.save!
+
         update_patinoires arrondissement, attributes, text
         if attributes[:patinoire]
           update_patinoires arrondissement, attributes.merge(genre: attributes[:patinoire]), text
@@ -210,7 +217,10 @@ namespace :import do
         end          
         attributes[:parc].slice!(/\A(Parc|Patinoire) /)
 
-        arrondissement = Arrondissement.find_by_nom_arr(nom_arr) || Arrondissement.create!(nom_arr: nom_arr)
+        arrondissement = Arrondissement.find_or_initialize_by_nom_arr nom_arr
+        arrondissement.source ||= 'ville.montreal.qc.ca'
+        arrondissement.save!
+
         update_patinoires arrondissement, attributes, text
       end
     end

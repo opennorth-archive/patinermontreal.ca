@@ -17,7 +17,8 @@ namespace :location do
 
     # http://www.ville.ddo.qc.ca/en/googlemap_arenas.html
     # @todo remove once geocoding spreadsheet done
-    { 'Coolbrooke' => '45.4985265013565,-73.79211902618408',
+    { 'Camille' => '45.510324,-73.752637',
+      'Coolbrooke' => '45.4985265013565,-73.79211902618408',
       'du Centenaire' => '45.486884125312414,-73.81670951843262',
       'Edward Janiszewski' => '45.48671112612774,-73.83962631225586',
       'Elmpark' => '45.4672039420346,-73.84403586387634',

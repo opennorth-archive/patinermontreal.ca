@@ -13,12 +13,22 @@
 
 It is normal to see the following output:
 
+    "Parc de Beauséjour, 6891, boulevard Gouin Ouest (PP) (chalet)" matches no rink. Creating!
+    "Parc des Hirondelles, 2574, rue Fleury Est (PPL)" matches no rink. Creating!
     "2" unextracted from "Parc Lasalle, 805, rue Saint-Antoine (2 PSE) (chalet)"
     "Parc de La Vérendrye, 5900, rue Drake (PPL) (chalet)" matches no rink. Creating!
     "Parc de la Cité Jardin, boulevard Rosemont/41e Avenue (PPL et C) (chalet pas toujours ouvert)" matches no rink. Creating!
     "Bassin Bonsecours* (Vieux-Port) (Métro Champ-de-Mars) (chalet)" matches no rink. Creating!
     "Parc Nicolas-Tillemont, 7833, avenue des Érables (PSE) (chalet)" matches no rink. Creating!
     "Parc Sainte-Yvette, 8950, 10e Avenue (PPL) (chalet)" matches no rink. Creating!
+
+There is no longer live information for Le Plateau-Mont-Royal's parks:
+
+    Baldwin
+    de Lorimier
+    Jeanne-Mance
+    La Fontaine
+    Saint-Michel
 
 # Deployment
 
