@@ -3,15 +3,15 @@ class Arrondissement < ActiveRecord::Base
   has_many :patinoires
 
   validates_presence_of :nom_arr, :source
-  validates_presence_of :date_maj, if: :cle?
+  validates_presence_of :date_maj, if: ->(x){x.source == 'donnees.ville.montreal.qc.ca'}
   validates_inclusion_of :nom_arr, in: [
     'Ahuntsic-Cartierville',
     'Anjou',
     'Côte-des-Neiges—Notre-Dame-de-Grâce',
-    "L'Île-Bizard–Sainte-Geneviève",
+    "L'Île-Bizard—Sainte-Geneviève",
     'LaSalle',
     'Lachine',
-    'Le Plateau-Mont-Royal'
+    'Le Plateau-Mont-Royal',
     'Le Sud-Ouest',
     'Mercier—Hochelaga-Maisonneuve',
     'Montréal-Nord',
@@ -59,6 +59,7 @@ private
     if nom_arr
       self.cle = {
         'Côte-des-Neiges—Notre-Dame-de-Grâce' => 'cdn',
+        'Lachine' => 'lch',
         'Le Plateau-Mont-Royal' => 'pmr',
         'Rivière-des-Prairies—Pointe-aux-Trembles' => 'rdp',
         'Rosemont—La Petite-Patrie' => 'rpp',

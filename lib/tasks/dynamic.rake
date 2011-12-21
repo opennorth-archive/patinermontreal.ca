@@ -26,6 +26,7 @@
 namespace :import do
   desc 'Add rinks from donnees.ville.montreal.qc.ca'
   task :donnees => :environment do
+    flip = 1
     Nokogiri::XML(RestClient.get('http://depot.ville.montreal.qc.ca/patinoires/data.xml')).css('patinoire').each do |node|
       # Add m-dash, except for Ahuntsic-Cartierville.
       nom_arr = node.at_css('nom_arr').text.sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville').gsub(' - ', '—')
@@ -47,11 +48,10 @@ namespace :import do
       patinoire.disambiguation = 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
       # Expand/correct park names.
       patinoire.parc = {
-        'Beauséjour'             => 'de Beauséjour',
         'C-de-la-Rousselière'    => 'Clémentine-De La Rousselière',
         'Cité-Jardin'            => 'de la Cité Jardin',
         'De la Petite-Italie'    => 'Petite Italie',
-        'Kent'                   => 'de Kent',
+        'Duff court'             => 'Duff Court',
         'Lac aux Castors'        => 'du Mont-Royal',
         'Lac des castors'        => 'du Mont-Royal',
         'Marc-Aurèle-Fortin'     => 'Hans-Selye',
@@ -70,6 +70,11 @@ namespace :import do
       # There is no "no 2".
       if patinoire.nom == 'Patinoire de patin libre no 1, Le Prévost (PPL)'
         patinoire.disambiguation = nil
+      end
+      # There are identical lines.
+      if patinoire.parc == 'LaSalle' && patinoire.genre == 'PSE'
+        patinoire.disambiguation = "no #{flip}"
+        flip = flip == 1 ? 2 : 1
       end
       patinoire.source = 'donnees.ville.montreal.qc.ca'
       patinoire.save!

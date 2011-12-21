@@ -6,7 +6,7 @@
     bundle exec rake import:donnees
     bundle exec rake import:sherlock
     bundle exec rake import:dorval
-    bundle exec rake import:static
+    bundle exec rake import:google
     bundle exec rake location:fix
     bundle exec rake location:geocommons
     bundle exec rake location:geocode
@@ -15,20 +15,12 @@ It is normal to see the following output:
 
     "Parc de Beauséjour, 6891, boulevard Gouin Ouest (PP) (chalet)" matches no rink. Creating!
     "Parc des Hirondelles, 2574, rue Fleury Est (PPL)" matches no rink. Creating!
-    "2" unextracted from "Parc Lasalle, 805, rue Saint-Antoine (2 PSE) (chalet)"
+    "Parc Duff Court, 1830, croissant Roy (PPL)" matches no rink. Creating!
     "Parc de La Vérendrye, 5900, rue Drake (PPL) (chalet)" matches no rink. Creating!
     "Parc de la Cité Jardin, boulevard Rosemont/41e Avenue (PPL et C) (chalet pas toujours ouvert)" matches no rink. Creating!
     "Bassin Bonsecours* (Vieux-Port) (Métro Champ-de-Mars) (chalet)" matches no rink. Creating!
     "Parc Nicolas-Tillemont, 7833, avenue des Érables (PSE) (chalet)" matches no rink. Creating!
     "Parc Sainte-Yvette, 8950, 10e Avenue (PPL) (chalet)" matches no rink. Creating!
-
-There is no longer live information for Le Plateau-Mont-Royal's parks:
-
-    Baldwin
-    de Lorimier
-    Jeanne-Mance
-    La Fontaine
-    Saint-Michel
 
 # Deployment
 
@@ -39,7 +31,7 @@ There is no longer live information for Le Plateau-Mont-Royal's parks:
     heroku run rake import:donnees
     heroku run rake import:sherlock
     heroku run rake import:dorval
-    heroku run rake import:static
+    heroku run rake import:google
     heroku run rake location:fix
     heroku run rake location:geocommons
     heroku run rake location:geocode
