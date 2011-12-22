@@ -7,5 +7,6 @@
 //= require json2
 //= require underscore-min
 //= require backbone-min
+//= backbone.localStorage-min
 //= require leaflet
 //= require map
