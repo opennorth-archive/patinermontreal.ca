@@ -9,7 +9,8 @@
     bundle exec rake import:google
     bundle exec rake location:fix
     bundle exec rake location:geocommons
-    bundle exec rake location:geocode
+    bundle exec rake location:compare
+    bundle exec rake location:import
 
 It is normal to see the following output:
 
@@ -20,6 +21,7 @@ It is normal to see the following output:
     "Parc de la Cité Jardin, boulevard Rosemont/41e Avenue (PPL et C) (chalet pas toujours ouvert)" matches no rink. Creating!
     "Bassin Bonsecours* (Vieux-Port) (Métro Champ-de-Mars) (chalet)" matches no rink. Creating!
     "Parc Nicolas-Tillemont, 7833, avenue des Érables (PSE) (chalet)" matches no rink. Creating!
+    "Parc René-Goupil, 8661, 25e Avenue (PSE) (chalet) (fermée en raison de travaux pour la saison 2011-2012) " matches no rink. Creating!
     "Parc Sainte-Yvette, 8950, 10e Avenue (PPL) (chalet)" matches no rink. Creating!
 
 # Deployment
@@ -34,7 +36,8 @@ It is normal to see the following output:
     heroku run rake import:google
     heroku run rake location:fix
     heroku run rake location:geocommons
-    heroku run rake location:geocode
+    heroku run rake location:compare
+    heroku run rake location:import
 
 # Misc.
 

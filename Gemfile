@@ -9,6 +9,7 @@ gem 'thin'
 
 gem 'andand'
 gem 'nokogiri'
+gem 'psych'
 gem 'rest-client'
 
 # Gems used only for assets and not required

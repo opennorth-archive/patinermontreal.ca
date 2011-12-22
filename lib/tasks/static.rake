@@ -46,12 +46,15 @@ namespace :import do
         puts %("#{text}" matches many rinks)
       elsif matches.size == 1
         matches.first.update_attributes attributes.slice(:adresse, :tel, :ext).select{|k,v| v.present?}
+        # Special case.
+        if text[/2 PSE/]
+          Patinoire.where(attributes.slice(:parc, :genre).merge(arrondissement_id: arrondissement.id, disambiguation: 'no 2')).first.update_attributes attributes.slice(:adresse, :tel, :ext).select{|k,v| v.present?}
+        end
       elsif matches.empty?
         # donnees.ville.montreal.qc.ca should generally have all a borough's rinks.
         if ARRONDISSEMENTS_FROM_XML.include?(arrondissement.nom_arr)
           puts %("#{text}" matches no rink. Creating!)
         end
-
         arrondissement.patinoires.create! attributes.slice(:genre, :disambiguation, :parc, :adresse, :tel, :ext).merge(source: 'ville.montreal.qc.ca')
       end
     end
@@ -136,12 +139,12 @@ namespace :import do
             'patinoire réfrigérée du Canadien de Montréal' => 'PSE',
           }[attributes[:genre]] || attributes[:genre]
           attributes[:parc] = {
+            'Bleu Blanc Bouge Le Carignan'           => 'Le Carignan',
             'Bleu Blanc Bouge de Saint-Michel'       => 'François-Perrault',
             'Bleu Blanc Bouge'                       => 'Willibrord', # must be after above
             "de l'école Dalpé-Viau"                  => 'école Dalbé-Viau',
             'de Kent'                                => 'Kent',
             'Lasalle'                                => 'LaSalle',
-            'Patinoire Bleu Blanc Bouge Le Carignan' => 'Le Carignan',
             "Terrain de piste et pelouse attenant à l'aréna Martin-Brodeur" => 'Saint-Léonard',
           }.reduce(attributes[:parc]) do |string,(from,to)|
             string.sub(from, to)
@@ -149,8 +152,7 @@ namespace :import do
 
           # Special case.
           if text[/2 PSE/]
-            attributes[:disambiguation] = "no #{flip}"
-            flip = flip == 1 ? 2 : 1
+            attributes[:disambiguation] = 'no 1'
           end
           # There are identical lines in Sherlock.
           if (attributes[:parc] == 'Eugène-Dostie' && attributes[:genre] == 'PSE') || (attributes[:parc] == 'Alexander' && attributes[:genre] == 'PPL') || (attributes[:parc] == 'À-Ma-Baie' && attributes[:genre] == 'PPL')
@@ -207,7 +209,7 @@ namespace :import do
             s
           end.sub(%r{\bet\b|\((demi-glace|anciennement Marc-Aurèle-Fortin|Habitations Jeanne-Mance|lac aux Castors|Paul-Émile-Léger|rue D'Iberville/rue de Rouen|St-Anthony)\)}, '').gsub(/\p{Punct}/, '').strip
 
-          puts %("#{rest}" unextracted from "#{text}") unless rest.empty?
+          puts %(didn't extract "#{rest}" from "#{text}") unless rest.empty?
         end
       end
     end

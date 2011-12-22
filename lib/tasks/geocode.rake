@@ -1,7 +1,19 @@
 # coding: utf-8
 namespace :location do
+  def clean_address(address)
+    {
+      '/' => ' & ',
+      /\b(coin|entre|et)\b/ => '&',
+      /\A(coin|derrière l'aréna,) / => '', # remove needless words
+      /, (L'Île-Bizard|PAT|RDP|Roxboro|Sainte-Geneviève)\b/ => '', # remove arrondissement
+    }.reduce(address) do |string,(from,to)|
+      string.gsub(from, to)
+    end.sub(/(.+)(?:,| &) (.+) & (.+)/, '\1 & \2')
+  end
+
   desc 'Add missing addresses and coordinates'
   task :fix => :environment do
+    # Add addresses to Sherlock and donnees.ville.montreal.qc.ca rinks
     # @todo club pêcheurs/chasseurs
     { 'Bassin Bonsecours'        => '350 rue St-Paul Est', # no address in Sherlock
       'Berthe-Louard'            => '9355, avenue De Galinée', # extra rink in donnees.ville.montreal.qc.ca
@@ -18,10 +30,9 @@ namespace :location do
       end
     end
 
+    # Add coordinates to Dollard-des-Ormeaux rinks
     # http://www.ville.ddo.qc.ca/en/googlemap_arenas.html
-    # @todo remove once geocoding spreadsheet done
-    { 'Camille'            => '45.510324,-73.752637',
-      'Coolbrooke'         => '45.4985265013565,-73.79211902618408',
+    { 'Coolbrooke'         => '45.4985265013565,-73.79211902618408',
       'du Centenaire'      => '45.486884125312414,-73.81670951843262',
       'Edward Janiszewski' => '45.48671112612774,-73.83962631225586',
       'Elmpark'            => '45.4672039420346,-73.84403586387634',
@@ -56,6 +67,7 @@ namespace :location do
       # Get just the rinks near Montreal.
       45.4 <= row['latitude'].to_f && row['latitude'].to_f <= 45.71 && -73.98 <= row['longitude'].to_f && row['longitude'].to_f <= -73.47
     }.each do |row|
+      # Correct names from Geocommons.
       parc = {
         'd`a-Ma-Baie' => 'À-Ma-Baie',
         'de la Rive-Boisee' => 'de la Rive-Boisée',
@@ -66,12 +78,42 @@ namespace :location do
         string.sub(from, to)
       end.gsub(/\A(Parc|Patinoire) | (Park Rink|Rink)\z/, '').decode_html_entities
 
+      # Add coordinates to matching rinks.
       patinoires = Patinoire.where(parc: parc).all
       if patinoires.empty?
         puts %(No rinks with parc "#{parc}")
+      elsif patinoires.all?(&:geocoded?)
+        puts %(Already geocoded rinks in "#{parc}")
+      else
+        patinoires.each do |patinoire|
+          patinoire.update_attributes lat: row['latitude'].to_f, lng: row['longitude'].to_f
+        end
       end
-      patinoires.each do |patinoire|
-        patinoire.update_attributes lat: row['latitude'].to_f, lng: row['longitude'].to_f
+    end
+  end
+
+  # Geocommons has wrong coordinates for:
+  # Grier: actually Hermitage
+  # Hermitage: actually Lakeside (Ovide)
+  # Outremont
+  desc 'Compare manual geocoding to official geocoding'
+  task :compare => :environment do
+    require 'csv'
+    require 'open-uri'
+    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv').read, headers: true) do |row|
+      matches = Arrondissement.where(nom_arr: row['nom_arr']).first.patinoires.where(parc: row['parc'], genre: row['genre'], disambiguation: row['disambiguation']).all
+      if matches.size > 1
+        puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches many rinks)
+      elsif matches.size == 0
+        puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches no rinks)
+      elsif matches.first.geocoded?
+        patinoire = matches.first
+        total = ((patinoire.lat - row['lat'].to_f).abs + (patinoire.lng - row['lng'].to_f).abs).round(5)
+        if total > 0.0015
+          puts "#{patinoire.nom} #{patinoire.lat},#{patinoire.lng} differs from #{row['lat']},#{row['lng']} by #{(patinoire.lat - row['lat'].to_f).abs},#{(patinoire.lng - row['lng'].to_f).abs} (#{total} total)"
+        else
+          puts "#{patinoire.nom} is close (#{total})"
+        end
       end
     end
   end
@@ -80,7 +122,7 @@ namespace :location do
   task :import => :environment do
     require 'csv'
     require 'open-uri'
-    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=1&output=csv').read, headers: true) do |row|
+    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv').read, headers: true) do |row|
       matches = Arrondissement.where(nom_arr: row['nom_arr']).first.patinoires.where(parc: row['parc'], genre: row['genre'], disambiguation: row['disambiguation']).all
       if matches.size > 1
         puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches many rinks)
@@ -98,23 +140,46 @@ namespace :location do
     parser = URI::Parser.new
     CSV.open('export.csv', 'wb', col_sep: "\t") do |csv|
       csv << %w(nom_arr parc genre disambiguation google)
-      Patinoire.where('adresse IS NOT NULL').includes(:arrondissement).order(:nom).each do |patinoire|
-        q = {
-          '/' => ' & ',
-          /\b(coin|entre|et)\b/ => '&',
-          /\A(coin|derrière l'aréna,) / => '', # remove needless words
-          /, (L'Île-Bizard|PAT|RDP|Roxboro|Sainte-Geneviève)\b/ => '', # remove arrondissement
-        }.reduce(patinoire.adresse) do |string,(from,to)|
-          string.gsub(from, to)
-        end
-        q.sub!(/(.+)(?:,| &) (.+) & (.+)/, '\1 & \2')
-        q = parser.escape("#{q}, #{patinoire.arrondissement.nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
+      Patinoire.where('adresse IS NOT NULL').includes(:arrondissement).order(:parc, :disambiguation, :genre).each do |patinoire|
+        nom_arr = patinoire.arrondissement.nom_arr
+        raw_q = clean_address(patinoire.adresse)
+        q = parser.escape("#{raw_q}, #{nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
 
         csv << [patinoire.arrondissement.nom_arr, patinoire.parc, patinoire.genre, patinoire.disambiguation, "http://maps.google.com/maps?q=#{q}"]
       end
     end
   end
 
+  # @note Manual geocoding is preferred to avoid stacking.
+  #
+  # Some Google-geocoded addresses will not be close to manually-geocoded rinks.
+  #
+  # Big parks:
+  # Daniel-Johnson
+  # Elgar
+  # Eugène-Dostie
+  # François-Perrault
+  # Jarry
+  # Jeanne-Mance
+  # Maisonneuve
+  # Sir-Wilfrid-Laurier
+  #
+  # Bad addresses:
+  # De Gaspé
+  # de l'école Dalpé-Viau
+  # de la Savane
+  # du Centenaire
+  # Hans-Selye (Marc-Aurèle-Fortin)
+  # Lucie-Bruneau
+  # Marcel-Laurin
+  # Noël-Sud
+  # Petite Italie (Martel)
+  # Rockhill
+  # Saint-André-Apôtre
+  # Saint-Léonard
+  #
+  # Approximate addresses:
+  # Duff Court
   desc 'Geocode rinks using addresses'
   task :geocode => :environment do
     require 'open-uri'
@@ -122,17 +187,8 @@ namespace :location do
     parser = URI::Parser.new
     Patinoire.nongeocoded.where('adresse IS NOT NULL').includes(:arrondissement).each do |patinoire|
       nom_arr = patinoire.arrondissement.nom_arr
-
-      raw = {
-        '/' => ' & ',
-        /\b(coin|entre|et)\b/ => '&',
-        /\A(coin|derrière l'aréna,) / => '', # remove needless words
-        /, (L'Île-Bizard|PAT|RDP|Roxboro|Sainte-Geneviève)\b/ => '', # remove arrondissement
-      }.reduce(patinoire.adresse) do |string,(from,to)|
-        string.gsub(from, to)
-      end
-      raw.sub!(/(.+)(?:,| &) (.+) & (.+)/, '\1 & \2')
-      q = parser.escape("#{raw}, #{nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
+      raw_q = clean_address(patinoire.adresse)
+      q = parser.escape("#{raw_q}, #{nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
 
       request = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&language=fr&bounds=45.40,-73.98%7C45.71,-73.47&region=ca&address=#{q}"
       response = cache[request] || ActiveSupport::JSON.decode(open(request).read)
@@ -146,6 +202,7 @@ namespace :location do
           response_street_number = result['address_components'].find{|x| x['types'].include? 'street_number'}.andand['long_name']
           response_route         = result['address_components'].find{|x| x['types'].include? 'route'}.andand['long_name']
 
+          # Tidy Google borough names.
           response_nom_arr = {
             "L'Île-Bizard" => "L'Île-Bizard—Sainte-Geneviève",
             'Sainte-Geneviève' => "L'Île-Bizard—Sainte-Geneviève",
@@ -154,6 +211,8 @@ namespace :location do
           }.reduce(response_nom_arr) do |string,(from,to)|
             string.sub(from, to)
           end
+
+          # Tidy Google street names.
           if response_route
             response_route = {
               'Alexis Carrel' => 'Alexis-Carrel',
@@ -182,20 +241,20 @@ namespace :location do
           end
 
           if response_route.nil?
-            puts %(No route for #{raw})
-          elsif response_street_number.nil? && raw[/\d/]
-            puts %(No street number for #{raw})
+            puts %(No route for #{raw_q})
+          elsif response_street_number.nil? && raw_q[/\d/]
+            puts %(No street number for #{raw_q})
           elsif response_nom_arr != 'Montréal' && !response_nom_arr[/#{Regexp.escape nom_arr}/i]
             puts %("#{response_nom_arr}" doesn't match "#{nom_arr}")
-          elsif !response_street_number.nil? && !raw[/\A#{Regexp.escape response_street_number}\b/]
-            puts %("#{response_street_number}" doesn't match "#{raw}")
-          elsif !raw[/#{Regexp.escape response_route}/i]
-            puts %("#{response_route}" doesn't match "#{raw}")
+          elsif !response_street_number.nil? && !raw_q[/\A#{Regexp.escape response_street_number}\b/]
+            puts %("#{response_street_number}" doesn't match "#{raw_q}")
+          elsif !raw_q[/#{Regexp.escape response_route}/i]
+            puts %("#{response_route}" doesn't match "#{raw_q}")
           else
             patinoire.update_attributes lat: result['geometry']['location']['lat'], lng: result['geometry']['location']['lng']
           end
         else
-          puts "Too many results for #{raw}"
+          puts "Too many results for #{raw_q}"
         end
       else
         puts "#{response['status']}"
@@ -203,4 +262,3 @@ namespace :location do
     end
   end
 end
-

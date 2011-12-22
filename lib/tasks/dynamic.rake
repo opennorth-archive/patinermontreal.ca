@@ -68,7 +68,8 @@ namespace :import do
         patinoire.genre = 'PPL'
       end
       # There is no "no 2".
-      if patinoire.nom == 'Patinoire de patin libre no 1, Le Prévost (PPL)'
+      if patinoire.nom == 'Patinoire de patin libre, Le Prévost no 1 (PPL)'
+        patinoire.parc = 'Le Prévost'
         patinoire.disambiguation = nil
       end
       # There are identical lines.
@@ -110,11 +111,12 @@ namespace :import do
       }
 
       # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_arenas.html
-      # @todo remove once geocoding spreadsheet done
+      # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_parcs.html
       coordinates = {
-        'Surrey' => '45.453809,-73.772700',
         'Courtland' => '45.444130,-73.767014',
         'St-Charles' => '45.438047,-73.729033',
+        'Surrey' => '45.453809,-73.772700',
+        'Windsor' => '45.440757,-73.748860',
       }[attributes[:parc]]
       if coordinates
         attributes[:lat], attributes[:lng] = coordinates.split(',').map(&:to_f)

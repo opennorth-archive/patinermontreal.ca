@@ -50,33 +50,6 @@ class Patinoire < ActiveRecord::Base
     lat.present? && lng.present? && lat.nonzero? && lng.nonzero?
   end
 
-  # Some Google-geocoded addresses will not be close to manually-geocoded rinks.
-  #
-  # Big parks:
-  # Daniel-Johnson
-  # Elgar
-  # Eugène-Dostie
-  # François-Perrault
-  # Jarry
-  # Jeanne-Mance
-  # Maisonneuve
-  # Sir-Wilfrid-Laurier
-  #
-  # Bad addresses:
-  # De Gaspé
-  # de l'école Dalpé-Viau
-  # de la Savane
-  # du Centenaire
-  # Hans-Selye (Marc-Aurèle-Fortin)
-  # Lucie-Bruneau
-  # Marcel-Laurin
-  # Noël-Sud
-  # Petite Italie (Martel)
-  # Rockhill
-  # Saint-André-Apôtre
-  #
-  # Approximate addresses:
-  # Duff Court
   def close?(a, b)
     (lat - a).abs < 0.002 && (lng - b).abs < 0.002
   end
