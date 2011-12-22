@@ -46,6 +46,10 @@ class Patinoire < ActiveRecord::Base
   scope :nongeocoded, where(lat: nil)
   scope :geocoded, where('lat IS NOT NULL')
 
+  def name
+    "#{description}, #{parc} (#{genre})" # ignore disambiguation
+  end
+
   def geocoded?
     lat.present? && lng.present? && lat.nonzero? && lng.nonzero?
   end
