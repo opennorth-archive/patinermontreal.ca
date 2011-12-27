@@ -1,0 +1,14 @@
+#map
+
+#controls
+  #team-sports
+  #free-skating
+  #landscaped
+  #cleared
+  #flooded
+  #resurfaced
+  #favorites
+
+:javascript
+  var locale = '#{locale}';
+  var json = #{@rinks.to_json(only: [:nom, :genre, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng])};

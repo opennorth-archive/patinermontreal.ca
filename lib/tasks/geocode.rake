@@ -140,12 +140,16 @@ namespace :location do
     parser = URI::Parser.new
     CSV.open('export.csv', 'wb', col_sep: "\t") do |csv|
       csv << %w(nom_arr parc genre disambiguation google)
-      Patinoire.where('adresse IS NOT NULL').includes(:arrondissement).order(:parc, :disambiguation, :genre).each do |patinoire|
+      Patinoire.includes(:arrondissement).order(:parc, :disambiguation, :genre).each do |patinoire|
         nom_arr = patinoire.arrondissement.nom_arr
-        raw_q = clean_address(patinoire.adresse)
-        q = parser.escape("#{raw_q}, #{nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
 
-        csv << [patinoire.arrondissement.nom_arr, patinoire.parc, patinoire.genre, patinoire.disambiguation, "http://maps.google.com/maps?q=#{q}"]
+        row = [patinoire.arrondissement.nom_arr, patinoire.parc, patinoire.genre, patinoire.disambiguation]
+        if patinoire.adresse?
+          raw_q = clean_address(patinoire.adresse)
+          q = parser.escape("#{raw_q}, #{nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
+          row << "http://maps.google.com/maps?q=#{q}"
+        end
+        csv << row
       end
     end
   end
