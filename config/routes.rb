@@ -1,6 +1,10 @@
 PatinerMontreal::Application.routes.draw do
   match 'about' =>  'pages#about'
   match 'contact' => 'pages#contact'
+  match 'donate' => 'pages#donate'
+  %w(favorites favories f/*filters rink/:id patinoire/:id).each do |path|
+    match path => 'pages#index'
+  end
   root :to => 'pages#index'
 
   # The priority is based upon order of creation:
