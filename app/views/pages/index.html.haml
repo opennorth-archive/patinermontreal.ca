@@ -1,14 +1,40 @@
 #map
 
-#controls
-  #team-sports
-  #free-skating
-  #landscaped
-  #cleared
-  #flooded
-  #resurfaced
-  #favorites
+#controls.bar
+  #kinds.section
+    #PSE.control
+      %a(href="#")
+        = image_tag('PP.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '55x53')
+      %input(type="checkbox")
+    #PPL.control
+      %a(href="#")
+        = image_tag('PPL.png', :alt => t(:freeskating), :title => t(:freeskating), :size => '55x53')
+      %input(type="checkbox")
+    #PP.control
+      %a(href="#")
+        = image_tag('PSE.png', :alt => t(:teamsports), :title => t(:teamsports), :size => '55x53')
+      %input(type="checkbox")
+  #statuses.section
+    #deblaye.control
+      %a(href="#")
+        = image_tag 'blank.gif', :alt => t(:cleared), :title => t(:cleared), :size => '44x44'
+      =t :cleared
+    #arrose.control
+      %a(href="#")
+        = image_tag 'blank.gif', :alt => t(:flooded), :title => t(:flooded), :size => '44x44'
+      =t :flooded
+    #resurface.control
+      %a(href="#")
+        = image_tag 'blank.gif', :alt => t(:resurfaced), :title => t(:resurfaced), :size => '44x44'
+      =t :resurfaced
+  .section
+    #favories.control
+      %a(href="#")
+        = image_tag 'blank.gif', :alt => t(:favorite), :title => t(:favorite), :size => '44x44'
+      =t :favorite
+  #branding.section
 
 :javascript
   var locale = '#{locale}';
+  var env = '#{Rails.env}';
   var json = #{@rinks.to_json(only: [:nom, :genre, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng])};
