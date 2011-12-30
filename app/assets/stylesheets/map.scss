@@ -1,0 +1,156 @@
+// Mixins ----------------------------------------------------------------------
+// http://css3please.com/
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+
+$control-width: 70px;
+$bar-height: 86px;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+// Bar -------------------------------------------------------------------------
+
+.bar {
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: transparent url(/assets/bg.png) repeat-x 0 0;
+  @include box-shadow(10px 3px 10px #666);
+}
+.section {
+  position: absolute;
+  bottom: 7px;
+  height: 73px;
+  text-align: center;
+}
+.control {
+  float: left;
+  width: $control-width;
+  color: #666;
+  font-size: 12px;
+  .icon {
+    margin: 0 auto;
+  }
+}
+.caption {
+  padding-top: 5px;
+}
+
+#controls {
+  bottom: 0;
+  height: $bar-height;
+}
+
+#kinds {
+  left: 0;
+  width: 3 * $control-width;
+  border-right: 1px solid #ccc;
+  input {
+    display: block;
+    margin: 0 auto;
+  }
+}
+#statuses {
+  left: 3 * $control-width + 1;
+  width: 3 * $control-width;
+  border-right: 1px solid #ccc;
+}
+#favories {
+  left: 6 * $control-width + 2;
+  width: $control-width;
+  border-right: 1px solid #ccc;
+}
+
+#statuses .control,
+#favories .control {
+  padding-top: 5px;
+}
+#statuses .icon,
+#favories .icon {
+  width: 44px;
+  height: 44px;
+  background: transparent url(/assets/sprites.png) 0 0 no-repeat;
+}
+#deblaye .icon {
+  background-position: 0 0;
+  &.active,
+  &:hover {
+    background-position: 0 -44px;
+  }
+}
+#arrose .icon {
+  background-position: -44px 0;
+  &.active,
+  &:hover {
+    background-position: -44px -44px;
+  }
+}
+#resurface .icon {
+  background-position: -88px 0;
+  &.active,
+  &:hover {
+    background-position: -88px -44px;
+  }
+}
+#favories .icon {
+  background-position: -132px 0;
+  &.active,
+  &:hover {
+    background-position: -132px -44px;
+  }
+}
+
+#branding {
+  right: 0;
+}
+
+// TODO
+//.conditions span {
+//  display: block;
+//  float: left;
+//  width: 28px;
+//  height: 29px;
+//  background: transparent center 0 no-repeat;
+//}
+//.conditions .cleared {
+//  background-image: url(/images/cleared_small.png);
+//}
+//.conditions .flooded {
+//  background-image: url(/images/flooded_small.png);
+//}
+//.conditions .resurfaced {
+//  background-image: url(/images/resurfaced_small.png);
+//}
+//.conditions .active {
+//  background-position: center -29px !important;
+//}
+//
+//#branding span {
+//  position: absolute;
+//  top: 8px;
+//  right: 0;
+//  width: 150px;
+//}
+//span#logo {
+//  top: 18px;
+//  right: 170px;
+//  width: 166px;
+//  text-align: left;
+//}
+
+.leaflet-control-attribution {
+  bottom: $bar-height;
+}
