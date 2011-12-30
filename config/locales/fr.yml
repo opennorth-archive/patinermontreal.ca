@@ -9,13 +9,16 @@
 # by Serafim Junior Dos Santos Fagundes <serafim@cyb3r.ca>
 
 fr:
-  cleared: Déblayée
-  flooded: Arrosée
-  resurfaced: Resurfacée
-  favorite: Favorite
+  cleared: déblayée
+  flooded: arrosée
+  resurfaced: resurfacée
+  favorite: mes favories
   landscaped: Paysagée
   freeskating: Patin libre
   teamsports: Sports d'équipe
+  opennorth: Nord Ouvert
+  opennorth_url: http://nordouvert.ca
+  montrealouvert: Montréal Ouvert
 
   date:
     formats:

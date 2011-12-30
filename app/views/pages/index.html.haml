@@ -2,17 +2,17 @@
 
 #controls.bar
   #kinds.section
-    #PP.control
+    #PSE.control
       .icon
-        = image_tag('PP.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '55x53')
+        = image_tag('PSE.png', :alt => t(:teamsports), :title => t(:teamsports), :size => '55x53')
       %input(type="checkbox")
     #PPL.control
       .icon
         = image_tag('PPL.png', :alt => t(:freeskating), :title => t(:freeskating), :size => '55x53')
       %input(type="checkbox")
-    #PSE.control
+    #PP.control
       .icon
-        = image_tag('PSE.png', :alt => t(:teamsports), :title => t(:teamsports), :size => '55x53')
+        = image_tag('PP.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '55x53')
       %input(type="checkbox")
   #statuses.section
     #deblaye.control
@@ -37,6 +37,9 @@
       .caption
         =t :favorite
   #branding.section
+    = image_tag 'logo.png', alt: 'Patiner Montréal', title: 'Patiner Montréal', size: '166x34'
+    = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url)
+    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '150x50'), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}"
 
 :javascript
   var locale = '#{locale}';

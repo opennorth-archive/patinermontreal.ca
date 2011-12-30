@@ -82,7 +82,7 @@ body {
 #favories .icon {
   width: 44px;
   height: 44px;
-  background: transparent url(/assets/sprites.png) 0 0 no-repeat;
+  background: transparent url(/assets/sprites.gif) no-repeat 0 0;
 }
 #deblaye .icon {
   background-position: 0 0;
@@ -112,44 +112,49 @@ body {
     background-position: -132px -44px;
   }
 }
-
 #branding {
   right: 0;
+  img {
+    vertical-align: middle;
+  }
 }
 
-// TODO
-//.conditions span {
-//  display: block;
-//  float: left;
-//  width: 28px;
-//  height: 29px;
-//  background: transparent center 0 no-repeat;
-//}
-//.conditions .cleared {
-//  background-image: url(/images/cleared_small.png);
-//}
-//.conditions .flooded {
-//  background-image: url(/images/flooded_small.png);
-//}
-//.conditions .resurfaced {
-//  background-image: url(/images/resurfaced_small.png);
-//}
-//.conditions .active {
-//  background-position: center -29px !important;
-//}
-//
-//#branding span {
-//  position: absolute;
-//  top: 8px;
-//  right: 0;
-//  width: 150px;
-//}
-//span#logo {
-//  top: 18px;
-//  right: 170px;
-//  width: 166px;
-//  text-align: left;
-//}
+.statuses {
+  .icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: transparent url(/assets/sprites.gif) no-repeat 0 0;
+  }
+}
+.lt-ie8 .statuses .icon {
+  zoom: 1;
+  display: inline;
+}
+.deblaye {
+  background-position: -176px 0;
+  &.active {
+    background-position: -176px -28px;
+  }
+}
+.arrose {
+  background-position: -204px 0;
+  &.active {
+    background-position: -204px -28px;
+  }
+}
+.resurface {
+  background-position: -232px 0;
+  &.active {
+    background-position: -232px -28px;
+  }
+}
+.favorie {
+  background-position: -260px 0;
+  &.active {
+    background-position: -260px -28px;
+  }
+}
 
 .leaflet-control-attribution {
   bottom: $bar-height;

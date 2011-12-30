@@ -46,12 +46,14 @@ $ ->
     Map.addLayer new L.Circle event.latlng, radius
   Map.on 'locationerror', (event) ->
     console.log event.message if window.debug
+  Map.on 'popupclose', (event) ->
+    console.log event
 
   # Simple i18n "framework".
   I18n =
     en:
       # Translate rink kinds and statuses.
-      'sport-dequipe': 'team-sports'
+      'sports-dequipe': 'team-sports'
       'patin-libre': 'free-skating'
       'paysagee': 'landscaped'
       'ouvert': 'open'
@@ -66,7 +68,7 @@ $ ->
       C: 'landscaped'
     fr:
       # Translate from rink kind to path component.
-      PSE: 'sport-dequipe'
+      PSE: 'sports-dequipe'
       PPL: 'patin-libre'
       PP: 'paysagee'
       C: 'paysagee'
@@ -107,7 +109,7 @@ $ ->
     showIfMatching: (kinds, statuses) ->
       @each (rink) ->
         rink.set visible: (rink.get('genre') in kinds and _.all statuses, (status) -> rink.get status)
-      @trigger 'changeAll'
+      @trigger 'changeAll', kinds, statuses
     # Sets only favorite rinks as visible.
     showIfFavorite: ->
       @each (rink) ->
@@ -158,9 +160,9 @@ $ ->
     # Opens the marker's popup.
     openPopup: ->
       @marker.openPopup()
-      # TODO navigate to rink/:id for bookmarking
-  # TODO rink.toggle
-  # TODO @collection.bind 'change:favorite', ->
+      Map.setView @marker.getLatLng(), 15
+  # TODO when clicking on marker, navigate to rink/:id for bookmarking
+  # TODO in popup: rink.toggle and @collection.bind 'change:favorite', ->
 
   # A view for the primary buttons.
   # @expects a RinkSet collection
@@ -181,10 +183,9 @@ $ ->
       @collection.bind 'changeAll', @render, @
     events:
       click: 'toggle'
-    render: ->
+    render: (kinds, statuses) ->
       if @type?
         unless @currentUrl() is t 'favorites'
-          [kinds, statuses] = @fromUrl @currentUrl()
           state = @id in kinds or @id in statuses
           @$('.icon').toggleClass 'active', state
           @$('input').toggleAttr 'checked', state
@@ -211,6 +212,7 @@ $ ->
       else
         if @$('.icon').hasClass 'active'
           Backbone.history.navigate Options.get('path'), true
+          Options.save path: @rootUrl()
         else
           Options.save path: @currentUrl()
           Backbone.history.navigate t('favorites'), true
@@ -228,6 +230,7 @@ $ ->
       'contact': 'contact'
       'donate': 'donate'
       'dons': 'donate'
+      'api': 'api'
       'favorites': 'favorites'
       'favories': 'favorites'
       'f': 'filter'
@@ -243,6 +246,9 @@ $ ->
     # Performs the "donate" action.
     donate: ->
       # TODO display donate
+    # Performs the "api" action.
+    api: ->
+      # TODO display api
     # Performs the "favorites" action.
     favorites: ->
       @collection.showIfFavorite()
@@ -253,7 +259,11 @@ $ ->
     # Performs the "show" action.
     # @param string id a rink ID
     show: (id) ->
-      @collection.get(id).get('view').openPopup()
+      rink = @collection.get(id)
+      # If rink is not visible, display all rinks.
+      unless rink.get 'visible'
+        @collection.showIfMatching @fromUrl(@rootUrl())...
+      rink.get('view').openPopup()
     default: ->
       @navigate @rootUrl(), true
 

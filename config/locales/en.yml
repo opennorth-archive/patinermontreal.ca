@@ -2,10 +2,13 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  cleared: Cleared
-  flooded: Flooded
-  resurfaced: Resurfaced
-  favorite: Favorite
+  cleared: cleared
+  flooded: flooded
+  resurfaced: resurfaced
+  favorite: my favorites
   landscaped: Landscaped
   freeskating: Free skating
   teamsports: Team sports
+  opennorth: Open North
+  opennorth_url: http://opennorth.ca
+  montrealouvert: Open Data Montréal

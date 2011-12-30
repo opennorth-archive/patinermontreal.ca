@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    @rinks = Patinoire.all
+    @rinks = Patinoire.geocoded
   end
 
   def about
