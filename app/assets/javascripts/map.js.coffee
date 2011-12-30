@@ -1,3 +1,28 @@
+# TODO switch to Rinks.fetch?
+
+# @see hasClass
+$.fn.hasAttr = (attr) ->
+  _.any this, (el) ->
+    typeof $(el).attr(attr) isnt 'undefined'
+
+# @see toggleClass
+$.fn.toggleAttr = (attr, state) ->
+  isBoolean = typeof state is 'boolean'
+  this.each ->
+    self = $ this
+    state = not self.hasAttr(attr) unless isBoolean
+    if state
+      self.attr attr, attr
+    else
+      self.removeAttr attr
+
+# Monkey-patch Backbone to be trailing-slash agnostic.
+# @see https://github.com/documentcloud/backbone/issues/520
+((_getFragment) ->
+    Backbone.History.prototype.getFragment = ->
+      _getFragment.apply(this, arguments).replace /\/$/, ''
+) Backbone.History.prototype.getFragment
+
 $ ->
   # Create map.
   Map = new L.Map 'map',
@@ -6,9 +31,21 @@ $ ->
     layers: [
       new L.TileLayer 'http://{s}.tile.cloudmade.com/266d579a42a943a78166a0a732729463/51080/256/{z}/{x}/{y}.png',
         maxZoom: 18
+        attribution: '© 2011 <a href="http://cloudmade.com/">CloudMade</a> – Map data <a href="http://creativecommons.org/licenses/by-sa/2.0/">CCBYSA</a> 2011 <a href="http://openstreetmap.org/">OpenStreetMap.org</a> contributors – <a href="http://cloudmade.com/about/api-terms-and-conditions">Terms of Use</a>'
     ]
     minZoom: 10
     maxZoom: 16
+
+  # http://support.cloudmade.com/answers/general
+  Map.locateAndSetView 14
+  Map.on 'locationfound', (event) ->
+    radius = event.accuracy / 2
+    marker = new L.Marker event.latlng
+    Map.addLayer marker
+    marker.bindPopup "You are within #{radius} meters from this point" # @todo translate
+    Map.addLayer new L.Circle event.latlng, radius
+  Map.on 'locationerror', (event) ->
+    console.log event.message if window.debug
 
   # Simple i18n "framework".
   I18n =
@@ -33,6 +70,7 @@ $ ->
       PPL: 'patin-libre'
       PP: 'paysagee'
       C: 'paysagee'
+
   t = (string) ->
     I18n[locale] and I18n[locale][string] or string
 
@@ -40,15 +78,17 @@ $ ->
   Rink = Backbone.Model.extend
     initialize: (attributes) ->
       # Coerce booleans.
-      _.each ['ouvert', 'deblaye', 'arrose', 'resurface'], (key) ->
+      _.each ['ouvert', 'deblaye', 'arrose', 'resurface'], (key) =>
         unless attributes[key]?
           attrs = {}
           attrs[key] = false
           @set(attrs)
-      , @
+      # Handing "C" is unnecessarily hard.
+      @set(genre: 'PP') if 'C' is @get 'genre'
     defaults:
       favorite: false
       visible: false
+      view: null
     # Sets the rink as visible.
     show: ->
       @set visible: true
@@ -58,44 +98,6 @@ $ ->
     # Toggles the rink's favorite status.
     toggle: ->
       @save favorite: not @get 'favorite'
-    # TODO move iconName, icon, latlng, marker, popup, addMarker, openPopup to view?
-    # @return string the rink's kind, one of "PSE", "PPL" or "PP"
-    iconName: ->
-      genre = @get 'genre'
-      if genre is 'C'
-        'PPL'
-      else
-        genre
-    # @return L.Icon the rink's icon
-    # @note "new L.Icon.extend({})" raises "TypeError: object is not a function"
-    icon: ->
-      klass = L.Icon.extend
-        iconUrl: "/assets/#{@iconName()}_#{if @get 'ouvert' then 'on' else 'off'}.png"
-        shadowUrl: "/assets/#{@iconName()}_shadow.png"
-        iconSize: new L.Point 28, 28
-        shadowSize: new L.Point 44, 28
-        iconAnchor: new L.Point 15, 27
-      new klass
-    # @return L.LatLng the rink's latitude and longitude
-    latlng: ->
-      new L.LatLng @get('lat'), @get('lng')
-    # @return L.Marker the rink's marker
-    marker: ->
-      new L.Marker @latlng(), icon: @icon()
-    # @return L.Popup the rink's popup
-    popup: ->
-      new L.Popup
-      # TODO make popup appear with favorite, i'm going actions
-    # Adds the rink's marker to the map.
-    addMarker: ->
-      Map.addLayer @marker()
-    # Removes a rink's marker from the map.
-    removeMarker: ->
-
-    # Open the rink's popup.
-    openPopup: ->
-      Map.setView @latlng(), 13
-      Map.openPopup @popup()
 
   # Define collections.
   RinkSet = Backbone.Collection.extend
@@ -104,18 +106,12 @@ $ ->
     # Sets only matching rinks as visible.
     showIfMatching: (kinds, statuses) ->
       @each (rink) ->
-        if (rink.get('genre') in kinds and _.all statuses, (status) -> rink.get status)
-          rink.show()
-        else
-          rink.hide()
+        rink.set visible: (rink.get('genre') in kinds and _.all statuses, (status) -> rink.get status)
       @trigger 'changeAll'
     # Sets only favorite rinks as visible.
     showIfFavorite: ->
       @each (rink) ->
-        if rink.get 'favorite'
-          rink.show()
-        else
-          rink.hide()
+        rink.set visible: rink.get 'favorite'
       @trigger 'changeAll'
     # @return array all visible rinks
     visible: ->
@@ -126,81 +122,98 @@ $ ->
       @filter (rink) ->
         rink.get 'favorite'
 
-  # @expects a RinkSet collection and a reference to Router#navigate
+  # @expects a RinkSet collection
   MarkersView = Backbone.View.extend
-    initialize: (attributes) ->
-      @navigate = attributes.navigate
-      @collection.bind 'changeAll', @render, @
-    render: ->
+    initialize: ->
       @collection.each (model) ->
-        if model.get 'visible'
-          model.addMarker()
-        else
-          model.removeMarker()
-      @
+        view = new MarkerView model: model
+        model.set view: view
 
-  # TODO implement popup view
+  # @expects a Rink model
+  MarkerView = Backbone.View.extend
+    # @note "new L.Icon.extend({})" raises "TypeError: object is not a function"
+    initialize: ->
+      icon = L.Icon.extend
+        iconUrl: "/assets/#{@model.get 'genre'}_#{if @model.get 'ouvert' then 'on' else 'off'}.png"
+        shadowUrl: "/assets/#{@model.get 'genre'}_shadow.png"
+        iconSize: new L.Point 28, 28
+        shadowSize: new L.Point 44, 28
+        iconAnchor: new L.Point 15, 27
+        popupAnchor: new L.Point(0, -24) # CoffeeScript bug requires parentheses?
+      @marker = new L.Marker new L.LatLng(@model.get('lat'), @model.get('lng')), icon: new icon
+      @marker.bindPopup('test') # TODO make popup appear with favorite, i'm going (Twitter, Facebook), last update
+      @model.bind 'change:visible', @render, @
+    render: ->
+      if @model.get 'visible'
+        @addMarker()
+      else
+        @removeMarker()
+      @
+    # Adds the rink's marker to the map.
+    addMarker: ->
+      Map.addLayer @marker
+    # Removes a rink's marker from the map.
+    removeMarker: ->
+      Map.removeLayer @marker
+    # Opens the marker's popup.
+    openPopup: ->
+      @marker.openPopup()
+      # TODO navigate to rink/:id for bookmarking
+  # TODO rink.toggle
   # TODO @collection.bind 'change:favorite', ->
 
   # A view for the primary buttons.
-  # @expects a RinkSet collection and a reference to Router#navigate
+  # @expects a RinkSet collection
   ControlsView = Backbone.View.extend
+    initialize: ->
+      _.each ['PP', 'PPL', 'PSE'], (id) =>
+        new ControlView collection: @collection, el: "##{id}", type: 'kinds'
+      _.each ['deblaye', 'arrose', 'resurface'], (id) =>
+        new ControlView collection: @collection, el: "##{id}", type: 'statuses'
+      new ControlView collection: @collection, el: '#favories'
+
+  # A view for a single button.
+  # @expects a RinkSet collection
+  ControlView = Backbone.View.extend
     initialize: (attributes) ->
-      @navigate = attributes.navigate
+      @id = $(@el).attr 'id'
+      @type = attributes.type
+      @collection.bind 'changeAll', @render, @
+    events:
+      click: 'toggle'
     render: ->
+      if @type?
+        unless @currentUrl() is t 'favorites'
+          [kinds, statuses] = @fromUrl @currentUrl()
+          state = @id in kinds or @id in statuses
+          @$('.icon').toggleClass 'active', state
+          @$('input').toggleAttr 'checked', state
+      else
+        state = @currentUrl() is t 'favorites'
+        @$('.icon').toggleClass 'active', state
       @
-    # Toggles a filter.
-    # @param string type "kinds" or "statuses"
-    # @param string filter a filter, e.g. "PSE" or "deblaye"
-    # @private
-    toggleFilter: (event, type, filter) ->
-      $(@selector event).toggleClass 'active'
-      [kinds, statuses] = @fromUrl Backbone.history.getFragment()
-      if type is 'kinds' then filters = kinds else filters = statuses
-      if filter in filters
-        filters = _.without filters, filter
+    toggle: (state) ->
+      if @type?
+        [kinds, statuses] = @fromUrl @currentUrl()
+        if @type is 'kinds'
+          filters = kinds
+        else
+          filters = statuses
+        if @id in filters
+          filters = _.without filters, @id
+        else
+          filters.push @id
+        if @type is 'kinds'
+          kinds = filters
+        else
+          statuses = filters
+        Backbone.history.navigate @toUrl(kinds, statuses), true
       else
-        filters.push filter
-      if type is 'kinds' then kinds = filters else statuses = filters
-      @navigate @toUrl(kinds, statuses), true
-    # Toggles a rink kind filter.
-    # @param jQuery.Event an event
-    # @param string a rink kind
-    # @private
-    toggleKind: (event, kind) ->
-      @toggleFilter event, 'kinds', kind
-    # Toggles a rink status filter.
-    # @param jQuery.Event an event
-    # @param string a rink status
-    # @private
-    toggleStatus: (event, status) ->
-      @toggleFilter event, 'statuses', status
-    # @param jQuery.Event an event
-    # @return string the event target's selector
-    # @private
-    selector: (event) ->
-      '#' + event.target.id
-    toggleTeamSports: (event) ->
-      @toggleKind event, 'PSE'
-    toggleFreeSkating: (event) ->
-      @toggleKind event, 'PPL'
-    toggleLandscaped: (event) ->
-      @toggleKind event, 'PP'
-    toggleCleared: (event) ->
-      @toggleStatus event, 'deblaye'
-    toggleFlooded: (event) ->
-      @toggleStatus event, 'arrose'
-    toggleResurfaced: (event) ->
-      @toggleStatus event, 'resurface'
-    toggleFavorites: (event) ->
-      selector = @selector event
-      $(selector).toggleClass 'active'
-      if $(selector).hasClass 'active'
-        $('input', selector).attr 'checked', 'checked'
-        @navigate t('favorites'), true
-      else
-        $('input', selector).removeAttr 'checked'
-        # TODO @navigate (determine the last URL based on UI state), true
+        if @$('.icon').hasClass 'active'
+          Backbone.history.navigate Options.get('path'), true
+        else
+          Options.save path: @currentUrl()
+          Backbone.history.navigate t('favorites'), true
 
   # Define routes.
   # @expects a RinkSet collection
@@ -217,6 +230,7 @@ $ ->
       'dons': 'donate'
       'favorites': 'favorites'
       'favories': 'favorites'
+      'f': 'filter'
       'f/*filters': 'filter'
       'rink/:id': 'show'
       'patinoire/:id': 'show'
@@ -232,32 +246,27 @@ $ ->
     # Performs the "favorites" action.
     favorites: ->
       @collection.showIfFavorite()
-      # TODO set buttons state
-      # TODO render
     # Performs the "filter" action.
     # @param string splat a URL path
     filter: (splat) ->
-      [kinds, statuses] = @fromUrl splat
-      @collection.showIfMatching kinds, statuses
-      # TODO set buttons state
-      # TODO render
+      @collection.showIfMatching @fromUrl(splat)...
     # Performs the "show" action.
     # @param string id a rink ID
     show: (id) ->
-      # TODO find rink and openPopup() for it
+      @collection.get(id).get('view').openPopup()
     default: ->
-      @navigate @toUrl ['PP', 'PPL', 'PSE'], []
+      @navigate @rootUrl(), true
 
   # Helpers to mix-in to views and routers.
   Helpers =
     # Maps path components to rink kinds.
     kinds:
-      'team-sports': ['PSE']
-      'sports-dequipe': ['PSE']
-      'free-skating': ['PPL']
-      'patin-libre': ['PPL']
-      'landscaped': ['PP', 'C']
-      'paysagee': ['PP', 'C']
+      'team-sports': 'PSE'
+      'sports-dequipe': 'PSE'
+      'free-skating': 'PPL'
+      'patin-libre': 'PPL'
+      'landscaped': 'PP'
+      'paysagee': 'PP'
     # Maps path components to rink statuses.
     statuses:
       'cleared': 'deblaye'
@@ -266,21 +275,26 @@ $ ->
       'arrose': 'arrose'
       'resurfaced': 'resurface'
       'resurface': 'resurface'
+    currentUrl: ->
+      Backbone.history.getFragment()
+    rootUrl: ->
+      @toUrl ['PP', 'PPL', 'PSE'], []
     # @param string splat a URL path
     # @return array a two-value array where the first value is an array of rink
     #   kinds and the second value is an array of rink statuses
     fromUrl: (splat) ->
       kinds = []
       statuses = []
-      for part in splat.split('/')
-        if part of @kinds
-          kinds = kinds.concat @kinds[part]
-        else if part of @statuses
-          statuses.push @statuses[part]
-        else if part is 'f'
-          # Do nothing.
-        else
-          console.log "Unknown filter: #{part}" if window.debug
+      if splat?
+        for part in splat.split('/')
+          if part of @kinds
+            kinds.push @kinds[part]
+          else if part of @statuses
+            statuses.push @statuses[part]
+          else if part is 'f'
+            # Do nothing.
+          else
+            console.log "Unknown filter: #{part}" if window.debug
       [kinds, statuses]
     # Performs the inverse of +fromUrl+.
     # @param array kinds rink kinds
@@ -290,7 +304,7 @@ $ ->
       'f/' + _.uniq(_.map(kinds.sort().concat(statuses.sort()), (status) -> t status)).join '/'
 
   # Add helper functions to views and routers.
-  _.each [MarkersView, ControlsView, Router], (klass) ->
+  _.each [MarkersView, MarkerView, ControlsView, ControlView, Router], (klass) ->
     _.extend klass.prototype, Helpers
 
   # Seed collection.
@@ -301,31 +315,26 @@ $ ->
   Routes = new Router
     collection: Rinks
 
-  # Instantiate views.
-  # @note views ought to be able to call Router.navigate
-  markers = new MarkersView
-    el: '#map'
-    collection: Rinks
-    navigate: Routes.navigate
-  controls = new ControlsView
-    el: '#controls'
-    collection: Rinks
-    navigate: Routes.navigate
+  # Set up options singleton.
+  Singleton = Backbone.Model.extend
+    localStorage: new Store 'options'
+  Options = new Singleton
+    path: Helpers.rootUrl()
 
-  # Backbone doesn't attach the "events" option directly to the view, even
-  # though it makes sense given that views needn't necessarily hardcode CSS
-  # selectors (and maybe shouldn't).
-  # @see https://github.com/documentcloud/backbone/issues/656
-  controls.delegateEvents
-    'click #PSE': 'toggleTeamSports'
-    'click #PPL': 'toggleFreeSkating'
-    'click #PP': 'toggleLandscaped'
-    'click #deblaye': 'toggleCleared'
-    'click #arrose': 'toggleFlooded'
-    'click #resurface': 'toggleResurfaced'
-    'click #favories': 'toggleFavorites'
+  # Instantiate views.
+  markers = new MarkersView
+    el: '#map' # to avoid creating an element
+    collection: Rinks
+  controls = new ControlsView
+    el: '#controls' # to avoid creating an element
+    collection: Rinks
 
   # Route the initial URL.
   Backbone.history.start pushState: true
 
   window.debug = env is 'development'
+
+  # Backbone doesn't attach the "events" option directly to the view, even
+  # though it makes sense given that views needn't necessarily hardcode CSS
+  # selectors (and maybe shouldn't).
+  # @see https://github.com/documentcloud/backbone/issues/656
