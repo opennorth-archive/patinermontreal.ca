@@ -44,4 +44,45 @@
 :javascript
   var locale = '#{locale}';
   var env = '#{Rails.env}';
-  var json = #{@rinks.to_json(only: [:id, :nom, :genre, :slug, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng])};
+  var json = #{@rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng])};
+
+:plain
+  <script type="text/template" id="popup-template">
+    <h2><%= t(description) %>, <%= parc %></h2>
+    <% if (adresse) { %>
+      <p>
+        <%= adresse %>
+        <% if (tel) { %>
+          <br>
+          <%= tel.toString().replace(/([0-9]{3})([0-9]{3})([0-9]{4})/, '($1) $2-$3') %>
+          <% if (ext) { %>
+            <%= 'x' + ext %>
+          <% } %>
+        <% } %>
+      </p>
+    <% } %>
+    <% if (ouvert === false) { %>
+      <p><strong>Fermée</strong></p>
+    <% } else if (ouvert === true) { %>
+      <p><strong><%= t('condition', {condition: t(condition)}) %></strong></p>
+      <div class="statuses">
+        <div class="icon deblaye<% if (deblaye) { %> active<% } %>">
+          <img src="/assets/blank.gif" alt="<%= t('cleared') %>" title="<%= t('cleared') %>" width="28" height="28">
+        </div>
+        <div class="icon arrose<% if (arrose) { %> active<% } %>">
+          <img src="/assets/blank.gif" alt="<%= t('flooded') %>" title="<%= t('flooded') %>" width="28" height="28">
+        </div>
+        <div class="icon resurface<% if (resurface) { %> active<% } %>">
+          <img src="/assets/blank.gif" alt="<%= t('resurfaced') %>" title="<%= t('resurfaced') %>" width="28" height="28">
+        </div>
+        <!-- @todo
+        <div class="icon favorite<% if (favorite) { %> active<% } %>">
+          <img src="/assets/blank.gif" alt="<%= t(favorite ? 'remove_favorite' : 'add_favorite') %>" title="<%= t(favorite ? 'remove_favorite' : 'add_favorite') %>" width="28" height="28">
+        </div>
+        -->
+      </div>
+      <!-- @todo i'm going (Twitter, Facebook) -->
+    <% } else { %>
+      <!-- @todo instructions to contact borough to publish data -->
+    <% } %>
+  </script>

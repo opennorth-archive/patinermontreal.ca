@@ -14,7 +14,6 @@ namespace :location do
   desc 'Add missing addresses and coordinates'
   task :fix => :environment do
     # Add addresses to Sherlock and donnees.ville.montreal.qc.ca rinks
-    # @todo club pêcheurs/chasseurs
     { 'Bassin Bonsecours'        => '350 rue St-Paul Est', # no address in Sherlock
       'Berthe-Louard'            => '9355, avenue De Galinée', # extra rink in donnees.ville.montreal.qc.ca
       'Camille'                  => '9309 Boulevard Gouin Ouest', # only in donnees.ville.montreal.qc.ca

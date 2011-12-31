@@ -126,33 +126,43 @@ body {
     height: 28px;
     background: transparent url(/assets/sprites.gif) no-repeat 0 0;
   }
+  .deblaye {
+    background-position: -176px 0;
+    &.active {
+      background-position: -176px -28px;
+    }
+  }
+  .arrose {
+    background-position: -204px 0;
+    &.active {
+      background-position: -204px -28px;
+    }
+  }
+  .resurface {
+    background-position: -232px 0;
+    &.active {
+      background-position: -232px -28px;
+    }
+  }
+  .favorite {
+    background-position: -260px 0;
+    &.active {
+      background-position: -260px -28px;
+    }
+  }
 }
 .lt-ie8 .statuses .icon {
   zoom: 1;
   display: inline;
 }
-.deblaye {
-  background-position: -176px 0;
-  &.active {
-    background-position: -176px -28px;
+
+.leaflet-popup-content {
+  h2 {
+    font-size: 16px;
+    line-height: 24px;  
   }
-}
-.arrose {
-  background-position: -204px 0;
-  &.active {
-    background-position: -204px -28px;
-  }
-}
-.resurface {
-  background-position: -232px 0;
-  &.active {
-    background-position: -232px -28px;
-  }
-}
-.favorie {
-  background-position: -260px 0;
-  &.active {
-    background-position: -260px -28px;
+  p {
+    margin: 0 0 1em;
   }
 }
 

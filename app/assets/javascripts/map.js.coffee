@@ -31,6 +31,23 @@ $ ->
       rinks_url: 'rinks/%{id}-%{slug}'
       favorites_url: 'favorites'
       rinks: 'rinks'
+      cleared: 'Cleared'
+      flooded: 'Flooded'
+      resurfaced: 'Resurfaced'
+      Excellente: 'excellent'
+      Bonne: 'good'
+      Mauvaise: 'bad'
+      add_favorite: 'Add to favorites'
+      remove_favorite: 'Remove from favorites'
+      condition: 'in %{condition} condition'
+      'Aire de patinage libre': 'Free skating area'
+      'Grande patinoire avec bandes': 'Big rink with boards'
+      'Patinoire avec bandes': 'Rink with boards'
+      'Patinoire de patin libre': 'Free skating rink'
+      'Patinoire décorative': 'Decorative rink'
+      'Patinoire entretenue par les citoyens': 'Rink maintained by citizens'
+      'Patinoire réfrigérée': 'Refrigerated rink'
+      'Petite patinoire avec bandes': 'Small rink with boards'
       # Translate rink kinds and statuses.
       'sports-dequipe': 'team-sports'
       'patin-libre': 'free-skating'
@@ -50,13 +67,22 @@ $ ->
       rinks_url: 'patinoires/%{id}-%{slug}'
       favorites_url: 'favories'
       rinks: 'patinoires'
+      cleared: 'Déblayée'
+      flooded: 'Arrosée'
+      resurfaced: 'Resurfacée'
+      Excellente: 'excellente'
+      Bonne: 'bonne'
+      Mauvaise: 'mauvaise'
+      add_favorite: 'Ajouter aux favories'
+      remove_favorite: 'Supprimer des favories'
+      condition: 'en %{condition} condition'
       # Translate from rink kind to path component.
       PSE: 'sports-dequipe'
       PPL: 'patin-libre'
       PP: 'paysagee'
       C: 'paysagee'
 
-  t = (string, args) ->
+  window.t = (string, args) ->
     string = I18n[locale] and I18n[locale][string] or string
     if args
       for key, value of args
@@ -77,12 +103,6 @@ $ ->
   # Define models.
   Rink = Backbone.Model.extend
     initialize: (attributes) ->
-      # Coerce booleans.
-      _.each ['ouvert', 'deblaye', 'arrose', 'resurface'], (key) =>
-        unless attributes[key]?
-          attrs = {}
-          attrs[key] = false
-          @set(attrs)
       # Handing "C" is unnecessarily hard.
       @set(genre: 'PP') if 'C' is @get 'genre'
     defaults:
@@ -131,6 +151,7 @@ $ ->
 
   # @expects a Rink model
   MarkerView = Backbone.View.extend
+    template: _.template $('#popup-template').html()
     initialize: ->
       icon = L.Icon.extend
         iconUrl: "/assets/#{@model.get 'genre'}_#{if @model.get 'ouvert' then 'on' else 'off'}.png"
@@ -141,7 +162,7 @@ $ ->
         popupAnchor: new L.Point(0, -24) # CoffeeScript bug requires parentheses?
       # "new L.Icon.extend({})" raises "TypeError: object is not a function"
       @marker = new L.Marker new L.LatLng(@model.get('lat'), @model.get('lng')), icon: new icon
-      @marker.bindPopup('test') # TODO make popup appear with favorite, i'm going (Twitter, Facebook), last update
+      @marker.bindPopup @template @model.toJSON()
       # Replace the default "click" callback.
       @marker.off 'click', @marker.openPopup
       @marker.on 'click', @show, @
@@ -169,7 +190,8 @@ $ ->
       unless @rinkUrl()
         Options.save beforePopup: @currentUrl()
       Backbone.history.navigate t('rinks_url', id: @model.get('id'), slug: @model.get('slug')), true
-  # TODO in popup: rink.toggle and @collection.bind 'change:favorite', ->
+  # @todo in popup: rink.toggle and @collection.bind 'change:favorite', ...
+  # @todo favorite may need to be a view in order to define events on it
 
   Map.on 'popupclose', (event) ->
     # Don't navigate to the last known state if opening another popup.
@@ -254,16 +276,16 @@ $ ->
       'patinoires/:id': 'show'
     # Performs the "about" action.
     about: ->
-      # TODO display about
+      # @todo display about
     # Performs the "contact" action.
     contact: ->
-      # TODO display contact
+      # @todo display contact
     # Performs the "donate" action.
     donate: ->
-      # TODO display donate
+      # @todo display donate
     # Performs the "api" action.
     api: ->
-      # TODO display api
+      # @todo display api
     # Performs the "favorites" action.
     favorites: ->
       @collection.showIfFavorite()
