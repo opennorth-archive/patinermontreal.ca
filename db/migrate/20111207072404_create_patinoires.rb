@@ -12,8 +12,8 @@ class CreatePatinoires < ActiveRecord::Migration
       t.string :condition
       t.string :parc
       t.string :adresse
-      t.integer :tel
-      t.integer :ext
+      t.string :tel
+      t.string :ext
       t.float :lat
       t.float :lng
       t.references :arrondissement
