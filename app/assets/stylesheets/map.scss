@@ -159,3 +159,7 @@ body {
 .leaflet-control-attribution {
   bottom: $bar-height;
 }
+
+img[src*="_on.png"] {
+  z-index: 2000 !important;
+}
