@@ -44,4 +44,4 @@
 :javascript
   var locale = '#{locale}';
   var env = '#{Rails.env}';
-  var json = #{@rinks.to_json(only: [:id, :nom, :genre, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng])};
+  var json = #{@rinks.to_json(only: [:id, :nom, :genre, :slug, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng])};
