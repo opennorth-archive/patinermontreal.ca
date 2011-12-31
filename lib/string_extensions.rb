@@ -1,4 +1,6 @@
 # coding: utf-8
+require 'unicode_utils/downcase'
+
 class String
   # @see http://www.w3.org/TR/html4/sgml/entities.html
   def decode_html_entities
@@ -35,5 +37,11 @@ class String
         '&quot;' => '"',
       }[match]
     }
+  end
+
+  def slug
+    UnicodeUtils.downcase(gsub(/[[:space:]—–-]+/, ' ').strip, :fr).gsub(/\p{Punct}|\p{Cntrl}/, '').split.join('-').tr(
+      "ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž",
+      "aaaaaaaaaaaaaaaaaaccccccccccddddddeeeeeeeeeeeeeeeeeegggggggghhhhiiiiiiiiiiiiiiiiiijjkkkllllllllllnnnnnnnnnnnoooooooooooooooooorrrrrrsssssssssttttttuuuuuuuuuuuuuuuuuuuuwwyyyyyyzzzzzz")
   end
 end

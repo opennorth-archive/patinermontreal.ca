@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111221030025) do
+ActiveRecord::Schema.define(:version => 20111231064724) do
 
   create_table "arrondissements", :force => true do |t|
     t.string   "nom_arr"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20111221030025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source"
+    t.string   "slug"
   end
 
   add_index "patinoires", ["arrondissement_id"], :name => "index_patinoires_on_arrondissement_id"

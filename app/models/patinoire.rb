@@ -2,7 +2,7 @@
 class Patinoire < ActiveRecord::Base
   belongs_to :arrondissement
 
-  validates_presence_of :nom, :description, :genre, :parc, :source, :arrondissement_id
+  validates_presence_of :nom, :description, :genre, :parc, :slug, :source, :arrondissement_id
   validates_uniqueness_of :nom, scope: :arrondissement_id
   validates_inclusion_of :description, in: [
       'Aire de patinage libre',
@@ -62,6 +62,8 @@ private
   PREPOSITIONS = /\A(de la|de|des|du)\b/i
 
   def set_nom_and_description
+    self.slug = parc.slug if parc
+
     self.description ||= if disambiguation == 'réfrigérée'
       'Patinoire réfrigérée'
     else
