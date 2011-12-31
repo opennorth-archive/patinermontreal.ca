@@ -14,7 +14,7 @@ namespace :import do
       row.delete('extra')
       row.delete('source_url')
 
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id row['parc'], row['genre'], arrondissement.id
+      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_disambiguation_and_arrondissement_id row['parc'], row['genre'], row['disambiguation'], arrondissement.id
       patinoire.attributes = row.to_hash
       patinoire.source = 'docs.google.com'
       patinoire.save!
@@ -44,6 +44,8 @@ namespace :import do
       # If single match found, just update address.
       if matches.size > 1
         puts %("#{text}" matches many rinks)
+      elsif attributes[:parc] == 'Sir-Wilfrid-Laurier'
+        # @note Sherlock uses nord, sud, but XML uses no 1, no 2, no 3. Do nothing.
       elsif matches.size == 1
         matches.first.update_attributes attributes.slice(:adresse, :tel, :ext).select{|k,v| v.present?}
         # Special case.

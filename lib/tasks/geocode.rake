@@ -95,6 +95,7 @@ namespace :location do
   # Geocommons has wrong coordinates for:
   # Grier: actually Hermitage
   # Hermitage: actually Lakeside (Ovide)
+  # Kirkland: correct for Kirkland, not for Lachine
   # Outremont
   desc 'Compare manual geocoding to official geocoding'
   task :compare => :environment do
@@ -156,34 +157,8 @@ namespace :location do
 
   # @note Manual geocoding is preferred to avoid stacking.
   #
-  # Some Google-geocoded addresses will not be close to manually-geocoded rinks.
-  #
-  # Big parks:
-  # Daniel-Johnson
-  # Elgar
-  # Eugène-Dostie
-  # François-Perrault
-  # Jarry
-  # Jeanne-Mance
-  # Maisonneuve
-  # Sir-Wilfrid-Laurier
-  #
-  # Bad addresses:
-  # De Gaspé
-  # de l'école Dalpé-Viau
-  # de la Savane
-  # du Centenaire
-  # Hans-Selye (Marc-Aurèle-Fortin)
-  # Lucie-Bruneau
-  # Marcel-Laurin
-  # Noël-Sud
-  # Petite Italie (Martel)
-  # Rockhill
-  # Saint-André-Apôtre
-  # Saint-Léonard
-  #
-  # Approximate addresses:
-  # Duff Court
+  # Some Google-geocoded addresses will not be close to manually-geocoded rinks
+  # because the park is big or the address is bad or approximate.
   desc 'Geocode rinks using addresses'
   task :geocode => :environment do
     require 'open-uri'

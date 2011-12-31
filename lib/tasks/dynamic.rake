@@ -1,28 +1,49 @@
 # coding: utf-8
 
-# The totals on the Sherlock page are incorrect.
-#  16 Ahuntsic-Cartierville (16 as in XML)
-#   7 Anjou
-#  22 Côte-des-Neiges—Notre-Dame-de-Grâce (22 as in XML)
-#  29 Dollard-des-Ormeaux has 29, including PP
-#   8 L'Île-Bizard–Sainte-Geneviève has 8, not 9
-#   8 LaSalle
-#  12 Lachine
-#  14 Le Plateau-Mont-Royal has 12, not 11 (14 in XML)
-#  14 Le Sud-Ouest (13 in XML: no PPL at de la Vérendrye)
-#  21 Mercier—Hochelaga-Maisonneuve (21 as in XML)
-#   6 Montréal-Nord
-#   3 Montréal-Ouest
-#  10 Outremont
-#  14 Pierrefonds-Roxboro has 14, not 25
-#  18 Rivière-des-Prairies—Pointe-aux-Trembles (18 as in XML)
-#  18 Rosemont–La Petite-Patrie has 18, including C (17 in XML: no C)
-#  27 Saint-Laurent has 24, including rond de glace (2 from joseeboudreau@ville.montreal.qc.ca)
-#   8 Saint-Léonard
-#  12 Verdun
-#   6 Ville-Marie (5 in XML: no Bassin Bonsecours)
-#  17 Villeray–Saint-Michel–Parc-Extension has 16, not 15 (15 in XML: no Sainte-Yvette, no PSE at Nicolas-Tillemont, but has PSE at Perrault)
-# 290 rinks total
+# The advertised totals on the Sherlock page are sometimes incorrect. The
+# correct figure appears in parentheses below.
+#
+# Ahuntsic-Cartierville: XML is missing "de Beauséjour" and "des Hirondelles"
+# and has "Camille", another "Berthe-Louard" and another "Saint-Paul-de-la-Croix".
+# Lachine: XML is missing one "Duff Court" and has "club pêcheurs/chasseurs" and "Rosewood".
+# Le Plateau-Mont-Royal: XML has another "Sir-Wilfrid-Laurier".
+# Le Sud-Ouest: XML is missing one "de la Vérendrye" and has "Polyvalente Saint-Henri".
+# Rosemont–La Petite-Patrie: XML is missing one "Cité Jardin".
+# Ville-Marie: XML is missing "Bassin Bonsecours".
+# Villeray–Saint-Michel–Parc-Extension: XML is missing "René-Goupil", "Sainte-Yvette"
+# and one "Nicolas-Tillemont" and has "de Normanville" and another "François-Perrault".
+#
+# Total Borough                                  Sherlock XML Other
+#    19 Ahuntsic-Cartierville                     16       17     0 *
+#     7 Anjou                                      7        0     0
+#    21 Beaconsfield                               0        0    21
+#     5 Côte-Saint-Luc                             0        0     5
+#    23 Côte-des-Neiges—Notre-Dame-de-Grâce       22       22     1
+#    29 Dollard-des-Ormeaux                        ? (29)   0     0
+#     7 Dorval                                     0        0     7
+#     5 Kirkland                                   0        0     5
+#     8 L'Île-Bizard–Sainte-Geneviève              9  (8)   0     0
+#     9 LaSalle                                    8        0     1
+#    14 Lachine                                   12       13     0 *
+#    13 Le Plateau-Mont-Royal                     11 (12)  13     0 *
+#    14 Le Sud-Ouest                              13       13     0 *
+#    21 Mercier—Hochelaga-Maisonneuve             21       21     0
+#     6 Montréal-Nord                              6        0     0
+#     3 Montréal-Ouest                             0        0     3
+#    10 Outremont                                 10        0     0
+#    14 Pierrefonds-Roxboro                       25 (14)   0     0
+#     9 Pointe-Claire                              0        0     9
+#    18 Rivière-des-Prairies—Pointe-aux-Trembles  18       18     0
+#    18 Rosemont–La Petite-Patrie                 18       17     0 *
+#    27 Saint-Laurent                             24        0     3
+#     8 Saint-Léonard                              8        0     0
+#     5 Sainte-Anne-de-Bellevue                    0        0     5
+#     3 Senneville                                 0        0     3
+#    12 Verdun                                    12        0     0
+#     6 Ville-Marie                                6        5     0 *
+#    18 Villeray–Saint-Michel–Parc-Extension      15 (16)  15     0 *
+#     7 Westmount                                  0        0     7
+#                                                         154    63
 namespace :import do
   desc 'Add rinks from donnees.ville.montreal.qc.ca'
   task :donnees => :environment do
