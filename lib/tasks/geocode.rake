@@ -18,6 +18,7 @@ namespace :location do
     { 'Bassin Bonsecours'        => '350 rue St-Paul Est', # no address in Sherlock
       'Berthe-Louard'            => '9355, avenue De Galinée', # extra rink in donnees.ville.montreal.qc.ca
       'Camille'                  => '9309 Boulevard Gouin Ouest', # only in donnees.ville.montreal.qc.ca
+      'de Normanville'           => '7470 Rue de Normanville', # only in donnees.ville.montreal.qc.ca
       'François-Perrault'        => '7501, rue François-Perrault', # extra rink in donnees.ville.montreal.qc.ca
       'Polyvalente Saint-Henri'  => '4125 Rue Saint-Jacques', # only in donnees.ville.montreal.qc.ca
       'Rosewood'                 => '237 Avenue de Mount Vernon', # only in donnees.ville.montreal.qc.ca
@@ -124,13 +125,15 @@ namespace :location do
     require 'csv'
     require 'open-uri'
     CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv').read, headers: true) do |row|
-      matches = Arrondissement.where(nom_arr: row['nom_arr']).first.patinoires.where(parc: row['parc'], genre: row['genre'], disambiguation: row['disambiguation']).all
-      if matches.size > 1
-        puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches many rinks)
-      elsif matches.size == 0
-        puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches no rinks)
-      else
-        matches.first.update_attributes lat: row['lat'].to_f, lng: row['lng'].to_f
+      if row['lat'] && row['lng']
+        matches = Arrondissement.where(nom_arr: row['nom_arr']).first.patinoires.where(parc: row['parc'], genre: row['genre'], disambiguation: row['disambiguation']).all
+        if matches.size > 1
+          puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches many rinks)
+        elsif matches.size == 0
+          puts %(#{row['nom_arr']}: #{row['parc']} (#{row['genre']})#{" #{row['note']}" if row['note']} matches no rinks)
+        else
+          matches.first.update_attributes lat: row['lat'].to_f, lng: row['lng'].to_f
+        end
       end
     end
   end
