@@ -11,6 +11,7 @@ gem 'andand'
 gem 'nokogiri'
 gem 'psych'
 gem 'rest-client'
+gem 'unicode_utils'
 
 # Gems used only for assets and not required
 # in production environments by default.
