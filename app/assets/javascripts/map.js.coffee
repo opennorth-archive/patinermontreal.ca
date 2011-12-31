@@ -250,8 +250,8 @@ $ ->
       'favories': 'favorites'
       'f': 'filter'
       'f/*filters': 'filter'
-      'rinks/:slug': 'show'
-      'patinoires/:slug': 'show'
+      'rinks/:id': 'show'
+      'patinoires/:id': 'show'
     # Performs the "about" action.
     about: ->
       # TODO display about
@@ -273,8 +273,9 @@ $ ->
       @collection.showIfMatching @fromUrl(splat)...
     # Performs the "show" action.
     # @param string id a rink ID
-    show: (slug) ->
-      matches = slug.match /\d+/
+    show: (id) ->
+      # Remove the slug from the ID.
+      matches = id.match /^\d+/
       rink = @collection.get matches[0]
       # If rink is not visible, display all rinks first.
       unless rink.get 'visible'
