@@ -2,7 +2,7 @@ PatinerMontreal::Application.routes.draw do
   match 'about' =>  'pages#about'
   match 'contact' => 'pages#contact'
   match 'donate' => 'pages#donate'
-  %w(favorites favories f f/*filters rink/:id patinoire/:id).each do |path|
+  %w(favorites favories f f/*filters rinks/:id patinoires/:id).each do |path|
     match path => 'pages#index'
   end
   root :to => 'pages#index'
