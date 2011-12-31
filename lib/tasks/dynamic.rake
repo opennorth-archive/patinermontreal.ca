@@ -110,19 +110,22 @@ namespace :import do
         source: 'ville.dorval.qc.ca',
       }
 
-      # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_arenas.html
-      # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_parcs.html
-      coordinates = {
-        'Courtland' => '45.444130,-73.767014',
-        'St-Charles' => '45.438047,-73.729033',
-        'Surrey' => '45.453809,-73.772700',
-        'Windsor' => '45.440757,-73.748860',
-      }[attributes[:parc]]
-      if coordinates
-        attributes[:lat], attributes[:lng] = coordinates.split(',').map(&:to_f)
+      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id attributes[:parc], attributes[:genre], arrondissement.id
+
+      unless patinoire.geocoded?
+        # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_arenas.html
+        # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_parcs.html
+        coordinates = {
+          'Courtland' => '45.444130,-73.767014',
+          'St-Charles' => '45.438047,-73.729033',
+          'Surrey' => '45.453809,-73.772700',
+          'Windsor' => '45.440757,-73.748860',
+        }[attributes[:parc]]
+        if coordinates
+          attributes[:lat], attributes[:lng] = coordinates.split(',').map(&:to_f)
+        end
       end
 
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id attributes[:parc], attributes[:genre], arrondissement.id
       patinoire.attributes = attributes
       patinoire.save!
 
