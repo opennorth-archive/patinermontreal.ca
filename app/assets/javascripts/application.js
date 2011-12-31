@@ -5,6 +5,7 @@
 // the compiled file.
 //
 //= require json2
+//= require store.min
 //= require underscore-min
 //= require backbone-min
 //= require backbone.localStorage-min
