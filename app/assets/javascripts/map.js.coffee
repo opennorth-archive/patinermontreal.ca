@@ -208,7 +208,7 @@ $ ->
       # Prevent restoration of last known state if opening another popup.
       Options.save openingPopup: true
       @marker.openPopup()
-      twttr.widgets.load()
+      twttr.widgets.load() if twttr.widgets
       Options.save openingPopup: false
       Map.panTo @marker.getLatLng()
     show: ->
