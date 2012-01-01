@@ -1,23 +1,79 @@
 // Mixins ----------------------------------------------------------------------
 // http://css3please.com/
+@mixin background-rgba($red, $green, $blue, $opacity, $rgba) {
+  background-color: transparent;
+  background-color: rgba($red, $green, $blue, $opacity);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$rgba}',endColorstr='#{$rgba}');
+  zoom: 1;
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
 @mixin box-shadow($value) {
   -webkit-box-shadow: $value;
   -moz-box-shadow: $value;
   box-shadow: $value;
 }
+@mixin transition($value) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
 
+$sidebar-width: 240px;
 $control-width: 70px;
 $bar-height: 86px;
 
 html,
 body {
-  width: 100%;
   height: 100%;
 }
-
 #map {
-  width: 100%;
   height: 100%;
+  margin-left: $sidebar-width;
+}
+
+body {
+  font-size: 16px;
+}
+body,
+h1,
+h2,
+h3 {
+  line-height: 1.5em;
+}
+
+// Sidebar ---------------------------------------------------------------------
+
+aside {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: $sidebar-width;
+  height: 100%;
+  background-color: #fefefe;
+  @include box-shadow(-3px 0 10px #666);
+}
+.inside {
+  overflow: scroll;
+  height: 100%;
+  padding: 0 9px;
+  h2 {
+    font-size: 0.8125em;
+    line-height: 1.5em;
+  }
+}
+
+#paypal {
+  width: 222px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  @include box-shadow(none);
 }
 
 // Bar -------------------------------------------------------------------------
@@ -28,7 +84,7 @@ body {
   left: 0;
   width: 100%;
   background: transparent url(/assets/bg.png) repeat-x 0 0;
-  @include box-shadow(10px 3px 10px #666);
+  @include box-shadow(0 3px 10px #666);
 }
 .section {
   position: absolute;
@@ -40,7 +96,7 @@ body {
   float: left;
   width: $control-width;
   color: #666;
-  font-size: 12px;
+  font-size: 0.75em;
   .icon {
     margin: 0 auto;
   }
@@ -113,9 +169,25 @@ body {
   }
 }
 #branding {
-  right: 0;
+  right: 10px;
   img {
     vertical-align: middle;
+  }
+}
+
+// Popup -----------------------------------------------------------------------
+
+.leaflet-popup-content {
+  font-size: 1em;
+  line-height: 1.5em;
+  h2 {
+    font-size: 1em;
+  }
+  h3 {
+    font-size: 0.8125em;
+  }
+  p {
+    margin: 0 0 1em;
   }
 }
 
@@ -156,15 +228,7 @@ body {
   display: inline;
 }
 
-.leaflet-popup-content {
-  h2 {
-    font-size: 16px;
-    line-height: 24px;  
-  }
-  p {
-    margin: 0 0 1em;
-  }
-}
+// Leaflet ---------------------------------------------------------------------
 
 .leaflet-control-attribution {
   bottom: $bar-height;

@@ -19,6 +19,13 @@ fr:
   opennorth: Nord Ouvert
   opennorth_url: http://nordouvert.ca
   montrealouvert: Montréal Ouvert
+  montrealouvert_size: 124x48
+  facebook_locale: fr_CA
+  donation: Faire un don à Nord Ouvert avec
+  tweet: Tweeter
+  tweet_related: nordouvert
+  tweet_text: Trouvez toutes les meilleures patinoires extérieures à Montréal à
+  follow: Suivre
 
   date:
     formats:

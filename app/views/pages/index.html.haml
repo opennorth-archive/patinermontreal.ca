@@ -1,4 +1,26 @@
+#fb-root
 #map
+
+%aside
+  .inside
+    %h1
+      = image_tag 'logo.gif', alt: 'Patiner Montréal', title: 'Patiner Montréal', size: '166x34'
+    .social
+      .fb-like(data-href="http://patinermontreal.ca" data-send="true" data-layout="button_count" data-width="200" data-show-faces="false")
+    .social
+      %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-related="#{t :tweet_related}" data-count="horizontal")
+        =t :tweet
+    %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}" data-size="large")
+      =t :follow
+      @patinermtl
+    /.fb-like-box(data-href="http://www.facebook.com/OpenNorth.NordOuvert" data-width="292" data-show-faces="false" data-stream="false" data-header="true")
+    /.fb-activity(data-site="patinermontreal.ca,www.patinermontreal.ca" data-width="300" data-height="300" data-header="false" data-recommendations="false")
+    = form_tag 'https://www.paypal.com/cgi-bin/webscr', authenticity_token: false do
+      %h2= t :donation
+      = hidden_field_tag 'cmd', '_s-xclick'
+      = hidden_field_tag 'hosted_button_id', 'CA2V7LM44QGZG'
+      = image_submit_tag 'paypal.png', id: 'paypal', name: 'submit', alt: 'PayPal - The safer, easier way to pay online!'
+      = image_tag 'https://www.paypalobjects.com/en_US/i/scr/pixel.gif', alt: '', size: '1x1'
 
 #controls.bar
   #kinds.section
@@ -37,18 +59,48 @@
       .caption
         =t :favorite
   #branding.section
-    = image_tag 'logo.png', alt: 'Patiner Montréal', title: 'Patiner Montréal', size: '166x34'
     = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url)
-    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '150x50'), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}"
+    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: t(:montrealouvert_size)), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}"
 
 :javascript
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId  : '152478391528436',
+      status : true,
+      cookie : true,
+      oauth  : true,
+      xfbml  : true,
+      channelUrl  : 'http://patinermontreal.ca/channel'
+    });
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/#{t :facebook_locale}/all.js#appId=152478391528436&xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+    js.src="//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+
   var locale = '#{locale}';
   var env = '#{Rails.env}';
   var json = #{@rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng])};
 
 :plain
   <script type="text/template" id="popup-template">
-    <h2><%= t(description) %>, <%= parc %></h2>
+    <h2>
+      <img src="/assets/<%= genre %>_small.png" alt="<%= t('_' + genre) %>" title="<%= t('_' + genre) %>" width="28" height="27">
+      <%= parc %>
+    </h2>
+    <h3>
+      <%= t(description) %>
+    </h3>
     <% if (adresse) { %>
       <p>
         <%= adresse %>
@@ -81,8 +133,10 @@
         </div>
         -->
       </div>
-      <!-- @todo i'm going (Twitter, Facebook) -->
     <% } else { %>
       <!-- @todo instructions to contact borough to publish data -->
     <% } %>
+    <!-- @todo add text explaining purpose of social sharing -->
+    <!-- @todo add "i'm going" for Facebook + track click for Twitter, Facebook -->
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-related="<%= t('tweet_related') %>" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
   </script>

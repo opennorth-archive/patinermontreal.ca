@@ -27,19 +27,20 @@ $ ->
   # Simple i18n "framework".
   I18n =
     en:
+      tweet: 'Tweet'
+      tweet_related: 'opennorth:The creators of Patiner Montreal'
+      tweet_text_PSE: "I'm going to play hockey at %{park}"
+      tweet_text_PPL: "I'm going skating at %{park}"
+      tweet_text_PP: "I'm going skating at %{park}"
       accuracy: 'You are within %{radius} meters of this point'
-      rinks_url: 'rinks/%{id}-%{slug}'
-      favorites_url: 'favorites'
-      rinks: 'rinks'
-      cleared: 'Cleared'
-      flooded: 'Flooded'
-      resurfaced: 'Resurfaced'
-      Excellente: 'excellent'
-      Bonne: 'good'
-      Mauvaise: 'bad'
       add_favorite: 'Add to favorites'
       remove_favorite: 'Remove from favorites'
       condition: 'in %{condition} condition'
+      # Rink kinds.
+      _PSE: 'Team sports'
+      _PPL: 'Free skating'
+      _PP: 'Landscaped'
+      # Rink descriptions.
       'Aire de patinage libre': 'Free skating area'
       'Grande patinoire avec bandes': 'Big rink with boards'
       'Patinoire avec bandes': 'Rink with boards'
@@ -48,6 +49,17 @@ $ ->
       'Patinoire entretenue par les citoyens': 'Rink maintained by citizens'
       'Patinoire réfrigérée': 'Refrigerated rink'
       'Petite patinoire avec bandes': 'Small rink with boards'
+      # Interface statuses.
+      cleared: 'Cleared'
+      flooded: 'Flooded'
+      resurfaced: 'Resurfaced'
+      Excellente: 'excellent'
+      Bonne: 'good'
+      Mauvaise: 'bad'
+      # URLs.
+      rinks: 'rinks'
+      rinks_url: 'rinks/%{id}-%{slug}'
+      favorites_url: 'favorites'
       # Translate rink kinds and statuses.
       'sports-dequipe': 'team-sports'
       'patin-libre': 'free-skating'
@@ -63,19 +75,30 @@ $ ->
       PP: 'landscaped'
       C: 'landscaped'
     fr:
+      tweet: 'Tweeter'
+      tweet_related: 'nordouvert:Les créateurs de Patiner Montréal'
+      tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
+      tweet_text_PPL: 'Je vais patiner à %{park}'
+      tweet_text_PP: 'Je vais patiner à %{park}'
       accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
-      rinks_url: 'patinoires/%{id}-%{slug}'
-      favorites_url: 'favories'
-      rinks: 'patinoires'
+      add_favorite: 'Ajouter aux favories'
+      remove_favorite: 'Supprimer des favories'
+      condition: 'en %{condition} condition'
+      # Rink kinds.
+      _PSE: "Sports d'équipe"
+      _PPL: 'Patin libre'
+      _PP: 'Paysagée'
+      # Interface statuses.
       cleared: 'Déblayée'
       flooded: 'Arrosée'
       resurfaced: 'Resurfacée'
       Excellente: 'excellente'
       Bonne: 'bonne'
       Mauvaise: 'mauvaise'
-      add_favorite: 'Ajouter aux favories'
-      remove_favorite: 'Supprimer des favories'
-      condition: 'en %{condition} condition'
+      # URLs.
+      rinks: 'patinoires'
+      rinks_url: 'patinoires/%{id}-%{slug}'
+      favorites_url: 'favories'
       # Translate from rink kind to path component.
       PSE: 'sports-dequipe'
       PPL: 'patin-libre'
@@ -105,6 +128,7 @@ $ ->
     initialize: (attributes) ->
       # Handing "C" is unnecessarily hard.
       @set(genre: 'PP') if 'C' is @get 'genre'
+      @set url: t('rinks_url', id: @get('id'), slug: @get('slug'))
     defaults:
       favorite: false
       visible: false
@@ -184,12 +208,13 @@ $ ->
       # Prevent restoration of last known state if opening another popup.
       Options.save openingPopup: true
       @marker.openPopup()
+      twttr.widgets.load()
       Options.save openingPopup: false
       Map.panTo @marker.getLatLng()
     show: ->
       unless @rinkUrl()
         Options.save beforePopup: @currentUrl()
-      Backbone.history.navigate t('rinks_url', id: @model.get('id'), slug: @model.get('slug')), true
+      Backbone.history.navigate @model.get('url'), true
   # @todo in popup: rink.toggle and @collection.bind 'change:favorite', ...
   # @todo favorite may need to be a view in order to define events on it
 
@@ -371,7 +396,7 @@ $ ->
     # @param array statuses rink statuses
     # @return string a URL path
     toUrl: (kinds, statuses) ->
-      'f/' + _.uniq(_.map(kinds.sort().concat(statuses.sort()), (status) -> t status)).join '/'
+      'f/' + _.uniq(_.map(kinds.sort().concat(statuses.sort()), (filter) -> t filter)).join '/'
 
   # Set up options singleton.
   Singleton = Backbone.Model.extend
