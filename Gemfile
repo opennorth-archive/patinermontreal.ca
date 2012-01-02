@@ -8,6 +8,7 @@ gem 'rails', '3.1.0'
 gem 'thin'
 
 gem 'andand'
+gem 'http_accept_language'
 gem 'nokogiri'
 gem 'psych'
 gem 'rest-client'
