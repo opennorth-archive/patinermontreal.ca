@@ -1,10 +1,17 @@
 #fb-root
 #map
 
+#language
+  = link_to t(:other_language), "http://#{t :other_locale}.#{request.domain}#{translated_path}"
+
 %aside
   .inside
     %h1
       = image_tag 'logo.gif', alt: 'Patiner Montréal', title: 'Patiner Montréal', size: '166x34'
+    %p#count= t :open_rinks, count: @count
+    %p
+      = t :last_updated
+      = l @last_updated, format: :long
     .social
       .fb-like(data-href="http://patinermontreal.ca" data-send="true" data-layout="button_count" data-width="200" data-show-faces="false")
     .social
@@ -37,6 +44,11 @@
         = image_tag('PP.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '55x53')
       %input(type="checkbox")
   #statuses.section
+    #ouvert.control
+      .icon
+        = image_tag 'blank.gif', :alt => t(:open), :title => t(:open), :size => '44x44'
+      .caption
+        =t :open
     #deblaye.control
       .icon
         = image_tag 'blank.gif', :alt => t(:cleared), :title => t(:cleared), :size => '44x44'
@@ -113,9 +125,7 @@
         <% } %>
       </p>
     <% } %>
-    <% if (ouvert === false) { %>
-      <p><strong>Fermée</strong></p>
-    <% } else if (ouvert === true) { %>
+    <% if (ouvert === true) { %>
       <p><strong><%= t('condition', {condition: t(condition)}) %></strong></p>
       <div class="statuses">
         <div class="icon deblaye<% if (deblaye) { %> active<% } %>">
@@ -133,6 +143,8 @@
         </div>
         -->
       </div>
+    <% } else if (condition) { %>
+      <p><strong>Fermée</strong></p>
     <% } else { %>
       <!-- @todo instructions to contact borough to publish data -->
     <% } %>

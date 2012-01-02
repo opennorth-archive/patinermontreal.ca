@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   def index
     @rinks = Patinoire.geocoded
+    @count = Patinoire.geocoded.open.count
+    @last_updated = Arrondissement.maximum(:date_maj)
     # @todo check that this works across languages, otherwise do:
     # http://blog.slashpoundbang.com/post/12701215379/how-to-cache-an-internationalized-site-with-rack-cache
     # or add the locale to the etag

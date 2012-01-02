@@ -9,23 +9,50 @@
 # by Serafim Junior Dos Santos Fagundes <serafim@cyb3r.ca>
 
 fr:
+  other_locale: en
+  other_language: English
+  open_rinks: '%{count} patinoires sont ouvertes'
+  last_updated: Mis à jour le
+  donation: Faire un don à Nord Ouvert avec
+
+  # Filters
+  teamsports: Sports d'équipe
+  freeskating: Patin libre
+  landscaped: Paysagée
+  open: ouverte
   cleared: déblayée
   flooded: arrosée
   resurfaced: resurfacée
   favorite: mes favories
-  landscaped: Paysagée
-  freeskating: Patin libre
-  teamsports: Sports d'équipe
+
+  # About
   opennorth: Nord Ouvert
   opennorth_url: http://nordouvert.ca
   montrealouvert: Montréal Ouvert
   montrealouvert_size: 124x48
+
+  # Social
   facebook_locale: fr_CA
-  donation: Faire un don à Nord Ouvert avec
   tweet: Tweeter
   tweet_related: nordouvert
   tweet_text: Trouvez toutes les meilleures patinoires extérieures à Montréal à
   follow: Suivre
+
+  # URL
+  about: a-propos
+  contact: contact
+  donate: dons
+  api: api
+  rinks: patinoires
+  favorites: favories
+  PSE: sports-dequipe
+  PPL: patin-libre
+  PP: paysagee
+  ouvert: ouvert
+  deblaye: deblaye
+  arrose: arrose
+  resurface: resurface
+
 
   date:
     formats:
@@ -85,7 +112,7 @@ fr:
     formats:
       default: "%H:%M:%S"
       short: "%H:%M"
-      long: "%A %d %B %Y %H:%M"
+      long: "%A %e %B à %Hh"
     am: 'am'
     pm: 'pm'
 

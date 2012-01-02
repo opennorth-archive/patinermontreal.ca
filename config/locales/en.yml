@@ -2,20 +2,50 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  other_locale: fr
+  other_language: Français
+  open_rinks: '%{count} rinks are open'
+  last_updated: Last updated
+  donation: Donate to Open North with
+
+  # Filters
+  teamsports: Team sports
+  freeskating: Free skating
+  landscaped: Landscaped
+  open: open
   cleared: cleared
   flooded: flooded
   resurfaced: resurfaced
   favorite: my favorites
-  landscaped: Landscaped
-  freeskating: Free skating
-  teamsports: Team sports
+
+  # About
   opennorth: Open North
   opennorth_url: http://opennorth.ca
   montrealouvert: Open Data Montréal
   montrealouvert_size: 143x48
+
+  # Social
   facebook_locale: en_US
-  donation: Donate to Open North with
   tweet: Tweet
   tweet_related: opennorth
   tweet_text: Find all the best outdoor skating rinks in Montreal at
   follow: Follow
+
+  # URL
+  about: about
+  contact: contact
+  donate: donate
+  api: api
+  rinks: rinks
+  favorites: favorites
+  PSE: team-sports
+  PPL: free-skating
+  PP: landscaped
+  ouvert: open
+  deblaye: cleared
+  arrose: flooded
+  resurface: resurfaced
+
+  time:
+    formats:
+      long: "%B %e at %l%P"

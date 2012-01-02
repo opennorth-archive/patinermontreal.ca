@@ -11,6 +11,11 @@
   -moz-border-radius: $radius;
   border-radius: $radius;
 }
+@mixin border-direction-radius($direction, $radius) {
+  -webkit-border-#{$direction}-radius: $radius;
+  -moz-border-#{$direction}-radius: $radius;
+  border-#{$direction}-radius: $radius;
+}
 @mixin box-shadow($value) {
   -webkit-box-shadow: $value;
   -moz-box-shadow: $value;
@@ -25,7 +30,7 @@
 }
 
 $sidebar-width: 240px;
-$control-width: 70px;
+$control-width: 80px;
 $bar-height: 86px;
 
 html,
@@ -47,6 +52,25 @@ h3 {
   line-height: 1.5em;
 }
 
+#language {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  background-color: #666;
+  padding: 10px;
+  @include border-direction-radius(bottom-right, 5px);
+  @include border-direction-radius(bottom-left, 5px);
+  a {
+    color: #fff;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+.lt-ie7 #language {
+  display: inline; // avoid stepdown
+}
+
 // Sidebar ---------------------------------------------------------------------
 
 aside {
@@ -63,12 +87,16 @@ aside {
   height: 100%;
   padding: 0 9px;
   h1 {
+    margin: 0;
     padding-top: 9px;
   }
   h2 {
     font-size: 0.8125em;
     line-height: 1.5em;
   }
+}
+#count {
+  font-weight: bold;
 }
 
 #paypal {
@@ -124,11 +152,11 @@ aside {
 }
 #statuses {
   left: 3 * $control-width + 1;
-  width: 3 * $control-width;
+  width: 4 * $control-width;
   border-right: 1px solid #ccc;
 }
 #favories {
-  left: 6 * $control-width + 2;
+  left: 7 * $control-width + 2;
   width: $control-width;
   border-right: 1px solid #ccc;
 }
@@ -171,6 +199,13 @@ aside {
     background-position: -132px -44px;
   }
 }
+#ouvert .icon {
+  background-position: -176px 0;
+  &.active,
+  &:hover {
+    background-position: -176px -44px;
+  }
+}
 #branding {
   right: 10px;
   img {
@@ -202,27 +237,33 @@ aside {
     background: transparent url(/assets/sprites.gif) no-repeat 0 0;
   }
   .deblaye {
-    background-position: -176px 0;
+    background-position: 0 -88px;
     &.active {
-      background-position: -176px -28px;
+      background-position: 0 -116px;
     }
   }
   .arrose {
-    background-position: -204px 0;
+    background-position: -28px -88px;
     &.active {
-      background-position: -204px -28px;
+      background-position: -28px -116px;
     }
   }
   .resurface {
-    background-position: -232px 0;
+    background-position: -56px -88px;
     &.active {
-      background-position: -232px -28px;
+      background-position: -56px -116px;
+    }
+  }
+  .ouvert {
+    background-position: -84px -88px;
+    &.active {
+      background-position: -84px -116px;
     }
   }
   .favorite {
-    background-position: -260px 0;
+    background-position: -84px -88px;
     &.active {
-      background-position: -260px -28px;
+      background-position: -84px -116px;
     }
   }
 }

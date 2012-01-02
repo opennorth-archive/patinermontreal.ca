@@ -14,6 +14,109 @@ $.fn.toggleAttr = (attr, state) ->
     else
       self.removeAttr attr
 
+# Simple i18n "framework".
+I18n =
+  en:
+    locale: 'en'
+    other_locale: 'fr'
+    accuracy: 'You are within %{radius} meters of this point'
+    add_favorite: 'Add to favorites'
+    remove_favorite: 'Remove from favorites'
+    condition: 'in %{condition} condition'
+    # Social
+    tweet: 'Tweet'
+    tweet_related: 'opennorth:The creators of Patiner Montreal'
+    tweet_text_PSE: "I'm going to play hockey at %{park}"
+    tweet_text_PPL: "I'm going skating at %{park}"
+    tweet_text_PP: "I'm going skating at %{park}"
+    # Rink kinds
+    _PSE: 'Team sports'
+    _PPL: 'Free skating'
+    _PP: 'Landscaped'
+    # Rink descriptions
+    'Aire de patinage libre': 'Free skating area'
+    'Grande patinoire avec bandes': 'Big rink with boards'
+    'Patinoire avec bandes': 'Rink with boards'
+    'Patinoire de patin libre': 'Free skating rink'
+    'Patinoire décorative': 'Decorative rink'
+    'Patinoire entretenue par les citoyens': 'Rink maintained by citizens'
+    'Patinoire réfrigérée': 'Refrigerated rink'
+    'Petite patinoire avec bandes': 'Small rink with boards'
+    # Interface statuses
+    open: 'Open'
+    cleared: 'Cleared'
+    flooded: 'Flooded'
+    resurfaced: 'Resurfaced'
+    Excellente: 'excellent'
+    Bonne: 'good'
+    Mauvaise: 'bad'
+    # URLs
+    rinks: 'rinks'
+    rinks_url: 'rinks/%{id}-%{slug}'
+    favorites_url: 'favorites'
+    # Translate rink kinds and statuses.
+    'sports-dequipe': 'team-sports'
+    'patin-libre': 'free-skating'
+    'paysagee': 'landscaped'
+    'ouvert': 'open'
+    'deblaye': 'cleared'
+    'arrose': 'flooded'
+    'resurface': 'resurfaced'
+    'favories': 'favorites'
+    # Translate from rink kind to path component.
+    PSE: 'team-sports'
+    PPL: 'free-skating'
+    PP: 'landscaped'
+    C: 'landscaped'
+  fr:
+    locale: 'fr'
+    other_locale: 'en'
+    accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
+    add_favorite: 'Ajouter aux favories'
+    remove_favorite: 'Supprimer des favories'
+    condition: 'en %{condition} condition'
+    # Social
+    tweet: 'Tweeter'
+    tweet_related: 'nordouvert:Les créateurs de Patiner Montréal'
+    tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
+    tweet_text_PPL: 'Je vais patiner à %{park}'
+    tweet_text_PP: 'Je vais patiner à %{park}'
+    # Rink kinds
+    _PSE: "Sports d'équipe"
+    _PPL: 'Patin libre'
+    _PP: 'Paysagée'
+    # Interface statuses
+    open: 'Ouverte'
+    cleared: 'Déblayée'
+    flooded: 'Arrosée'
+    resurfaced: 'Resurfacée'
+    Excellente: 'excellente'
+    Bonne: 'bonne'
+    Mauvaise: 'mauvaise'
+    # URLs
+    rinks: 'patinoires'
+    rinks_url: 'patinoires/%{id}-%{slug}'
+    favorites_url: 'favories'
+    # Translate from rink kind to path component.
+    PSE: 'sports-dequipe'
+    PPL: 'patin-libre'
+    PP: 'paysagee'
+    C: 'paysagee'
+
+window.t = (string, args) ->
+  if args and 'locale' of args
+    current_locale = args.locale
+    delete args.locale
+    args = null unless _.keys(args).length
+  else
+    current_locale = locale
+
+  string = I18n[current_locale] and I18n[current_locale][string] or string
+  if args
+    for key, value of args
+      string = string.replace "%{#{key}}", value
+  string
+
 # Monkey-patch Backbone to be trailing-slash agnostic.
 # @see https://github.com/documentcloud/backbone/issues/520
 ((_getFragment) ->
@@ -21,96 +124,20 @@ $.fn.toggleAttr = (attr, state) ->
       _getFragment.apply(this, arguments).replace /\/$/, ''
 ) Backbone.History.prototype.getFragment
 
+other_locale = t 'other_locale'
+other_domain = $('#language a').attr('href').match(/^http:\/\/[^\/]+\//)[0].replace t('locale'), other_locale
+
+# Update the language switch link after each navigation event.
+((_navigate) ->
+    Backbone.History.prototype.navigate = ->
+      _navigate.apply this, arguments
+      $('#language a').attr 'href', _.reduce ['about', 'contact', 'donate', 'api', 'rinks', 'favorites', 'sports-dequipe', 'patin-libre', 'paysagee', 'ouvert', 'deblaye', 'arrose', 'resurface'], (string,component) ->
+        string.replace t(component), t(component, locale: other_locale)
+      , other_domain + Backbone.history.getFragment()
+) Backbone.History.prototype.navigate
+
 $ ->
   window.debug = env is 'development'
-
-  # Simple i18n "framework".
-  I18n =
-    en:
-      tweet: 'Tweet'
-      tweet_related: 'opennorth:The creators of Patiner Montreal'
-      tweet_text_PSE: "I'm going to play hockey at %{park}"
-      tweet_text_PPL: "I'm going skating at %{park}"
-      tweet_text_PP: "I'm going skating at %{park}"
-      accuracy: 'You are within %{radius} meters of this point'
-      add_favorite: 'Add to favorites'
-      remove_favorite: 'Remove from favorites'
-      condition: 'in %{condition} condition'
-      # Rink kinds.
-      _PSE: 'Team sports'
-      _PPL: 'Free skating'
-      _PP: 'Landscaped'
-      # Rink descriptions.
-      'Aire de patinage libre': 'Free skating area'
-      'Grande patinoire avec bandes': 'Big rink with boards'
-      'Patinoire avec bandes': 'Rink with boards'
-      'Patinoire de patin libre': 'Free skating rink'
-      'Patinoire décorative': 'Decorative rink'
-      'Patinoire entretenue par les citoyens': 'Rink maintained by citizens'
-      'Patinoire réfrigérée': 'Refrigerated rink'
-      'Petite patinoire avec bandes': 'Small rink with boards'
-      # Interface statuses.
-      cleared: 'Cleared'
-      flooded: 'Flooded'
-      resurfaced: 'Resurfaced'
-      Excellente: 'excellent'
-      Bonne: 'good'
-      Mauvaise: 'bad'
-      # URLs.
-      rinks: 'rinks'
-      rinks_url: 'rinks/%{id}-%{slug}'
-      favorites_url: 'favorites'
-      # Translate rink kinds and statuses.
-      'sports-dequipe': 'team-sports'
-      'patin-libre': 'free-skating'
-      'paysagee': 'landscaped'
-      'ouvert': 'open'
-      'deblaye': 'cleared'
-      'arrose': 'flooded'
-      'resurface': 'resurfaced'
-      'favories': 'favorites'
-      # Translate from rink kind to path component.
-      PSE: 'team-sports'
-      PPL: 'free-skating'
-      PP: 'landscaped'
-      C: 'landscaped'
-    fr:
-      tweet: 'Tweeter'
-      tweet_related: 'nordouvert:Les créateurs de Patiner Montréal'
-      tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
-      tweet_text_PPL: 'Je vais patiner à %{park}'
-      tweet_text_PP: 'Je vais patiner à %{park}'
-      accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
-      add_favorite: 'Ajouter aux favories'
-      remove_favorite: 'Supprimer des favories'
-      condition: 'en %{condition} condition'
-      # Rink kinds.
-      _PSE: "Sports d'équipe"
-      _PPL: 'Patin libre'
-      _PP: 'Paysagée'
-      # Interface statuses.
-      cleared: 'Déblayée'
-      flooded: 'Arrosée'
-      resurfaced: 'Resurfacée'
-      Excellente: 'excellente'
-      Bonne: 'bonne'
-      Mauvaise: 'mauvaise'
-      # URLs.
-      rinks: 'patinoires'
-      rinks_url: 'patinoires/%{id}-%{slug}'
-      favorites_url: 'favories'
-      # Translate from rink kind to path component.
-      PSE: 'sports-dequipe'
-      PPL: 'patin-libre'
-      PP: 'paysagee'
-      C: 'paysagee'
-
-  window.t = (string, args) ->
-    string = I18n[locale] and I18n[locale][string] or string
-    if args
-      for key, value of args
-        string = string.replace "%{#{key}}", value
-    string
 
   # Create map.
   Map = new L.Map 'map',
@@ -177,8 +204,14 @@ $ ->
   MarkerView = Backbone.View.extend
     template: _.template $('#popup-template').html()
     initialize: ->
+      state = if @model.get 'ouvert'
+        'on'
+      else if @model.get 'condition' # rinks with conditions receive updates
+        'off'
+      else
+        'na'
       icon = L.Icon.extend
-        iconUrl: "/assets/#{@model.get 'genre'}_#{if @model.get 'ouvert' then 'on' else 'off'}.png"
+        iconUrl: "/assets/#{@model.get 'genre'}_#{state}.png"
         shadowUrl: "/assets/#{@model.get 'genre'}_shadow.png"
         iconSize: new L.Point 28, 28
         shadowSize: new L.Point 44, 28
@@ -229,7 +262,7 @@ $ ->
     initialize: ->
       _.each ['PP', 'PPL', 'PSE'], (id) =>
         new ControlView collection: @collection, el: "##{id}", type: 'kinds'
-      _.each ['deblaye', 'arrose', 'resurface'], (id) =>
+      _.each ['ouvert', 'deblaye', 'arrose', 'resurface'], (id) =>
         new ControlView collection: @collection, el: "##{id}", type: 'statuses'
       new ControlView collection: @collection, el: '#favories'
 
@@ -322,8 +355,7 @@ $ ->
     # @param string id a rink ID
     show: (id) ->
       # Remove the slug from the ID.
-      matches = id.match /^\d+/
-      rink = @collection.get matches[0]
+      rink = @collection.get id.match(/^\d+/)[0]
       # If rink is not visible, display all rinks first.
       unless rink.get 'visible'
         @collection.showIfMatching @fromUrl(@rootUrl())...
@@ -344,6 +376,8 @@ $ ->
       'paysagee': 'PP'
     # Maps path components to rink statuses.
     statuses:
+      'open': 'ouvert'
+      'ouvert': 'ouvert'
       'cleared': 'deblaye'
       'deblaye': 'deblaye'
       'flooded': 'arrose'
@@ -371,7 +405,7 @@ $ ->
     fromUI: ->
       kinds = _.filter ['PP', 'PPL', 'PSE'], (filter) ->
         $("##{filter} .icon").hasClass 'active'
-      statuses = _.filter ['deblaye', 'arrose', 'resurface'], (filter) ->
+      statuses = _.filter ['ouvert', 'deblaye', 'arrose', 'resurface'], (filter) ->
         $("##{filter} .icon").hasClass 'active'
       [kinds, statuses]
     # @param string splat a URL path
