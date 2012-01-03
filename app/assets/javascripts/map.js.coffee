@@ -44,6 +44,7 @@ I18n =
     'Petite patinoire avec bandes': 'Small rink with boards'
     # Interface statuses
     open: 'Open'
+    closed: 'Closed'
     cleared: 'Cleared'
     flooded: 'Flooded'
     resurfaced: 'Resurfaced'
@@ -87,6 +88,7 @@ I18n =
     _PP: 'Paysagée'
     # Interface statuses
     open: 'Ouverte'
+    closed: 'Fermée'
     cleared: 'Déblayée'
     flooded: 'Arrosée'
     resurfaced: 'Resurfacée'
@@ -320,30 +322,12 @@ $ ->
     # Maps path components to actions.
     routes:
       '': 'default'
-      'about': 'about'
-      'a-propos': 'about'
-      'contact': 'contact'
-      'donate': 'donate'
-      'dons': 'donate'
-      'api': 'api'
       'favorites': 'favorites'
       'favories': 'favorites'
       'f': 'filter'
       'f/*filters': 'filter'
       'rinks/:id': 'show'
       'patinoires/:id': 'show'
-    # Performs the "about" action.
-    about: ->
-      # @todo display about
-    # Performs the "contact" action.
-    contact: ->
-      # @todo display contact
-    # Performs the "donate" action.
-    donate: ->
-      # @todo display donate
-    # Performs the "api" action.
-    api: ->
-      # @todo display api
     # Performs the "favorites" action.
     favorites: ->
       @collection.showIfFavorite()

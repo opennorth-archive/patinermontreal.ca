@@ -39,6 +39,6 @@ It is normal to see the following output:
     heroku run rake location:compare
     heroku run rake location:import
 
-# Misc.
+# Miscellaneous
 
 * [Data sources](https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=html)

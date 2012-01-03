@@ -84,7 +84,6 @@ aside {
 }
 .inside {
   overflow: scroll;
-  height: 100%;
   padding: 0 9px;
   h1 {
     margin: 0;
@@ -107,6 +106,15 @@ aside {
   @include box-shadow(none);
 }
 
+#footer {
+  color: #666;
+  font-size: 0.625em;
+}
+
+#disclaimer {
+  color: #999;
+  font-size: 0.625em;
+}
 // Bar -------------------------------------------------------------------------
 
 .bar {

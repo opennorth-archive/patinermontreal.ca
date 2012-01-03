@@ -1,7 +1,5 @@
 PatinerMontreal::Application.routes.draw do
-  match 'about' =>  'pages#about'
-  match 'contact' => 'pages#contact'
-  match 'donate' => 'pages#donate'
+  match 'data' => 'pages#data'
   %w(favorites favories f f/*filters rinks/:id patinoires/:id).each do |path|
     match path => 'pages#index'
   end

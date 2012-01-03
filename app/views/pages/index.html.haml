@@ -20,6 +20,9 @@
     %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}" data-size="large")
       =t :follow
       @patinermtl
+
+    %p
+      = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '53x57'), 'http://patinoires.mudar.ca/'
     /.fb-like-box(data-href="http://www.facebook.com/OpenNorth.NordOuvert" data-width="292" data-show-faces="false" data-stream="false" data-header="true")
     /.fb-activity(data-site="patinermontreal.ca,www.patinermontreal.ca" data-width="300" data-height="300" data-header="false" data-recommendations="false")
     = form_tag 'https://www.paypal.com/cgi-bin/webscr', authenticity_token: false do
@@ -28,6 +31,10 @@
       = hidden_field_tag 'hosted_button_id', 'CA2V7LM44QGZG'
       = image_submit_tag 'paypal.png', id: 'paypal', name: 'submit', alt: 'PayPal - The safer, easier way to pay online!'
       = image_tag 'https://www.paypalobjects.com/en_US/i/scr/pixel.gif', alt: '', size: '1x1'
+    %p#footer
+      = t(:footer).html_safe
+    %p#disclaimer
+      = t(:disclaimer, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
 
 #controls.bar
   #kinds.section
@@ -144,7 +151,7 @@
         -->
       </div>
     <% } else if (condition) { %>
-      <p><strong>Fermée</strong></p>
+      <p><strong><%= t('closed') %></strong></p>
     <% } else { %>
       <!-- @todo instructions to contact borough to publish data -->
     <% } %>
