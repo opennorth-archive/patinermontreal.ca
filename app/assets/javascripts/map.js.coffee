@@ -1,3 +1,6 @@
+$(window).resize ->
+  $('#inside').height $(window).height() - 86
+
 # @see hasClass
 $.fn.hasAttr = (attr) ->
   _.any this, (el) ->
