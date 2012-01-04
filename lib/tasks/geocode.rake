@@ -14,7 +14,7 @@ namespace :location do
   desc 'Add missing addresses and coordinates'
   task :fix => :environment do
     # Add addresses to Sherlock and donnees.ville.montreal.qc.ca rinks
-    { 'Bassin Bonsecours'        => '350 rue St-Paul Est', # no address in Sherlock
+    { 'Bassin Bonsecours'        => '350 de la Commune Ouest', # no address in Sherlock
       'Berthe-Louard'            => '9355, avenue De Galinée', # extra rink in donnees.ville.montreal.qc.ca
       'Camille'                  => '9309 Boulevard Gouin Ouest', # only in donnees.ville.montreal.qc.ca
       'de Normanville'           => '7470 Rue de Normanville', # only in donnees.ville.montreal.qc.ca
@@ -27,32 +27,6 @@ namespace :location do
     }.each do |parc,adresse|
       Patinoire.where(parc: parc, adresse: nil).each do |patinoire|
         patinoire.update_attribute :adresse, adresse
-      end
-    end
-
-    # Add coordinates to Dollard-des-Ormeaux rinks
-    # http://www.ville.ddo.qc.ca/en/googlemap_arenas.html
-    { 'Coolbrooke'         => '45.4985265013565,-73.79211902618408',
-      'du Centenaire'      => '45.486884125312414,-73.81670951843262',
-      'Edward Janiszewski' => '45.48671112612774,-73.83962631225586',
-      'Elmpark'            => '45.4672039420346,-73.84403586387634',
-      'Fairview'           => '45.474690142815035,-73.82806062698364',
-      'France'             => '45.498906267013766,-73.82953584194183',
-      'Frédérick-Wilson'   => '45.490013062333524,-73.83061408996582',
-      'Lake Road'          => '45.48285235405571,-73.8306999206543',
-      'Pinecrest'          => '45.499579310747755,-73.82003545761108',
-      'Spring Garden'      => '45.49272065600522,-73.7858533859253',
-      'Sunnybrooke'        => '45.494736224553186,-73.7977409362793',
-      'Terry-Fox'          => '45.496120005970226,-73.82336139678955',
-      'Thornhill'          => '45.4788466239341,-73.8197672367096',
-      'Trottier'           => '45.50304968230515,-73.82055580615997',
-      'Westminster'        => '45.47355411001363,-73.84531259536743',
-      'Westwood'           => '45.48899015973809,-73.7934923171997',
-    }.each do |parc,coordinates|
-      arrondissement = Arrondissement.find_by_nom_arr! 'Dollard-des-Ormeaux'
-      lat, lng = coordinates.split(',').map(&:to_f)
-      Patinoire.where(parc: parc, arrondissement_id: arrondissement.id).each do |patinoire|
-        patinoire.update_attributes lat: lat, lng: lng
       end
     end
   end
@@ -119,6 +93,7 @@ namespace :location do
     end
   end
 
+  # http://www.ville.ddo.qc.ca/en/googlemap_arenas.html
   desc 'Import table from Google Spreadsheets'
   task :import => :environment do
     require 'csv'

@@ -25,7 +25,7 @@
     .social
       %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-related="#{t :tweet_related}" data-count="horizontal")
         =t :tweet
-    %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}" data-size="large" data-width="220px")
+    %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}" data-size="large" data-width="200px")
       =t :follow
       @patinermtl
     /.fb-like-box(data-href="http://www.facebook.com/OpenNorth.NordOuvert" data-width="292" data-show-faces="false" data-stream="false" data-header="true")
@@ -38,7 +38,7 @@
       %h2=t :donation
       = hidden_field_tag 'cmd', '_s-xclick'
       = hidden_field_tag 'hosted_button_id', 'CA2V7LM44QGZG'
-      = image_submit_tag 'paypal.png', id: 'paypal', name: 'submit', alt: 'PayPal - The safer, easier way to pay online!'
+      = image_submit_tag 'paypal.gif', id: 'paypal', name: 'submit', alt: 'PayPal - The safer, easier way to pay online!'
       = image_tag 'https://www.paypalobjects.com/en_US/i/scr/pixel.gif', alt: '', size: '1x1'
 
     %p#footer
@@ -81,6 +81,7 @@
         = image_tag 'blank.gif', :alt => t(:resurfaced), :title => t(:resurfaced), :size => '44x44'
       .caption
         =t :resurfaced
+  /@todo uncomment
   /#favories.section
   /  .control
   /    .icon

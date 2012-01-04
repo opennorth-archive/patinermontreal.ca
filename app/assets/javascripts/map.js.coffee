@@ -26,11 +26,11 @@ I18n =
     accuracy: 'You are within %{radius} meters of this point'
     condition: 'in %{condition} condition'
     unknown_condition: 'Ice condition not available'
-    instructions: "<em>Ask %{region} to publish the condition of its rinks by contacting:</em>"
+    instructions: "<em>Ask %{region} to publish its rink conditions:</em>"
     add_favorite: 'Add to favorites'
     remove_favorite: 'Remove from favorites'
     # Social
-    tweet: 'Tweet'
+    tweet: "I'm going"
     tweet_related: 'opennorth:The creators of Patiner Montreal'
     tweet_text_PSE: "I'm going to play hockey at %{park}"
     tweet_text_PPL: "I'm going skating at %{park}"
@@ -82,11 +82,11 @@ I18n =
     accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
     condition: 'en %{condition} condition'
     unknown_condition: 'État de la patinoire non disponible'
-    instructions: "<em>Demandez à %{region} de publier l'état de ses patinoires en contactant :</em>"
+    instructions: "<em>Demandez à %{region} de publier l'état de ses patinoires :</em>"
     add_favorite: 'Ajouter aux favories'
     remove_favorite: 'Supprimer des favories'
     # Social
-    tweet: 'Tweeter'
+    tweet: "J'y vais"
     tweet_related: 'nordouvert:Les créateurs de Patiner Montréal'
     tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
     tweet_text_PPL: 'Je vais patiner à %{park}'
@@ -267,7 +267,8 @@ $ ->
         new ControlView collection: @collection, el: "##{id}", type: 'kinds'
       _.each ['ouvert', 'deblaye', 'arrose', 'resurface'], (id) =>
         new ControlView collection: @collection, el: "##{id}", type: 'statuses'
-      new ControlView collection: @collection, el: '#favories'
+      #@todo uncomment
+      #new ControlView collection: @collection, el: '#favories'
 
   # A view for a single button.
   # @expects a RinkSet collection
@@ -456,11 +457,12 @@ $ ->
 
   # http://support.cloudmade.com/answers/general
   Map.on 'locationfound', (event) ->
-    marker = new L.Marker event.latlng
-    Map.addLayer marker
     radius = event.accuracy / 2
-    marker.bindPopup t 'accuracy', radius: radius
-    Map.addLayer new L.Circle event.latlng, radius
+    if radius < 1000
+      marker = new L.Marker event.latlng
+      Map.addLayer marker
+      marker.bindPopup t 'accuracy', radius: radius
+      Map.addLayer new L.Circle event.latlng, radius
   Map.on 'locationerror', (event) ->
     console.log event.message if window.debug
 

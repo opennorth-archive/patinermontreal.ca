@@ -31,7 +31,7 @@
 
 $sidebar-width: 240px;
 $control-width: 80px;
-$bar-height: 86px;
+$bar-height: 96px;
 
 html,
 body {
@@ -90,11 +90,11 @@ aside {
 }
 #inside {
   z-index: 999;
-  overflow: scroll;
-  padding: 0 9px;
+  overflow: auto;
+  padding: 0 5px;
   h1 {
     margin: 0;
-    padding-top: 9px;
+    padding-top: 5px;
   }
   h2 {
     font-size: 0.8125em;
@@ -114,15 +114,15 @@ aside {
 }
 
 .email {
-  width: 137px;
+  width: 129px;
 }
 .btn {
   padding: 5px 5px 6px;
 }
 
 #paypal {
-  width: 222px;
-  height: 56px;
+  width: 216px;
+  height: 49px;
   padding: 0;
   border: none;
   @include box-shadow(none);
@@ -151,7 +151,7 @@ aside {
 .section {
   position: absolute;
   bottom: 7px;
-  height: 73px;
+  height: $bar-height - 13;
   text-align: center;
 }
 .control {
