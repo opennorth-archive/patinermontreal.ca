@@ -4,10 +4,15 @@
 en:
   other_locale: fr
   other_language: Français
+
+  # Sidebar
   open_rinks: '%{count} rinks are open'
   last_updated: Last updated
-  donation: Donate to Open North with
+  newsletter: Stay up-to-date on outdoor rinks
+  placeholder: Enter your email
+  subscribe: Subscribe
   android: Patiner Montreal for Android
+  donation: Donate to Open North with
   footer: 'If you have questions, comments, suggestions or corrections, contact us at <a href="mailto:info@opennorth.ca">info@opennorth.ca</a>.'
   disclaimer: 'Sources: <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires">City of Montreal</a> and <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808">City of Dorval</a>. Patiner Montreal is <a href="https://github.com/opennorth/patinermontreal.ca">open source</a> under the <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt">MIT license</a>. Data (<a href="%{json_path}">JSON</a>, <a href="%{xml_path}">XML</a>) is under the <a href="http://creativecommons.org/publicdomain/zero/1.0/"">CC0 license</a>. Android is a trademark of Google Inc.'
 

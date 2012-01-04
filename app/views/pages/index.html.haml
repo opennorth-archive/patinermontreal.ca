@@ -8,28 +8,39 @@
   #inside
     %h1
       = image_tag 'logo.gif', alt: 'Patiner Montréal', title: 'Patiner Montréal', size: '166x34'
-    %p#count= t :open_rinks, count: @count
+    %h2
+      = t :open_rinks, count: @count
     %p
       = t :last_updated
       = l @last_updated, format: :long
+
+    = form_tag 'http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
+      %h2=t :newsletter
+      .inline-inputs
+        = email_field_tag 'EMAIL', nil, id: 'mce-EMAIL', class: 'required email', placeholder: t(:placeholder), required: 'required'
+        = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn primary'
+
     .social
-      .fb-like(data-href="http://patinermontreal.ca" data-send="true" data-layout="button_count" data-width="200" data-show-faces="false")
+      .fb-like(data-href="http://patinermontreal.ca" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false")
     .social
       %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-related="#{t :tweet_related}" data-count="horizontal")
         =t :tweet
-    %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}" data-size="large" data-width="240px")
+    %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}" data-size="large" data-width="220px")
       =t :follow
       @patinermtl
-    %p
-      = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '53x57'), 'http://patinoires.mudar.ca/'
     /.fb-like-box(data-href="http://www.facebook.com/OpenNorth.NordOuvert" data-width="292" data-show-faces="false" data-stream="false" data-header="true")
     /.fb-activity(data-site="patinermontreal.ca,www.patinermontreal.ca" data-width="300" data-height="300" data-header="false" data-recommendations="false")
+
+    %p
+      = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '53x57'), 'http://patinoires.mudar.ca/'
+
     = form_tag 'https://www.paypal.com/cgi-bin/webscr', authenticity_token: false do
-      %h2= t :donation
+      %h2=t :donation
       = hidden_field_tag 'cmd', '_s-xclick'
       = hidden_field_tag 'hosted_button_id', 'CA2V7LM44QGZG'
       = image_submit_tag 'paypal.png', id: 'paypal', name: 'submit', alt: 'PayPal - The safer, easier way to pay online!'
       = image_tag 'https://www.paypalobjects.com/en_US/i/scr/pixel.gif', alt: '', size: '1x1'
+
     %p#footer
       = t(:footer).html_safe
     %p#disclaimer
@@ -108,7 +119,7 @@
 
   var locale = '#{locale}';
   var env = '#{Rails.env}';
-  var json = #{@rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng])};
+  var json = #{@rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng], include: {arrondissement: {only: [:nom_arr, :name, :email, :tel, :ext]}})};
 
 :plain
   <script type="text/template" id="popup-template">
@@ -123,11 +134,7 @@
       <p>
         <%= adresse %>
         <% if (tel) { %>
-          <br>
-          <%= tel.replace(/([0-9]{3})([0-9]{3})([0-9]{4})/, '($1) $2-$3') %>
-          <% if (ext) { %>
-            <%= 'x' + ext %>
-          <% } %>
+          <%= Helpers.numberToPhone(tel, {extension: ext}) %>
         <% } %>
       </p>
     <% } %>
@@ -151,7 +158,16 @@
       </div>
     <% } else if (condition) { %>
       <p><strong><%= t('closed') %></strong></p>
-    <% } else { %>
+    <% } else if (arrondissement.email) { %>
+      <p><strong><%= t('unknown_condition') %></strong></p>
+      <p><%= t('instructions', {region: arrondissement.nom_arr}) %></p>
+      <p>
+        <% if (arrondissement.name) { %>
+          <%= arrondissement.name %><br>
+        <% } %>
+        <a href="mailto:<%= arrondissement.email %>"><%= arrondissement.email %></a><br>
+        <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
+      </p>
       <!-- @todo instructions to contact borough to publish data -->
     <% } %>
     <!-- @todo add text explaining purpose of social sharing -->

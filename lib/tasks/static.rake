@@ -21,6 +21,23 @@ namespace :import do
     end
   end
 
+  desc 'Add contact info from Google Spreadsheets'
+  task :contacts => :environment do
+    require 'csv'
+    require 'open-uri'
+    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=csv').read, headers: true) do |row|
+      arrondissement = Arrondissement.find_or_initialize_by_nom_arr row['Authority']
+      arrondissement.attributes = {
+        name: [row['Name'], row['Title']].compact.join(', '),
+        email: row['Email'],
+        tel: row['Phone'] && row['Phone'].sub(/x\d+/, '').gsub(/\D/, ''),
+        ext: row['Phone'] && row['Phone'][/x(\d+)/, 1],
+      }
+      arrondissement.source ||= 'docs.google.com'
+      arrondissement.save!
+    end
+  end
+
   desc 'Add rinks from Sherlock and add addresses to rinks from donnees.ville.montreal.qc.ca'
   task :sherlock => :environment do
     require 'iconv'

@@ -22,10 +22,13 @@ I18n =
   en:
     locale: 'en'
     other_locale: 'fr'
+    # Popup
     accuracy: 'You are within %{radius} meters of this point'
+    condition: 'in %{condition} condition'
+    unknown_condition: 'Ice condition not available'
+    instructions: "<em>Ask %{region} to publish the condition of its rinks by contacting:</em>"
     add_favorite: 'Add to favorites'
     remove_favorite: 'Remove from favorites'
-    condition: 'in %{condition} condition'
     # Social
     tweet: 'Tweet'
     tweet_related: 'opennorth:The creators of Patiner Montreal'
@@ -75,10 +78,13 @@ I18n =
   fr:
     locale: 'fr'
     other_locale: 'en'
+    # Popup
     accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
+    condition: 'en %{condition} condition'
+    unknown_condition: 'État de la patinoire non disponible'
+    instructions: "<em>Demandez à %{region} de publier l'état de ses patinoires en contactant :</em>"
     add_favorite: 'Ajouter aux favories'
     remove_favorite: 'Supprimer des favories'
-    condition: 'en %{condition} condition'
     # Social
     tweet: 'Tweeter'
     tweet_related: 'nordouvert:Les créateurs de Patiner Montréal'
@@ -108,18 +114,10 @@ I18n =
     PP: 'paysagee'
     C: 'paysagee'
 
-window.t = (string, args) ->
-  if args and 'locale' of args
-    current_locale = args.locale
-    delete args.locale
-    args = null unless _.keys(args).length
-  else
-    current_locale = locale
-
-  string = I18n[current_locale] and I18n[current_locale][string] or string
-  if args
-    for key, value of args
-      string = string.replace "%{#{key}}", value
+window.t = (string, args = {}) ->
+  current_locale = args.locale or locale
+  string = I18n[current_locale][string] or string
+  string = string.replace ///%\{#{key}\}///g, value for key, value of args
   string
 
 # Monkey-patch Backbone to be trailing-slash agnostic.
@@ -352,7 +350,7 @@ $ ->
       @navigate @rootUrl(), true
 
   # Helpers to mix-in to views and routers.
-  Helpers =
+  window.Helpers =
     # Maps path components to rink kinds.
     kinds:
       'team-sports': 'PSE'
@@ -371,6 +369,11 @@ $ ->
       'arrose': 'arrose'
       'resurfaced': 'resurface'
       'resurface': 'resurface'
+    numberToPhone: (number, options = {}) ->
+      number = number.replace(/([0-9]{3})([0-9]{3})([0-9]{4})/, '($1) $2-$3')
+      if options.extension
+        number += ' x' + options.extension
+      number
     # @return string the current URL
     currentUrl: ->
       Backbone.history.getFragment()
@@ -433,7 +436,7 @@ $ ->
     _.extend klass.prototype, Helpers
 
   # Seed collection.
-  Rinks = new RinkSet
+  window.Rinks = new RinkSet
   Rinks.reset json
 
   # Instantiate routes.

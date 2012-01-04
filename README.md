@@ -7,6 +7,7 @@
     bundle exec rake import:sherlock
     bundle exec rake import:dorval
     bundle exec rake import:google
+    bundle exec rake import:contacts
     bundle exec rake location:fix
     bundle exec rake location:geocommons
     bundle exec rake location:compare
@@ -34,11 +35,8 @@ It is normal to see the following output:
     heroku run rake import:sherlock
     heroku run rake import:dorval
     heroku run rake import:google
+    heroku run rake import:contacts
     heroku run rake location:fix
     heroku run rake location:geocommons
     heroku run rake location:compare
     heroku run rake location:import
-
-# Miscellaneous
-
-* [Data sources](https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=html)

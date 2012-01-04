@@ -52,6 +52,11 @@ h3 {
   line-height: 1.5em;
 }
 
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
 #language {
   position: absolute;
   right: 10px;
@@ -74,6 +79,7 @@ h3 {
 // Sidebar ---------------------------------------------------------------------
 
 aside {
+  z-index: 999;
   position: absolute;
   left: 0;
   top: 0;
@@ -83,6 +89,7 @@ aside {
   @include box-shadow(-3px 0 10px #666);
 }
 #inside {
+  z-index: 999;
   overflow: scroll;
   padding: 0 9px;
   h1 {
@@ -94,8 +101,23 @@ aside {
     line-height: 1.5em;
   }
 }
-#count {
-  font-weight: bold;
+
+.fb-like {
+  width: 100px;
+  height: 26px;
+}
+.social {
+  float: left;
+}
+.twitter-follow-button {
+  clear: left;
+}
+
+.email {
+  width: 137px;
+}
+.btn {
+  padding: 5px 5px 6px;
 }
 
 #paypal {
@@ -115,6 +137,7 @@ aside {
   color: #999;
   font-size: 0.625em;
 }
+
 // Bar -------------------------------------------------------------------------
 
 .bar {
@@ -224,13 +247,13 @@ aside {
 // Popup -----------------------------------------------------------------------
 
 .leaflet-popup-content {
-  font-size: 1em;
+  font-size: 0.8125em;
   line-height: 1.5em;
   h2 {
-    font-size: 1em;
+    font-size: 1.23em;
   }
   h3 {
-    font-size: 0.8125em;
+    font-size: 1em;
   }
   p {
     margin: 0 0 1em;
