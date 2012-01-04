@@ -133,9 +133,7 @@
     <% if (adresse) { %>
       <p>
         <%= adresse %>
-        <% if (tel) { %>
-          <%= Helpers.numberToPhone(tel, {extension: ext}) %>
-        <% } %>
+        <% if (tel) { %><br><%= Helpers.numberToPhone(tel, {extension: ext}) %><% } %>
       </p>
     <% } %>
     <% if (ouvert === true) { %>
@@ -162,13 +160,10 @@
       <p><strong><%= t('unknown_condition') %></strong></p>
       <p><%= t('instructions', {region: arrondissement.nom_arr}) %></p>
       <p>
-        <% if (arrondissement.name) { %>
-          <%= arrondissement.name %><br>
-        <% } %>
+        <% if (arrondissement.name) { %><%= arrondissement.name %><br><% } %>
         <a href="mailto:<%= arrondissement.email %>"><%= arrondissement.email %></a><br>
         <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
       </p>
-      <!-- @todo instructions to contact borough to publish data -->
     <% } %>
     <!-- @todo add text explaining purpose of social sharing -->
     <!-- @todo add "i'm going" for Facebook + track click for Twitter, Facebook -->

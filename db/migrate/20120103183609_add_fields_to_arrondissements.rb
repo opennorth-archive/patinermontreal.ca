@@ -4,6 +4,6 @@ class AddFieldsToArrondissements < ActiveRecord::Migration
     add_column :arrondissements, :email, :string
     add_column :arrondissements, :tel, :string
     add_column :arrondissements, :ext, :string
-    remove_column :arrondissements, :remarques, :string
+    remove_column :arrondissements, :remarques
   end
 end
