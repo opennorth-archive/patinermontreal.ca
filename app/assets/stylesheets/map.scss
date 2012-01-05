@@ -285,6 +285,7 @@ aside {
     }
   }
   .favorite {
+    cursor: pointer;
     background-position: -84px -88px;
     &.active {
       background-position: -84px -116px;

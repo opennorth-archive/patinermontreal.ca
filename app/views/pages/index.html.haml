@@ -81,13 +81,12 @@
         = image_tag 'blank.gif', :alt => t(:resurfaced), :title => t(:resurfaced), :size => '44x44'
       .caption
         =t :resurfaced
-  /@todo uncomment
-  /#favories.section
-  /  .control
-  /    .icon
-  /      = image_tag 'blank.gif', :alt => t(:favorite), :title => t(:favorite), :size => '44x44'
-  /    .caption
-  /      =t :favorite
+  #favories.section
+    .control
+      .icon
+        = image_tag 'blank.gif', :alt => t(:favorite), :title => t(:favorite), :size => '44x44'
+      .caption
+        =t :favorite
   #branding.section
     = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url)
     = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: t(:montrealouvert_size)), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}"
@@ -149,11 +148,9 @@
         <div class="icon resurface<% if (resurface) { %> active<% } %>">
           <img src="/assets/blank.gif" alt="<%= t('resurfaced') %>" title="<%= t('resurfaced') %>" width="28" height="28">
         </div>
-        <!-- @todo
         <div class="icon favorite<% if (favorite) { %> active<% } %>">
           <img src="/assets/blank.gif" alt="<%= t(favorite ? 'remove_favorite' : 'add_favorite') %>" title="<%= t(favorite ? 'remove_favorite' : 'add_favorite') %>" width="28" height="28">
         </div>
-        -->
       </div>
     <% } else if (condition) { %>
       <p><strong><%= t('closed') %></strong></p>
@@ -166,7 +163,6 @@
         <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
       </p>
     <% } %>
-    <!-- @todo add text explaining purpose of social sharing -->
     <!-- @todo add "i'm going" for Facebook + track click for Twitter, Facebook -->
     <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-related="<%= t('tweet_related') %>" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
   </script>

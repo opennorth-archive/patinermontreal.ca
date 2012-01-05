@@ -155,14 +155,21 @@ $ ->
 
   # Define models.
   Rink = Backbone.Model.extend
+    # @note +defaults+ doesn't have access to model attributes or collection.
     initialize: (attributes) ->
       # Handing "C" is unnecessarily hard.
       @set(genre: 'PP') if 'C' is @get 'genre'
       @set url: t('rinks_url', id: @get('id'), slug: @get('slug'))
+
+      # Set the favorite based on local storage.
+      Backbone.sync 'read', @,
+        success: (response) =>
+          @set favorite: response.favorite
+        error: (message) =>
+          # Do nothing.
     defaults:
       favorite: false
       visible: false
-      view: null
     # Sets the rink as visible.
     show: ->
       @set visible: true
@@ -200,62 +207,68 @@ $ ->
   MarkersView = Backbone.View.extend
     initialize: ->
       @collection.each (model) ->
-        view = new MarkerView model: model
-        model.set view: view
+        model.view = new MarkerView model: model
 
   # @expects a Rink model
   MarkerView = Backbone.View.extend
     template: _.template $('#popup-template').html()
+    # @see L.Marker.bindPopup
     initialize: ->
+      offset = new L.Point 0, -24
+
       state = if @model.get 'ouvert'
         'on'
       else if @model.get 'condition' # rinks with conditions receive updates
         'off'
       else
         'na'
+
       icon = L.Icon.extend
         iconUrl: "/assets/#{@model.get 'genre'}_#{state}.png"
         shadowUrl: "/assets/#{@model.get 'genre'}_shadow.png"
         iconSize: new L.Point 28, 28
         shadowSize: new L.Point 44, 28
         iconAnchor: new L.Point 15, 27
-        popupAnchor: new L.Point(0, -24) # CoffeeScript bug requires parentheses?
+        popupAnchor: offset
       # "new L.Icon.extend({})" raises "TypeError: object is not a function"
+
       @marker = new L.Marker new L.LatLng(@model.get('lat'), @model.get('lng')), icon: new icon
-      @marker.bindPopup @template @model.toJSON()
-      # Replace the default "click" callback.
-      @marker.off 'click', @marker.openPopup
-      @marker.on 'click', @show, @
+      @marker._popup = new L.Popup offset: offset, @marker
+      @marker._popup.setContent @template @model.toJSON()
+      @marker._popup._initLayout()
+
+      # @see delegateEvents
+      $(@marker._popup._contentNode).delegate '.favorite', 'click.delegateEvents' + @cid, _.bind ->
+        @model.toggle()
+      , @
+      @marker.on 'click', ->
+        Options.save(beforePopup: @currentUrl()) unless @rinkUrl()
+        Backbone.history.navigate @model.get('url'), true
+      , @
+      @model.bind 'change:favorite', ->
+        @marker._popup.setContent @template @model.toJSON()
+        twttr.widgets.load() if twttr.widgets
+      , @
       @model.bind 'change:visible', @render, @
     render: ->
       if @model.get 'visible'
-        @addMarker()
+        Map.addLayer @marker
       else
-        @removeMarker()
+        Map.removeLayer @marker
       @
-    # Adds the rink's marker to the map.
-    addMarker: ->
-      Map.addLayer @marker
-    # Removes a rink's marker from the map.
-    removeMarker: ->
-      Map.removeLayer @marker
     # Opens the marker's popup.
     openPopup: ->
       # Prevent restoration of last known state if opening another popup.
       Options.save openingPopup: true
       @marker.openPopup()
-      twttr.widgets.load() if twttr.widgets
       Options.save openingPopup: false
+      # Refresh Twitter button.
+      twttr.widgets.load() if twttr.widgets
+      # Pan to popup.
       Map.panTo @marker.getLatLng()
-    show: ->
-      unless @rinkUrl()
-        Options.save beforePopup: @currentUrl()
-      Backbone.history.navigate @model.get('url'), true
-  # @todo in popup: rink.toggle and @collection.bind 'change:favorite', ...
-  # @todo favorite may need to be a view in order to define events on it
 
+  # Don't navigate to the last known state if opening another popup.
   Map.on 'popupclose', (event) ->
-    # Don't navigate to the last known state if opening another popup.
     unless Options.get 'openingPopup'
       Backbone.history.navigate Options.get('beforePopup'), true
 
@@ -267,8 +280,7 @@ $ ->
         new ControlView collection: @collection, el: "##{id}", type: 'kinds'
       _.each ['ouvert', 'deblaye', 'arrose', 'resurface'], (id) =>
         new ControlView collection: @collection, el: "##{id}", type: 'statuses'
-      #@todo uncomment
-      #new ControlView collection: @collection, el: '#favories'
+      new ControlView collection: @collection, el: '#favories'
 
   # A view for a single button.
   # @expects a RinkSet collection
@@ -345,7 +357,7 @@ $ ->
       # If rink is not visible, display all rinks first.
       unless rink.get 'visible'
         @collection.showIfMatching @fromUrl(@rootUrl())...
-      rink.get('view').openPopup()
+      rink.view.openPopup()
     default: ->
       # If no route, display all rinks.
       @navigate @rootUrl(), true
