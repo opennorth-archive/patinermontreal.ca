@@ -249,8 +249,15 @@ aside {
     font-size: 1em;
   }
   p {
-    margin: 0 0 1em;
+    margin: 1em 0 0;
+    &.address {
+      margin: 0;
+    }
   }
+}
+
+.condition {
+  font-weight: bold;
 }
 
 .statuses {

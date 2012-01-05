@@ -131,13 +131,13 @@
       <%= t(description) %>
     </h3>
     <% if (adresse) { %>
-      <p>
+      <p class="address">
         <%= adresse %>
         <% if (tel) { %><br><%= Helpers.numberToPhone(tel, {extension: ext}) %><% } %>
       </p>
     <% } %>
     <% if (ouvert === true) { %>
-      <p><strong><%= t('condition', {condition: t(condition)}) %></strong></p>
+      <p class="condition"><%= t('condition', {condition: t(condition)}) %></p>
       <div class="statuses">
         <div class="icon deblaye<% if (deblaye) { %> active<% } %>">
           <img src="/assets/blank.gif" alt="<%= t('cleared') %>" title="<%= t('cleared') %>" width="28" height="28">
@@ -153,9 +153,9 @@
         </div>
       </div>
     <% } else if (condition) { %>
-      <p><strong><%= t('closed') %></strong></p>
+      <p class="condition"><%= t('closed') %></p>
     <% } else if (arrondissement.email) { %>
-      <p><strong><%= t('unknown_condition') %></strong></p>
+      <p class="condition"><%= t('unknown_condition') %></p>
       <p><%= t('instructions', {region: arrondissement.nom_arr}) %></p>
       <p>
         <% if (arrondissement.name) { %><%= arrondissement.name %><br><% } %>
@@ -163,6 +163,9 @@
         <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
       </p>
     <% } %>
-    <!-- @todo add "i'm going" for Facebook + track click for Twitter, Facebook -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-related="<%= t('tweet_related') %>" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
+    <% if (ouvert || !condition) { %>
+      <p><strong><%= t('explanation') %></strong></p>
+      <!-- @todo add "i'm going" for Facebook + track click for Twitter, Facebook -->
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-related="<%= t('tweet_related') %>" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
+    <% } %>
   </script>

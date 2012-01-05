@@ -34,7 +34,7 @@ namespace :import do
         'Saint-Aloysis'          => 'Saint-Aloysius',
         'Sainte-Maria-Goretti'   => 'Maria-Goretti',
         'Y-Thériault/Sherbrooke' => 'Yves-Thériault/Sherbrooke',
-      }.reduce(patinoire.nom[/, ([^(]+) \(/, 1]) do |string,(from,to)|
+      }.reduce(patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1]) do |string,(from,to)|
         string.sub(from, to)
       end
       patinoire.parc.slice!(/\AParc /i)

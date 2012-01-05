@@ -29,6 +29,7 @@ I18n =
     instructions: "<em>Ask %{region} to publish its rink conditions:</em>"
     add_favorite: 'Add to favorites'
     remove_favorite: 'Remove from favorites'
+    explanation: 'Going skating? Let your friends know:'
     # Social
     tweet: "I'm going"
     tweet_related: 'opennorth:The creators of Patiner Montreal'
@@ -85,6 +86,7 @@ I18n =
     instructions: "<em>Demandez à %{region} de publier l'état de ses patinoires :</em>"
     add_favorite: 'Ajouter aux favories'
     remove_favorite: 'Supprimer des favories'
+    explanation: 'Vous allez patiner? Informez vos ami(e)s :'
     # Social
     tweet: "J'y vais"
     tweet_related: 'nordouvert:Les créateurs de Patiner Montréal'
