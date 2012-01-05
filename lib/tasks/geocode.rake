@@ -13,17 +13,26 @@ namespace :location do
 
   desc 'Add missing addresses and coordinates'
   task :fix => :environment do
-    # Add addresses to Sherlock and donnees.ville.montreal.qc.ca rinks
-    { 'Bassin Bonsecours'        => '350 de la Commune Ouest', # no address in Sherlock
-      'Berthe-Louard'            => '9355, avenue De Galinée', # extra rink in donnees.ville.montreal.qc.ca
-      'Camille'                  => '9309 Boulevard Gouin Ouest', # only in donnees.ville.montreal.qc.ca
-      'de Normanville'           => '7470 Rue de Normanville', # only in donnees.ville.montreal.qc.ca
-      'François-Perrault'        => '7501, rue François-Perrault', # extra rink in donnees.ville.montreal.qc.ca
-      'Polyvalente Saint-Henri'  => '4125 Rue Saint-Jacques', # only in donnees.ville.montreal.qc.ca
-      'Rosewood'                 => '237 Avenue de Mount Vernon', # only in donnees.ville.montreal.qc.ca
-      'Saint-Léonard'            => '8255, boulevard Lacordaire', # no address in Sherlock
-      'Saint-Paul-de-la-Croix'   => '9900, avenue Hamel', # extra rink in donnees.ville.montreal.qc.ca
-      'Terrasse Jacques-Léonard' => 'Terrasse Jacques Léonard', # useless address in Sherlock
+    { # no address at cotesaintluc.org
+      'Irving Singerman'         => '6610 Chemin Merton',
+      'Pierre Elliott Trudeau'   => '5891 Avenue Stephen Leacock',
+      'Richard Schwartz'         => '5515 Avenue Smart',
+      # only in donnees.ville.montreal.qc.ca
+      'Polyvalente Saint-Henri'  => '4125 Rue Saint-Jacques',
+      'Rosewood'                 => '237 Avenue de Mount Vernon',
+      'Camille'                  => '9309 Boulevard Gouin Ouest',
+      'de Normanville'           => '7470 Rue de Normanville',
+      # extra rink in donnees.ville.montreal.qc.ca
+      'Saint-Paul-de-la-Croix'   => '9900, avenue Hamel',
+      'Berthe-Louard'            => '9355, avenue De Galinée',
+      'François-Perrault'        => '7501, rue François-Perrault',
+      # no address in Sherlock
+      'Saint-Léonard'            => '8255, boulevard Lacordaire',
+      'Bassin Bonsecours'        => '350 de la Commune Ouest',
+      # useless address in Sherlock
+      'Terrasse Jacques-Léonard' => 'Terrasse Jacques Léonard',
+      # ignored in Sherlock
+      'Sir-Wilfred-Laurier'      => '1115, avenue Laurier Est',
     }.each do |parc,adresse|
       Patinoire.where(parc: parc, adresse: nil).each do |patinoire|
         patinoire.update_attribute :adresse, adresse
@@ -31,6 +40,7 @@ namespace :location do
     end
   end
 
+  # Geocommons has wrong coordinates for some rinks.
   desc 'Geocode rinks using GeoCommons data'
   task :geocommons => :environment do
     require 'csv'
@@ -66,11 +76,6 @@ namespace :location do
     end
   end
 
-  # Geocommons has wrong coordinates for:
-  # Grier: actually Hermitage
-  # Hermitage: actually Lakeside (Ovide)
-  # Kirkland: correct for Kirkland, not for Lachine
-  # Outremont
   desc 'Compare manual geocoding to official geocoding'
   task :compare => :environment do
     require 'csv'
