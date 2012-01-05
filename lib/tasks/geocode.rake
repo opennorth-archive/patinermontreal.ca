@@ -34,7 +34,8 @@ namespace :location do
       # ignored in Sherlock
       'Sir-Wilfred-Laurier'      => '1115, avenue Laurier Est',
     }.each do |parc,adresse|
-      Patinoire.where(parc: parc, adresse: nil).each do |patinoire|
+      # @note need to be careful, as park names are not unique
+      Patinoire.where(parc: parc).each do |patinoire|
         patinoire.update_attribute :adresse, adresse
       end
     end
