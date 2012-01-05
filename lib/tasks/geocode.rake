@@ -32,7 +32,7 @@ namespace :location do
       # useless address in Sherlock
       'Terrasse Jacques-Léonard' => 'Terrasse Jacques Léonard',
       # ignored in Sherlock
-      'Sir-Wilfred-Laurier'      => '1115, avenue Laurier Est',
+      'Sir-Wilfrid-Laurier'      => '1115, avenue Laurier Est',
     }.each do |parc,adresse|
       # @note need to be careful, as park names are not unique
       Patinoire.where(parc: parc).each do |patinoire|
