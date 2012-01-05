@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def index
     @rinks = Patinoire.geocoded
-    @count = Patinoire.geocoded.open.count
+    @count = Patinoire.geocoded.ouvert.count
     @last_updated = Arrondissement.maximum(:date_maj)
     fresh_when etag: @rinks, last_modified: @rinks.maximum(:updated_at).utc, public: true
   end
