@@ -50,15 +50,24 @@
   #kinds.section
     #PSE.control
       .icon
-        = image_tag('PSE.png', :alt => t(:teamsports), :title => t(:teamsports), :size => '55x53')
+        - if mobile?
+          = image_tag('PSE-mobile.png', :alt => t(:teamsports), :title => t(:teamsports), :size => '44x42')
+        - else
+          = image_tag('PSE.png', :alt => t(:teamsports), :title => t(:teamsports), :size => '55x53')
       %input(type="checkbox")
     #PPL.control
       .icon
-        = image_tag('PPL.png', :alt => t(:freeskating), :title => t(:freeskating), :size => '55x53')
+        - if mobile?
+          = image_tag('PPL-mobile.png', :alt => t(:freeskating), :title => t(:freeskating), :size => '44x42')
+        - else
+          = image_tag('PPL.png', :alt => t(:freeskating), :title => t(:freeskating), :size => '55x53')
       %input(type="checkbox")
     #PP.control
       .icon
-        = image_tag('PP.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '55x53')
+        - if mobile?
+          = image_tag('PP-mobile.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '44x42')
+        - else
+          = image_tag('PP.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '55x53')
       %input(type="checkbox")
   #statuses.section
     #ouvert.control
@@ -156,15 +165,19 @@
       <p class="condition"><%= t('closed') %></p>
     <% } else if (arrondissement.email) { %>
       <p class="condition"><%= t('unknown_condition') %></p>
-      <p><%= t('instructions', {region: arrondissement.nom_arr}) %></p>
-      <p>
-        <% if (arrondissement.name) { %><%= arrondissement.name %><br><% } %>
-        <a href="mailto:<%= arrondissement.email %>"><%= arrondissement.email %></a><br>
-        <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
-      </p>
+      <div class="call-to-action">
+        <p><%= t('instructions', {region: arrondissement.nom_arr}) %></p>
+        <p>
+          <% if (arrondissement.name) { %><%= arrondissement.name %><br><% } %>
+          <a href="mailto:<%= arrondissement.email %>"><%= arrondissement.email %></a><br>
+          <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
+        </p>
+      </div>
     <% } %>
     <% if (ouvert || !condition) { %>
-      <p><strong><%= t('explanation') %></strong></p>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-related="<%= t('tweet_related') %>" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
+      <div class="call-to-action">
+        <p><strong><%= t('explanation') %></strong></p>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-related="<%= t('tweet_related') %>" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
+      </div>
     <% } %>
   </script>

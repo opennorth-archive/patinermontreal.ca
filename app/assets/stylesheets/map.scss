@@ -313,3 +313,53 @@ aside {
 img[src*="_on.png"] {
   z-index: 2000 !important;
 }
+
+// Media queries ---------------------------------------------------------------
+
+$mobile-bar-height: 76px;
+$mobile-control-width: 45px;
+
+
+@media only screen and (max-width: 767px) {
+  aside,
+  #language,
+  #favories,
+  #branding,
+  .statuses .favorite,
+  .call-to-action,
+  .leaflet-control-attribution {
+    display: none;
+  }
+  #map,
+  .leaflet-popup-content p {
+    margin: 0;
+  }
+
+  .leaflet-popup-content-wrapper {
+    @include border-radius(5px);
+  }
+  .leaflet-popup-content {
+    margin: 4px;
+  }
+
+  .control {
+    width: $mobile-control-width;
+    font-size: 0.625em
+  }
+  .section {
+    height: $mobile-bar-height - 13;
+  }
+
+  #controls {
+    height: $mobile-bar-height;
+  }
+  #kinds {
+    width: 3 * $mobile-control-width;
+    border: none;
+  }
+  #statuses {
+    left: 3 * $mobile-control-width + 1;
+    width: 4 * $mobile-control-width;
+    border: none;
+  }
+}
