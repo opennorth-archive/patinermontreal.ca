@@ -3,7 +3,7 @@ class Arrondissement < ActiveRecord::Base
   has_many :patinoires
 
   validates_presence_of :nom_arr, :source
-  validates_presence_of :date_maj, if: ->(x){x.source == 'donnees.ville.montreal.qc.ca'}
+  validates_presence_of :date_maj, if: ->(x){['donnees.ville.montreal.qc.ca', 'ville.dorval.qc.ca'].include? x.source}
   validates_inclusion_of :nom_arr, in: [
     'Ahuntsic-Cartierville',
     'Anjou',
@@ -52,6 +52,8 @@ class Arrondissement < ActiveRecord::Base
   validates_uniqueness_of :cle, allow_blank: true
 
   before_save :set_cle
+
+  scope :dynamic, where('date_maj IS NOT NULL')
 
 private
 

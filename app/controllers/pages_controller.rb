@@ -54,7 +54,7 @@ class PagesController < ApplicationController
         })
       end
       format.json do
-        render json: Arrondissement.all.to_json({
+        render json: Arrondissement.dynamic.to_json({
           only: arrondissement_fields,
           include: {
             patinoires: {

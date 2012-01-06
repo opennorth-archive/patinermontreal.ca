@@ -62,6 +62,7 @@ namespace :import do
   task :dorval => :environment do
     arrondissement = Arrondissement.find_or_initialize_by_nom_arr 'Dorval'
     arrondissement.source = 'ville.dorval.qc.ca'
+    arrondissement.date_maj = Time.now
     arrondissement.save!
 
     Nokogiri::HTML(RestClient.get('http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808')).css('tr:gt(2)').each do |tr|
