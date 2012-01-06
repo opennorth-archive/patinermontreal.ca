@@ -37,6 +37,7 @@ class PagesController < ApplicationController
   end
 
   def conditions
+    arrondissement_fields = [:nom_arr, :date_maj]
     patinoires_fields = [:id, :ouvert, :deblaye, :arrose, :resurface, :condition]
 
     respond_to do |format|
@@ -45,11 +46,21 @@ class PagesController < ApplicationController
           skip_types: true,
           dasherize: false,
           only: patinoires_fields,
+          include: {
+            arrondissement: {
+              only: arrondissement_fields,
+            },
+          },
         })
       end
       format.json do
-        render json: Patinoire.all.to_json({
-          only: patinoires_fields,
+        render json: Arrondissement.all.to_json({
+          only: arrondissement_fields,
+          include: {
+            patinoires: {
+              only: patinoires_fields,
+            },
+          },
         })
       end
     end
