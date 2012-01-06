@@ -7,27 +7,49 @@ class PagesController < ApplicationController
   end
 
   def data
+    arrondissement_fields = [:nom_arr, :cle, :date_maj]
+    patinoires_fields = [:id, :slug, :nom, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng]
+
     respond_to do |format|
       format.xml do
         render xml: Patinoire.all.to_xml({
           skip_types: true,
           dasherize: false,
-          only: [:id, :slug, :nom, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng],
+          only: patinoires_fields,
           include: {
             arrondissement: {
-              only: [:nom_arr, :cle, :date_maj],
+              only: arrondissement_fields,
             },
           },
         })
       end
       format.json do
         render json: Arrondissement.all.to_json({
-          only: [:nom_arr, :cle, :date_maj],
+          only: arrondissement_fields,
           include: {
             patinoires: {
-              only: [:id, :slug, :nom, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng],
+              only: patinoires_fields,
             },
           },
+        })
+      end
+    end
+  end
+
+  def conditions
+    patinoires_fields = [:id, :ouvert, :deblaye, :arrose, :resurface, :condition]
+
+    respond_to do |format|
+      format.xml do
+        render xml: Patinoire.all.to_xml({
+          skip_types: true,
+          dasherize: false,
+          only: patinoires_fields,
+        })
+      end
+      format.json do
+        render json: Patinoire.all.to_json({
+          only: patinoires_fields,
         })
       end
     end

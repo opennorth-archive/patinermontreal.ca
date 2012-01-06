@@ -1,5 +1,6 @@
 PatinerMontreal::Application.routes.draw do
   match 'data' => 'pages#data'
+  match 'conditions' => 'pages#conditions'
   %w(favorites favories f f/*filters rinks/:id patinoires/:id).each do |path|
     match path => 'pages#index'
   end
