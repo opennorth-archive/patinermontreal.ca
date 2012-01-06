@@ -165,7 +165,6 @@
     <% } %>
     <% if (ouvert || !condition) { %>
       <p><strong><%= t('explanation') %></strong></p>
-      <!-- @todo add "i'm going" for Facebook + track click for Twitter, Facebook -->
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-related="<%= t('tweet_related') %>" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
     <% } %>
   </script>
