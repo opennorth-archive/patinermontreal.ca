@@ -144,6 +144,11 @@ other_domain = $('#language a').attr('href').match(/^http:\/\/[^\/]+\//)[0].repl
 $ ->
   window.debug = env is 'development'
 
+  # Hook up modal.
+  $('#about').modal
+    backdrop: true
+    keyboard: true
+
   # Create map.
   Map = new L.Map 'map',
     center: new L.LatLng(45.53, -73.63)

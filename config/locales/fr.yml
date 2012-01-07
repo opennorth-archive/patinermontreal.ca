@@ -15,13 +15,17 @@ fr:
   # Sidebar
   open_rinks: '%{count} patinoires sont ouvertes'
   last_updated: Mis à jour le
+  modal: À propos du site
   newsletter: Restez à jour grâce à notre bulletin
   placeholder: Votre courriel
   subscribe: S'abonner
   android: Patiner Montréal pour Android
   donation: Faire un don à Nord Ouvert avec
   footer: 'Si vous avez des questions, commentaires, suggestions ou corrections, écrivez nous à <a href="mailto:info@nordouvert.ca">info@nordouvert.ca</a>.'
-  disclaimer: 'Sources : <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires">Ville de Montréal</a> et <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808">Ville de Dorval</a>. Patiner Montreal est un <a href="https://github.com/opennorth/patinermontreal.ca">logiciel libre</a> distribué sous <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt">license MIT</a>. Les données (<a href="%{json_path}">JSON</a>, <a href="%{xml_path}">XML</a>) sont sous <a href="http://creativecommons.org/publicdomain/zero/1.0/"">license CC0</a>. Android est une marque déposée de Google Inc.'
+  sources: 'Sources : <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires">Ville de Montréal</a> et <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808">Ville de Dorval</a>'
+  license: 'Patiner Montreal est un <a href="https://github.com/opennorth/patinermontreal.ca">logiciel libre</a> distribué sous <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt">license MIT</a>.'
+  data: 'Les données (<a href="%{json_path}">JSON</a>, <a href="%{xml_path}">XML</a>) sont sous <a href="http://creativecommons.org/publicdomain/zero/1.0/"">license CC0</a>.'
+  disclaimer: Android est une marque déposée de Google Inc.
 
   # Filters
   teamsports: Sports d'équipe

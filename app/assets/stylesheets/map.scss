@@ -100,6 +100,9 @@ aside {
     font-size: 0.8125em;
     line-height: 1.5em;
   }
+  p {
+    margin: 0;
+  }
   .item {
     display: inline-block;
     padding-right: 10px;
@@ -142,16 +145,6 @@ aside {
   padding: 0;
   border: none;
   @include box-shadow(none);
-}
-
-#footer {
-  color: #666;
-  font-size: 0.625em;
-}
-
-#disclaimer {
-  color: #999;
-  font-size: 0.625em;
 }
 
 // Bar -------------------------------------------------------------------------

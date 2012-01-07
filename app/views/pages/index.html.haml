@@ -14,6 +14,8 @@
       %p
         = t :last_updated
         = l @last_updated, format: :long
+      %p
+        = link_to t(:modal), '#', 'data-controls-modal' => 'about'
     .item
       .fb-like(data-href="http://patinermontreal.ca" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false")
       %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-related="#{t :tweet_related}" data-count="horizontal")
@@ -29,6 +31,17 @@
           = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn primary'
     %p.item
       = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '117x45'), 'http://patinoires.mudar.ca/'
+
+#about.modal.hide.fade
+  .modal-header
+    = link_to '×', '#', class: 'close'
+    %h3=t :modal
+  .modal-body
+    %p= t(:footer).html_safe
+    %p= t(:license, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
+    %p= t(:data).html_safe
+    %p= t(:sources).html_safe
+    %p= t :disclaimer
 
 #controls.bar
   #kinds.section
