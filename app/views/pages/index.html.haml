@@ -6,45 +6,29 @@
 
 %aside
   #inside
-    %h1
+    %h1.item
       = image_tag 'logo.gif', alt: 'Patiner Montréal', title: 'Patiner Montréal', size: '166x34'
-    %h2
-      = t :open_rinks, count: @count
-    %p
-      = t :last_updated
-      = l @last_updated, format: :long
-
-    = form_tag 'http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
-      %h2=t :newsletter
-      .inline-inputs
-        = email_field_tag 'EMAIL', nil, id: 'mce-EMAIL', class: 'required email', placeholder: t(:placeholder), required: 'required'
-        = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn primary'
-
-    .social
+    .item
+      %h2
+        = t :open_rinks, count: @count
+      %p
+        = t :last_updated
+        = l @last_updated, format: :long
+    .item
       .fb-like(data-href="http://patinermontreal.ca" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false")
-    .social
       %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-related="#{t :tweet_related}" data-count="horizontal")
         =t :tweet
-    %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}" data-size="large" data-width="200px")
-      =t :follow
-      @patinermtl
-    /.fb-like-box(data-href="http://www.facebook.com/OpenNorth.NordOuvert" data-width="292" data-show-faces="false" data-stream="false" data-header="true")
-    /.fb-activity(data-site="patinermontreal.ca,www.patinermontreal.ca" data-width="300" data-height="300" data-header="false" data-recommendations="false")
-
-    %p
-      = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '53x57'), 'http://patinoires.mudar.ca/'
-
-    = form_tag 'https://www.paypal.com/cgi-bin/webscr', authenticity_token: false do
-      %h2=t :donation
-      = hidden_field_tag 'cmd', '_s-xclick'
-      = hidden_field_tag 'hosted_button_id', 'CA2V7LM44QGZG'
-      = image_submit_tag 'paypal.gif', id: 'paypal', name: 'submit', alt: 'PayPal - The safer, easier way to pay online!'
-      = image_tag 'https://www.paypalobjects.com/en_US/i/scr/pixel.gif', alt: '', size: '1x1'
-
-    %p#footer
-      = t(:footer).html_safe
-    %p#disclaimer
-      = t(:disclaimer, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
+      %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}")
+        =t :follow
+        @patinermtl
+    .item
+      = form_tag 'http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
+        %h2=t :newsletter
+        .inline-inputs
+          = email_field_tag 'EMAIL', nil, id: 'mce-EMAIL', class: 'required email', placeholder: t(:placeholder), required: 'required'
+          = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn primary'
+    %p.item
+      = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '117x45'), 'http://patinoires.mudar.ca/'
 
 #controls.bar
   #kinds.section
@@ -98,7 +82,7 @@
         =t :favorite
   #branding.section
     = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url)
-    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: t(:montrealouvert_size)), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}"
+    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}"
 
 :javascript
   window.fbAsyncInit = function() {

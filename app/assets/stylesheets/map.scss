@@ -29,8 +29,8 @@
   transition: $value;
 }
 
-$sidebar-width: 240px;
-$control-width: 80px;
+$sidebar-height: 72px;
+$control-width: 60px;
 $bar-height: 96px;
 
 html,
@@ -39,7 +39,7 @@ body {
 }
 #map {
   height: 100%;
-  margin-left: $sidebar-width;
+  margin-top: $sidebar-height;
 }
 
 body {
@@ -58,6 +58,7 @@ em {
 }
 
 #language {
+  z-index: 2000;
   position: absolute;
   right: 10px;
   top: 0;
@@ -83,34 +84,49 @@ aside {
   position: absolute;
   left: 0;
   top: 0;
-  width: $sidebar-width;
-  height: 100%;
+  width: 100%;
+  height: $sidebar-height;
   background-color: #fefefe;
-  @include box-shadow(-3px 0 10px #666);
+  @include box-shadow(0 -3px 10px #666);
 }
 #inside {
   z-index: 999;
   overflow: auto;
-  padding: 0 5px;
+  padding: 0 10px;
   h1 {
     margin: 0;
-    padding-top: 5px;
   }
   h2 {
     font-size: 0.8125em;
     line-height: 1.5em;
   }
+  .item {
+    display: inline-block;
+    padding-right: 10px;
+    vertical-align: middle;
+  }
+  .fb-like {
+    width: 100px;
+    height: 24px;
+  }
+  .fb_iframe_widget {
+    display: block !important;
+  }
+  .twitter-share-button,
+  .twitter-follow-button {
+    display: block;
+    height: 24px !important;
+  }
+  .twitter-share-button {
+    width: 100px !important;
+  }
+  .twitter-follow-button {
+    width: 130px !important;
+  }
 }
-
-.fb-like {
-  width: 100px;
-  height: 26px;
-}
-.social {
-  float: left;
-}
-.twitter-follow-button {
-  clear: left;
+.lt-ie8 #inside .item {
+  zoom: 1;
+  display: inline;
 }
 
 .email {
@@ -185,8 +201,11 @@ aside {
 }
 #favories {
   left: 7 * $control-width + 2;
-  width: $control-width;
+  width: 80px;
   border-right: 1px solid #ccc;
+  .control {
+    width: 80px;
+  }
 }
 
 #statuses .icon,
@@ -344,7 +363,7 @@ $mobile-control-width: 45px;
 
   .control {
     width: $mobile-control-width;
-    font-size: 0.625em
+    font-size: 0.625em;
   }
   .section {
     height: $mobile-bar-height - 13;
