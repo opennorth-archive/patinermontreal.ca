@@ -38,8 +38,8 @@
     %h3=t :modal
   .modal-body
     %p= t(:footer).html_safe
-    %p= t(:license, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
-    %p= t(:data).html_safe
+    %p= t(:license).html_safe
+    %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
     %p= t(:sources).html_safe
     %p= t :disclaimer
 
