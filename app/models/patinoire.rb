@@ -5,9 +5,11 @@ class Patinoire < ActiveRecord::Base
   validates_presence_of :nom, :description, :genre, :parc, :slug, :source, :arrondissement_id
   validates_uniqueness_of :nom, scope: :arrondissement_id
   validates_inclusion_of :description, in: [
+      'Anneau de glace',
       'Aire de patinage libre',
       'Grande patinoire avec bandes',
       'Patinoire avec bandes',
+      'Patinoire avec bandes pour enfants',
       'Patinoire de patin libre',
       'Patinoire décorative',
       'Patinoire entretenue par les citoyens',

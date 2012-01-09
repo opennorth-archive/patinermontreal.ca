@@ -54,7 +54,11 @@ namespace :import do
         flip = flip == 1 ? 2 : 1
       end
       patinoire.source = 'donnees.ville.montreal.qc.ca'
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
   end
 
