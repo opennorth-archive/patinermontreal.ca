@@ -45,6 +45,7 @@ class Patinoire < ActiveRecord::Base
   before_validation :set_nom_and_description
   before_save :normalize
 
+  scope :unaddressed, where(adresse: nil)
   scope :nongeocoded, where(lat: nil)
   scope :geocoded, where('lat IS NOT NULL')
   scope :ouvert, where(ouvert: true)

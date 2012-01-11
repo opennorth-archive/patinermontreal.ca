@@ -25,6 +25,7 @@ namespace :location do
       'de Normanville'           => '7470 Rue de Normanville',
       # extra rink in donnees.ville.montreal.qc.ca
       'Berthe-Louard'            => '9355, avenue De Galinée',
+      'Dunkerque'                => '2905 Jean-Talon Ouest',
       'François-Perrault'        => '7501, rue François-Perrault',
       'Saint-Paul-de-la-Croix'   => '9900, avenue Hamel',
       'Walter-Stewart'           => '2455, rue Larivière',

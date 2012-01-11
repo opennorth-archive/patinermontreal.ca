@@ -186,6 +186,8 @@ namespace :import do
 
           # Sherlock has the wrong rink type.
           attributes[:genre] = case attributes[:parc]
+          when 'Maurice-Cullen'
+            'PPL'
           when 'Champdoré'
             'PSE'
           when 'Chamberland'
@@ -196,6 +198,8 @@ namespace :import do
             else
               attributes[:genre]
             end
+          when 'Van Horne'
+            'PP'
           else
             attributes[:genre]
           end
