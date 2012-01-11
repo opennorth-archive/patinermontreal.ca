@@ -13,7 +13,7 @@
         = t :open_rinks, count: @count
       %p
         = t :last_updated
-        = l @last_updated, format: :long
+        = l @last_updated.in_time_zone('Eastern Time (US & Canada)'), format: :long
       %p
         = link_to t(:modal), '#', 'data-controls-modal' => 'about'
     .item
