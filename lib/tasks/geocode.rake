@@ -18,17 +18,19 @@ namespace :location do
       'Pierre Elliott Trudeau'   => '5891 Avenue Stephen Leacock',
       'Richard Schwartz'         => '5515 Avenue Smart',
       # only in donnees.ville.montreal.qc.ca
+      'Camille'                  => '9309 Boulevard Gouin Ouest',
+      'Luigi-Pirandello'         => '4550, rue Compiègne',
       'Polyvalente Saint-Henri'  => '4125 Rue Saint-Jacques',
       'Rosewood'                 => '237 Avenue de Mount Vernon',
-      'Camille'                  => '9309 Boulevard Gouin Ouest',
       'de Normanville'           => '7470 Rue de Normanville',
       # extra rink in donnees.ville.montreal.qc.ca
-      'Saint-Paul-de-la-Croix'   => '9900, avenue Hamel',
       'Berthe-Louard'            => '9355, avenue De Galinée',
       'François-Perrault'        => '7501, rue François-Perrault',
+      'Saint-Paul-de-la-Croix'   => '9900, avenue Hamel',
+      'Walter-Stewart'           => '2455, rue Larivière',
       # no address in Sherlock
-      'Saint-Léonard'            => '8255, boulevard Lacordaire',
       'Bassin Bonsecours'        => '350 de la Commune Ouest',
+      'Saint-Léonard'            => '8255, boulevard Lacordaire',
       # useless address in Sherlock
       'Terrasse Jacques-Léonard' => 'Terrasse Jacques Léonard',
       # ignored in Sherlock
