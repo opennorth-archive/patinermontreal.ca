@@ -39,7 +39,6 @@ body {
 }
 #map {
   height: 100%;
-  margin-top: $sidebar-height;
 }
 
 body {
@@ -321,7 +320,9 @@ aside {
 .leaflet-control-attribution {
   bottom: $bar-height;
 }
-
+.leaflet-top .leaflet-control-zoom {
+  margin-top: $sidebar-height + 10;
+}
 img[src*="_on.png"] {
   z-index: 2000 !important;
 }
@@ -330,7 +331,6 @@ img[src*="_on.png"] {
 
 $mobile-bar-height: 76px;
 $mobile-control-width: 45px;
-
 
 @media only screen and (max-width: 767px) {
   aside,
@@ -345,6 +345,9 @@ $mobile-control-width: 45px;
   #map,
   .leaflet-popup-content p {
     margin: 0;
+  }
+  .leaflet-top .leaflet-control-zoom {
+    margin-top: 10px;
   }
 
   .leaflet-popup-content-wrapper {
