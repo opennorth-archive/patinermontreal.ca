@@ -158,16 +158,15 @@ namespace :import do
             'patinoire réfrigérée du Canadien de Montréal' => 'PSE',
           }[attributes[:genre]] || attributes[:genre]
           attributes[:parc] = {
-            'Bleu Blanc Bouge Le Carignan'           => 'Le Carignan',
-            'Bleu Blanc Bouge de Saint-Michel'       => 'François-Perrault',
-            'Bleu Blanc Bouge'                       => 'Willibrord', # must be after above
-            "de l'école Dalpé-Viau"                  => 'école Dalbé-Viau',
-            'de Kent'                                => 'Kent',
-            'Lasalle'                                => 'LaSalle',
+            'Bleu Blanc Bouge Le Carignan'     => 'Le Carignan',
+            'Bleu Blanc Bouge de Saint-Michel' => 'François-Perrault',
+            'Bleu Blanc Bouge'                 => 'Willibrord', # must be after above
+            "de l'école Dalpé-Viau"            => 'école Dalbé-Viau',
+            'de Kent'                          => 'Kent',
+            'Lasalle'                          => 'LaSalle',
+            'Pierre-E.-Trudeau'                => 'Pierre-E-Trudeau',
             "Terrain de piste et pelouse attenant à l'aréna Martin-Brodeur" => 'Saint-Léonard',
-          }.reduce(attributes[:parc]) do |string,(from,to)|
-            string.sub(from, to)
-          end
+          }[attributes[:parc]] || attributes[:parc]
 
           # Special case.
           if text[/2 PSE/]
@@ -198,6 +197,8 @@ namespace :import do
             else
               attributes[:genre]
             end
+          when 'Oakwood'
+            'PPL'
           when 'Van Horne'
             'PP'
           else
@@ -205,10 +206,19 @@ namespace :import do
           end
 
           # Fill in missing genre.
-          attributes[:genre] ||= case attributes[:parc]
-          when 'Pilon', 'Saint-Léonard', 'Bassin Bonsecours'
-            'PPL'
+          if ['Pilon', 'Saint-Léonard', 'Bassin Bonsecours'].include? attributes[:parc]
+            attributes[:genre] ||= 'PPL'
           end
+
+          # Fix dashes.
+          nom_arr = {
+            'Côte-des-Neiges–Notre-Dame-de-Grâce'      => 'Côte-des-Neiges—Notre-Dame-de-Grâce',
+            "L'Île-Bizard–Sainte-Geneviève"            => "L'Île-Bizard—Sainte-Geneviève",
+            'Mercier–Hochelaga-Maisonneuve'            => 'Mercier—Hochelaga-Maisonneuve',
+            'Rivière-des-Prairies–Pointe-aux-Trembles' => 'Rivière-des-Prairies—Pointe-aux-Trembles',
+            'Rosemont–La Petite-Patrie'                => 'Rosemont—La Petite-Patrie',
+            'Villeray–Saint-Michel–Parc-Extension'     => 'Villeray—Saint-Michel—Parc-Extension',
+          }[nom_arr] || nom_arr
 
           # Create boroughs and rinks.
           arrondissement = Arrondissement.find_or_initialize_by_nom_arr nom_arr
