@@ -197,8 +197,6 @@ namespace :import do
             else
               attributes[:genre]
             end
-          when 'Oakwood'
-            'PPL'
           when 'Van Horne'
             'PP'
           else
