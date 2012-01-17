@@ -7,7 +7,7 @@ class Patinoire < ActiveRecord::Base
   validates_inclusion_of :description, in: [
       'Anneau de glace',
       'Aire de patinage libre',
-      'Grande patinoire',
+      'Grande patinoire de hockey',
       'Grande patinoire avec bandes',
       'Patinoire avec bandes',
       'Patinoire avec bandes pour enfants',
@@ -16,7 +16,7 @@ class Patinoire < ActiveRecord::Base
       'Patinoire décorative',
       'Patinoire entretenue par les citoyens',
       'Patinoire réfrigérée',
-      'Petite patinoire',
+      'Petite patinoire de hockey',
       'Petite patinoire avec bandes',
     ], allow_blank: true
   validates_inclusion_of :genre, in: [
