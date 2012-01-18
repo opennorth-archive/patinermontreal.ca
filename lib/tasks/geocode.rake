@@ -13,6 +13,10 @@ namespace :location do
 
   desc 'Add missing addresses and coordinates'
   task :fix => :environment do
+    Patinoire.where(parc: 'Beaubien', arrondissement: {nom_arr: 'Rosemont—La Petite-Patrie'}).each do |patinoire|
+      patinoire.update_attribute :adresse, '6633, 6e Avenue'
+    end
+
     { # no address at cotesaintluc.org
       'Irving Singerman'         => '6610 Chemin Merton',
       'Pierre Elliott Trudeau'   => '5891 Avenue Stephen Leacock',

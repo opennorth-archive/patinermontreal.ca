@@ -70,11 +70,14 @@ namespace :import do
           Patinoire.where(attributes.slice(:parc, :genre).merge(arrondissement_id: arrondissement.id, disambiguation: 'no 2')).first.update_attributes attributes.slice(:adresse, :tel, :ext).select{|k,v| v.present?}
         end
       elsif matches.empty?
-        # donnees.ville.montreal.qc.ca should generally have all a borough's rinks.
-        if ARRONDISSEMENTS_FROM_XML.include?(arrondissement.nom_arr)
-          puts %("#{text}" matches no rink. Creating!)
+        # There's only one rink in Pratt park. vleduc@ville.montreal.qc.ca
+        unless attributes[:parc] == 'Pratt'
+          # donnees.ville.montreal.qc.ca should generally have all a borough's rinks.
+          if ARRONDISSEMENTS_FROM_XML.include?(arrondissement.nom_arr)
+            puts %("#{text}" matches no rink. Creating!)
+          end
+          arrondissement.patinoires.create! attributes.slice(:genre, :disambiguation, :parc, :adresse, :tel, :ext).merge(source: 'ville.montreal.qc.ca')
         end
-        arrondissement.patinoires.create! attributes.slice(:genre, :disambiguation, :parc, :adresse, :tel, :ext).merge(source: 'ville.montreal.qc.ca')
       end
     end
 
@@ -169,7 +172,7 @@ namespace :import do
           }[attributes[:parc]] || attributes[:parc]
 
           # Special case.
-          if text[/2 PSE/]
+          if text[/2 PSE/] || text == "Parc Beaubien, 6633, 6e Avenue (PSE) (chalet) "
             attributes[:disambiguation] = 'no 1'
           end
           # There are identical lines in Sherlock.
@@ -197,6 +200,8 @@ namespace :import do
             else
               attributes[:genre]
             end
+          when 'Oakwood'
+            'PPL'
           when 'Van Horne'
             'PP'
           else
