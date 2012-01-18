@@ -7,7 +7,7 @@
 # Lachine: XML is missing one "Duff Court" and has "club pêcheurs/chasseurs" and "Rosewood".
 # Le Plateau-Mont-Royal: XML has another "Sir-Wilfrid-Laurier".
 # Le Sud-Ouest: XML has "Polyvalente Saint-Henri".
-# Outremont: XML is missing one "Pratt".
+# Outremont: XML is missing one "Pratt" and has another "Beaubien".
 # Rosemont–La Petite-Patrie: XML is missing one "Cité Jardin".
 # Saint-Léonard: XML is missing "Coubertin", "Guiseppe-Garibaldi", two "Saint-Léonard"
 # and has two "C.C.S.L." and "Luigi-Pirandello".
@@ -41,7 +41,7 @@
 #    14 Pierrefonds-Roxboro                       25 (14)   0     0
 #     9 Pointe-Claire                              0        0     9
 #    18 Rivière-des-Prairies—Pointe-aux-Trembles  18       18     0
-#    18 Rosemont–La Petite-Patrie                 18       17     0 *
+#    18 Rosemont–La Petite-Patrie                 18       18     0 *
 #    27 Saint-Laurent                             24        0     3
 #     8 Saint-Léonard                              8        7     0 *
 #     5 Sainte-Anne-de-Bellevue                    0        0     5
@@ -50,7 +50,7 @@
 #     6 Ville-Marie                                6        6     2 *
 #    18 Villeray–Saint-Michel–Parc-Extension      15 (16)  17     0 *
 #     7 Westmount                                  0        0     7
-#                                                         175    72
+#                                                         176    72
 #
 # http://depot.ville.montreal.qc.ca/patinoires/data.xml
 # http://www11.ville.montreal.qc.ca/sherlock2/servlet/template/sherlock%2CAfficherDocumentInternet.vm/nodocument/154
