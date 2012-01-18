@@ -13,7 +13,7 @@ namespace :location do
 
   desc 'Add missing addresses and coordinates'
   task :fix => :environment do
-    Patinoire.where(parc: 'Beaubien', arrondissement: {nom_arr: 'Rosemont—La Petite-Patrie'}).each do |patinoire|
+    Arrondissement.where(nom_arr: 'Rosemont—La Petite-Patrie').first.patinoires.where(parc: 'Beaubien').each do |patinoire|
       patinoire.update_attribute :adresse, '6633, 6e Avenue'
     end
 

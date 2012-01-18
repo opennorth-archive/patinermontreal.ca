@@ -9,7 +9,7 @@
 # Lachine: XML is missing one "Duff Court" and has "club pêcheurs/chasseurs" and "Rosewood".
 # Le Plateau-Mont-Royal: XML has another "Sir-Wilfrid-Laurier".
 # Le Sud-Ouest: XML has "Polyvalente Saint-Henri".
-# Outremont: XML is missing one "Pratt".
+# Outremont: XML is missing one "Pratt" (and it's OK).
 # Rosemont–La Petite-Patrie: XML is missing one "Cité Jardin" and has another "Beaubien".
 # Saint-Léonard: XML is missing "Coubertin", "Guiseppe-Garibaldi" and two "Saint-Léonard"
 # and has two "C.C.S.L." and "Luigi-Pirandello".
