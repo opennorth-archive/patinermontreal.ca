@@ -16,20 +16,20 @@
         = l @last_updated.in_time_zone('Eastern Time (US & Canada)'), format: :long
       %p
         = link_to t(:modal), '#', 'data-controls-modal' => 'about'
-    .item
+    .item#social
       .fb-like(data-href="http://patinermontreal.ca" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false")
       %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-related="#{t :tweet_related}" data-count="horizontal")
         =t :tweet
       %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}")
         =t :follow
         @patinermtl
-    .item
+    .item#subscribe
       = form_tag 'http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
         %h2=t :newsletter
         .inline-inputs
           = email_field_tag 'EMAIL', nil, id: 'mce-EMAIL', class: 'required email', placeholder: t(:placeholder), required: 'required'
           = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn primary'
-    %p.item
+    %p.item#android
       = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '117x45'), 'https://market.android.com/details?id=ca.mudar.patinoires'
 
 #about.modal.hide.fade
@@ -94,8 +94,8 @@
       .caption
         =t :favorite
   #branding.section
-    = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url)
-    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}"
+    = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url), target: '_top'
+    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}", target: '_top'
 
 :javascript
   window.fbAsyncInit = function() {
