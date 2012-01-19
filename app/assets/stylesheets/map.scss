@@ -379,17 +379,35 @@ $mobile-control-width: 45px;
   }
 }
 
+$embed-bar-height: 96px;
+$embed-control-width: 52px;
+
+
 @media only screen and (min-width: 620px) and (max-width: 620px) {
   aside,
   #branding {
     display: block;
   }
-  #subscribe,
-  #android {
+  #inside #subscribe,
+  #inside #android {
     display: none;
   }
-  #kinds img {
-    width: 44px;
-    height: 42px;
+
+  .control {
+    width: $embed-control-width;
+  }
+  .section {
+    height: $embed-bar-height - 13;
+  }
+
+  #controls {
+    height: $embed-bar-height;
+  }
+  #kinds {
+    width: 3 * $embed-control-width;
+  }
+  #statuses {
+    left: 3 * $embed-control-width + 1;
+    width: 4 * $embed-control-width;
   }
 }
