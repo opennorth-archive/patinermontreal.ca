@@ -378,3 +378,13 @@ $mobile-control-width: 45px;
     border: none;
   }
 }
+
+@media only screen and (min-width: 620px) and (max-width: 620px) {
+  #kinds img {
+    width: 44px;
+    height: 42px;
+  }
+  #branding {
+    display: block;
+  }
+}
