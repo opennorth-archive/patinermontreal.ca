@@ -8,7 +8,8 @@ en:
   # Sidebar
   open_rinks: '%{count} rinks are open'
   last_updated: Last updated
-  modal: About the site
+  about_modal: About
+  thanks_modal: Thank the city
   newsletter: Stay up-to-date on outdoor rinks
   placeholder: Enter your email
   subscribe: Subscribe

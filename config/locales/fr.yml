@@ -15,7 +15,8 @@ fr:
   # Sidebar
   open_rinks: '%{count} patinoires sont ouvertes'
   last_updated: Mis à jour le
-  modal: À propos du site
+  about_modal: À propos
+  thanks_modal: Remerciez la ville
   newsletter: Restez à jour grâce à notre bulletin
   placeholder: Votre courriel
   subscribe: S'abonner

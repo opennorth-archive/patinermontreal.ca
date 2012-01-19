@@ -15,7 +15,9 @@
         = t :last_updated
         = l @last_updated.in_time_zone('Eastern Time (US & Canada)'), format: :long
       %p
-        = link_to t(:modal), '#', 'data-controls-modal' => 'about'
+        = link_to t(:about_modal), '#', 'data-controls-modal' => 'about'
+        \/
+        = link_to t(:thanks_modal), '#', 'data-controls-modal' => 'thanks', 'class' => 'highlight'
     .item#social
       .fb-like(data-href="http://patinermontreal.ca" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false")
       %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-related="#{t :tweet_related}" data-count="horizontal")
@@ -35,13 +37,19 @@
 #about.modal.hide.fade
   .modal-header
     = link_to '×', '#', class: 'close'
-    %h3=t :modal
+    %h3=t :about_modal
   .modal-body
     %p= t(:footer).html_safe
     %p= t(:license).html_safe
     %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
     %p= t(:sources).html_safe
     %p= t :disclaimer
+#thanks.modal.hide.fade
+  .modal-header
+    = link_to '×', '#', class: 'close'
+    %h3=t :thanks_modal
+  .modal-body
+    <iframe src="https://docs.google.com/spreadsheet/embeddedform?formkey=dGp0a1lINU15QUE2R3BYVW14NmpxSEE6MQ" width="500" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 
 #controls.bar
   #kinds.section
