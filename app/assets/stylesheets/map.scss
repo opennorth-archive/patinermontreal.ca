@@ -381,10 +381,12 @@ $mobile-control-width: 45px;
 
 @media only screen and (min-width: 620px) and (max-width: 620px) {
   aside,
-  #subscribe,
-  #android,
   #branding {
     display: block;
+  }
+  #subscribe,
+  #android {
+    display: none;
   }
   #kinds img {
     width: 44px;
