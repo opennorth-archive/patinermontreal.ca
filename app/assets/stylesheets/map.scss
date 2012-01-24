@@ -387,7 +387,6 @@ $mobile-control-width: 45px;
 $embed-bar-height: 96px;
 $embed-control-width: 52px;
 
-
 @media only screen and (min-width: 620px) and (max-width: 620px) {
   aside,
   #branding {
@@ -396,6 +395,9 @@ $embed-control-width: 52px;
   #inside #subscribe,
   #inside #android {
     display: none;
+  }
+  .leaflet-top .leaflet-control-zoom {
+    margin-top: $sidebar-height + 10;
   }
 
   .control {
