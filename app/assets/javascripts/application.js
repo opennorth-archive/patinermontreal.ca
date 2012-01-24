@@ -11,4 +11,5 @@
 //= require backbone-min
 //= require backbone.localStorage-min
 //= require leaflet
+//= require iso8601.min
 //= require map

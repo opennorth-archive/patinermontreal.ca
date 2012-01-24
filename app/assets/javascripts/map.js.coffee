@@ -19,6 +19,9 @@ I18n =
   en:
     locale: 'en'
     other_locale: 'fr'
+    # Date
+    abbr_month_names: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    time_format: '%{b} %{e}, %{l}%{P}'
     # Popup
     accuracy: 'You are within %{radius} meters of this point'
     condition: 'in %{condition} condition'
@@ -76,6 +79,9 @@ I18n =
   fr:
     locale: 'fr'
     other_locale: 'en'
+    # Date
+    abbr_month_names: ['jan.', 'fév.', 'mar.', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']
+    time_format: '%{b} %{e} à %{H}h'
     # Popup
     accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
     condition: 'en %{condition} condition'
@@ -118,6 +124,17 @@ window.t = (string, args = {}) ->
   string = I18n[current_locale][string] or string
   string = string.replace ///%\{#{key}\}///g, value for key, value of args
   string
+
+window.format_date = (string) ->
+  date = new Date Date.parse(string)
+  hour = date.getHours()
+  args =
+    b: t('abbr_month_names')[date.getMonth()]
+    e: date.getDate()
+    H: hour
+    l: if hour > 12 then hour - 12 else (if hour is 0 then 12 else hour)
+    P: if hour > 11 then 'pm' else 'am'
+  t('time_format', args)
 
 # Monkey-patch Backbone to be trailing-slash agnostic.
 # @see https://github.com/documentcloud/backbone/issues/520

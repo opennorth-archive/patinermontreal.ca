@@ -102,8 +102,8 @@
       .caption
         =t :favorite
   #branding.section
-    = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url), target: '_top'
-    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}", target: '_top'
+    = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url), target: '_top', id: 'opennorth'
+    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/donnees-ouvertes-questions-frequemment-demandees/?lang=#{locale}", target: '_top', id: 'montrealouvert'
 
 :javascript
   window.fbAsyncInit = function() {
@@ -133,7 +133,7 @@
 
   var locale = '#{locale}';
   var env = '#{Rails.env}';
-  var json = #{@rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng], include: {arrondissement: {only: [:nom_arr, :name, :email, :tel, :ext]}})};
+  var json = #{@rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng], include: {arrondissement: {only: [:nom_arr, :name, :email, :tel, :ext, :date_maj]}})};
 
 :plain
   <script type="text/template" id="popup-template">
@@ -151,7 +151,16 @@
       </p>
     <% } %>
     <% if (ouvert === true) { %>
-      <p class="condition"><%= t('condition', {condition: t(condition)}) %></p>
+      <p>
+        <span class="condition">
+          <% if (condition === 'N/A') { %>
+            <%= t('unknown_condition') %>
+          <% } else { %>
+            <%= t('condition', {condition: t(condition)}) %>
+          <% } %>
+        </span>
+        (<%= format_date(arrondissement.date_maj) %>)
+      </p>
       <div class="statuses">
         <div class="icon deblaye<% if (deblaye) { %> active<% } %>">
           <img src="/assets/blank.gif" alt="<%= t('cleared') %>" title="<%= t('cleared') %>" width="28" height="28">
@@ -167,9 +176,14 @@
         </div>
       </div>
     <% } else if (condition) { %>
-      <p class="condition"><%= t('closed') %></p>
+      <p>
+        <span class="condition"><%= t('closed') %></span>
+        (<%= format_date(arrondissement.date_maj) %>)
+      </p>
     <% } else if (arrondissement.email) { %>
-      <p class="condition"><%= t('unknown_condition') %></p>
+      <p class="condition">
+        <%= t('unknown_condition') %>
+      </p>
       <div class="call-to-action">
         <p><%= t('instructions', {region: arrondissement.nom_arr}) %></p>
         <p>

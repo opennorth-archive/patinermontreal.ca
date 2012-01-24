@@ -334,44 +334,107 @@ aside {
 
 // Media queries ---------------------------------------------------------------
 
+$vga-control-width: 52px;
 $mobile-bar-height: 76px;
 $mobile-control-width: 45px;
 
-@media only screen and (max-width: 767px) {
-  aside,
-  #language,
-  #favories,
-  #branding,
-  .statuses .favorite,
-  .call-to-action,
-  .leaflet-control-attribution {
+@media only screen and (max-width: 991px) {
+  // make header less wide
+  #inside #android {
     display: none;
   }
-  #map,
+}
+@media only screen and (max-width: 853px) { // WVGA
+  // make header less wide
+  #inside #subscribe {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) { // PAL
+  // condense footer, remove favorite feature
+  #favories,
+  #montrealouvert,
+  .statuses .favorite {
+    display: none;
+  }
+
+  // condense popups
   .leaflet-popup-content p {
     margin: 0;
   }
-  .leaflet-top .leaflet-control-zoom {
-    margin-top: 10px;
-  }
-
   .leaflet-popup-content-wrapper {
     @include border-radius(5px);
   }
   .leaflet-popup-content {
     margin: 4px;
   }
+}
 
+@media only screen and (max-width: 639px) { // VGA
+  // make header less wide
+  #language {
+    display: none;
+  }
+
+  // condense footer
   .control {
-    width: $mobile-control-width;
+    width: $vga-control-width;
     font-size: 0.625em;
+  }
+  #kinds {
+    width: 3 * $vga-control-width;
+    border: none;
+  }
+  #statuses {
+    left: 3 * $vga-control-width + 1;
+    width: 4 * $vga-control-width;
+    border: none;
+  }
+
+  // remove features from popup
+  .call-to-action,
+  .leaflet-control-attribution {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  // condense header and footer
+  #inside #social,
+  #branding {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  // remove header
+  aside {
+    display: none;
+  }
+  #map {
+    margin: 0;
+  }
+  .leaflet-top .leaflet-control-zoom {
+    margin-top: 10px;
+  }
+}
+
+// BlackBerry 480x360, 480x320, 360x480, 360x400 or smaller
+// iPhone 480x320, 320×480
+@media only screen and (max-width: 360px) {
+  // shorten footer
+  #controls {
+    height: $mobile-bar-height;
   }
   .section {
     height: $mobile-bar-height - 13;
   }
 
-  #controls {
-    height: $mobile-bar-height;
+  // condense footer
+  .control {
+    width: $mobile-control-width;
+    font-size: 0.625em;
   }
   #kinds {
     width: 3 * $mobile-control-width;
@@ -381,40 +444,5 @@ $mobile-control-width: 45px;
     left: 3 * $mobile-control-width + 1;
     width: 4 * $mobile-control-width;
     border: none;
-  }
-}
-
-$embed-bar-height: 96px;
-$embed-control-width: 52px;
-
-@media only screen and (min-width: 620px) and (max-width: 620px) {
-  aside,
-  #branding {
-    display: block;
-  }
-  #inside #subscribe,
-  #inside #android {
-    display: none;
-  }
-  .leaflet-top .leaflet-control-zoom {
-    margin-top: $sidebar-height + 10;
-  }
-
-  .control {
-    width: $embed-control-width;
-  }
-  .section {
-    height: $embed-bar-height - 13;
-  }
-
-  #controls {
-    height: $embed-bar-height;
-  }
-  #kinds {
-    width: 3 * $embed-control-width;
-  }
-  #statuses {
-    left: 3 * $embed-control-width + 1;
-    width: 4 * $embed-control-width;
   }
 }
