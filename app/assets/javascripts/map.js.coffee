@@ -141,8 +141,11 @@ other_domain = $('#language a').attr('href').match(/^http:\/\/[^\/]+\//)[0].repl
 $ ->
   window.debug = env is 'development'
 
-  # Hook up modal.
+  # Hook up modals.
   $('#about').modal
+    backdrop: true
+    keyboard: true
+  $('#thanks').modal
     backdrop: true
     keyboard: true
 
