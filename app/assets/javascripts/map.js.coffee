@@ -490,7 +490,7 @@ $ ->
     collection: Rinks
 
   # Route the initial URL.
-  window.location.replace window.location.pathname
+  #window.location.replace window.location.pathname
   Backbone.history.start pushState: true
 
   # http://support.cloudmade.com/answers/general
