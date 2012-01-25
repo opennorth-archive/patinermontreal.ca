@@ -136,11 +136,11 @@ window.format_date = (string) ->
     P: if hour > 11 then 'pm' else 'am'
   t('time_format', args)
 
-# Monkey-patch Backbone to be trailing-slash agnostic.
+# Monkey-patch Backbone to be trailing-slash agnostic and to ignore query string.
 # @see https://github.com/documentcloud/backbone/issues/520
 ((_getFragment) ->
     Backbone.History.prototype.getFragment = ->
-      _getFragment.apply(this, arguments).replace /\/$/, ''
+      _getFragment.apply(this, arguments).replace(/\/$/, '').replace(/\?.*/, '')
 ) Backbone.History.prototype.getFragment
 
 other_locale = t 'other_locale'
