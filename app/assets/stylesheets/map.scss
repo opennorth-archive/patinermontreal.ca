@@ -328,6 +328,12 @@ aside {
 .leaflet-top .leaflet-control-zoom {
   margin-top: $sidebar-height + 10;
 }
+.leaflet-popup-content-wrapper {
+  @include border-radius(5px);
+}
+.leaflet-popup-content {
+  margin: 4px;
+}
 //img[src*="_on.png"] {
 //  z-index: 2000 !important;
 //}
@@ -362,12 +368,6 @@ $mobile-control-width: 45px;
   // condense popups
   .leaflet-popup-content p {
     margin: 0;
-  }
-  .leaflet-popup-content-wrapper {
-    @include border-radius(5px);
-  }
-  .leaflet-popup-content {
-    margin: 4px;
   }
 }
 

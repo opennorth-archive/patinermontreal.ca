@@ -290,7 +290,7 @@ $ ->
       twttr.widgets.load() if twttr.widgets
       # Pan to popup.
       latlng = @marker.getLatLng()
-      Map.panTo new L.LatLng(latlng.lat + 0.02 * Math.pow(0.5, Map.getZoom() - 13), latlng.lng)
+      Map.panTo new L.LatLng(latlng.lat + 0.015 * Math.pow(0.5, Map.getZoom() - 13), latlng.lng)
 
   # Don't navigate to the last known state if opening another popup.
   Map.on 'popupclose', (event) ->
