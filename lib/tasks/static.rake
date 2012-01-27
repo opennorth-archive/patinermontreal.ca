@@ -44,7 +44,7 @@ namespace :import do
     require 'open-uri'
 
     TEL_REGEX = /\d{3}.?\d{3}.?\d{4}/
-    GENRE_REGEX = /C|PP|PPL|PSE|anneau de glace|étang avec musique|rond de glace|patinoire réfrigérée du Canadien de Montréal/
+    GENRE_REGEX = /C|PP|PPL|PSE|anneau de glace|étang avec musique|rond de glace|sentier glacé|patinoire réfrigérée du Canadien de Montréal/
 
     # List of boroughs represented on donnees.ville.montreal.qc.ca
     ARRONDISSEMENTS_FROM_XML = Arrondissement.where(source: 'donnees.ville.montreal.qc.ca').all.map(&:nom_arr)
@@ -155,25 +155,48 @@ namespace :import do
             {'1 M' => 'musique', 'LA' => 'location et aiguisage'}[v] || v
           end
           attributes[:genre] = {
-            'anneau de glace'                              => 'PP', # Daniel-Johnson
+            'sentier glacé'                                => 'PP',
+            'anneau de glace'                              => 'PP',
             'étang avec musique'                           => 'PP', # Jarry
             'rond de glace'                                => 'PPL',
             'patinoire réfrigérée du Canadien de Montréal' => 'PSE',
           }[attributes[:genre]] || attributes[:genre]
+
+          # Sherlock has the wrong park name.
           attributes[:parc] = {
             'Bleu Blanc Bouge Le Carignan'     => 'Le Carignan',
             'Bleu Blanc Bouge de Saint-Michel' => 'François-Perrault',
             'Bleu Blanc Bouge'                 => 'Willibrord', # must be after above
             "de l'école Dalpé-Viau"            => 'école Dalbé-Viau',
             'de Kent'                          => 'Kent',
+            'Dr-Bernard-Paquette'              => 'Dr-Bernard-Paquet',
+            'Georges-Vernot'                   => 'George-Vernot',
             'Lasalle'                          => 'LaSalle',
             'Pierre-E.-Trudeau'                => 'Pierre-E-Trudeau',
             "Terrain de piste et pelouse attenant à l'aréna Martin-Brodeur" => 'Saint-Léonard',
           }[attributes[:parc]] || attributes[:parc]
 
+          # Sherlock has the wrong rink description.
+          if nom_arr == 'Saint-Laurent'
+            attributes[:description] = case attributes[:genre]
+            when 'PSE'
+              'Patinoire extérieure'
+            when 'PPL', 'PP'
+              if attributes[:parc] == 'Beaudet'
+                'Sentier de glace'
+              else
+                'Rond de glace'
+              end
+            else
+              attributes[:description]
+            end
+          end
+
           # Special case.
-          if text[/2 PSE/] || text == "Parc Beaubien, 6633, 6e Avenue (PSE) (chalet) "
+          if text[/2 PSE/]
             attributes[:disambiguation] = 'no 1'
+          elsif text == "Parc Beaubien, 6633, 6e Avenue (PSE) (chalet) "
+            attributes[:disambiguation] = 'nord'
           end
           # There are identical lines in Sherlock.
           if (attributes[:parc] == 'Eugène-Dostie' && attributes[:genre] == 'PSE') || (attributes[:parc] == 'Alexander' && attributes[:genre] == 'PPL') || (attributes[:parc] == 'À-Ma-Baie' && attributes[:genre] == 'PPL')
@@ -211,6 +234,9 @@ namespace :import do
           # Fill in missing genre.
           if ['Pilon', 'Saint-Léonard', 'Bassin Bonsecours'].include? attributes[:parc]
             attributes[:genre] ||= 'PPL'
+          end
+          if ['Camille'].include? attributes[:parc]
+            attributes[:genre] ||= 'PSE'
           end
 
           # Fix dashes.

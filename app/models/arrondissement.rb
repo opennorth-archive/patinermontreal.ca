@@ -68,6 +68,7 @@ private
         'Mercier—Hochelaga-Maisonneuve' => 'mhm',
         'Rivière-des-Prairies—Pointe-aux-Trembles' => 'rdp',
         'Rosemont—La Petite-Patrie' => 'rpp',
+        'Saint-Laurent' => 'sla',
         'Saint-Léonard' => 'sle',
         'Ville-Marie' => 'vma',
         'Villeray—Saint-Michel—Parc-Extension' => 'vsp',

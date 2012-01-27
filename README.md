@@ -17,6 +17,10 @@ It is normal to see the following output:
     "Parc des Hirondelles, 2574, rue Fleury Est (PPL)" matches no rink. Creating!
     "Parc Duff Court, 1830, croissant Roy (PPL)" matches no rink. Creating!
     "Parc de la Cité Jardin, boulevard Rosemont/41e Avenue (PPL et C) (chalet pas toujours ouvert)" matches no rink. Creating!
+    "Parc Noël-Sud, 3025, rue Biret (PPL) " matches no rink. Creating!
+    "Parc Coubertin, 4755, rue Valéry (PSE) " matches no rink. Creating!
+    "Parc Guiseppe-Garibaldi, 7125, rue Liénart (PSE) " matches no rink. Creating!
+    "Parc Saint-Léonard, 8255, boulevard Lacordaire (derrière l'aréna Martin-Brodeur) " matches no rink. Creating!
     "Bassin Bonsecours* (Vieux-Port) (Métro Champ-de-Mars) (chalet)" matches no rink. Creating!
     "Parc René-Goupil, 8661, 25e Avenue (PSE) (chalet) (fermée en raison de travaux pour la saison 2011-2012) " matches no rink. Creating!
 

@@ -24,10 +24,12 @@ namespace :location do
       # only in donnees.ville.montreal.qc.ca
       'Camille'                  => '9309 Boulevard Gouin Ouest',
       'Luigi-Pirandello'         => '4550, rue Compiègne',
+      'Marcel-Laurin'            => '2345, boulevard Thimens',
       'Polyvalente Saint-Henri'  => '4125 Rue Saint-Jacques',
       'Rosewood'                 => '237 Avenue de Mount Vernon',
       'de Normanville'           => '7470 Rue de Normanville',
       # extra rink in donnees.ville.montreal.qc.ca
+      'Beaudet'                  => 'coin rue Du Collège et Boulevard Décarie',
       'Berthe-Louard'            => '9355, avenue De Galinée',
       'Dunkerque'                => '2905 Jean-Talon Ouest',
       'François-Perrault'        => '7501, rue François-Perrault',

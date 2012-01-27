@@ -15,9 +15,12 @@ class Patinoire < ActiveRecord::Base
       'Patinoire de patin libre',
       'Patinoire décorative',
       'Patinoire entretenue par les citoyens',
+      'Patinoire extérieure',
       'Patinoire réfrigérée',
       'Petite patinoire de hockey',
       'Petite patinoire avec bandes',
+      'Rond de glace',
+      'Sentier de glace',
     ], allow_blank: true
   validates_inclusion_of :genre, in: [
       'C',
@@ -86,14 +89,17 @@ private
       end
     end
 
-    extra = case disambiguation
-    when 'réfrigérée', nil
-      nil
+    if %w(petite grande).include? disambiguation
+      self.nom ||= "#{disambiguation.capitalize} #{description.downcase}, #{parc} (#{genre})"
     else
-      " #{disambiguation}"
+      extra = case disambiguation
+      when 'réfrigérée', nil
+        nil
+      else
+        " #{disambiguation}"
+      end
+      self.nom ||= "#{description}#{extra}, #{parc} (#{genre})"
     end
-
-    self.nom ||= "#{description}#{extra}, #{parc} (#{genre})"
   end
 
   def normalize

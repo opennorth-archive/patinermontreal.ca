@@ -19,7 +19,7 @@ namespace :import do
       end
       patinoire.description = patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?[,-]/, 1].sub('Pat. avec bandes', 'Patinoire avec bandes')
       patinoire.genre = patinoire.nom[/\((PP|PPL|PSE)\)\z/, 1]
-      patinoire.disambiguation = patinoire.nom[/\b(nord|sud|\APetite|\AGrande|no \d)\b/i, 1].andand.downcase
+      patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|no \d)\b/i, 1]).andand.downcase
       patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d),/, 1]
       # Help disambiguate rinks imported from Sherlock.
       patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
@@ -40,8 +40,8 @@ namespace :import do
       end
       patinoire.parc.slice!(/\AParc /i)
 
-      # Remove numbers from description.
-      patinoire.description.slice!(/ \d\z/)
+      # Remove disambiguation from description.
+      patinoire.description.slice!(/ (\d|Nord|Sud)\z/)
       # "Aire de patinage libre" with "PSE" is nonsense.
       if patinoire.nom == 'Aire de patinage libre, Kent (sud) (PSE)'
         patinoire.genre = 'PPL'
