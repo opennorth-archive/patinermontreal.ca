@@ -26,7 +26,8 @@ I18n =
     accuracy: 'You are within %{radius} meters of this point'
     condition: 'in %{condition} condition'
     unknown_condition: 'Ice condition not available'
-    instructions: "<em>Ask %{region} to publish its rink conditions:</em>"
+    call_to_action: "Ask the city to publish its rink conditions"
+    or_call: 'or call'
     add_favorite: 'Add to favorites'
     remove_favorite: 'Remove from favorites'
     explanation: 'Going skating? Let your friends know:'
@@ -86,7 +87,8 @@ I18n =
     accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
     condition: 'en %{condition} condition'
     unknown_condition: 'État de la patinoire non disponible'
-    instructions: "<em>Demandez à %{region} de publier l'état de ses patinoires :</em>"
+    call_to_action: "Demandez à la ville de publier l'état"
+    or_call: 'ou appelez le'
     add_favorite: 'Ajouter aux favories'
     remove_favorite: 'Supprimer des favories'
     explanation: 'Vous allez patiner? Informez vos ami(e)s :'
@@ -289,8 +291,7 @@ $ ->
       # Refresh Twitter button.
       twttr.widgets.load() if twttr.widgets
       # Pan to popup.
-      latlng = @marker.getLatLng()
-      Map.panTo new L.LatLng(latlng.lat + 0.015 * Math.pow(0.5, Map.getZoom() - 13), latlng.lng)
+      Map.panTo @marker.getLatLng()
 
   # Don't navigate to the last known state if opening another popup.
   Map.on 'popupclose', (event) ->
@@ -459,6 +460,11 @@ $ ->
     # @return string a URL path
     toUrl: (kinds, statuses) ->
       'f/' + _.uniq(_.map(kinds.sort().concat(statuses.sort()), (filter) -> t filter)).join '/'
+    body: (arrondissement) ->
+      string = if arrondissement.name then "Attn: #{arrondissement.name}\r\n\r\n" else ''
+      string += "Serait-il possible de publier l'état de vos patinoires extérieures comme le font plusieurs arrondissements à la Ville de Montréal ? Voir: http://ville.montreal.qc.ca/portal/page?_pageid=5798,94909650&_dad=portal&_schema=PORTAL\r\n\r\nMerci."
+      encodeURIComponent string
+
 
   # Set up options singleton.
   Singleton = Backbone.Model.extend

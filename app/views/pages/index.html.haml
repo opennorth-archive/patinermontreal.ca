@@ -181,17 +181,14 @@
         (<%= format_date(arrondissement.date_maj) %>)
       </p>
     <% } else if (arrondissement.email) { %>
-      <p class="condition">
+      <p class="condition highlight">
         <%= t('unknown_condition') %>
       </p>
-      <div class="call-to-action">
-        <p><%= t('instructions', {region: arrondissement.nom_arr}) %></p>
-        <p>
-          <% if (arrondissement.name) { %><%= arrondissement.name %><br><% } %>
-          <a href="mailto:<%= arrondissement.email %>"><%= arrondissement.email %></a><br>
-          <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
-        </p>
-      </div>
+      <p class="call-to-action">
+        <a href="mailto:<%= arrondissement.email %>?subject=<%= encodeURIComponent("Mises à jour régulières de l'état des patinoires extérieures") %>&body=<%= Helpers.body(arrondissement) %>&cc=info@opennorth.ca" class="btn default"><%= t('call_to_action') %></a>
+        <br><%= t('or_call') %>
+        <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
+      </p>
     <% } %>
     <% if (ouvert || !condition) { %>
       <div class="call-to-action">
