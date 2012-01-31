@@ -31,8 +31,9 @@
         .inline-inputs
           = email_field_tag 'EMAIL', nil, id: 'mce-EMAIL', class: 'required email', placeholder: t(:placeholder), required: 'required'
           = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn primary'
-    %p.item#android
-      = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '117x45'), 'https://market.android.com/details?id=ca.mudar.patinoires', target: '_top'
+    %p.item
+      = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '117x45'), 'https://market.android.com/details?id=ca.mudar.patinoires', target: '_top', id: 'android'
+      = link_to image_tag("windows_#{locale}.png", alt: t(:windows), title: t(:windows), size: t(:windows_size)), 'http://windowsphone.com/s?appId=cd2924ee-ae85-46d7-b3f1-9f4edd73b66d', target: '_top', id: 'windows'
 
 #about.modal.hide.fade
   .modal-header

@@ -347,9 +347,15 @@ $vga-control-width: 52px;
 $mobile-bar-height: 76px;
 $mobile-control-width: 45px;
 
+@media only screen and (max-width: 1152px) {
+  // make header less wide
+  #windows {
+    display: none;
+  }
+}
 @media only screen and (max-width: 991px) {
   // make header less wide
-  #inside #android {
+  #android {
     display: none;
   }
 }

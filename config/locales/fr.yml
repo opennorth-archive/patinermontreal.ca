@@ -21,6 +21,8 @@ fr:
   placeholder: Votre courriel
   subscribe: S'abonner
   android: Patiner Montréal pour Android
+  windows: Patiner Montréal pour Windows Phone
+  windows_size: 156x45
   donation: Faire un don à Nord Ouvert avec
   footer: 'Si vous avez des questions, commentaires, suggestions ou corrections, écrivez nous à <a href="mailto:info@nordouvert.ca">info@nordouvert.ca</a>.'
   sources: 'Sources : <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires" target="_top">Ville de Montréal</a> et <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808" target="_top">Ville de Dorval</a>'
