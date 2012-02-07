@@ -51,6 +51,7 @@ class Patinoire < ActiveRecord::Base
   before_validation :set_nom_and_description
   before_save :normalize
 
+  scope :tracked, where(source: ['donnees.ville.montreal.qc.ca', 'ville.dorval.qc.ca'])
   scope :unaddressed, where(adresse: nil)
   scope :nongeocoded, where(lat: nil)
   scope :geocoded, where('lat IS NOT NULL')
