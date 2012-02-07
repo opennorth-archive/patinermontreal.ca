@@ -6,7 +6,7 @@ en:
   other_language: Français
 
   # Sidebar
-  open_rinks: '%{count} rinks are open'
+  open_rinks: '%{count} of rinks are open'
   last_updated: Last updated
   about_modal: About
   thanks_modal: Thank the city

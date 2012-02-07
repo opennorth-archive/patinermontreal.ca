@@ -10,7 +10,7 @@
       = image_tag 'logo.gif', alt: 'Patiner Montréal', title: 'Patiner Montréal', size: '166x34'
     .item
       %h2
-        = t :open_rinks, count: @count
+        = t :open_rinks, count: number_to_percentage(@fraction * 100, precision: 0)
       %p
         = t :last_updated
         = l @last_updated.in_time_zone('Eastern Time (US & Canada)'), format: :long
