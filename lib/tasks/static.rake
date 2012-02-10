@@ -29,7 +29,7 @@ namespace :import do
       arrondissement = Arrondissement.find_or_initialize_by_nom_arr row['Authority']
       arrondissement.attributes = {
         name: [row['Name'], row['Title']].compact.join(', '),
-        email: row['Email'],
+        email: row['Email'].strip,
         tel: row['Phone'] && row['Phone'].sub(/x\d+/, '').gsub(/\D/, ''),
         ext: row['Phone'] && row['Phone'][/x(\d+)/, 1],
       }
