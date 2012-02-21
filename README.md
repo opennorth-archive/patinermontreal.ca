@@ -37,17 +37,3 @@ It is normal to see the following output:
     heroku run rake import:contacts
     heroku run rake location:fix
     heroku run rake location:import
-
-# Geocoding
-
-To compare the GeoCommons location data to the manual location data, run:
-
-    bundle exec rake location:geocommons
-    bundle exec rake location:compare
-
-To compare location data from geocoding addresses to the manual location data, run:
-
-    bundle exec rake location:geocode
-    bundle exec rake location:compare
-
-The manual location data has been verified to be better that these alternatives.

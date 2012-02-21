@@ -1,8 +1,6 @@
 # The advertised totals on the Sherlock page are sometimes incorrect. The
 # correct figure appears in parentheses below.
 #
-# 
-#
 # Ahuntsic-Cartierville: XML is missing "de Beauséjour" and "des Hirondelles"
 # and has another "Saint-Paul-de-la-Croix".
 # Côte-des-Neiges—Notre-Dame-de-Grâce: XML has "Dunkerque".
