@@ -1,8 +1,9 @@
 # Getting Started
 
     git clone git://github.com/opennorth/patinermontreal.ca.git
+    cd patinermontreal.ca
     bundle
-    bundle exec rake db:migrate
+    bundle exec rake db:setup
     bundle exec rake import:donnees
     bundle exec rake import:sherlock
     bundle exec rake import:dorval
@@ -29,11 +30,4 @@ It is normal to see the following output:
     gem install heroku
     heroku create --stack cedar APP_NAME
     git push heroku master
-    heroku run rake db:migrate
-    heroku run rake import:donnees
-    heroku run rake import:sherlock
-    heroku run rake import:dorval
-    heroku run rake import:google
-    heroku run rake import:contacts
-    heroku run rake location:fix
-    heroku run rake location:import
+    heroku db:push
