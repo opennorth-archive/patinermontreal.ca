@@ -27,6 +27,8 @@ It is normal to see the following output:
 
 # Deployment
 
+[Create a Heroku account](http://heroku.com/signup) and setup SSH keys as described on [Getting Started with Heroku](http://devcenter.heroku.com/articles/quickstart).
+
     gem install heroku
     heroku create --stack cedar APP_NAME
     git push heroku master
