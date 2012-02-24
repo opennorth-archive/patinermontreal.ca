@@ -33,3 +33,9 @@ It is normal to see the following output:
     heroku create --stack cedar APP_NAME
     git push heroku master
     heroku db:push
+    heroku addons:add custom_domains:basic
+    heroku addons:add logging:expanded
+    heroku addons:add pgbackups:auto-month
+    heroku addons:add releases:basic
+    heroku addons:add cron:hourly
+    heroku addons:add memcache:5mb
