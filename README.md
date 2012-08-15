@@ -39,3 +39,9 @@ It is normal to see the following output:
     heroku addons:add releases:basic
     heroku addons:add cron:hourly
     heroku addons:add memcache:5mb
+
+## Bugs? Questions?
+
+This app's main repository is on GitHub: [http://github.com/opennorth/patinermontreal.ca](http://github.com/opennorth/patinermontreal.ca), where your contributions, forks, bug reports, feature requests, and feedback are greatly welcomed.
+
+Copyright (c) 2011 Open North Inc., released under the MIT license
