@@ -1,4 +1,8 @@
-# Getting Started
+# Patiner Montréal
+
+[![Dependency Status](https://gemnasium.com/opennorth/patinermontreal.ca.png)](https://gemnasium.com/opennorth/patinermontreal.ca)
+
+## Getting Started
 
     git clone git://github.com/opennorth/patinermontreal.ca.git
     cd patinermontreal.ca
@@ -25,7 +29,7 @@ It is normal to see the following output:
     "Bassin Bonsecours* (Vieux-Port) (Métro Champ-de-Mars) (chalet)" matches no rink. Creating!
     "Parc René-Goupil, 8661, 25e Avenue (PSE) (chalet) (fermée en raison de travaux pour la saison 2011-2012) " matches no rink. Creating!
 
-# Deployment
+## Deployment
 
 [Create a Heroku account](http://heroku.com/signup) and setup SSH keys as described on [Getting Started with Heroku](http://devcenter.heroku.com/articles/quickstart).
 
