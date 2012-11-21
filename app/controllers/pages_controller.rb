@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   def index
+    render file: Rails.root.join('maintenance', 'index.html'), layout: false
+    return
+
     @rinks = Patinoire.geocoded
     @fraction = Patinoire.geocoded.ouvert.count / Patinoire.geocoded.tracked.count.to_f
     @last_updated = Arrondissement.maximum(:date_maj)

@@ -38,6 +38,7 @@ namespace :import do
     end
   end
 
+  # @todo Moved to http://www1.ville.montreal.qc.ca/banque311/content/hyperliens-et-liste-patinoires-ext%C3%A9rieures
   desc 'Add rinks from Sherlock and add addresses to rinks from donnees.ville.montreal.qc.ca'
   task :sherlock => :environment do
     require 'iconv'

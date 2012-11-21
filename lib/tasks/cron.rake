@@ -56,6 +56,8 @@
 #
 # http://depot.ville.montreal.qc.ca/patinoires/data.xml
 # http://www11.ville.montreal.qc.ca/sherlock2/servlet/template/sherlock%2CAfficherDocumentInternet.vm/nodocument/154
+#
+# @todo Moved to http://www1.ville.montreal.qc.ca/banque311/content/hyperliens-et-liste-patinoires-ext%C3%A9rieures
 task :cron => :environment do
   Rake::Task['import:donnees'].invoke
   Rake::Task['import:dorval'].invoke
