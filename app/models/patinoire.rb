@@ -2,7 +2,7 @@
 class Patinoire < ActiveRecord::Base
   belongs_to :arrondissement
 
-  validates_presence_of :nom, :description, :genre, :parc, :slug, :source, :arrondissement_id
+  validates_presence_of :nom, :genre, :parc, :slug, :source, :arrondissement_id
   validates_uniqueness_of :nom, scope: :arrondissement_id
   validates_inclusion_of :description, in: [
       'Anneau de glace',

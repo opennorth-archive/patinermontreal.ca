@@ -17,8 +17,22 @@ namespace :import do
       %w(ouvert deblaye arrose resurface condition).each do |attribute|
         patinoire[attribute] = node.at_css(attribute).text
       end
-      description = patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?[,-]/, 1] || patinoire.nom
-      patinoire.description = description.sub('Pat. avec bandes', 'Patinoire avec bandes')
+      description = case patinoire.nom
+      when 'Patinoire bandes Pierre-Bédard (PSE)'
+        'Patinoire avec bandes'
+      when 'lalancette (PPL)', 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'patinoire extérieure (PSE)'
+        ''
+      else
+        patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?[,-]/, 1] || patinoire.nom
+      end
+      patinoire.description = {
+        'Pat. avec bandes'   => 'Patinoire avec bandes',
+        'Pati déco'          => 'Patinoire décorative',
+        'Patinoire à bandes' => 'Patinoire avec bandes',
+        'Patinoire bandes'   => 'Patinoire avec bandes',
+      }.reduce(description) do |string,(from,to)|
+        string.sub(from, to)
+      end
       patinoire.genre = patinoire.nom[/\((PP|PPL|PSE)\)\z/, 1]
       patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|no \d)\b/i, 1]).andand.downcase
       patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d),/, 1]
