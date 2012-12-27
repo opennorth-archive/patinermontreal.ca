@@ -60,18 +60,19 @@ private
   def set_cle
     if nom_arr
       self.cle ||= {
-        'Ahuntsic—Cartierville' => 'ahc',
-        'Côte-des-Neiges—Notre-Dame-de-Grâce' => 'cdn',
-        'Lachine' => 'lch',
-        'Le Plateau-Mont-Royal' => 'pmr',
-        'Le Sud-Ouest' => 'sou',
-        'Mercier—Hochelaga-Maisonneuve' => 'mhm',
+        'Ahuntsic—Cartierville'                    => 'ahc',
+        'Côte-des-Neiges—Notre-Dame-de-Grâce'      => 'cdn',
+        'Lachine'                                  => 'lch',
+        'Le Plateau-Mont-Royal'                    => 'pmr',
+        'Le Sud-Ouest'                             => 'sou',
+        'Mercier—Hochelaga-Maisonneuve'            => 'mhm',
         'Rivière-des-Prairies—Pointe-aux-Trembles' => 'rdp',
-        'Rosemont—La Petite-Patrie' => 'rpp',
-        'Saint-Laurent' => 'sla',
-        'Saint-Léonard' => 'sle',
-        'Ville-Marie' => 'vma',
-        'Villeray—Saint-Michel—Parc-Extension' => 'vsp',
+        'Rosemont—La Petite-Patrie'                => 'rpp',
+        'Saint-Laurent'                            => 'sla',
+        'Saint-Léonard'                            => 'sle',
+        'Verdun'                                   => 'ver',
+        'Ville-Marie'                              => 'vma',
+        'Villeray—Saint-Michel—Parc-Extension'     => 'vsp',
       }[nom_arr]
     end
   end

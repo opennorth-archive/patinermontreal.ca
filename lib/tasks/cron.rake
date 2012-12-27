@@ -46,7 +46,7 @@
 #    27 Saint-Laurent                             24       26     0 *
 #    10 Saint-Léonard                              8        7     0 *
 #     3 Senneville                                 0        0     3
-#    12 Verdun                                    12        0     0
+#    12 Verdun                                    12       14     2
 #     9 Ville-Marie                                6        6     2 *
 #    18 Villeray–Saint-Michel–Parc-Extension      15 (16)  17     0 *
 #     7 Westmount                                  0        0     7

@@ -18,10 +18,12 @@ namespace :import do
         patinoire[attribute] = node.at_css(attribute).text
       end
       description = case patinoire.nom
-      when 'Patinoire bandes Pierre-Bédard (PSE)'
+      when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)'
         'Patinoire avec bandes'
-      when 'lalancette (PPL)', 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'patinoire extérieure (PSE)'
-        ''
+      when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)'
+        'Patinoire réfrigérée'
+      when 'lalancette (PPL)'
+        'Patinoire de patin libre'
       else
         patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?[,-]/, 1] || patinoire.nom
       end
@@ -44,8 +46,10 @@ namespace :import do
         'C-de-la-Rousselière'              => 'Clémentine-De La Rousselière',
         'Cité-Jardin'                      => 'de la Cité Jardin',
         'De la Petite-Italie'              => 'Petite Italie',
+        'Des Hirondelles'                  => 'des Hirondelles',
         'Duff court'                       => 'Duff Court',
         'Ignace-Bourget-anneau de vitesse' => 'Ignace-Bourget',
+        'lalancette'                       => 'Lalancette',
         'Lac aux Castors'                  => 'du Mont-Royal',
         'Lac des castors'                  => 'du Mont-Royal',
         'Marc-Aurèle-Fortin'               => 'Hans-Selye',
