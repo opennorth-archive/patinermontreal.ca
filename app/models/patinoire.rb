@@ -73,9 +73,9 @@ private
   PREPOSITIONS = /\A(de la|de|des|du)\b/i
 
   def set_nom_and_description
-    self.slug = if parc
+    self.slug = if parc.present?
       parc.slug
-    elsif description
+    elsif description.present?
       description.slug
     else
       nom.slug
