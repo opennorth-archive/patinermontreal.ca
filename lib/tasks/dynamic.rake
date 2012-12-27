@@ -17,14 +17,15 @@ namespace :import do
       %w(ouvert deblaye arrose resurface condition).each do |attribute|
         patinoire[attribute] = node.at_css(attribute).text
       end
-      description = patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?[,-]/, 1]
-      patinoire.description = description ? description.sub('Pat. avec bandes', 'Patinoire avec bandes') : patinoire.nom
+      description = patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?[,-]/, 1] || patinoire.nom
+      patinoire.description = description.sub('Pat. avec bandes', 'Patinoire avec bandes')
       patinoire.genre = patinoire.nom[/\((PP|PPL|PSE)\)\z/, 1]
       patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|no \d)\b/i, 1]).andand.downcase
       patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d),/, 1]
       # Help disambiguate rinks imported from Sherlock.
       patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
       # Expand/correct park names.
+      parc = patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1] || patinoire.nom
       patinoire.parc = {
         'C-de-la-Rousselière'    => 'Clémentine-De La Rousselière',
         'Cité-Jardin'            => 'de la Cité Jardin',
@@ -36,7 +37,7 @@ namespace :import do
         'Saint-Aloysis'          => 'Saint-Aloysius',
         'Sainte-Maria-Goretti'   => 'Maria-Goretti',
         'Y-Thériault/Sherbrooke' => 'Yves-Thériault/Sherbrooke',
-      }.reduce(patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1]) do |string,(from,to)|
+      }.reduce(parc) do |string,(from,to)|
         string.sub(from, to)
       end
       patinoire.parc.slice!(/\AParc /i)
