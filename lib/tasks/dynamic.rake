@@ -41,7 +41,7 @@ namespace :import do
       # Help disambiguate rinks imported from Sherlock.
       patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
       # Expand/correct park names.
-      parc = patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1] || patinoire.nom[/(.+) \(/]
+      parc = patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1] || patinoire.nom[/(.+) \(/, 1]
       patinoire.parc = {
         'C-de-la-Rousselière'              => 'Clémentine-De La Rousselière',
         'Cité-Jardin'                      => 'de la Cité Jardin',
