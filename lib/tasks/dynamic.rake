@@ -39,18 +39,22 @@ namespace :import do
       # Help disambiguate rinks imported from Sherlock.
       patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
       # Expand/correct park names.
-      parc = patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1] || patinoire.nom
+      parc = patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1] || patinoire.nom[/(.+) \(/]
       patinoire.parc = {
-        'C-de-la-Rousselière'    => 'Clémentine-De La Rousselière',
-        'Cité-Jardin'            => 'de la Cité Jardin',
-        'De la Petite-Italie'    => 'Petite Italie',
-        'Duff court'             => 'Duff Court',
-        'Lac aux Castors'        => 'du Mont-Royal',
-        'Lac des castors'        => 'du Mont-Royal',
-        'Marc-Aurèle-Fortin'     => 'Hans-Selye',
-        'Saint-Aloysis'          => 'Saint-Aloysius',
-        'Sainte-Maria-Goretti'   => 'Maria-Goretti',
-        'Y-Thériault/Sherbrooke' => 'Yves-Thériault/Sherbrooke',
+        'C-de-la-Rousselière'              => 'Clémentine-De La Rousselière',
+        'Cité-Jardin'                      => 'de la Cité Jardin',
+        'De la Petite-Italie'              => 'Petite Italie',
+        'Duff court'                       => 'Duff Court',
+        'Ignace-Bourget-anneau de vitesse' => 'Ignace-Bourget',
+        'Lac aux Castors'                  => 'du Mont-Royal',
+        'Lac des castors'                  => 'du Mont-Royal',
+        'Marc-Aurèle-Fortin'               => 'Hans-Selye',
+        'Patinoire Bleu-Blanc-Bouge'       => '',
+        'Patinoire bandes Pierre-Bédard'   => 'Pierre-Bédard',
+        'Saint-Aloysis'                    => 'Saint-Aloysius',
+        'Sainte-Maria-Goretti'             => 'Maria-Goretti',
+        'Y-Thériault/Sherbrooke'           => 'Yves-Thériault/Sherbrooke',
+        'patinoire extérieure'             => '',
       }.reduce(parc) do |string,(from,to)|
         string.sub(from, to)
       end
