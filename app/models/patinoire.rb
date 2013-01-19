@@ -4,58 +4,58 @@ class Patinoire < ActiveRecord::Base
 
   validates_presence_of :nom, :description, :genre, :slug, :source, :arrondissement_id
   validates_uniqueness_of :nom, scope: :arrondissement_id
+  validates_numericality_of :tel, only_integer: true, allow_blank: true
+  validates_length_of :tel, is: 10, allow_blank: true
+
   validates_inclusion_of :description, in: [
       'Anneau de glace',
       'Aire de patinage libre',
-      'Grande patinoire de hockey',
       'Grande patinoire avec bandes',
+      'Grande patinoire de hockey',
       'Patinoire avec bandes',
       'Patinoire avec bandes pour enfants',
       'Patinoire de hockey',
       'Patinoire de patin libre',
       'Patinoire décorative',
-      'Patinoire entretenue par les citoyens',
       'Patinoire extérieure',
+      'Patinoire naturelle',
       'Patinoire réfrigérée',
-      'Petite patinoire de hockey',
       'Petite patinoire avec bandes',
+      'Petite patinoire de hockey',
       'Rond de glace',
       'Sentier de glace',
     ], allow_blank: true
   validates_inclusion_of :genre, in: [
-      'C',
       'PP',
       'PPL',
       'PSE',
     ], allow_blank: true
   validates_inclusion_of :disambiguation, in: [
+      'no 1',
+      'no 2',
+      'no 3',
       'nord',
       'sud',
       'petite',
       'grande',
-      'no 1',
-      'no 2',
-      'no 3',
       'réfrigérée',
     ], allow_blank: true
   validates_inclusion_of :source, in: [
       'donnees.ville.montreal.qc.ca',
-      'ville.montreal.qc.ca',
       'ville.dorval.qc.ca',
       'docs.google.com',
     ]
   validates_inclusion_of :condition, in: %w(Excellente Bonne Mauvaise N/A), allow_blank: true
-  validates_numericality_of :tel, only_integer: true, allow_blank: true
-  validates_length_of :tel, is: 10, allow_blank: true
 
   before_validation :set_nom_and_description
   before_save :normalize
 
   scope :tracked, where(source: ['donnees.ville.montreal.qc.ca', 'ville.dorval.qc.ca'])
-  scope :unaddressed, where(adresse: nil)
-  scope :nongeocoded, where(lat: nil)
   scope :geocoded, where('lat IS NOT NULL')
   scope :ouvert, where(ouvert: true)
+  # Utility scopes for checking data quality.
+  scope :unaddressed, where(adresse: nil)
+  scope :nongeocoded, where(lat: nil)
 
   def name
     "#{description}, #{parc} (#{genre})" # ignore disambiguation
@@ -85,8 +85,6 @@ private
       'Patinoire réfrigérée'
     else
       case genre
-      when 'C'
-        'Patinoire entretenue par les citoyens'
       when 'PP'
         'Patinoire décorative'
       when 'PPL'
