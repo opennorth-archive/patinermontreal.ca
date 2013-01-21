@@ -103,7 +103,7 @@ namespace :import do
 
     # http://www.montreal-west.ca/en/outdoor-rinks/
     Nokogiri::HTML(RestClient.get('http://www.montreal-west.ca/fr/patinoires-exterieur/')).css('table[border] tr:gt(1)').each do |tr|
-      text = tr.at_css('td:eq(1)').text.strip
+      text = tr.at_css('td:eq(1)').text.gsub(/[[:space:]]/, ' ').strip
       attributes = case text
       when 'Terrain Hodgson - Patinoire'
         {
@@ -128,7 +128,14 @@ namespace :import do
         next
       end
 
-      condition = tr.at_css('td:eq(5)').text.strip
+      attributes.merge!({
+        ouvert: tr.at_css('td:eq(2)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
+        deblaye: tr.at_css('td:eq(3)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
+        arrose: tr.at_css('td:eq(4)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
+        source: 'montreal-west.ca',
+      })
+
+      condition = tr.at_css('td:eq(5)').text.gsub(/[[:space:]]/, ' ').strip
       attributes[:condition] = case condition
       when 'excellente'
         'Excellente'
@@ -137,7 +144,7 @@ namespace :import do
       when 'mauvaise'
         'Mauvaise'
       else
-        puts "Unknown condition '#{condition}'"
+        puts "Unknown condition '#{condition}'" unless condition.blank?
         'N/A'
       end
 
