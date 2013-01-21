@@ -46,9 +46,10 @@ class Arrondissement < ActiveRecord::Base
     'Westmount',
   ]
   validates_inclusion_of :source, in: [
-    'donnees.ville.montreal.qc.ca',
-    'ville.dorval.qc.ca',
     'docs.google.com',
+    'donnees.ville.montreal.qc.ca',
+    'montreal-west.ca',
+    'ville.dorval.qc.ca',
   ]
 
   scope :dynamic, where('date_maj IS NOT NULL')

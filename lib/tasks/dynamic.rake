@@ -94,6 +94,59 @@ namespace :import do
     end
   end
 
+  desc 'Add rinks from montreal-west.ca'
+  task montrealwest: :environment do
+    arrondissement = Arrondissement.find_or_initialize_by_nom_arr 'Montréal-Ouest'
+    arrondissement.source = 'montreal-west.ca'
+    arrondissement.date_maj = Time.now
+    arrondissement.save!
+
+    # http://www.montreal-west.ca/en/outdoor-rinks/
+    Nokogiri::HTML(RestClient.get('http://www.montreal-west.ca/fr/patinoires-exterieur/')).css('table[border] tr:gt(1)').each do |tr|
+      text = tr.at_css('td:eq(1)').text.strip
+      attributes = case text
+      when 'Terrain Hodgson - Patinoire'
+        {
+          parc: 'Hodgson',
+          genre: 'PPL',
+          arrondissement_id: arrondissement.id,
+        }
+      when 'Terrain Hodgson - Patinoire de hockey'
+        {
+          parc: 'Hodgson',
+          genre: 'PSE',
+          arrondissement_id: arrondissement.id,
+        }
+      when 'Parc Rugby'
+        {
+          parc: 'Rugby',
+          genre: 'PPL',
+          arrondissement_id: arrondissement.id,
+        }
+      else
+        puts "Unknown rink '#{text}'"
+        next
+      end
+
+      condition = tr.at_css('td:eq(5)').text.strip
+      attributes[:condition] = case condition
+      when 'excellente'
+        'Excellente'
+      when 'bonne'
+        'Bonne'
+      when 'mauvaise'
+        'Mauvaise'
+      else
+        puts "Unknown condition '#{condition}'"
+        'N/A'
+      end
+
+      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id attributes[:parc], attributes[:genre], arrondissement.id
+      patinoire.attributes = attributes
+      patinoire.save!
+    end
+  end
+
   desc 'Add rinks from ville.dorval.qc.ca'
   task dorval: :environment do
     arrondissement = Arrondissement.find_or_initialize_by_nom_arr 'Dorval'
@@ -124,21 +177,6 @@ namespace :import do
       }
 
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id attributes[:parc], attributes[:genre], arrondissement.id
-
-      unless patinoire.geocoded?
-        # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_arenas.html
-        # http://www.ville.dorval.qc.ca/loisirs/fr/googlemap_parcs.html
-        coordinates = {
-          'Courtland' => '45.444130,-73.767014',
-          'St-Charles' => '45.438047,-73.729033',
-          'Surrey' => '45.453809,-73.772700',
-          'Windsor' => '45.440757,-73.748860',
-        }[attributes[:parc]]
-        if coordinates
-          attributes[:lat], attributes[:lng] = coordinates.split(',').map(&:to_f)
-        end
-      end
-
       patinoire.attributes = attributes
       patinoire.save!
 

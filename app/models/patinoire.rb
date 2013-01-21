@@ -8,43 +8,44 @@ class Patinoire < ActiveRecord::Base
   validates_length_of :tel, is: 10, allow_blank: true
 
   validates_inclusion_of :description, in: [
-      'Anneau de glace',
-      'Aire de patinage libre',
-      'Grande patinoire avec bandes',
-      'Grande patinoire de hockey',
-      'Patinoire avec bandes',
-      'Patinoire avec bandes pour enfants',
-      'Patinoire de hockey',
-      'Patinoire de patin libre',
-      'Patinoire décorative',
-      'Patinoire extérieure',
-      'Patinoire naturelle',
-      'Patinoire réfrigérée',
-      'Petite patinoire avec bandes',
-      'Petite patinoire de hockey',
-      'Rond de glace',
-      'Sentier de glace',
-    ], allow_blank: true
+    'Anneau de glace',
+    'Aire de patinage libre',
+    'Grande patinoire avec bandes',
+    'Grande patinoire de hockey',
+    'Patinoire avec bandes',
+    'Patinoire avec bandes pour enfants',
+    'Patinoire de hockey',
+    'Patinoire de patin libre',
+    'Patinoire décorative',
+    'Patinoire extérieure',
+    'Patinoire naturelle',
+    'Patinoire réfrigérée',
+    'Petite patinoire avec bandes',
+    'Petite patinoire de hockey',
+    'Rond de glace',
+    'Sentier de glace',
+  ], allow_blank: true
   validates_inclusion_of :genre, in: [
-      'PP',
-      'PPL',
-      'PSE',
-    ], allow_blank: true
+    'PP',
+    'PPL',
+    'PSE',
+  ], allow_blank: true
   validates_inclusion_of :disambiguation, in: [
-      'no 1',
-      'no 2',
-      'no 3',
-      'nord',
-      'sud',
-      'petite',
-      'grande',
-      'réfrigérée',
-    ], allow_blank: true
+    'no 1',
+    'no 2',
+    'no 3',
+    'nord',
+    'sud',
+    'petite',
+    'grande',
+    'réfrigérée',
+  ], allow_blank: true
   validates_inclusion_of :source, in: [
-      'donnees.ville.montreal.qc.ca',
-      'ville.dorval.qc.ca',
-      'docs.google.com',
-    ]
+    'docs.google.com',
+    'donnees.ville.montreal.qc.ca',
+    'montreal-west.ca',
+    'ville.dorval.qc.ca',
+  ]
   validates_inclusion_of :condition, in: %w(Excellente Bonne Mauvaise N/A), allow_blank: true
 
   before_validation :set_nom_and_description
