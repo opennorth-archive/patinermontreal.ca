@@ -25,11 +25,8 @@
     heroku addons:add cron:hourly
     heroku addons:add memcache:5mb
     heroku config:add SECRET_TOKEN=`bundle exec rake secret`
-
-    heroku run rake cron
-    heroku run rake import:manual
-    heroku run rake import:location
-    heroku run rake import:contacts
+    heroku domains:add patinermontreal.ca
+    heroku domains:add www.patinermontreal.ca
 
 ## Bugs? Questions?
 
