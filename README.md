@@ -15,19 +15,21 @@
 
 ## Deployment
 
-[Create a Heroku account](http://heroku.com/signup) and setup SSH keys as described on [Getting Started with Heroku](http://devcenter.heroku.com/articles/quickstart).
+[Create a Heroku account](http://heroku.com/signup), [install the Heroku toolbelt](https://toolbelt.heroku.com/) and setup SSH keys as described on [Getting Started with Heroku](http://devcenter.heroku.com/articles/quickstart).
 
-    gem install heroku
     heroku create --stack cedar APP_NAME
     git push heroku master
     heroku db:push
     heroku addons:add custom_domains:basic
-    heroku addons:add logging:expanded
     heroku addons:add pgbackups:auto-month
-    heroku addons:add releases:basic
     heroku addons:add cron:hourly
     heroku addons:add memcache:5mb
     heroku config:add SECRET_TOKEN=`bundle exec rake secret`
+
+    heroku run rake cron
+    heroku run rake import:manual
+    heroku run rake import:location
+    heroku run rake import:contacts
 
 ## Bugs? Questions?
 
