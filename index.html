@@ -1,72 +1,65 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!DOCTYPE HTML>
+<html class="no-js">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Désolé, nous sommes fermé. Sorry, we're closed.</title>
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-  <meta http-equiv="Cache-Control" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta http-equiv="Pragma" content="no-cache">
+  <meta charset="UTF-8">
+  <title>Patiner Montréal - Patinoires extérieures à Montréal - Outdoor rinks in Montreal</title>
+<link rel="stylesheet" type="text/css" href="http://s3.amazonaws.com/public.patinermontreal.ca/maintenance/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="http://s3.amazonaws.com/public.patinermontreal.ca/maintenance/maintenance.css">
+<script src="http://s3.amazonaws.com/public.patinermontreal.ca/maintenance/modernizr.js"></script>
 </head>
 <body>
+<div id="map"></div>
+  <div class="container">
+    <div class="well">
+      <h1>L'hiver arrive. Soyez le premier à savoir quand les patinoires rouvrent.</h1>
+      <h1>It's getting cold. Be the first to know when the rinks re-open.</h1>
 
-<div class="container">
-  <div class="row">
-    <article class="span6">
-      <header>
-        <h1>Désolé!</h1>
-      </header>
-      <p>Après trois années, PatinerMontreal.ca est <time datetime="2013-03-01"> maintenant</time> fermé.</p>
-      <p>Nord Ouvert ferme PatinerMontreal.ca pour se concentrer sur sa mission d'aider la population à s'informer et à s'impliquer activement dans la démocratie canadienne.</p>
-      <p>Pour consulter l'état des patinoires extérieures, visitez:</p>
-      <ul>
-        <li><a href="http://ville.montreal.qc.ca/portal/page?_pageid=5798,94909650&_dad=portal&_schema=PORTAL">Ville de Montréal</a></li>
-        <li><a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808">Ville de Dorval</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=ca.mudar.patinoires&hl=fr">Patiner Montréal pour Android</a> par Mudar Noufal</li>
-        <li><a href="http://www.windowsphone.com/fr-ca/store/app/sports-mtl/cd2924ee-ae85-46d7-b3f1-9f4edd73b66d">Sports MTL pour Windows Phone</a> par Gabriel Mongeon</li>
-      </ul>
-      <p>Utilisateurs de l'API: Utilisez désormais les <a href="http://donnees.ville.montreal.qc.ca/fiche/patinoires/">données ouvertes</a> de la Ville de Montréal. Nos données <a href="http://patinermontreal.ca/data.json">JSON</a> et <a href="http://patinermontreal.ca/data.xml">XML</a> sont disponibles sous <a href="http://creativecommons.org/publicdomain/zero/1.0/">license CC0</a>, mais ne sont plus à date.</p>
-      <p>Développeurs: Utilisez notre <a href="https://github.com/opennorth/patinermontreal.ca">logiciel libre</a> sous <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt">license MIT</a>.</p>
-      <p>Si vous aimeriez relancer PatinerMontreal.ca, contactez <a href="mailto:info@nordouvert.ca">info@nordouvert.ca</a>.</p>
-      <p>Amusez-vous!</p>
-      <p><a href="http://www.nordouvert.ca/"><img src="img/nordouvert.png" width="" height="" alt="Nord Ouvert"></a></p>
-    </article>
-    <article class="span6">
-      <header>
-        <h1>Sorry!</h1>
-      </header>
-      <p>After three winters of operation, PatinerMontreal.ca is <time datetime="2013-03-01">now</time> closed.</p>
-      <p>Open North is closing PatinerMontreal.ca to focus on its mission to create online tools to educate and empower citizens to participate actively in Canadian democracy.</p>
-      <p>For information on the condition of outdoor rinks, visit:</p>
-      <ul>
-        <li><a href="http://ville.montreal.qc.ca/portal/page?_pageid=5977,94954214&_dad=portal&_schema=PORTAL">City of Montreal</a></li>
-        <li><a href="http://www.ville.dorval.qc.ca/loisirs/en/default.asp?contentID=807">City of Dorval</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=ca.mudar.patinoires&hl=en">Patiner Montréal for Android</a> by Mudar Noufal</li>
-        <li><a href="http://www.windowsphone.com/en-ca/store/app/sports-mtl/cd2924ee-ae85-46d7-b3f1-9f4edd73b66d">Sports MTL for Windows Phone</a> by Gabriel Mongeon</li>
-      </ul>
-      <p>API users: Please switch to the City of Montreal's <a href="http://donnees.ville.montreal.qc.ca/fiche/patinoires/">open data</a>. Our <a href="http://patinermontreal.ca/data.json">JSON</a> and <a href="http://patinermontreal.ca/data.xml">XML</a> data are available under the <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0 license</a>, but rink conditions are no longer kept up-to-date.</p>
-      <p>Developers: Use our <a href="https://github.com/opennorth/patinermontreal.ca">open source code</a> under the <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt">MIT license</a>.</p>
-      <p>If you would like to relaunch PatinerMontreal.ca, contact <a href="mailto:info@opennorth.ca">info@opennorth.ca</a>.</p>
-      <p>Happy skating!</p>
-      <p><a href="http://www.opennorth.ca/"><img src="img/opennorth.png" width="" height="" alt="Open North"></a></p>
-    </article>
+      <form action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&amp;id=1258cb62e9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+        <div class="inline-inputs">
+          <input type="email" name="EMAIL" id="mce-EMAIL" class="required email span6" placeholder="Enter your email / Inscrivez votre courriel" required>
+          <input type="submit" value="Subscribe / Abonner moi" name="subscribe" id="mc-embedded-subscribe" class="btn primary large">
+        </div>
+        <p class="response" id="mce-error-response" style="display:none"></p>
+        <p class="response" id="mce-success-response" style="display:none"></p>
+      </form>
+
+      <div id="facebook"><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.patinermontreal.ca&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;height=21" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>
+
+      <h2>Patiner Montréal sera de retour en décembre!</h2>
+      <h2>Patiner Montréal will be back in December!</h2>
+
+      <iframe width="853" height="480" src="http://www.youtube.com/embed/Cvd4m5OXlTk?hd=1" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
 </div>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="http://s3.amazonaws.com/public.patinermontreal.ca/maintenance/OpenLayers.js"></script>
+<script src="http://s3.amazonaws.com/public.patinermontreal.ca/maintenance/cloudmade.js"></script>
+<script src="http://s3.amazonaws.com/public.patinermontreal.ca/maintenance/mailchimp.js"></script>
+<script src="http://downloads.mailchimp.com/js/jquery.form-n-validate.js"></script>
 <script>
-var _gaq=[['_setAccount','UA-17862637-3'],['_trackPageview']];
-(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-s.parentNode.insertBefore(g,s)}(document,'script'));
+OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
+OpenLayers.ImgPath = 'http://js.mapbox.com/theme/dark/';
+var map = new OpenLayers.Map('map', {
+  controls: []
+});
+var tileLayer = new OpenLayers.Layer.CloudMade('tileLayer', {
+  attribution: '',
+  key: '802f8920aed1443583f059aedbf2cef6',
+  styleId: '5870',
+});
+var vectorLayer = new OpenLayers.Layer.Vector('vectorLayer');
+map.addLayers([tileLayer, vectorLayer]);
+map.setCenter(new OpenLayers.LonLat(-73.63, 45.53).transform(new OpenLayers.Projection('EPSG:4326'), map.getProjectionObject()), 13);
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-17862637-3']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
 </script>
 </body>
 </html>
