@@ -4,7 +4,7 @@ namespace :import do
   task manual: :environment do
     require 'csv'
     require 'open-uri'
-    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=0&output=csv').read, headers: true) do |row|
+    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
       arrondissement = Arrondissement.find_or_initialize_by_nom_arr row['nom_arr']
       arrondissement.source = 'docs.google.com'
       arrondissement.save!
@@ -24,7 +24,7 @@ namespace :import do
   task contacts: :environment do
     require 'csv'
     require 'open-uri'
-    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=csv').read, headers: true) do |row|
+   CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
       arrondissement = Arrondissement.find_or_initialize_by_nom_arr row['Authority']
       arrondissement.attributes = {
         name: [row['Name'], row['Title']].compact.join(', '),
@@ -43,7 +43,7 @@ namespace :import do
     require 'csv'
     require 'open-uri'
     missing = Set.new
-    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv').read, headers: true) do |row|
+    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv', "r:utf-8").read, headers: true) do |row|
       if row['lat'] && row['lng']
         arrondissement = Arrondissement.where(nom_arr: row['nom_arr']).first
         if arrondissement
