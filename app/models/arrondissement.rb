@@ -26,7 +26,7 @@ class Arrondissement < ActiveRecord::Base
     'Saint-Léonard',
     'Verdun',
     'Ville-Marie',
-    'Villeray-Saint-Michel—Parc-Extension',
+    'Villeray—Saint-Michel—Parc-Extension',
 
     # Municipalities
     "Baie-d'Urfé",
