@@ -5,7 +5,7 @@ namespace :import do
     require 'csv'
     require 'open-uri'
     CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
-      arrondissement = Arrondissement.find_or_initialize_by_nom_arr row['nom_arr']
+      arrondissement = Arrondissement.find_or_initialize_by_nom_arr(row['nom_arr'])
       arrondissement.source = 'docs.google.com'
       arrondissement.save!
 
@@ -13,7 +13,7 @@ namespace :import do
       row.delete('extra')
       row.delete('source_url')
 
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_disambiguation_and_arrondissement_id row['parc'], row['genre'], row['disambiguation'], arrondissement.id
+      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_disambiguation_and_arrondissement_id(row['parc'], row['genre'], row['disambiguation'], arrondissement.id)
       patinoire.attributes = row.to_hash
       patinoire.source = 'docs.google.com'
       patinoire.save!
@@ -61,7 +61,7 @@ namespace :import do
       end
     end
     unless missing.empty?
-      puts "Not found:"
+      puts "Could not find a matching arrondissement or patinoire (a dynamic data source may have changed):"
       missing.each do |nom_arr|
         puts nom_arr.ljust(40)
       end

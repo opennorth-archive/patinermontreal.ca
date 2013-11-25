@@ -13,6 +13,8 @@
     bundle exec rake import:location
     bundle exec rake import:contacts
 
+Run `bundle exec rake db:drop` to start over.
+
 ## Deployment
 
 [Create a Heroku account](http://heroku.com/signup), [install the Heroku toolbelt](https://toolbelt.heroku.com/) and setup SSH keys as described on [Getting Started with Heroku](http://devcenter.heroku.com/articles/quickstart).

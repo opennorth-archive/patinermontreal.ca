@@ -5,9 +5,12 @@ namespace :import do
     flip = 1
     Nokogiri::XML(RestClient.get('http://depot.ville.montreal.qc.ca/patinoires/data.xml')).css('patinoire').each do |node|
       # Add m-dash, except for Ahuntsic-Cartierville.
-      nom_arr = node.at_css('nom_arr').text.sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville').gsub(' - ', '—')
+      nom_arr = node.at_css('nom_arr').text.
+        sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville').
+        sub('Villeray-Saint-Michel - Parc-Extension', 'Villeray—Saint-Michel—Parc-Extension').
+        gsub(' - ', '—')
 
-      arrondissement = Arrondissement.find_or_initialize_by_nom_arr nom_arr
+      arrondissement = Arrondissement.find_or_initialize_by_nom_arr(nom_arr)
       arrondissement.cle = node.at_css('cle').text
       arrondissement.date_maj = Time.parse node.at_css('date_maj').text
       arrondissement.source = 'donnees.ville.montreal.qc.ca'
@@ -15,7 +18,7 @@ namespace :import do
       begin
         arrondissement.save!
 
-        patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id node.at_css('nom').text, arrondissement.id
+        patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id(node.at_css('nom').text, arrondissement.id)
         %w(ouvert deblaye arrose resurface condition).each do |attribute|
           patinoire[attribute] = node.at_css(attribute).text
         end
@@ -101,7 +104,7 @@ namespace :import do
 
   desc 'Add rinks from montreal-west.ca'
   task montrealwest: :environment do
-    arrondissement = Arrondissement.find_or_initialize_by_nom_arr 'Montréal-Ouest'
+    arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Montréal-Ouest')
     arrondissement.source = 'montreal-west.ca'
     arrondissement.date_maj = Time.now
     arrondissement.save!
@@ -161,7 +164,7 @@ namespace :import do
 
   desc 'Add rinks from ville.dorval.qc.ca'
   task dorval: :environment do
-    arrondissement = Arrondissement.find_or_initialize_by_nom_arr 'Dorval'
+    arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Dorval')
     arrondissement.source = 'ville.dorval.qc.ca'
     arrondissement.date_maj = Time.now
     arrondissement.save!
@@ -189,12 +192,12 @@ namespace :import do
           source: 'ville.dorval.qc.ca',
         }
 
-        patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id attributes[:parc], attributes[:genre], arrondissement.id
+        patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
         patinoire.attributes = attributes
         patinoire.save!
 
         if text['Patinoire récréative et de hockey']
-          patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id attributes[:parc], 'PPL', arrondissement.id
+          patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], 'PPL', arrondissement.id)
           patinoire.attributes = attributes.merge(genre: 'PPL')
           patinoire.save!
         end
