@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    if ENV['MAINTENANCE']
+    if ENV['MAINTENANCE'] && params.keys.none?{|param| param[/\A\d/]}
       render file: Rails.root.join('maintenance', 'index.html'), layout: false
     else
       @rinks = Patinoire.geocoded
