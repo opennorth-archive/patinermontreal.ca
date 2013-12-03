@@ -22,8 +22,6 @@ fr:
   android: Patiner Montréal pour Android
   windows: Patiner Montréal pour Windows Phone
   windows_size: 156x45
-  donation: Faire un don à Nord Ouvert avec
-  footer: 'Si vous avez des questions, commentaires, suggestions ou corrections, écrivez nous à <a href="mailto:info@nordouvert.ca">info@nordouvert.ca</a>.'
   sources: 'Sources : <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires" target="_top">Ville de Montréal</a> et <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808" target="_top">Ville de Dorval</a>'
   license: 'Patiner Montreal est un <a href="https://github.com/opennorth/patinermontreal.ca" target="_top">logiciel libre</a> distribué sous <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt" target="_top">license MIT</a>.'
   data: 'Les données (<a href="%{json_path}" target="_top">JSON</a>, <a href="%{xml_path}" target="_top">XML</a>) sont sous <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="_top">license CC0</a>.'
@@ -40,14 +38,11 @@ fr:
   favorite: mes favories
 
   # About
-  opennorth: Nord Ouvert
-  opennorth_url: http://nordouvert.ca
   montrealouvert: Montréal Ouvert
 
   # Social
   facebook_locale: fr_CA
   tweet: Tweeter
-  tweet_related: nordouvert
   tweet_text: Trouvez toutes les meilleures patinoires extérieures à Montréal à
   follow: Suivre
 

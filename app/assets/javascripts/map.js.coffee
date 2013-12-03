@@ -33,7 +33,6 @@ I18n =
     explanation: 'Going skating? Let your friends know:'
     # Social
     tweet: "I'm going"
-    tweet_related: 'opennorth:The creators of Patiner Montreal'
     tweet_text_PSE: "I'm going to play hockey at %{park}"
     tweet_text_PPL: "I'm going skating at %{park}"
     tweet_text_PP: "I'm going skating at %{park}"
@@ -94,7 +93,6 @@ I18n =
     explanation: 'Vous allez patiner? Informez vos ami(e)s :'
     # Social
     tweet: "J'y vais"
-    tweet_related: 'nordouvert:Les créateurs de Patiner Montréal'
     tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
     tweet_text_PPL: 'Je vais patiner à %{park}'
     tweet_text_PP: 'Je vais patiner à %{park}'

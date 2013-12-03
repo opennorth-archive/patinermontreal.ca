@@ -15,8 +15,6 @@ en:
   android: Patiner Montreal for Android
   windows: Patiner Montreal for Windows Phone
   windows_size: 138x45
-  donation: Donate to Open North with
-  footer: 'If you have questions, comments, suggestions or corrections, contact <a href="mailto:info@opennorth.ca">info@opennorth.ca</a>.'
   sources: 'Sources: <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires" target="_top">City of Montreal</a> and <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808" target="_top">City of Dorval</a>'
   license: 'Patiner Montreal is <a href="https://github.com/opennorth/patinermontreal.ca" target="_top">open source</a> under the <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt" target="_top">MIT license</a>.'
   data: 'Data (<a href="%{json_path}" target="_top">JSON</a>, <a href="%{xml_path}" target="_top">XML</a>) is under the <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="_top">CC0 license</a>.'
@@ -33,14 +31,11 @@ en:
   favorite: my favorites
 
   # About
-  opennorth: Open North
-  opennorth_url: http://opennorth.ca
   montrealouvert: Open Data Montréal
 
   # Social
   facebook_locale: en_US
   tweet: Tweet
-  tweet_related: opennorth
   tweet_text: Find all the best outdoor skating rinks in Montreal at
   follow: Follow
 

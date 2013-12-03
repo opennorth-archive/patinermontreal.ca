@@ -17,7 +17,7 @@
         = link_to t(:thanks_modal), '#', 'data-controls-modal' => 'thanks', 'class' => 'highlight'
     .item#social
       .fb-like(data-href="http://patinermontreal.ca" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false")
-      %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-related="#{t :tweet_related}" data-count="horizontal")
+      %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-count="horizontal")
         =t :tweet
       %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}")
         =t :follow
@@ -37,7 +37,6 @@
     = link_to '×', '#', class: 'close'
     %h3=t :about_modal
   .modal-body
-    %p= t(:footer).html_safe
     %p= t(:license).html_safe
     %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
     %p= t(:sources).html_safe
@@ -100,7 +99,6 @@
       .caption
         =t :favorite
   #branding.section
-    = link_to image_tag("opennorth-#{locale}.png", alt: t(:opennorth), title: t(:opennorth), size: '186x61'), t(:opennorth_url), target: '_top', id: 'opennorth'
     = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/?lang=#{locale}", target: '_top', id: 'montrealouvert'
 
 :javascript
@@ -183,7 +181,7 @@
         <%= t('unknown_condition') %>
       </p>
       <p class="call-to-action">
-        <a href="mailto:<%= arrondissement.email %>?subject=<%= encodeURIComponent("Mises à jour régulières de l'état des patinoires extérieures") %>&body=<%= Helpers.body(arrondissement) %>&cc=info@opennorth.ca" class="btn default"><%= t('call_to_action') %></a>
+        <a href="mailto:<%= arrondissement.email %>?subject=<%= encodeURIComponent("Mises à jour régulières de l'état des patinoires extérieures") %>&body=<%= Helpers.body(arrondissement) %>" class="btn default"><%= t('call_to_action') %></a>
         <br><%= t('or_call') %>
         <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
       </p>
@@ -191,7 +189,7 @@
     <% if (ouvert || !condition) { %>
       <div class="call-to-action">
         <p><strong><%= t('explanation') %></strong></p>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-related="<%= t('tweet_related') %>" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
       </div>
     <% } %>
   </script>
