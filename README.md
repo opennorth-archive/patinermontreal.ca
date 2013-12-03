@@ -15,6 +15,8 @@
 
 Run `bundle exec rake db:drop` to start over.
 
+To run the app locally, run `rails server`.
+
 ## Deployment
 
 [Create a Heroku account](http://heroku.com/signup), [install the Heroku toolbelt](https://toolbelt.heroku.com/) and setup SSH keys as described on [Getting Started with Heroku](http://devcenter.heroku.com/articles/quickstart).
@@ -39,6 +41,8 @@ Otherwise:
     heroku run rake import:location
     heroku run rake import:contacts
 
+## Season Start & End
+
 To end the season and display the sign-up page, run:
 
     heroku config:add MAINTENANCE=on
@@ -54,6 +58,39 @@ To reset the Heroku database at the beginning of a season, run:
 You can get a list of databases with:
 
     heroku pg:info
+
+## Rink Maintenance
+
+If the city changes its data such that a duplicate rink is created, you need to either:
+
+* Delete the old rink
+* Delete the new rink and change the code so that duplicate rinks are not created
+
+### Geocode a rink
+
+To find all non-geocoded rinks open a Rails console (`rails console` locally or `heroku run console` remotely), and run:
+
+```ruby
+Patinoire.nongeocoded
+```
+
+For prettier output, run:
+
+```ruby
+Patinoire.nongeocoded.each{|p| puts "#{p.nom} (nom_arr: #{p.arrondissement.nom_arr}, parc: #{p.parc}, genre: #{p.genre}, disambiguation: #{p.disambiguation})"};nil
+```
+
+Then, find the rink's latitude and longitude somehow (e.g. using [Google Maps](https://www.google.com/maps/mm?authuser=0&hl=en)), and enter that data into [this spreadsheet](https://docs.google.com/a/opennorth.ca/spreadsheet/ccc?key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE#gid=2). Fill in the columns to match each rink.
+
+### Delete a rink
+
+Delete the rink from the database through a Rails console, e.g.:
+
+```ruby
+Patinoire.find(numeric_identifier).destroy
+```
+
+If the rink was added manually, delete the row from [this spreadsheet](https://docs.google.com/a/opennorth.ca/spreadsheet/ccc?key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE#gid=0).
 
 ## Bugs? Questions?
 
