@@ -19,11 +19,13 @@ Run `bundle exec rake db:drop` to start over.
 
 [Create a Heroku account](http://heroku.com/signup), [install the Heroku toolbelt](https://toolbelt.heroku.com/) and setup SSH keys as described on [Getting Started with Heroku](http://devcenter.heroku.com/articles/quickstart).
 
-    heroku apps:create --stack cedar --addons custom_domains:basic pgbackups:auto-month cron:hourly memcache:5mb
+    heroku apps:create --stack cedar --addons pgbackups:auto-month memcachier scheduler:standard
     git push heroku master
     heroku config:add SECRET_TOKEN=`bundle exec rake secret`
     heroku domains:add patinermontreal.ca
     heroku domains:add www.patinermontreal.ca
+
+To run the updates every hour, run `heroku addons:open scheduler` and add a `rake cron` job on an hourly frequency.
 
 If you have already run the Rake tasks to build the database locally, run:
 
@@ -36,6 +38,22 @@ Otherwise:
     heroku run rake import:manual
     heroku run rake import:location
     heroku run rake import:contacts
+
+To end the season and display the sign-up page, run:
+
+    heroku config:add MAINTENANCE=on
+
+To turn off the sign-up page at the beginning of a season, run:
+
+    heroku config:remove MAINTENANCE
+
+To reset the Heroku database at the beginning of a season, run:
+
+    heroku pg:reset DATABASE_NAME
+
+You can get a list of databases with:
+
+    heroku pg:info
 
 ## Bugs? Questions?
 

@@ -4,9 +4,9 @@ class PagesController < ApplicationController
       render file: Rails.root.join('maintenance', 'index.html'), layout: false
     else
       @rinks = Patinoire.geocoded
-      @fraction = Patinoire.geocoded.ouvert.count / Patinoire.geocoded.tracked.count.to_f
+      @fraction = @rinks.ouvert.count / @rinks.tracked.count.to_f
       @last_updated = Arrondissement.maximum(:date_maj)
-      fresh_when etag: @rinks, last_modified: @rinks.maximum(:updated_at).utc, public: true
+      fresh_when etag: @rinks, last_modified: (@rinks.maximum(:updated_at) || Time.now).utc, public: true
     end
   end
 
