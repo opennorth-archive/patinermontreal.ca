@@ -52,7 +52,6 @@ GEM
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     hike (1.2.3)
-    http_accept_language (2.0.0)
     i18n (0.6.8)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -138,7 +137,6 @@ DEPENDENCIES
   andand
   coffee-rails (~> 3.1.0)
   haml-rails
-  http_accept_language
   jquery-rails
   nokogiri
   pg

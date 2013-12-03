@@ -8,7 +8,6 @@ gem 'thin'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'andand'
-gem 'http_accept_language'
 gem 'nokogiri'
 gem 'psych'
 gem 'rest-client'
