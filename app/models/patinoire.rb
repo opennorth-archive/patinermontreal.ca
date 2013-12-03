@@ -24,6 +24,7 @@ class Patinoire < ActiveRecord::Base
     'Petite patinoire de hockey',
     'Rond de glace',
     'Sentier de glace',
+    'Sentier à patiner décoré',
   ], allow_blank: true
   validates_inclusion_of :genre, in: [
     'PP',

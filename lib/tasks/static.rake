@@ -61,7 +61,7 @@ namespace :import do
       end
     end
     unless missing.empty?
-      puts "Could not find a matching arrondissement or patinoire (a dynamic data source may have changed):"
+      puts "Could not find a borough or rink to match the data from the Google Docs. A dynamic data source may have changed the names of boroughs or rinks, or it may have removed those boroughs or rinks. If the name was changed, the Google Docs must be updated to match, otherwise the rink will not have geocoordinates:"
       missing.each do |nom_arr|
         puts nom_arr.ljust(40)
       end
