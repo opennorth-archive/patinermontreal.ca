@@ -24,7 +24,7 @@ namespace :import do
         end
 
         description = case patinoire.nom
-        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)'
+        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)', 'Patinoire BBB/aire de glace du parc Hayward (PSE)'
           'Patinoire avec bandes'
         when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)'
           'Patinoire réfrigérée'
@@ -75,6 +75,7 @@ namespace :import do
           # Need to do independent research to find where these are.
           'Patinoire Bleu-Blanc-Bouge'       => '',
           'patinoire extérieure'             => '',
+          'Patinoire BBB/aire de glace du parc Hayward'=> 'Hayward',
         }.reduce(parc) do |string,(from,to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
