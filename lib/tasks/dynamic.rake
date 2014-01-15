@@ -72,6 +72,7 @@ namespace :import do
           'Saint-Aloysis'                    => 'Saint-Aloysius',
           'Sainte-Maria-Goretti'             => 'Maria-Goretti',
           'Y-Thériault/Sherbrooke'           => 'Yves-Thériault/Sherbrooke',
+          'Patinoire extérieure Domaine Chartier'=> 'Domaine Chartier',
           # Need to do independent research to find where these are.
           'Patinoire Bleu-Blanc-Bouge'       => '',
           'patinoire extérieure'             => '',
