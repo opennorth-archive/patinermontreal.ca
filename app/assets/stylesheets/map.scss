@@ -359,6 +359,12 @@ $mobile-control-width: 45px;
     display: none;
   }
 }
+@media only screen and (max-width: 991px) {
+  // make header less wide
+  #iphone {
+    display: none;
+  }
+}
 @media only screen and (max-width: 853px) { // WVGA
   // make header less wide
   #inside #subscribe {
