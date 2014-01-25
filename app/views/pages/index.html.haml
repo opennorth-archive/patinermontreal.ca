@@ -31,6 +31,7 @@
     %p.item
       = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '117x45'), 'https://market.android.com/details?id=ca.mudar.patinoires', target: '_top', id: 'android'
       = link_to image_tag("windows_#{locale}.png", alt: t(:windows), title: t(:windows), size: t(:windows_size)), 'http://windowsphone.com/s?appId=cd2924ee-ae85-46d7-b3f1-9f4edd73b66d', target: '_top', id: 'windows'
+	  = link_to image_tag("iphone_#{locale}.png", alt: t(:iphone), title: t(:iphone), size: '135x40'), "https://itunes.apple.com/ca/app/pank/id791417074?l=#{locale}&mt=8", target: '_top', id: 'iphone'
 
 #about.modal.hide.fade
   .modal-header
