@@ -13,6 +13,7 @@ en:
   placeholder: Enter your email
   subscribe: Subscribe
   android: Patiner Montreal for Android
+  iphone : Patiner Montreal for iPhone
   windows: Patiner Montreal for Windows Phone
   windows_size: 138x45
   sources: 'Sources: <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires" target="_top">City of Montreal</a> and <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808" target="_top">City of Dorval</a>'
