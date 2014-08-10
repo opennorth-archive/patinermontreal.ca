@@ -170,12 +170,18 @@ $ ->
   Map = new L.Map 'map',
     center: new L.LatLng(45.53, -73.63)
     zoom: 13
-    layers: [
-      new L.TileLayer 'http://{s}.tile.cloudmade.com/266d579a42a943a78166a0a732729463/51080/256/{z}/{x}/{y}.png',
-        attribution: '© 2011 <a href="http://cloudmade.com/">CloudMade</a> – Map data <a href="http://creativecommons.org/licenses/by-sa/2.0/">CCBYSA</a> 2011 <a href="http://openstreetmap.org/">OpenStreetMap.org</a> contributors – <a href="http://cloudmade.com/about/api-terms-and-conditions">Terms of Use</a>'
-    ]
-    minZoom: 10
+    minZoom: 11
     maxZoom: 18
+    maxBounds: L.latLngBounds(L.latLng(45.170459, -74.447699), L.latLng(46.035873, -73.147435)) 
+
+  tonerUrl = "http://{S}tile.stamen.com/toner-lite/{Z}/{X}/{Y}.png";
+  tilesUrl = tonerUrl.replace(/({[A-Z]})/g, (s) -> s.toLowerCase());
+  
+  basemap = new L.tileLayer(tilesUrl, {
+    subdomains: ['','a.','b.','c.','d.'],
+    type: 'png',
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+  }).addTo(Map);
 
   # Define models.
   Rink = Backbone.Model.extend
@@ -248,12 +254,13 @@ $ ->
         'na'
 
       icon = L.Icon.extend
-        iconUrl: "/assets/#{@model.get 'genre'}_#{state}.png"
-        shadowUrl: "/assets/#{@model.get 'genre'}_shadow.png"
-        iconSize: new L.Point 28, 28
-        shadowSize: new L.Point 44, 28
-        iconAnchor: new L.Point 15, 27
-        popupAnchor: offset
+        options:
+          iconUrl: "/assets/#{@model.get 'genre'}_#{state}.png"
+          shadowUrl: "/assets/#{@model.get 'genre'}_shadow.png"
+          iconSize: new L.Point 28, 28
+          shadowSize: new L.Point 44, 28
+          iconAnchor: new L.Point 15, 27
+          popupAnchor: offset
       # "new L.Icon.extend({})" raises "TypeError: object is not a function"
 
       @marker = new L.Marker new L.LatLng(@model.get('lat'), @model.get('lng')), icon: new icon
@@ -500,8 +507,17 @@ $ ->
   # http://support.cloudmade.com/answers/general
   Map.on 'locationfound', (event) ->
     radius = event.accuracy / 2
-    if radius < 1000
-      marker = new L.Marker event.latlng
+    if radius < 1000 
+      locationIcon = L.Icon.extend
+        options:
+          iconUrl: "/assets/marker-icon.png"
+          shadowUrl: "/assets/marker-shadow.png"
+          iconSize: [25, 41]
+          shadowSize: [41, 41]
+          iconAnchor:   [12, 41]
+          shadowAnchor: [12, 41]
+          popupAnchor:  [0, -46]
+      marker = new L.Marker event.latlng, icon: new locationIcon
       Map.addLayer marker
       marker.bindPopup t 'accuracy', radius: radius
       Map.addLayer new L.Circle event.latlng, radius
@@ -512,7 +528,7 @@ $ ->
   if Helpers.rinkUrl()
     Map.locate()
   else
-    Map.locateAndSetView 14
+    Map.locate( setView: true, maxZoom: 14 )
 
   # Backbone doesn't attach the "events" option directly to the view, even
   # though it makes sense given that views needn't necessarily hardcode CSS
