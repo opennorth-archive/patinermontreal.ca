@@ -40,9 +40,9 @@
 <script src="http://downloads.mailchimp.com/js/jquery.form-n-validate.js"></script>
 <script>
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 3;
-OpenLayers.ImgPath = 'http://js.mapbox.com/theme/dark/';
 var map = new OpenLayers.Map('map', {
-  controls: []
+  controls: [],
+  theme: false
 });
 var layer = new OpenLayers.Layer.Stamen("terrain");
 map.addLayer(layer);
