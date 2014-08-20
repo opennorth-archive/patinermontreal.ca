@@ -1,106 +1,120 @@
 #fb-root
 #map
 
-#language
-  = link_to t(:other_language), "http://#{t :other_locale}.#{request.domain}#{translated_path}"
+%header#top-nav
+  %nav{:class => 'navbar navbar-inverse' , :role => 'navigation'}
+    .container-fluid
+      .navbar-header
+        %h1#branding-logo.navbar-brand
+          %span.hide Patiner Montréal
+          = image_tag 'logo-patinermontreal.png', alt: 'Patiner Montréal', title: 'Patiner Montréal'
+        = button_tag :class => 'navbar-toggle', :type => 'button', 'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse' do
+          %span.fa.fa-navicon.fa-inverse
+            %span.sr-only Toggle navigation
+      .collapse.navbar-collapse
+        %ul.nav.nav-pills.navbar-right
+          %li
+            = link_to 'https://market.android.com/details?id=ca.mudar.patinoires', title: t(:android), class: 'fa fa-android navbar-btn' do
+              %span.hide=t :android
+          %li
+            = link_to 'http://windowsphone.com/s?appId=cd2924ee-ae85-46d7-b3f1-9f4edd73b66d', title: t(:windows), class: 'fa fa-windows navbar-btn' do
+              %span.hide=t :windows
+          %li
+            = link_to "https://itunes.apple.com/ca/app/pank/id791417074?l=#{locale}&amp;mt=8", title: t(:iphone), class: 'fa fa-apple navbar-btn' do
+              %span.hide=t :iphone
+          %li#nav-twitter
+            = link_to 'https://twitter.com/patinermtl', title: t(:twitter_account), class: 'fa fa-twitter navbar-btn' do
+              %span.hide=t :twitter_account
+          %li#nav-facebook
+            = link_to 'https://apps.facebook.com/152478391528436', title: t(:facebook_account), class: 'fa fa-facebook-square navbar-btn' do
+              %span.hide=t :facebook_account
+          %li#nav-thanks
+            = link_to t(:thanks_modal), '#thanks', 'data-toggle' => 'modal', class: 'navbar-btn'
+          %li
+            = link_to t(:about_modal), '#about', 'data-toggle' => 'modal', class: 'navbar-btn'
+          %li#language
+            = link_to t(:other_language), "http://#{t :other_locale}.#{request.domain}#{translated_path}", class: 'navbar-btn'
+%aside#social
+  %h2.hide=t :social
+  .navbar.navbar-default
+    .container-fluid
+      %ul.nav.nav-stacked
+        %li.embeded
+          %a.navbar-btn(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}")
+            =t :follow
+            @patinermtl
+        %li.embeded
+          %a.navbar-btn(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-count="horizontal")
+            =t :tweet
+        %li.embeded
+          .fb-like.navbar-btn(data-href="http://patinermontreal.ca" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false")
+        %li
+          %h3.hide= t :newsletter
+          = form_tag 'http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
+            %fieldset
+              %legend.small=t :newsletter
+              .form-group
+                = email_field_tag 'EMAIL', nil, id: 'mce-EMAIL', class: 'required email form-control input-sm', placeholder: t(:placeholder), required: 'required'
+              = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn btn-default btn-sm'
+  = link_to '#social', title: t(:social), class: 'fa-stack fa-lg', id: 'share-toggle', style: 'display: none;' do
+    %i.fa.fa-circle.fa-stack-2x
+    %i.fa.fa-share-alt.fa-stack-1x.fa-inverse
 
-%aside
-  #inside
-    %h1.item
-      = image_tag 'logo.gif', alt: 'Patiner Montréal', title: 'Patiner Montréal', size: '166x34'
-    .item
-      %h2
-        = t :open_rinks, count: number_to_percentage(@fraction * 100, precision: 0)
-      %p
-        = link_to t(:about_modal), '#', 'data-controls-modal' => 'about'
-        \/
-        = link_to t(:thanks_modal), '#', 'data-controls-modal' => 'thanks', 'class' => 'highlight'
-    .item#social
-      .fb-like(data-href="http://patinermontreal.ca" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false")
-      %a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-count="horizontal")
-        =t :tweet
-      %a(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}")
-        =t :follow
-        @patinermtl
-    .item#subscribe
-      = form_tag 'http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
-        %h2=t :newsletter
-        .inline-inputs
-          = email_field_tag 'EMAIL', nil, id: 'mce-EMAIL', class: 'required email', placeholder: t(:placeholder), required: 'required'
-          = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn primary'
-    %p.item
-      = link_to image_tag('android.png', alt: t(:android), title: t(:android), size: '117x45'), 'https://market.android.com/details?id=ca.mudar.patinoires', target: '_top', id: 'android'
-      = link_to image_tag("windows_#{locale}.png", alt: t(:windows), title: t(:windows), size: t(:windows_size)), 'http://windowsphone.com/s?appId=cd2924ee-ae85-46d7-b3f1-9f4edd73b66d', target: '_top', id: 'windows'
-      = link_to image_tag("iphone_#{locale}.png", alt: t(:iphone), title: t(:iphone), size: '135x40'), "https://itunes.apple.com/ca/app/pank/id791417074?l=#{locale}&mt=8", target: '_top', id: 'iphone'
+%footer#bottom-controls
+  %div{:class => 'panel'}
+    .panel-body
+      #branding.pull-right
+        = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/?lang=#{locale}", target: '_top', id: 'montrealouvert'
+      .col-lg-8
+        .btn-toolbar
+          #kinds.btn-group
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PSE' do
+              =t(:teamsports)
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PPL' do
+              =t(:freeskating)
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PP' do
+              =t(:landscaped)
+          #statuses.btn-group
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'ouvert' do
+              =t(:open)
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'deblaye' do
+              =t(:cleared)
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'arrose' do
+              =t(:flooded)
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'resurface' do
+              =t(:resurfaced)
+          .btn-group
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'favories' do
+              =t(:favorite)
+      #open-rinks.col-lg-2
+        %small.legend= t :open_rinks, count: number_to_percentage(@fraction * 100, precision: 0)
+        .progress
+          .progress-bar.progress-bar-warning{:role=> 'progressbar', 'aria-valuenow' => 60, 'aria-valuemin' => 0, 'aria-valuemax' => 100, :style => 'min-width: 30px; width: ' + number_to_percentage(@fraction * 100, precision: 0)}
+            = number_to_percentage(@fraction * 100, precision: 0)
 
-#about.modal.hide.fade
-  .modal-header
-    = link_to '×', '#', class: 'close'
-    %h3=t :about_modal
-  .modal-body
-    %p= t(:license).html_safe
-    %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
-    %p= t(:sources).html_safe
-    %p= t :disclaimer
-#thanks.modal.hide.fade
-  .modal-header
-    = link_to '×', '#', class: 'close'
-    %h3=t :thanks_modal
-  .modal-body
-    <iframe src="https://docs.google.com/spreadsheet/embeddedform?formkey=dGp0a1lINU15QUE2R3BYVW14NmpxSEE6MQ" width="500" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-
-#controls.bar
-  #kinds.section
-    #PSE.control
-      .icon
-        - if mobile?
-          = image_tag('PSE-mobile.png', :alt => t(:teamsports), :title => t(:teamsports), :size => '44x42')
-        - else
-          = image_tag('PSE.png', :alt => t(:teamsports), :title => t(:teamsports), :size => '55x53')
-      %input(type="checkbox")
-    #PPL.control
-      .icon
-        - if mobile?
-          = image_tag('PPL-mobile.png', :alt => t(:freeskating), :title => t(:freeskating), :size => '44x42')
-        - else
-          = image_tag('PPL.png', :alt => t(:freeskating), :title => t(:freeskating), :size => '55x53')
-      %input(type="checkbox")
-    #PP.control
-      .icon
-        - if mobile?
-          = image_tag('PP-mobile.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '44x42')
-        - else
-          = image_tag('PP.png', :alt => t(:landscaped), :title => t(:landscaped), :size => '55x53')
-      %input(type="checkbox")
-  #statuses.section
-    #ouvert.control
-      .icon
-        = image_tag 'blank.gif', :alt => t(:open), :title => t(:open), :size => '44x44'
-      .caption
-        =t :open
-    #deblaye.control
-      .icon
-        = image_tag 'blank.gif', :alt => t(:cleared), :title => t(:cleared), :size => '44x44'
-      .caption
-        =t :cleared
-    #arrose.control
-      .icon
-        = image_tag 'blank.gif', :alt => t(:flooded), :title => t(:flooded), :size => '44x44'
-      .caption
-        =t :flooded
-    #resurface.control
-      .icon
-        = image_tag 'blank.gif', :alt => t(:resurfaced), :title => t(:resurfaced), :size => '44x44'
-      .caption
-        =t :resurfaced
-  #favories.section
-    .control
-      .icon
-        = image_tag 'blank.gif', :alt => t(:favorite), :title => t(:favorite), :size => '44x44'
-      .caption
-        =t :favorite
-  #branding.section
-    = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/?lang=#{locale}", target: '_top', id: 'montrealouvert'
+%section#about.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        = button_tag :class => 'close', :type => 'button', 'data-dismiss' => 'modal' do
+          %span &times;
+          %span.sr-only=t :close
+        %h2=t :about_modal
+      .modal-body
+        %p= t(:license).html_safe
+        %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
+        %p= t(:sources).html_safe
+        %p= t :disclaimer
+%section#thanks.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        = button_tag :class => 'close', :type => 'button', 'data-dismiss' => 'modal' do
+          %span &times;
+          %span.sr-only=t :close
+        %h2=t :thanks_modal
+      .modal-body
+        <iframe src="https://docs.google.com/spreadsheet/embeddedform?formkey=dGp0a1lINU15QUE2R3BYVW14NmpxSEE6MQ" width="700" height="480">Loading...</iframe>
 
 :javascript
   window.fbAsyncInit = function() {
@@ -110,14 +124,15 @@
       cookie : true,
       oauth  : true,
       xfbml  : true,
-      channelUrl  : 'http://patinermontreal.ca/channel'
+      channelUrl  : 'http://patinermontreal.ca/channel',
+      version    : 'v2.0'
     });
   };
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
+    if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/#{t :facebook_locale}/all.js";
+    js.src = "//connect.facebook.net/#{t :facebook_locale}/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 

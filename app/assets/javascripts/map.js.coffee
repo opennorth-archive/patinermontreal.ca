@@ -158,13 +158,13 @@ other_domain = $('#language a').attr('href').match(/^http:\/\/[^\/]+\//)[0].repl
 $ ->
   window.debug = env is 'development'
 
-  # Hook up modals.
-  $('#about').modal
-    backdrop: true
-    keyboard: true
-  $('#thanks').modal
-    backdrop: true
-    keyboard: true
+  # Toggle social sidebar
+  $(window).on 'load', (e) ->
+    $('#share-toggle').fadeIn();
+  $('#share-toggle').on 'click', (e) ->
+    e.preventDefault();
+    $('#social .navbar').slideToggle( 'fast' )
+    return
 
   # Create map.
   Map = new L.Map 'map',

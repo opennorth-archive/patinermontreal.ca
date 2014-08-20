@@ -13,15 +13,18 @@ fr:
   other_language: English
 
   # Sidebar
-  open_rinks: '%{count} des patinoires sont ouvertes'
+  open_rinks: 'Patinoires ouvertes:'
   about_modal: À propos
   thanks_modal: Remerciez la ville
-  newsletter: Restez à jour grâce à notre bulletin
+  newsletter: Infolettre
+  newsletter_desc: Restez à jour grâce à notre bulletin
   placeholder: Votre courriel
   subscribe: S'abonner
-  android: Patiner Montréal pour Android
-  iphone : Patiner Montréal pour iPhone
-  windows: Patiner Montréal pour Windows Phone
+  android: Patiner Montréal (Android)
+  iphone : Pank (iPhone)
+  windows: Sports MTL (Windows Phone)
+  twitter_account: Patiner Montréal sur Twitter
+  facebook_account: Patiner Montréal sur Facebook
   windows_size: 156x45
   sources: 'Sources : <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires" target="_top">Ville de Montréal</a> et <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808" target="_top">Ville de Dorval</a>'
   license: 'Patiner Montreal est un <a href="https://github.com/opennorth/patinermontreal.ca" target="_top">logiciel libre</a> distribué sous <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt" target="_top">license MIT</a>.'
@@ -46,6 +49,8 @@ fr:
   tweet: Tweeter
   tweet_text: Trouvez toutes les meilleures patinoires extérieures à Montréal à
   follow: Suivre
+  social: Restez connecté
+  close: Fermer
 
   # URL
   about: a-propos

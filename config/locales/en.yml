@@ -6,15 +6,18 @@ en:
   other_language: Français
 
   # Sidebar
-  open_rinks: '%{count} of rinks are open'
+  open_rinks: 'Open rinks:'
   about_modal: About
   thanks_modal: Thank the city
-  newsletter: Stay up-to-date on outdoor rinks
+  newsletter: Newsletter
+  newsletter_desc: Stay up-to-date on outdoor rinks
   placeholder: Enter your email
   subscribe: Subscribe
-  android: Patiner Montreal for Android
-  iphone : Patiner Montreal for iPhone
-  windows: Patiner Montreal for Windows Phone
+  android: Patiner Montréal (Android)
+  iphone : Pank (iPhone)
+  windows: Sports MTL (Windows Phone)
+  twitter_account: Patiner Montréal on Twitter
+  facebook_account: Patiner Montréal on Facebook
   windows_size: 138x45
   sources: 'Sources: <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires" target="_top">City of Montreal</a> and <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808" target="_top">City of Dorval</a>'
   license: 'Patiner Montreal is <a href="https://github.com/opennorth/patinermontreal.ca" target="_top">open source</a> under the <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt" target="_top">MIT license</a>.'
@@ -39,6 +42,8 @@ en:
   tweet: Tweet
   tweet_text: Find all the best outdoor skating rinks in Montreal at
   follow: Follow
+  social: Stay connected
+  close: Close
 
   # URL
   about: about

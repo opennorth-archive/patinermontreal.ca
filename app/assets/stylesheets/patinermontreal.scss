@@ -1,0 +1,251 @@
+// Mixins ----------------------------------------------------------------------
+// http://css3please.com/
+@mixin background-rgba($red, $green, $blue, $opacity, $rgba) {
+  background-color: transparent;
+  background-color: rgba($red, $green, $blue, $opacity);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$rgba}',endColorstr='#{$rgba}');
+  zoom: 1;
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin border-direction-radius($direction, $radius) {
+  -webkit-border-#{$direction}-radius: $radius;
+  -moz-border-#{$direction}-radius: $radius;
+  border-#{$direction}-radius: $radius;
+}
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+@mixin transition($value) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+$sidebar-height: 70px;
+$control-width: 60px;
+$bar-height: 96px;
+
+html,
+body {
+  height: 100%;
+}
+#map {
+  height: 100%;
+}
+
+// Sidebar ---------------------------------------------------------------------
+#bottom-controls,
+#social,
+#top-nav {
+  position: absolute;
+  z-index: 1000;
+}
+
+#bottom-controls .panel,
+#top-nav .navbar {
+  background: rgba(66,139,202, 0.95);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  margin-bottom: 0;
+}
+
+#social .navbar {
+  background: rgba(255,255,255, 0.9);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  padding: 10px 5px 15px;
+}
+#social .embeded {
+  height: 40px !important;
+  overflow: hidden;
+}
+
+#share-toggle .fa-circle {
+  color: #428bca;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+}
+#share-toggle {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+a#share-toggle:hover .fa-circle {
+ color: #eee;
+}
+a#share-toggle:hover .fa-share-alt {
+  color: #428bca;
+}
+
+#open-rinks {
+  margin-left: 20px;
+}
+#open-rinks .progress-bar {
+  color: #428bca;
+}
+#open-rinks .progress {
+  background-color: #2980b9;
+  max-width: 10em;
+}
+#open-rinks .progress-bar-warning {
+  background-color: #fff;
+}
+#open-rinks .legend {
+  color: #fff;
+}
+
+#branding {
+  text-align: right;
+  margin-left: 15px;
+}
+
+.navbar-default,
+.navbar-inverse {
+  border: 0px;
+}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+  background-color: transparent;
+}
+.navbar-inverse .navbar-toggle {
+  border: none;
+}
+
+.nav > li > a {
+  color: #fff;
+}
+.nav > li > a:hover {
+  color: #428bca;
+}
+.nav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
+  outline: none;
+}
+
+#top-nav .fa {
+  font-size: 1.5em;
+}
+
+.navbar h1 {
+  padding: 0;
+  margin: 0;
+}
+
+legend.small {
+  border-bottom: 0;
+  margin-bottom: 2px;
+}
+
+#branding-logo {
+  padding: 10px 0 10px 15px;
+}
+
+#thanks .modal-dialog {
+  width: 730px;
+}
+#thanks iframe {
+  border:none; 
+  margin: 0;
+/*   overflow:hidden; */
+}
+
+// Leaflet ---------------------------------------------------------------------
+
+.leaflet-left .leaflet-control {
+  margin-left: 20px;
+}
+.leaflet-top .leaflet-control-zoom {
+  margin-top: $sidebar-height;
+}
+.leaflet-popup-content-wrapper {
+  @include border-radius(5px);
+}
+.leaflet-popup-content {
+  margin: 4px;
+}
+.leaflet-container a.btn {
+  color: #333;
+}
+
+// Responsive
+@media only screen and (min-width: 768px) {
+  #top-nav {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+  }
+  #bottom-controls {
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+  #social {
+    top: $sidebar-height + 30;
+    right: 40px;
+  }
+  .leaflet-top .leaflet-control-zoom {
+    margin-top: $sidebar-height + 30;
+  }
+  #nav-facebook, #nav-twitter {
+    display: none;
+  }
+  .leaflet-left .leaflet-control {
+    margin-left: 35px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #top-nav {
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+  #bottom-controls {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  #open-rinks,
+  #social,
+  #nav-thanks {
+    display: none;
+  }
+  #branding-logo {
+    padding: 7px 0 0 7px;
+  }
+  #bottom-controls .panel {
+    border-radius: 0;
+  }
+  #mobile.navbar-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  #mobile .navbar-btn {
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+  .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #fff;
+  }
+  .leaflet-bottom {
+    bottom: $sidebar-height;
+  }
+  
+}
+
+@media only screen and (max-height: 480px) {
+  #social,
+  #top-nav {
+    display: none;
+  }
+  .leaflet-top .leaflet-control-zoom {
+    margin-top: 15px;
+  }
+}
