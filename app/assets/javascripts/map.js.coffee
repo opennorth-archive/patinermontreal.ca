@@ -90,7 +90,7 @@ I18n =
     or_call: 'ou appelez le'
     add_favorite: 'Ajouter aux favories'
     remove_favorite: 'Supprimer des favories'
-    explanation: 'Vous allez patiner? Informez vos ami(e)s :'
+    explanation: 'Vous allez patiner? Informez vos amis :'
     # Social
     tweet: "J'y vais"
     tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
@@ -328,6 +328,7 @@ $ ->
         unless @favoritesUrl()
           state = @id in kinds or @id in statuses
           @$('.icon').toggleClass 'active', state
+          @$('.icon').parent().toggleClass 'active', state
           @$('input').toggleAttr 'checked', state
       else
         @$('.icon').toggleClass 'active', @favoritesUrl()

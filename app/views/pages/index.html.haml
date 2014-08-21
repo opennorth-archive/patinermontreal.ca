@@ -68,24 +68,33 @@
       .col-lg-8
         .btn-toolbar
           #kinds.btn-group
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PSE' do
-              =t(:teamsports)
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PPL' do
-              =t(:freeskating)
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PP' do
-              =t(:landscaped)
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PSE', :title => t(:teamsports) do
+              %span.hide=t(:teamsports)
+              = image_tag 'PSE.png', alt: t(:teamsports), class: 'icon'
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PPL', :title => t(:freeskating) do
+              %span.hide=t(:freeskating)
+              = image_tag 'PPL.png', alt: t(:freeskating), class: 'icon'
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PP', :title => t(:landscaped) do
+              %span.hide=t(:landscaped)
+              = image_tag 'PP.png', alt: t(:landscaped), class: 'icon'
           #statuses.btn-group
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'ouvert' do
-              =t(:open)
+              .icon
+                %span.hide=t(:open)
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'deblaye' do
-              =t(:cleared)
+              .icon
+                %span.hide=t(:cleared)
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'arrose' do
-              =t(:flooded)
+              .icon
+                %span.hide=t(:flooded)
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'resurface' do
-              =t(:resurfaced)
+              .icon
+                %span.hide=t(:resurfaced)
           .btn-group
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'favories' do
-              =t(:favorite)
+              .icon
+                %span.hide=t(:favorite)
+
       #open-rinks.col-lg-2
         %small.legend= t :open_rinks, count: number_to_percentage(@fraction * 100, precision: 0)
         .progress

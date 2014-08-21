@@ -57,7 +57,7 @@ body {
 }
 
 #social .navbar {
-  background: rgba(255,255,255, 0.9);
+  background: rgba(255,255,255, 0.95);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
   padding: 10px 5px 15px;
 }
@@ -173,7 +173,52 @@ legend.small {
   color: #333;
 }
 
-// Responsive
+// Bottom control bar --------------------------------------------------------
+#statuses .icon,
+#favories .icon {
+  width: 44px;
+  height: 44px;
+  margin: 5px 0;
+  background: transparent url(/assets/sprites.gif) no-repeat 0 0;
+}
+#deblaye .icon {
+  background-position: 0 0;
+  &.active,
+  &:hover {
+    background-position: 0 -44px;
+  }
+}
+#arrose .icon {
+  background-position: -44px 0;
+  &.active,
+  &:hover {
+    background-position: -44px -44px;
+  }
+}
+#resurface .icon {
+  background-position: -88px 0;
+  &.active,
+  &:hover {
+    background-position: -88px -44px;
+  }
+}
+#favories .icon {
+  background-position: -132px 0;
+  &.active,
+  &:hover {
+    background-position: -132px -44px;
+  }
+}
+#ouvert .icon {
+  background-position: -176px 0;
+  &.active,
+  &:hover {
+    background-position: -176px -44px;
+  }
+}
+
+
+// Responsive -----------------------------------------------------------------
 @media only screen and (min-width: 768px) {
   #top-nav {
     top: 20px;
