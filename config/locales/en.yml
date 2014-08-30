@@ -4,6 +4,7 @@
 en:
   other_locale: fr
   other_language: Français
+  site_title: Outdoor rinks in Montreal
 
   # Sidebar
   open_rinks: 'Open rinks:'
@@ -28,11 +29,11 @@ en:
   teamsports: Team sports
   freeskating: Free skating
   landscaped: Landscaped
-  open: open
-  cleared: cleared
-  flooded: flooded
-  resurfaced: resurfaced
-  favorite: my favorites
+  open: Open
+  cleared: Cleared
+  flooded: Flooded
+  resurfaced: Resurfaced
+  favorite: My favorites
 
   # About
   montrealouvert: Open Data Montréal

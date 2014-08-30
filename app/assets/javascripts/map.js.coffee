@@ -24,7 +24,7 @@ I18n =
     time_format: '%{b} %{e}, %{l}%{P}'
     # Popup
     accuracy: 'You are within %{radius} meters of this point'
-    condition: 'in %{condition} condition'
+    condition: 'In %{condition} condition'
     unknown_condition: 'Ice condition not available'
     call_to_action: "Ask the city to publish its rink conditions"
     or_call: 'or call'
@@ -84,13 +84,13 @@ I18n =
     time_format: '%{b} %{e} à %{H}h'
     # Popup
     accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
-    condition: 'en %{condition} condition'
+    condition: 'En %{condition} condition'
     unknown_condition: 'État de la patinoire non disponible'
     call_to_action: "Demandez à la ville de publier l'état"
     or_call: 'ou appelez le'
     add_favorite: 'Ajouter aux favories'
     remove_favorite: 'Supprimer des favories'
-    explanation: 'Vous allez patiner? Informez vos amis :'
+    explanation: 'Vous allez patiner? Informez vos amis:'
     # Social
     tweet: "J'y vais"
     tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
