@@ -8,6 +8,7 @@
         %h1#branding-logo.navbar-brand
           %span.hide Patiner Montréal
           = image_tag 'logo-patinermontreal.png', alt: 'Patiner Montréal', title: 'Patiner Montréal'
+        %h2.hide=t :site_title
         = button_tag :class => 'navbar-toggle', :type => 'button', 'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse' do
           %span.fa.fa-navicon.fa-inverse
             %span.sr-only Toggle navigation
@@ -64,38 +65,44 @@
   %div{:class => 'panel'}
     .panel-body
       #branding.pull-right
-        = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert), size: '48x78'), "http://montrealouvert.net/?lang=#{locale}", target: '_top', id: 'montrealouvert'
-      .col-lg-8
+        = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "http://montrealouvert.net/?lang=#{locale}", target: '_top', id: 'montrealouvert'
+      .col-md-8.pull-left
         .btn-toolbar
           #kinds.btn-group
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PSE', :title => t(:teamsports) do
-              %span.hide=t(:teamsports)
-              = image_tag 'PSE.png', alt: t(:teamsports), class: 'icon'
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PSE', :title => t(:teamsports), 'data-toggle' => 'tooltip' do
+              .icon
+                %span.hide=t(:teamsports)
+            %span
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PPL', :title => t(:freeskating) do
-              %span.hide=t(:freeskating)
-              = image_tag 'PPL.png', alt: t(:freeskating), class: 'icon'
+              .icon
+                %span.hide=t(:freeskating)
+            %span
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PP', :title => t(:landscaped) do
-              %span.hide=t(:landscaped)
-              = image_tag 'PP.png', alt: t(:landscaped), class: 'icon'
+              .icon
+                %span.hide=t(:landscaped)
+            %span
           #statuses.btn-group
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'ouvert' do
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'ouvert', :title => t(:open) do
               .icon
                 %span.hide=t(:open)
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'deblaye' do
+            %span
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'deblaye', :title => t(:cleared) do
               .icon
                 %span.hide=t(:cleared)
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'arrose' do
+            %span
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'arrose', :title => t(:flooded) do
               .icon
                 %span.hide=t(:flooded)
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'resurface' do
+            %span
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'resurface', :title => t(:resurfaced) do
               .icon
                 %span.hide=t(:resurfaced)
           .btn-group
-            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'favories' do
+            = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'favories', :title => t(:favorite) do
               .icon
                 %span.hide=t(:favorite)
 
-      #open-rinks.col-lg-2
+      #open-rinks.col-md-2
         %small.legend= t :open_rinks, count: number_to_percentage(@fraction * 100, precision: 0)
         .progress
           .progress-bar.progress-bar-warning{:role=> 'progressbar', 'aria-valuenow' => 60, 'aria-valuemin' => 0, 'aria-valuemax' => 100, :style => 'min-width: 30px; width: ' + number_to_percentage(@fraction * 100, precision: 0)}
@@ -110,6 +117,8 @@
           %span.sr-only=t :close
         %h2=t :about_modal
       .modal-body
+        #branding-about.pull-right
+          = link_to image_tag("montrealouvert-about-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "http://montrealouvert.net/?lang=#{locale}", target: '_top', id: 'montrealouvert'
         %p= t(:license).html_safe
         %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
         %p= t(:sources).html_safe
@@ -158,63 +167,53 @@
 
 :plain
   <script type="text/template" id="popup-template">
-    <h2>
-      <img src="/assets/<%= genre %>_small.png" alt="<%= t('_' + genre) %>" title="<%= t('_' + genre) %>" width="28" height="27">
-      <%= parc %>
-    </h2>
-    <h3>
-      <%= t(description) %>
-    </h3>
-    <% if (adresse) { %>
-      <p class="address">
-        <%= adresse %>
-        <% if (tel) { %><br><%= Helpers.numberToPhone(tel, {extension: ext}) %><% } %>
-      </p>
-    <% } %>
-    <% if (ouvert === true) { %>
-      <p>
-        <span class="condition">
-          <% if (condition === 'N/A') { %>
-            <%= t('unknown_condition') %>
-          <% } else { %>
-            <%= t('condition', {condition: t(condition)}) %>
-          <% } %>
-        </span>
-        (<%= format_date(arrondissement.date_maj) %>)
-      </p>
-      <div class="statuses">
-        <div class="icon deblaye<% if (deblaye) { %> active<% } %>">
-          <img src="/assets/blank.gif" alt="<%= t('cleared') %>" title="<%= t('cleared') %>" width="28" height="28">
+    <div id="rink-info">
+      <a href="#fav" class="fa-stack fa-lg icon favorite <%= ( favorite ? 'active' : '' ) %>" id="favorite-toggle" title="<%= t( favorite ? 'remove_favorite' : 'add_favorite' ) %>">
+        <i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-heart fa-stack-1x fa-inverse"></i><i class="fa fa-heart-o fa-stack-1x"></i>
+      </a>
+      <h3><span class="icon <%= genre %>" title="<%= t('_' + genre) %>"></span><%= parc %></h3>
+      <h4><%= t(description) %></h4>
+      <% if (adresse) { %>
+        <p class="address">
+          <%= adresse %>
+          <% if (tel) { %><br><%= Helpers.numberToPhone(tel, {extension: ext}) %><% } %>
+        </p>
+      <% } %>
+      <% if (ouvert === true) { %>
+        <p class="condition">
+        <% if (condition === 'N/A') { %>
+          <span class="desc"><%= t('unknown_condition') %></span>
+        <% } else { %>
+          <span class="desc"><%= t('condition', {condition: t(condition)}) %></span>
+          <span class="update-date">(<%= format_date(arrondissement.date_maj) %>)</span>
+        <% } %>
+        </p>
+        <div class="statuses">
+          <span title="<%= t('cleared') %>" class="icon deblaye <%= ( deblaye ? 'active' : '' ) %>"></span>
+          <span title="<%= t('flooded') %>" class="icon arrose <%= ( arrose ? 'active' : '' ) %>"></span>
+          <span title="<%= t('resurfaced') %>" class="icon resurface <%= ( resurface ? 'active' : '' ) %>"></span>
         </div>
-        <div class="icon arrose<% if (arrose) { %> active<% } %>">
-          <img src="/assets/blank.gif" alt="<%= t('flooded') %>" title="<%= t('flooded') %>" width="28" height="28">
+      <% } else if (condition) { %>
+        <p class="condition">
+          <span class="desc"><%= t('closed') %></span>
+          <span class="update-date">(<%= format_date(arrondissement.date_maj) %>)</span>
+        </p>
+      <% } else if (arrondissement.email) { %>
+        <p class="condition highlight">
+          <%= t('unknown_condition') %>
+        </p>
+        <p class="call-to-action">
+          <a href="mailto:<%= arrondissement.email %>?subject=<%= encodeURIComponent("Mises à jour régulières de l’état des patinoires extérieures") %>&body=<%= Helpers.body(arrondissement) %>" class="btn default"><%= t('call_to_action') %></a>
+          <br><%= t('or_call') %>
+          <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
+        </p>
+      <% } %>
+      <% if (ouvert || !condition) { %>
+        <hr />
+        <div class="call-to-action">
+          <p><%= t('explanation') %></p>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
         </div>
-        <div class="icon resurface<% if (resurface) { %> active<% } %>">
-          <img src="/assets/blank.gif" alt="<%= t('resurfaced') %>" title="<%= t('resurfaced') %>" width="28" height="28">
-        </div>
-        <div class="icon favorite<% if (favorite) { %> active<% } %>">
-          <img src="/assets/blank.gif" alt="<%= t(favorite ? 'remove_favorite' : 'add_favorite') %>" title="<%= t(favorite ? 'remove_favorite' : 'add_favorite') %>" width="28" height="28">
-        </div>
-      </div>
-    <% } else if (condition) { %>
-      <p>
-        <span class="condition"><%= t('closed') %></span>
-        (<%= format_date(arrondissement.date_maj) %>)
-      </p>
-    <% } else if (arrondissement.email) { %>
-      <p class="condition highlight">
-        <%= t('unknown_condition') %>
-      </p>
-      <p class="call-to-action">
-        <a href="mailto:<%= arrondissement.email %>?subject=<%= encodeURIComponent("Mises à jour régulières de l'état des patinoires extérieures") %>&body=<%= Helpers.body(arrondissement) %>" class="btn default"><%= t('call_to_action') %></a>
-        <br><%= t('or_call') %>
-        <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
-      </p>
-    <% } %>
-    <% if (ouvert || !condition) { %>
-      <div class="call-to-action">
-        <p><strong><%= t('explanation') %></strong></p>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
-      </div>
-    <% } %>
+      <% } %>
+    </div>
   </script>

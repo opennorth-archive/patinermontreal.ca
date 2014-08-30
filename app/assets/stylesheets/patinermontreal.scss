@@ -51,58 +51,69 @@ body {
 
 #bottom-controls .panel,
 #top-nav .navbar {
+  background: #428bca;
   background: rgba(66,139,202, 0.95);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
   margin-bottom: 0;
 }
-
-#social .navbar {
-  background: rgba(255,255,255, 0.95);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  padding: 10px 5px 15px;
+#bottom-controls .panel-body {
+  padding: 5px;
 }
-#social .embeded {
-  height: 40px !important;
-  overflow: hidden;
+#bottom-controls .btn-group {
+  margin-right: 15px;
 }
 
-#share-toggle .fa-circle {
-  color: #428bca;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+#social{
+  .navbar {
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    padding: 10px 5px 15px;
+  }
+  .embeded {
+    height: 40px !important;
+    overflow: hidden;
+  }
 }
+
 #share-toggle {
   position: absolute;
   top: -10px;
   right: -10px;
-}
-
-a#share-toggle:hover .fa-circle {
- color: #eee;
-}
-a#share-toggle:hover .fa-share-alt {
-  color: #428bca;
+  .fa-circle {
+    color: #428bca;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  }
+  &:hover .fa-circle {
+    color: #eee;
+  }
+  &:hover .fa-share-alt {
+    color: #428bca;
+  }
 }
 
 #open-rinks {
   margin-left: 20px;
-}
-#open-rinks .progress-bar {
-  color: #428bca;
-}
-#open-rinks .progress {
-  background-color: #2980b9;
-  max-width: 10em;
-}
-#open-rinks .progress-bar-warning {
-  background-color: #fff;
-}
-#open-rinks .legend {
-  color: #fff;
+  .progress-bar {
+    color: #428bca;
+  }
+  .progress {
+    background-color: #2980b9;
+    max-width: 10em;
+  }
+  .progress-bar-warning {
+    background-color: #fff;
+  }
+  .legend {
+    color: #fff;
+  }
 }
 
 #branding {
   text-align: right;
-  margin-left: 15px;
+  img {
+    max-height: 75px;
+    padding: 5px 0;
+  }
 }
 
 .navbar-default,
@@ -152,7 +163,6 @@ legend.small {
 #thanks iframe {
   border:none; 
   margin: 0;
-/*   overflow:hidden; */
 }
 
 // Leaflet ---------------------------------------------------------------------
@@ -164,56 +174,242 @@ legend.small {
   margin-top: $sidebar-height;
 }
 .leaflet-popup-content-wrapper {
-  @include border-radius(5px);
-}
-.leaflet-popup-content {
-  margin: 4px;
-}
-.leaflet-container a.btn {
-  color: #333;
+  @include border-radius(4px);
 }
 
 // Bottom control bar --------------------------------------------------------
+#bottom-controls .btn.control {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 6px;
+}
+#kinds .icon,
 #statuses .icon,
 #favories .icon {
-  width: 44px;
-  height: 44px;
   margin: 5px 0;
-  background: transparent url(/assets/sprites.gif) no-repeat 0 0;
+  background: transparent url(/assets/sprite.png) no-repeat 0 0;
 }
-#deblaye .icon {
-  background-position: 0 0;
-  &.active,
-  &:hover {
-    background-position: 0 -44px;
-  }
+#kinds .icon {
+  width: 55px;
+  height: 55px;
 }
-#arrose .icon {
-  background-position: -44px 0;
-  &.active,
-  &:hover {
-    background-position: -44px -44px;
-  }
-}
-#resurface .icon {
-  background-position: -88px 0;
-  &.active,
-  &:hover {
-    background-position: -88px -44px;
-  }
-}
+#statuses .icon,
 #favories .icon {
-  background-position: -132px 0;
-  &.active,
-  &:hover {
-    background-position: -132px -44px;
+  width: 50px;
+  height: 50px;
+}
+
+#kinds,
+#statuses,
+#favories {
+  &:hover .icon {
+    opacity: 0.85;
   }
 }
-#ouvert .icon {
-  background-position: -176px 0;
-  &.active,
+#kinds,
+#statuses,
+#favories {
+  &:hover .icon.active {
+    opacity: 1;
+  }
+}
+
+#PSE {
+  .icon {
+    background-position: -2px -50px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -182px -50px;
+  }
+}
+#PPL {
+  .icon {
+    background-position: -62px -50px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -242px -50px;
+  }
+}
+#PP {
+  .icon {
+    background-position: -122px -50px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -302px -50px;
+  }
+}
+
+#ouvert {
+  .icon {
+    background-position: -5px -120px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -245px -120px;
+  }
+}
+#deblaye {
+  .icon {
+    background-position: -65px -120px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -305px -120px;
+  }
+}
+#arrose {
+  .icon {
+    background-position: -125px -120px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -365px -120px;
+  }
+}
+#resurface {
+  .icon {
+    background-position: -185px -120px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -425px -120px;
+  }
+}
+#favories {
+  .icon {
+    background-position: -365px -50px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -425px -50px;
+  }
+}
+
+// Map -----------------------------------------------------------------
+#rink-info {
+  p {
+    margin: 0;
+  }
+  h3,
+  .statuses {
+    .icon {
+      display: inline-block;
+      background: transparent url(/assets/sprite.png) no-repeat 0 -190px;
+      background-size: 250px 125px;
+    }
+  }
+  h3 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0 20px 0 10px;
+    line-height: 45px;
+    height: 45px;
+    margin: -14px -20px 15px;
+    color: #fff;
+    background-color: #428bca;
+    font-weight: normal;
+    text-transform: capitalize;
+    @include border-direction-radius(top-left, 4px);
+    @include border-direction-radius(top-right, 4px);
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      margin-bottom: -6px;
+      margin-right: 5px;
+      &.PSE {
+        background-position: -1px -25px;
+      }
+      &.PPL {
+        background-position: -31px -25px;
+      }
+      &.PP {
+        background-position: -61px -25px;
+      }
+    }
+  }
+  .statuses {
+    height: 25px;
+    line-height: 1;
+    margin-top: 5px;
+    .icon {
+      width: 25px;
+      height: 25px;
+      opacity: 0.25;
+      &.active {
+        opacity: 1;
+      }
+      &.deblaye {
+        background-position: -32px -95px;
+      }
+      &.arrose {
+        background-position: -62px -95px;
+      }
+      &.resurface {
+        background-position: -92px -95px;
+      }
+    }    
+  }
+  h4 {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: bold;
+  }
+  .condition {
+    margin-top: 15px;
+    .desc {
+      font-weight: bold;
+    }
+    .update-date {
+      color: #888;
+    }
+  }
+  .call-to-action {
+    p {
+      margin-bottom: 5px;
+    }
+    height: 60px;
+  }
+}
+
+#favorite-toggle {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  .fa-circle {
+    color: #fff;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  }
+  .fa-heart-o {
+    color: #428bca;
+  }
+  .fa-heart {
+    display: none;
+  }
+  &.active {
+    .fa-circle {
+      color: #d01716;
+    } 
+    .fa-heart {
+      display: inherit;
+    }
+    .fa-heart-o {
+      display: none;
+    }
+  }
   &:hover {
-    background-position: -176px -44px;
+    .fa-circle {
+      color: #eee;
+    }
+    .fa-heart,
+    .fa-heart-o {
+      color: #d01716;
+    }
   }
 }
 
@@ -245,6 +441,21 @@ legend.small {
   }
 }
 
+@media only screen and (min-width: 992px) {
+  #branding-about {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #branding {
+    display: none;
+  }
+  #open-rinks {
+    float: right;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   #top-nav {
     left: 0;
@@ -265,7 +476,7 @@ legend.small {
     padding: 7px 0 0 7px;
   }
   #bottom-controls .panel {
-    border-radius: 0;
+    @include border-radius(4px);
   }
   #mobile.navbar-right {
     position: absolute;
@@ -280,9 +491,109 @@ legend.small {
     border-color: #fff;
   }
   .leaflet-bottom {
-    bottom: $sidebar-height;
+    bottom: 62px;
+    opacity: 0.4;
+  }
+/* Ajust control buttons for mobile */
+  #bottom-controls .btn-group {
+    margin-right: 0;
+  }
+  #bottom-controls .panel-body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #bottom-controls .btn.control {
+    padding: 6px 4px;
   }
   
+  #kinds .icon,
+  #statuses .icon,
+  #favories .icon {
+    background-size: 250px 125px;
+  }
+  
+  #kinds .icon {
+    width: 28px;
+    height: 28px;
+  }
+  #statuses .icon,
+  #favories .icon {
+    width: 25px;
+    height: 25px;
+  }
+  #PSE {
+    .icon {
+      background-position: -1px -25px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -91px -25px;
+    }
+  }
+  #PPL {
+    .icon {
+      background-position: -31px -25px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -121px -25px;
+    }
+  }
+  #PP {
+    .icon {
+      background-position: -61px -25px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -151px -25px;
+    }
+  }
+
+  #ouvert {
+    .icon {
+      background-position: -2px -60px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -122px -60px;
+    }
+  }
+  #deblaye {
+    .icon {
+      background-position: -32px -60px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -152px -60px;
+    }
+  }
+  #arrose {
+    .icon {
+      background-position: -62px -60px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -182px -60px;
+    }
+  }
+  #resurface {
+    .icon {
+      background-position: -92px -60px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -212px -60px;
+    }
+  }
+  #favories {
+    .icon {
+      background-position: -182px -25px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -212px -25px;
+    }
+  }
 }
 
 @media only screen and (max-height: 480px) {
