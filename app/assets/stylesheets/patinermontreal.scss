@@ -476,7 +476,7 @@ legend.small {
     padding: 7px 0 0 7px;
   }
   #bottom-controls .panel {
-    @include border-radius(4px);
+    @include border-radius(0);
   }
   #mobile.navbar-right {
     position: absolute;
