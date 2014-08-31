@@ -158,6 +158,8 @@ other_domain = $('#language a').attr('href').match(/^http:\/\/[^\/]+\//)[0].repl
 $ ->
   window.debug = env is 'development'
 
+  $('.control').tooltip()
+
   # Toggle social sidebar
   $(window).on 'load', (e) ->
     $('#share-toggle').fadeIn();
@@ -256,15 +258,17 @@ $ ->
       icon = L.Icon.extend
         options:
           iconUrl: "/assets/#{@model.get 'genre'}_#{state}.png"
+          iconRetinaUrl: "/assets/#{@model.get 'genre'}_#{state}_2x.png"
           shadowUrl: "/assets/#{@model.get 'genre'}_shadow.png"
           iconSize: new L.Point 28, 28
-          shadowSize: new L.Point 44, 28
+          shadowSize: new L.Point 34, 26
           iconAnchor: new L.Point 15, 27
+          shadowAnchor: [13, 22]
           popupAnchor: offset
       # "new L.Icon.extend({})" raises "TypeError: object is not a function"
 
       @marker = new L.Marker new L.LatLng(@model.get('lat'), @model.get('lng')), icon: new icon
-      @marker._popup = new L.Popup offset: offset, @marker
+      @marker._popup = new L.Popup offset: offset, closeButton: false, @marker
       @marker._popup.setContent @template @model.toJSON()
       @marker._popup._initLayout()
 
@@ -328,8 +332,6 @@ $ ->
         unless @favoritesUrl()
           state = @id in kinds or @id in statuses
           @$('.icon').toggleClass 'active', state
-          @$('.icon').parent().toggleClass 'active', state
-          @$('input').toggleAttr 'checked', state
       else
         @$('.icon').toggleClass 'active', @favoritesUrl()
       @
@@ -512,11 +514,12 @@ $ ->
       locationIcon = L.Icon.extend
         options:
           iconUrl: "/assets/marker-icon.png"
+          iconRetinaUrl: "/assets/marker-icon-2x.png"
           shadowUrl: "/assets/marker-shadow.png"
           iconSize: [25, 41]
-          shadowSize: [41, 41]
+          shadowSize: [33, 31]
           iconAnchor:   [12, 41]
-          shadowAnchor: [12, 41]
+          shadowAnchor: [10, 31]
           popupAnchor:  [0, -46]
       marker = new L.Marker event.latlng, icon: new locationIcon
       Map.addLayer marker
