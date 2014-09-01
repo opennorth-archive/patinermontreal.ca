@@ -1,0 +1,22 @@
+.lt-ie8 #favorite-toggle,
+.lt-ie8 #favories,
+.lt-ie8 #social {
+  display: none;
+}
+
+#bottom-controls .panel-body {
+  overflow: hidden;
+}
+
+#rink-info h3 .icon,
+#rink-info .statuses .icon {
+  background-image: url(/assets/sprite-ie7.png);
+}
+
+@media only screen and (max-width: 767px) {
+  #kinds .icon,
+  #statuses .icon,
+  #favories .icon {
+    background-image: url(/assets/sprite-ie7.png);
+  }
+}
