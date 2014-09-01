@@ -5,7 +5,7 @@
 // the compiled file.
 //
 //= require bootstrap.min
-//= require json2
+//= require json2.min
 //= require store.min
 //= require underscore-min
 //= require backbone-min
