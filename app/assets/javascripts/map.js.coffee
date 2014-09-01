@@ -268,7 +268,7 @@ $ ->
       # "new L.Icon.extend({})" raises "TypeError: object is not a function"
 
       @marker = new L.Marker new L.LatLng(@model.get('lat'), @model.get('lng')), icon: new icon
-      @marker._popup = new L.Popup offset: offset, closeButton: false, @marker
+      @marker._popup = new L.Popup offset: offset, autoPan: true, autoPanPaddingTopLeft: [50,100], autoPanPaddingBottomRight: [70,40], closeButton: false, @marker
       @marker._popup.setContent @template @model.toJSON()
       @marker._popup._initLayout()
 
@@ -300,7 +300,7 @@ $ ->
       # Refresh Twitter button.
       twttr.widgets.load() if twttr.widgets
       # Pan to popup.
-      Map.panTo @marker.getLatLng()
+      $('#social .navbar').slideUp()
 
   # Don't navigate to the last known state if opening another popup.
   Map.on 'popupclose', (event) ->
