@@ -1,0 +1,611 @@
+// Mixins ----------------------------------------------------------------------
+// http://css3please.com/
+@mixin background-rgba($red, $green, $blue, $opacity, $rgba) {
+  background-color: transparent;
+  background-color: rgba($red, $green, $blue, $opacity);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$rgba}',endColorstr='#{$rgba}');
+  zoom: 1;
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin border-direction-radius($direction, $radius) {
+  -webkit-border-#{$direction}-radius: $radius;
+  -moz-border-#{$direction}-radius: $radius;
+  border-#{$direction}-radius: $radius;
+}
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+@mixin transition($value) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+$sidebar-height: 70px;
+$control-width: 60px;
+$bar-height: 96px;
+
+html,
+body {
+  height: 100%;
+}
+#map {
+  height: 100%;
+}
+
+// Sidebar ---------------------------------------------------------------------
+#bottom-controls,
+#social,
+#top-nav {
+  position: absolute;
+  z-index: 1000;
+}
+
+#bottom-controls .panel,
+#top-nav .navbar {
+  background: #428bca;
+  background: rgba(66,139,202, 0.95);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  margin-bottom: 0;
+}
+#bottom-controls .panel-body {
+  padding: 5px;
+}
+#bottom-controls .btn-group {
+  margin-right: 15px;
+}
+
+#social{
+  .navbar {
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    padding: 10px 5px 15px;
+  }
+  .embeded {
+    height: 40px !important;
+    overflow: hidden;
+  }
+}
+
+#share-toggle {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  .fa-circle {
+    color: #428bca;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  }
+  &:hover .fa-circle {
+    color: #eee;
+  }
+  &:hover .fa-share-alt {
+    color: #428bca;
+  }
+}
+
+#open-rinks {
+  margin-left: 20px;
+  .progress-bar {
+    color: #428bca;
+  }
+  .progress {
+    background-color: #2980b9;
+    max-width: 10em;
+  }
+  .progress-bar-warning {
+    background-color: #fff;
+  }
+  .legend {
+    color: #fff;
+  }
+}
+
+#branding {
+  text-align: right;
+  img {
+    max-height: 75px;
+    padding: 5px 0;
+  }
+}
+
+.navbar-default,
+.navbar-inverse {
+  border: 0px;
+}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+  background-color: transparent;
+}
+.navbar-inverse .navbar-toggle {
+  border: none;
+}
+
+.nav > li > a {
+  color: #fff;
+}
+.nav > li > a:hover {
+  color: #428bca;
+}
+.nav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
+  outline: none;
+}
+
+#top-nav .fa {
+  font-size: 1.5em;
+}
+
+.navbar h1 {
+  padding: 0;
+  margin: 0;
+}
+
+legend.small {
+  border-bottom: 0;
+  margin-bottom: 2px;
+}
+
+#branding-logo {
+  padding: 10px 0 10px 15px;
+}
+
+#thanks .modal-dialog {
+  width: 730px;
+}
+#thanks iframe {
+  border:none; 
+  margin: 0;
+}
+
+// Leaflet ---------------------------------------------------------------------
+
+.leaflet-left .leaflet-control {
+  margin-left: 20px;
+}
+.leaflet-top .leaflet-control-zoom {
+  margin-top: $sidebar-height;
+}
+.leaflet-popup-content-wrapper {
+  @include border-radius(4px);
+}
+
+// Bottom control bar --------------------------------------------------------
+#bottom-controls .btn.control {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 6px;
+}
+#kinds .icon,
+#statuses .icon,
+#favories .icon {
+  margin: 5px 0;
+  background: transparent url(/assets/sprite.png) no-repeat 0 0;
+}
+#kinds .icon {
+  width: 55px;
+  height: 55px;
+}
+#statuses .icon,
+#favories .icon {
+  width: 50px;
+  height: 50px;
+}
+
+#kinds,
+#statuses,
+#favories {
+  &:hover .icon {
+    opacity: 0.85;
+  }
+}
+#kinds,
+#statuses,
+#favories {
+  &:hover .icon.active {
+    opacity: 1;
+  }
+}
+
+#PSE {
+  .icon {
+    background-position: -2px -50px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -182px -50px;
+  }
+}
+#PPL {
+  .icon {
+    background-position: -62px -50px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -242px -50px;
+  }
+}
+#PP {
+  .icon {
+    background-position: -122px -50px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -302px -50px;
+  }
+}
+
+#ouvert {
+  .icon {
+    background-position: -5px -120px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -245px -120px;
+  }
+}
+#deblaye {
+  .icon {
+    background-position: -65px -120px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -305px -120px;
+  }
+}
+#arrose {
+  .icon {
+    background-position: -125px -120px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -365px -120px;
+  }
+}
+#resurface {
+  .icon {
+    background-position: -185px -120px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -425px -120px;
+  }
+}
+#favories {
+  .icon {
+    background-position: -365px -50px;
+  }
+  .icon.active,
+  &:hover .icon {
+    background-position: -425px -50px;
+  }
+}
+
+// Map -----------------------------------------------------------------
+#rink-info {
+  p {
+    margin: 0;
+  }
+  h3,
+  .statuses {
+    .icon {
+      display: inline-block;
+      background: transparent url(/assets/sprite.png) no-repeat 0 -190px;
+      background-size: 250px 125px;
+    }
+  }
+  h3 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0 20px 0 10px;
+    line-height: 45px;
+    height: 45px;
+    margin: -14px -20px 15px;
+    color: #fff;
+    background-color: #428bca;
+    font-weight: normal;
+    text-transform: capitalize;
+    @include border-direction-radius(top-left, 4px);
+    @include border-direction-radius(top-right, 4px);
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      margin-bottom: -6px;
+      margin-right: 5px;
+      &.PSE {
+        background-position: -1px -25px;
+      }
+      &.PPL {
+        background-position: -31px -25px;
+      }
+      &.PP {
+        background-position: -61px -25px;
+      }
+    }
+  }
+  .statuses {
+    height: 25px;
+    line-height: 1;
+    margin-top: 5px;
+    .icon {
+      width: 25px;
+      height: 25px;
+      opacity: 0.25;
+      &.active {
+        opacity: 1;
+      }
+      &.deblaye {
+        background-position: -32px -95px;
+      }
+      &.arrose {
+        background-position: -62px -95px;
+      }
+      &.resurface {
+        background-position: -92px -95px;
+      }
+    }    
+  }
+  h4 {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: bold;
+  }
+  .condition {
+    margin-top: 15px;
+    .desc {
+      font-weight: bold;
+    }
+    .update-date {
+      color: #888;
+    }
+  }
+  .call-to-action {
+    p {
+      margin-bottom: 5px;
+    }
+    height: 60px;
+  }
+}
+
+#favorite-toggle {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  .fa-circle {
+    color: #fff;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  }
+  .fa-heart-o {
+    color: #428bca;
+  }
+  .fa-heart {
+    display: none;
+  }
+  &.active {
+    .fa-circle {
+      color: #d01716;
+    } 
+    .fa-heart {
+      display: inherit;
+    }
+    .fa-heart-o {
+      display: none;
+    }
+  }
+  &:hover {
+    .fa-circle {
+      color: #eee;
+    }
+    .fa-heart,
+    .fa-heart-o {
+      color: #d01716;
+    }
+  }
+}
+
+
+// Responsive -----------------------------------------------------------------
+@media only screen and (min-width: 768px) {
+  #top-nav {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+  }
+  #bottom-controls {
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+  #social {
+    top: $sidebar-height + 30;
+    right: 40px;
+  }
+  .leaflet-top .leaflet-control-zoom {
+    margin-top: $sidebar-height + 30;
+  }
+  #nav-facebook, #nav-twitter {
+    display: none;
+  }
+  .leaflet-left .leaflet-control {
+    margin-left: 35px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  #branding-about {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #branding {
+    display: none;
+  }
+  #open-rinks {
+    float: right;
+    margin-left: 0;
+  }
+  #bottom-controls .btn-group {
+    margin-right: 7px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #top-nav {
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+  #bottom-controls {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  #open-rinks,
+  #social,
+  #nav-thanks {
+    display: none;
+  }
+  #branding-logo {
+    padding: 7px 0 0 7px;
+  }
+  #bottom-controls .panel {
+    @include border-radius(0);
+  }
+  #mobile.navbar-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  #mobile .navbar-btn {
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+  .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #fff;
+  }
+  .leaflet-bottom {
+    bottom: 62px;
+    opacity: 0.4;
+  }
+/* Ajust control buttons for mobile */
+  #bottom-controls .btn-group {
+    margin-right: 0;
+  }
+  #bottom-controls .panel-body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #bottom-controls .btn.control {
+    padding: 6px 4px;
+  }
+  
+  #kinds .icon,
+  #statuses .icon,
+  #favories .icon {
+    background-size: 250px 125px;
+  }
+  
+  #kinds .icon {
+    width: 28px;
+    height: 28px;
+  }
+  #statuses .icon,
+  #favories .icon {
+    width: 25px;
+    height: 25px;
+  }
+  #PSE {
+    .icon {
+      background-position: -1px -25px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -91px -25px;
+    }
+  }
+  #PPL {
+    .icon {
+      background-position: -31px -25px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -121px -25px;
+    }
+  }
+  #PP {
+    .icon {
+      background-position: -61px -25px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -151px -25px;
+    }
+  }
+
+  #ouvert {
+    .icon {
+      background-position: -2px -60px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -122px -60px;
+    }
+  }
+  #deblaye {
+    .icon {
+      background-position: -32px -60px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -152px -60px;
+    }
+  }
+  #arrose {
+    .icon {
+      background-position: -62px -60px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -182px -60px;
+    }
+  }
+  #resurface {
+    .icon {
+      background-position: -92px -60px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -212px -60px;
+    }
+  }
+  #favories {
+    .icon {
+      background-position: -182px -25px;
+    }
+    .icon.active,
+    &:hover .icon {
+      background-position: -212px -25px;
+    }
+  }
+}
+
+@media only screen and (max-height: 480px) {
+  #social,
+  #top-nav {
+    display: none;
+  }
+  .leaflet-top .leaflet-control-zoom {
+    margin-top: 15px;
+  }
+}

@@ -11,17 +11,21 @@
 fr:
   other_locale: en
   other_language: English
+  site_title: Patinoires extérieures à Montréal
 
   # Sidebar
-  open_rinks: '%{count} des patinoires sont ouvertes'
+  open_rinks: 'Patinoires ouvertes:'
   about_modal: À propos
   thanks_modal: Remerciez la ville
-  newsletter: Restez à jour grâce à notre bulletin
+  newsletter: Infolettre
+  newsletter_desc: Restez à jour grâce à notre bulletin
   placeholder: Votre courriel
   subscribe: S'abonner
-  android: Patiner Montréal pour Android
-  iphone : Patiner Montréal pour iPhone
-  windows: Patiner Montréal pour Windows Phone
+  android: Patiner Montréal (Android)
+  iphone : Pank (iPhone)
+  windows: Sports MTL (Windows Phone)
+  twitter_account: Patiner Montréal sur Twitter
+  facebook_account: Patiner Montréal sur Facebook
   windows_size: 156x45
   sources: 'Sources : <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires" target="_top">Ville de Montréal</a> et <a href="http://www.ville.dorval.qc.ca/loisirs/fr/default.asp?contentID=808" target="_top">Ville de Dorval</a>'
   license: 'Patiner Montreal est un <a href="https://github.com/opennorth/patinermontreal.ca" target="_top">logiciel libre</a> distribué sous <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt" target="_top">license MIT</a>.'
@@ -29,14 +33,14 @@ fr:
   disclaimer: Android est une marque déposée de Google Inc.
 
   # Filters
-  teamsports: Sports d'équipe
+  teamsports: Sports d’équipe
   freeskating: Patin libre
   landscaped: Paysagée
-  open: ouverte
-  cleared: déblayée
-  flooded: arrosée
-  resurfaced: resurfacée
-  favorite: mes favories
+  open: Ouverte
+  cleared: Déblayée
+  flooded: Arrosée
+  resurfaced: Resurfacée
+  favorite: Mes favories
 
   # About
   montrealouvert: Montréal Ouvert
@@ -46,6 +50,8 @@ fr:
   tweet: Tweeter
   tweet_text: Trouvez toutes les meilleures patinoires extérieures à Montréal à
   follow: Suivre
+  social: Restez connecté
+  close: Fermer
 
   # URL
   about: a-propos
@@ -129,15 +135,15 @@ fr:
     distance_in_words:
       half_a_minute: "une demi-minute"
       less_than_x_seconds:
-        zero:  "moins d'une seconde"
-        one:   "moins d'une seconde"
+        zero:  "moins d’une seconde"
+        one:   "moins d’une seconde"
         other: "moins de %{count} secondes"
       x_seconds:
         one:   "1 seconde"
         other: "%{count} secondes"
       less_than_x_minutes:
-        zero:  "moins d'une minute"
-        one:   "moins d'une minute"
+        zero:  "moins d’une minute"
+        one:   "moins d’une minute"
         other: "moins de %{count} minutes"
       x_minutes:
         one:   "1 minute"
@@ -158,10 +164,10 @@ fr:
         one:   "environ un an"
         other: "environ %{count} ans"
       over_x_years:
-        one:   "plus d'un an"
+        one:   "plus d’un an"
         other: "plus de %{count} ans"
       almost_x_years:
-        one:   "presqu'un an"
+        one:   "presqu’un an"
         other: "presque %{count} ans"
     prompts:
       year:   "Année"
@@ -238,8 +244,8 @@ fr:
   errors:
     template: &errors_template
       header:
-        one:   "Impossible d'enregistrer ce %{model} : 1 erreur"
-        other: "Impossible d'enregistrer ce %{model} : %{count} erreurs"
+        one:   "Impossible d’enregistrer ce %{model}: 1 erreur"
+        other: "Impossible d’enregistrer ce %{model}: %{count} erreurs"
       body: "Veuillez vérifier les champs suivants : "
 
   attributes:
@@ -249,15 +255,15 @@ fr:
   errors:
     format: "Le %{attribute} %{message}"
     messages: &errors_messages
-      inclusion: "n'est pas inclus(e) dans la liste"
-      exclusion: "n'est pas disponible"
-      invalid: "n'est pas valide"
+      inclusion: "n’est pas inclus(e) dans la liste"
+      exclusion: "n’est pas disponible"
+      invalid: "n’est pas valide"
       confirmation: "ne concorde pas avec la confirmation"
       accepted: "doit être accepté(e)"
       empty: "doit être rempli(e)"
       blank: "doit être rempli(e)"
       too_long:
-        one: "est trop long (pas plus d'un caractère)"
+        one: "est trop long (pas plus d’un caractère)"
         other: "est trop long (pas plus de %{count} caractères)"
       too_short:
         one: "est trop court (au moins un caractère)"
@@ -265,7 +271,7 @@ fr:
       wrong_length:
         one: "ne fait pas la bonne longueur (doit comporter un seul caractère)"
         other: "ne fait pas la bonne longueur (doit comporter %{count} caractères)"
-      not_a_number: "n'est pas un nombre"
+      not_a_number: "n’est pas un nombre"
       not_an_integer: "doit être un nombre entier"
       greater_than: "doit être supérieur à %{count}"
       greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
@@ -278,8 +284,8 @@ fr:
   activerecord:
     errors:
       messages:
-        taken: "n'est pas disponible"
-        record_invalid: "La validation a échoué : %{errors}"
+        taken: "n’est pas disponible"
+        record_invalid: "La validation a échoué: %{errors}"
         <<: *errors_messages
       template:
         <<: *errors_template

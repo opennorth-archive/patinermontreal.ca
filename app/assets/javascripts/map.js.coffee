@@ -24,7 +24,7 @@ I18n =
     time_format: '%{b} %{e}, %{l}%{P}'
     # Popup
     accuracy: 'You are within %{radius} meters of this point'
-    condition: 'in %{condition} condition'
+    condition: 'In %{condition} condition'
     unknown_condition: 'Ice condition not available'
     call_to_action: "Ask the city to publish its rink conditions"
     or_call: 'or call'
@@ -84,13 +84,13 @@ I18n =
     time_format: '%{b} %{e} à %{H}h'
     # Popup
     accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
-    condition: 'en %{condition} condition'
+    condition: 'En %{condition} condition'
     unknown_condition: 'État de la patinoire non disponible'
     call_to_action: "Demandez à la ville de publier l'état"
     or_call: 'ou appelez le'
     add_favorite: 'Ajouter aux favories'
     remove_favorite: 'Supprimer des favories'
-    explanation: 'Vous allez patiner? Informez vos ami(e)s :'
+    explanation: 'Vous allez patiner? Informez vos amis:'
     # Social
     tweet: "J'y vais"
     tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
@@ -158,13 +158,15 @@ other_domain = $('#language a').attr('href').match(/^http:\/\/[^\/]+\//)[0].repl
 $ ->
   window.debug = env is 'development'
 
-  # Hook up modals.
-  $('#about').modal
-    backdrop: true
-    keyboard: true
-  $('#thanks').modal
-    backdrop: true
-    keyboard: true
+  $('.control').tooltip()
+
+  # Toggle social sidebar
+  $(window).on 'load', (e) ->
+    $('#share-toggle').fadeIn();
+  $('#share-toggle').on 'click', (e) ->
+    e.preventDefault();
+    $('#social .navbar').slideToggle( 'fast' )
+    return
 
   # Create map.
   Map = new L.Map 'map',
@@ -256,15 +258,17 @@ $ ->
       icon = L.Icon.extend
         options:
           iconUrl: "/assets/#{@model.get 'genre'}_#{state}.png"
+          iconRetinaUrl: "/assets/#{@model.get 'genre'}_#{state}_2x.png"
           shadowUrl: "/assets/#{@model.get 'genre'}_shadow.png"
           iconSize: new L.Point 28, 28
-          shadowSize: new L.Point 44, 28
+          shadowSize: new L.Point 34, 26
           iconAnchor: new L.Point 15, 27
+          shadowAnchor: [13, 22]
           popupAnchor: offset
       # "new L.Icon.extend({})" raises "TypeError: object is not a function"
 
       @marker = new L.Marker new L.LatLng(@model.get('lat'), @model.get('lng')), icon: new icon
-      @marker._popup = new L.Popup offset: offset, @marker
+      @marker._popup = new L.Popup offset: offset, autoPan: true, autoPanPaddingTopLeft: [50,100], autoPanPaddingBottomRight: [70,40], closeButton: false, @marker
       @marker._popup.setContent @template @model.toJSON()
       @marker._popup._initLayout()
 
@@ -296,7 +300,7 @@ $ ->
       # Refresh Twitter button.
       twttr.widgets.load() if twttr.widgets
       # Pan to popup.
-      Map.panTo @marker.getLatLng()
+      $('#social .navbar').slideUp()
 
   # Don't navigate to the last known state if opening another popup.
   Map.on 'popupclose', (event) ->
@@ -328,7 +332,6 @@ $ ->
         unless @favoritesUrl()
           state = @id in kinds or @id in statuses
           @$('.icon').toggleClass 'active', state
-          @$('input').toggleAttr 'checked', state
       else
         @$('.icon').toggleClass 'active', @favoritesUrl()
       @
@@ -511,11 +514,12 @@ $ ->
       locationIcon = L.Icon.extend
         options:
           iconUrl: "/assets/marker-icon.png"
+          iconRetinaUrl: "/assets/marker-icon-2x.png"
           shadowUrl: "/assets/marker-shadow.png"
           iconSize: [25, 41]
-          shadowSize: [41, 41]
+          shadowSize: [33, 31]
           iconAnchor:   [12, 41]
-          shadowAnchor: [12, 41]
+          shadowAnchor: [10, 31]
           popupAnchor:  [0, -46]
       marker = new L.Marker event.latlng, icon: new locationIcon
       Map.addLayer marker

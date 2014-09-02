@@ -4,8 +4,8 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require bootstrap-modal
-//= require json2
+//= require bootstrap.min
+//= require json2.min
 //= require store.min
 //= require underscore-min
 //= require backbone-min
