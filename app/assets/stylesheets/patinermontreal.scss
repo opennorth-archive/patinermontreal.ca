@@ -186,7 +186,10 @@ body {
 }
 
 #branding-logo {
-  padding: 10px 0 10px 15px;
+  margin: 10px 0;
+  width: 191px;
+  height: 35px;
+  background: transparent url(/assets/sprite.png) no-repeat 0 0;
 }
 
 #thanks .modal-dialog {
@@ -331,7 +334,7 @@ body {
     .icon {
       display: inline-block;
       background: transparent url(/assets/sprite.png) no-repeat 0 -190px;
-      background-size: 250px 125px;
+      background-size: 250px 175px;
     }
   }
   h3 {
@@ -447,6 +450,14 @@ body {
 
 
 // Responsive -----------------------------------------------------------------
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+  #branding-logo {
+    background-size: 250px 175px;
+    background-position: 0 -125px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   #top-nav {
     top: 20px;
@@ -509,7 +520,7 @@ body {
     display: none;
   }
   #branding-logo {
-    padding: 7px 0 0 7px;
+    margin-left: 10px;
   }
   #bottom-controls .panel {
     @include border-radius(0);
@@ -545,7 +556,7 @@ body {
   #kinds .icon,
   #statuses .icon,
   #favories .icon {
-    background-size: 250px 125px;
+    background-size: 250px 175px;
   }
   
   #kinds .icon {
