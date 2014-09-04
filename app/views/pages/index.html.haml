@@ -1,4 +1,3 @@
-#fb-root
 #map
 
 %header#top-nav
@@ -26,9 +25,6 @@
           %li#nav-twitter
             = link_to 'https://twitter.com/patinermtl', title: t(:twitter_account), class: 'fa fa-twitter navbar-btn' do
               %span.hide=t :twitter_account
-          %li#nav-facebook
-            = link_to 'https://apps.facebook.com/152478391528436', title: t(:facebook_account), class: 'fa fa-facebook-square navbar-btn' do
-              %span.hide=t :facebook_account
           %li#nav-thanks
             = link_to t(:thanks_modal), '#thanks', 'data-toggle' => 'modal', class: 'navbar-btn'
           %li
@@ -40,20 +36,28 @@
   .navbar.navbar-default
     .container-fluid
       %ul.nav.nav-stacked
-        %li.embeded
-          %a.navbar-btn(href="https://twitter.com/patinermtl" class="twitter-follow-button" data-show-count="false" data-lang="#{locale}")
-            =t :follow
-            @patinermtl
-        %li.embeded
-          %a.navbar-btn(href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca" data-text="#{t :tweet_text}" data-via="patinermtl" data-lang="#{locale}" data-count="horizontal")
-            =t :tweet
-        %li.embeded
-          .fb-like.navbar-btn(data-href="http://patinermontreal.ca" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false")
         %li
-          %h3.hide= t :newsletter
+          %h3= t :share
+          .btn-group.btn-group-justified
+            = link_to 'http://www.facebook.com/sharer.php?u=http%3A%2F%2Fpatinermontreal.ca', title: "Facebook", class: "btn btn-default btn-facebook", target: "_blank" do
+              %span.hide Facebook
+              %span.fa.fa-facebook.fa-lg
+            / Share On Twitter
+            = link_to "http://twitter.com/share?url=http%3A%2F%2Fpatinermontreal.ca&text=#{t :tweet_text}&via=patinermtl", title: "Twitter", class: "btn btn-default btn-twitter", target: "_blank" do
+              %span.hide Twitter
+              %span.fa.fa-twitter.fa-lg
+            / Share On Google Plus
+            = link_to 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2Fpatinermontreal.ca', title: "Google+", class: "btn btn-default btn-google", target: "_blank" do
+              %span.hide Google+
+              %span.fa.fa-google-plus.fa-lg
+        %li.embeded
+          %a.navbar-btn(href="https://twitter.com/patinermtl" data-width="180px" class="twitter-follow-button" data-show-count="false" data-size="large" data-lang="#{locale}" data-dnt="true" data-screen_name="patinermtl")
+            =t :follow
+        %li
+          %h3= t :newsletter
           = form_tag 'http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
             %fieldset
-              %legend.small=t :newsletter
+              %legend.hide=t :newsletter
               .form-group
                 = email_field_tag 'EMAIL', nil, id: 'mce-EMAIL', class: 'required email form-control input-sm', placeholder: t(:placeholder), required: 'required'
               = submit_tag t(:subscribe), name: 'subscribe', id: 'mc-embedded-subscribe', class: 'btn btn-default btn-sm'
@@ -135,25 +139,6 @@
         <iframe src="https://docs.google.com/spreadsheet/embeddedform?formkey=dGp0a1lINU15QUE2R3BYVW14NmpxSEE6MQ" width="700" height="480">Loading...</iframe>
 
 :javascript
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId  : '152478391528436',
-      status : true,
-      cookie : true,
-      oauth  : true,
-      xfbml  : true,
-      channelUrl  : 'http://patinermontreal.ca/channel',
-      version    : 'v2.0'
-    });
-  };
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/#{t :facebook_locale}/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
   window.twttr = (function (d,s,id) {
     var t, js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
@@ -212,7 +197,7 @@
         <hr />
         <div class="call-to-action">
           <p><%= t('explanation') %></p>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-size="medium" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
         </div>
       <% } %>
     </div>
