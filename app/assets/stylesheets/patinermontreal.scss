@@ -223,6 +223,7 @@ body {
 #kinds .icon,
 #statuses .icon,
 #favories .icon {
+  display: block;
   margin: 5px 0;
   background: transparent url(/assets/sprite.png) no-repeat 0 0;
 }

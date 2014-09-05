@@ -41,11 +41,9 @@
             = link_to 'http://www.facebook.com/sharer.php?u=http%3A%2F%2Fpatinermontreal.ca', title: "Facebook", class: "btn btn-default btn-facebook", target: "_blank" do
               %span.hide Facebook
               %span.fa.fa-facebook.fa-lg
-            / Share On Twitter
             = link_to "http://twitter.com/share?url=http%3A%2F%2Fpatinermontreal.ca&text=#{t :tweet_text}&via=patinermtl", title: "Twitter", class: "btn btn-default btn-twitter", target: "_blank" do
               %span.hide Twitter
               %span.fa.fa-twitter.fa-lg
-            / Share On Google Plus
             = link_to 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2Fpatinermontreal.ca', title: "Google+", class: "btn btn-default btn-google", target: "_blank" do
               %span.hide Google+
               %span.fa.fa-google-plus.fa-lg
@@ -68,41 +66,41 @@
   %div{:class => 'panel'}
     .panel-body
       #branding.pull-right
-        = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "http://montrealouvert.net/?lang=#{locale}", target: '_top', id: 'montrealouvert'
+        = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "http://montrealouvert.net/?lang=#{locale}", target: '_top'
       .col-md-8.pull-left
         .btn-toolbar
           #kinds.btn-group
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PSE', :title => t(:teamsports) do
-              .icon
+              %span.icon
                 %span.hide=t(:teamsports)
             %span
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PPL', :title => t(:freeskating) do
-              .icon
+              %span.icon
                 %span.hide=t(:freeskating)
             %span
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'PP', :title => t(:landscaped) do
-              .icon
+              %span.icon
                 %span.hide=t(:landscaped)
             %span
           #statuses.btn-group
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'ouvert', :title => t(:open) do
-              .icon
+              %span.icon
                 %span.hide=t(:open)
             %span
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'deblaye', :title => t(:cleared) do
-              .icon
+              %span.icon
                 %span.hide=t(:cleared)
             %span
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'arrose', :title => t(:flooded) do
-              .icon
+              %span.icon
                 %span.hide=t(:flooded)
             %span
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'resurface', :title => t(:resurfaced) do
-              .icon
+              %span.icon
                 %span.hide=t(:resurfaced)
           .btn-group
             = button_tag :class => 'btn btn-default control', :type => 'button', :id => 'favories', :title => t(:favorite) do
-              .icon
+              %span.icon
                 %span.hide=t(:favorite)
 
       #open-rinks.col-md-2
@@ -121,7 +119,7 @@
         %h2=t :about_modal
       .modal-body
         #branding-about.pull-right
-          = link_to image_tag("montrealouvert-about-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "http://montrealouvert.net/?lang=#{locale}", target: '_top', id: 'montrealouvert'
+          = link_to image_tag("montrealouvert-about-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "http://montrealouvert.net/?lang=#{locale}", target: '_top'
         %p= t(:license).html_safe
         %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
         %p= t(:sources).html_safe
