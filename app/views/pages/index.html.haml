@@ -158,7 +158,7 @@
       <% if (adresse) { %>
         <p class="address">
           <%= adresse %>
-          <% if (tel) { %><br><%= Helpers.numberToPhone(tel, {extension: ext}) %><% } %>
+          <% if (tel) { %><div><a class="phone" href="tel:<%= tel %>"><span class="fa fa-phone"></span><%= Helpers.numberToPhone(tel, {extension: ext}) %></a></div><% } %>
         </p>
       <% } %>
       <% if (ouvert === true) { %>
@@ -180,19 +180,23 @@
           <span class="desc"><%= t('closed') %></span>
           <span class="update-date">(<%= format_date(arrondissement.date_maj) %>)</span>
         </p>
-      <% } else if (arrondissement.email) { %>
-        <p class="condition highlight">
+      <% } else { %>
+        <p class="condition unknown">
           <%= t('unknown_condition') %>
         </p>
-        <p class="call-to-action">
-          <a href="mailto:<%= arrondissement.email %>?subject=<%= encodeURIComponent("Mises à jour régulières de l’état des patinoires extérieures") %>&body=<%= Helpers.body(arrondissement) %>" class="btn default"><%= t('call_to_action') %></a>
-          <br><%= t('or_call') %>
-          <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %>
-        </p>
+        <% if (arrondissement.email || arrondissement.tel) { %>
+          <div class="call-to-action request">
+            <p><span class="fa fa-2x pull-left fa-info-circle"></span> <%= t('call_to_action') %></p>
+            <div class="btn-group">
+              <% if (arrondissement.email) { %><a href="mailto:<%= arrondissement.email %>?subject=<%= encodeURIComponent("Mises à jour régulières de l’état des patinoires extérieures") %>&body=<%= Helpers.body(arrondissement) %>" class="btn btn-default btn-sm"><span class="fa fa-envelope-o"></span> <%= t('request_email') %></a><% } %>
+              <% if (arrondissement.tel) { %><a href="tel:<%= arrondissement.tel %>" class="btn btn-default btn-sm"><span class="fa fa-phone"></span> <%= Helpers.numberToPhone(arrondissement.tel, {extension: arrondissement.ext}) %></a><% } %>
+            </div>
+          </div>
+        <% } %>
       <% } %>
       <% if (ouvert || !condition) { %>
         <hr />
-        <div class="call-to-action">
+        <div class="call-to-action twitter">
           <p><%= t('explanation') %></p>
           <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-size="medium" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
         </div>

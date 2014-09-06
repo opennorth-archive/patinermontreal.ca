@@ -26,16 +26,18 @@ I18n =
     accuracy: 'You are within %{radius} meters of this point'
     condition: 'In %{condition} condition'
     unknown_condition: 'Ice condition not available'
-    call_to_action: "Ask the city to publish its rink conditions"
+    call_to_action: "You can contribute by asking the city to publish this rink’s conditions:"
+    request_email: 'Email'
+    request_phone: 'Phone'
     or_call: 'or call'
     add_favorite: 'Add to favorites'
     remove_favorite: 'Remove from favorites'
     explanation: 'Going skating? Let your friends know:'
     # Social
-    tweet: "I'm going"
-    tweet_text_PSE: "I'm going to play hockey at %{park}"
-    tweet_text_PPL: "I'm going skating at %{park}"
-    tweet_text_PP: "I'm going skating at %{park}"
+    tweet: "I’m going"
+    tweet_text_PSE: "I’m going to play hockey at %{park}"
+    tweet_text_PPL: "I’m going skating at %{park}"
+    tweet_text_PP: "I’m going skating at %{park}"
     # Rink kinds
     _PSE: 'Team sports'
     _PPL: 'Free skating'
@@ -86,18 +88,20 @@ I18n =
     accuracy: 'Vous êtes à moins de %{radius} mètres de ce point'
     condition: 'En %{condition} condition'
     unknown_condition: 'État de la patinoire non disponible'
-    call_to_action: "Demandez à la ville de publier l'état"
+    call_to_action: "Vous pouvez contribuer en demandant à la ville de publier l’état de cette patinoire:"
+    request_email: 'Courriel'
+    request_phone: 'Téléphone'
     or_call: 'ou appelez le'
     add_favorite: 'Ajouter aux favories'
     remove_favorite: 'Supprimer des favories'
     explanation: 'Vous allez patiner? Informez vos amis:'
     # Social
-    tweet: "J'y vais"
+    tweet: "J’y vais"
     tweet_text_PSE: 'Je vais jouer au hockey à %{park}'
     tweet_text_PPL: 'Je vais patiner à %{park}'
     tweet_text_PP: 'Je vais patiner à %{park}'
     # Rink kinds
-    _PSE: "Sports d'équipe"
+    _PSE: "Sports d’équipe"
     _PPL: 'Patin libre'
     _PP: 'Paysagée'
     # Interface statuses
@@ -532,7 +536,7 @@ $ ->
   if Helpers.rinkUrl()
     Map.locate()
   else
-    Map.locate( setView: true, maxZoom: 14 )
+    Map.locate( setView: true, zoom: 13 )
 
   # Backbone doesn't attach the "events" option directly to the view, even
   # though it makes sense given that views needn't necessarily hardcode CSS

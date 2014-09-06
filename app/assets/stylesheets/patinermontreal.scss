@@ -370,6 +370,12 @@ body {
       }
     }
   }
+  .fa-phone {
+    padding-right: 5px;
+  }
+  .fa-info-circle {
+    color: #64dd17;
+  }
   .statuses {
     height: 25px;
     line-height: 1;
@@ -402,6 +408,7 @@ body {
     .desc {
       font-weight: bold;
     }
+    &.unknown,
     .update-date {
       color: #888;
     }
@@ -410,7 +417,16 @@ body {
     p {
       margin-bottom: 5px;
     }
-    height: 60px;
+    &.request {
+      margin-top: 20px;
+      max-width: 275px;
+    }
+    &.twitter {
+      height: 60px;
+    }
+    .btn-group {
+      margin-left: 28px;
+    }
   }
 }
 
@@ -652,5 +668,11 @@ body {
   }
   .leaflet-top .leaflet-control-zoom {
     margin-top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #rink-info .request {
+    display: none;
   }
 }
