@@ -683,3 +683,20 @@ body {
     display: none;
   }
 }
+
+// smartbanner -----------------------------------------------------------------
+#smartbanner { 
+  position:absolute; left:0; top:-82px; border-bottom:2px solid #000; width:100%; height:80px; background:#fff; z-index:9998; overflow:hidden; -webkit-text-size-adjust:none; 
+  .sb-container { margin: 0 auto; }
+  .btn.sb-close { padding: 6px 8px; margin-top: 23px; }
+  .sb-icon { position:absolute; left:30px; top:10px; display:block; width:57px; height:57px; background-size:cover; box-shadow:0 1px 3px rgba(0,0,0,0.5); background-color:rgba(0,0,0,0.4); }
+  .no-icon .sb-icon { display:none; }
+  .sb-info { position:absolute; left:98px; top:14px; width:44%; color:#000; }
+  .no-icon .sb-info { left:34px; }
+  .sb-info strong { display:block; }
+  .sb-info > span { display:block; font-size: 0.8em;}
+  .sb-info em { font-style:normal; text-transform:uppercase; }
+  .sb-button { position:absolute; right:20px; top:30px; text-transform:uppercase; }
+  &.ios .sb-icon { border-radius:10px; }
+  &.android .sb-icon { border-radius:3px; }
+}
