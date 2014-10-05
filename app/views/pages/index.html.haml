@@ -38,12 +38,12 @@
         %li
           %h3= t :share
           .btn-group.btn-group-justified
-            = link_to 'http://www.facebook.com/sharer.php?u=http%3A%2F%2Fpatinermontreal.ca', title: "Facebook", class: "btn btn-default btn-facebook", target: "_blank" do
-              %span.hide Facebook
-              %span.fa.fa-facebook.fa-lg
             = link_to "http://twitter.com/share?url=http%3A%2F%2Fpatinermontreal.ca&text=#{t :tweet_text}&via=patinermtl", title: "Twitter", class: "btn btn-default btn-twitter", target: "_blank" do
               %span.hide Twitter
               %span.fa.fa-twitter.fa-lg
+            = link_to 'http://www.facebook.com/sharer.php?u=http%3A%2F%2Fpatinermontreal.ca', title: "Facebook", class: "btn btn-default btn-facebook", target: "_blank" do
+              %span.hide Facebook
+              %span.fa.fa-facebook.fa-lg
             = link_to 'https://plusone.google.com/_/+1/confirm?hl=en&url=http%3A%2F%2Fpatinermontreal.ca', title: "Google+", class: "btn btn-default btn-google", target: "_blank" do
               %span.hide Google+
               %span.fa.fa-google-plus.fa-lg
@@ -156,10 +156,11 @@
       <h3><span class="icon <%= genre %>" title="<%= t('_' + genre) %>"></span><%= parc %></h3>
       <h4><%= t(description) %></h4>
       <% if (adresse) { %>
-        <p class="address">
+        <div class="address">
           <%= adresse %>
+          <div class="borough"><%= arrondissement.nom_arr %></div>
           <% if (tel) { %><div><a class="phone" href="tel:<%= tel %>"><span class="fa fa-phone"></span><%= Helpers.numberToPhone(tel, {extension: ext}) %></a></div><% } %>
-        </p>
+        </div>
       <% } %>
       <% if (ouvert === true) { %>
         <p class="condition">
