@@ -78,6 +78,8 @@ I18n =
     PPL: 'free-skating'
     PP: 'landscaped'
     C: 'landscaped'
+    # smartbanner
+    download: 'Download'
   fr:
     locale: 'fr'
     other_locale: 'en'
@@ -122,6 +124,8 @@ I18n =
     PPL: 'patin-libre'
     PP: 'paysagee'
     C: 'paysagee'
+    # smartbanner
+    download: 'Télécharger'
 
 window.t = (string, args = {}) ->
   current_locale = args.locale or locale
@@ -163,6 +167,16 @@ $ ->
   window.debug = env is 'development'
 
   $('.control').tooltip()
+
+  $.smartbanner
+    title: "Patiner Montréal"
+    authors: {'android': 'Android' , 'ios': 'iPhone'}
+    price: null
+    appStoreLanguage: t('locale')
+    icons: {'android': '/assets/app-icon-android.png', 'ios': '/assets/app-icon-ios.png'}
+    iOSUniversalApp: false
+    button: t('download')
+    appendToSelector: 'header'
 
   # Toggle social sidebar
   $(window).on 'load', (e) ->
