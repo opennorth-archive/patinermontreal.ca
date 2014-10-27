@@ -16,6 +16,7 @@ en:
   subscribe: Subscribe
   android: Patiner Montréal (Android)
   iphone : Pank (iPhone)
+  download: Download
   windows: Sports MTL (Windows Phone)
   twitter_account: Patiner Montréal on Twitter
   facebook_account: Patiner Montréal on Facebook
@@ -40,6 +41,7 @@ en:
 
   # Social
   facebook_locale: en_US
+  share: Share
   tweet: Tweet
   tweet_text: Find all the best outdoor skating rinks in Montreal at
   follow: Follow

@@ -37,6 +37,10 @@ html,
 body {
   height: 100%;
 }
+#map,
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 #map {
   height: 100%;
 }
@@ -64,14 +68,51 @@ body {
 }
 
 #social{
+  h3 {
+    font-size: 1em;
+    font-weight: normal;
+    margin-bottom: 7px;
+    margin-top: 5px;
+  }
+  
   .navbar {
+    max-width: 220px;
     background: #fff;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
     padding: 10px 5px 15px;
   }
   .embeded {
-    height: 40px !important;
+    height: 55px !important;
     overflow: hidden;
+  }
+  
+  .btn-group {
+    margin-bottom: 15px;
+    .btn {
+      border: none;
+      color: #fff;
+      &.btn-facebook {
+        background-color: #3b5998; 
+        &:hover {
+          color: #3b5998;
+        }
+      }
+      &.btn-twitter {
+        background-color: #00aced;
+        &:hover {
+          color: #00aced;
+        }
+      }
+      &.btn-google{ 
+        background-color: #dd4b39; 
+        &:hover {
+          color: #dd4b39;
+        }
+      }
+      &:hover {
+        background-color: #eee; 
+      }
+    }
   }
 }
 
@@ -93,6 +134,7 @@ body {
 
 #open-rinks {
   margin-left: 20px;
+  margin-top: 12px;
   .progress-bar {
     color: #428bca;
   }
@@ -112,7 +154,7 @@ body {
   text-align: right;
   img {
     max-height: 75px;
-    padding: 5px 0;
+    padding: 5px 10px 5px 0;
   }
 }
 
@@ -148,13 +190,11 @@ body {
   margin: 0;
 }
 
-legend.small {
-  border-bottom: 0;
-  margin-bottom: 2px;
-}
-
 #branding-logo {
-  padding: 10px 0 10px 15px;
+  margin: 10px 0;
+  width: 191px;
+  height: 35px;
+  background: transparent url(/assets/sprite.png) no-repeat 0 0;
 }
 
 #thanks .modal-dialog {
@@ -187,6 +227,7 @@ legend.small {
 #kinds .icon,
 #statuses .icon,
 #favories .icon {
+  display: block;
   margin: 5px 0;
   background: transparent url(/assets/sprite.png) no-repeat 0 0;
 }
@@ -299,7 +340,7 @@ legend.small {
     .icon {
       display: inline-block;
       background: transparent url(/assets/sprite.png) no-repeat 0 -190px;
-      background-size: 250px 125px;
+      background-size: 250px 175px;
     }
   }
   h3 {
@@ -333,6 +374,12 @@ legend.small {
       }
     }
   }
+  .fa-phone {
+    padding-right: 5px;
+  }
+  .fa-info-circle {
+    color: #64dd17;
+  }
   .statuses {
     height: 25px;
     line-height: 1;
@@ -365,15 +412,28 @@ legend.small {
     .desc {
       font-weight: bold;
     }
+    &.unknown,
     .update-date {
       color: #888;
     }
+  }
+  .borough {
+    color: #888;
   }
   .call-to-action {
     p {
       margin-bottom: 5px;
     }
-    height: 60px;
+    &.request {
+      margin-top: 20px;
+      max-width: 275px;
+    }
+    &.twitter {
+      height: 60px;
+    }
+    .btn-group {
+      margin-left: 28px;
+    }
   }
 }
 
@@ -415,6 +475,14 @@ legend.small {
 
 
 // Responsive -----------------------------------------------------------------
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+  #branding-logo {
+    background-size: 250px 175px;
+    background-position: 0 -125px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   #top-nav {
     top: 20px;
@@ -433,7 +501,7 @@ legend.small {
   .leaflet-top .leaflet-control-zoom {
     margin-top: $sidebar-height + 30;
   }
-  #nav-facebook, #nav-twitter {
+  #nav-twitter {
     display: none;
   }
   .leaflet-left .leaflet-control {
@@ -477,7 +545,7 @@ legend.small {
     display: none;
   }
   #branding-logo {
-    padding: 7px 0 0 7px;
+    margin-left: 10px;
   }
   #bottom-controls .panel {
     @include border-radius(0);
@@ -513,7 +581,7 @@ legend.small {
   #kinds .icon,
   #statuses .icon,
   #favories .icon {
-    background-size: 250px 125px;
+    background-size: 250px 175px;
   }
   
   #kinds .icon {
@@ -608,4 +676,27 @@ legend.small {
   .leaflet-top .leaflet-control-zoom {
     margin-top: 15px;
   }
+}
+
+@media (max-width: 480px) {
+  #rink-info .request {
+    display: none;
+  }
+}
+
+// smartbanner -----------------------------------------------------------------
+#smartbanner { 
+  position:absolute; left:0; top:-82px; border-bottom:2px solid #000; width:100%; height:80px; background:#fff; z-index:9998; overflow:hidden; -webkit-text-size-adjust:none; 
+  .sb-container { margin: 0 auto; }
+  .btn.sb-close { padding: 6px 8px; margin-top: 23px; }
+  .sb-icon { position:absolute; left:30px; top:10px; display:block; width:57px; height:57px; background-size:cover; box-shadow:0 1px 3px rgba(0,0,0,0.5); background-color:rgba(0,0,0,0.4); }
+  .no-icon .sb-icon { display:none; }
+  .sb-info { position:absolute; left:98px; top:14px; width:44%; color:#000; }
+  .no-icon .sb-info { left:34px; }
+  .sb-info strong { display:block; }
+  .sb-info > span { display:block; font-size: 0.8em;}
+  .sb-info em { font-style:normal; text-transform:uppercase; }
+  .sb-button { position:absolute; right:20px; top:30px; text-transform:uppercase; }
+  &.ios .sb-icon { border-radius:10px; }
+  &.android .sb-icon { border-radius:3px; }
 }

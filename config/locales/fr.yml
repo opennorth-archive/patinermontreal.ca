@@ -23,6 +23,7 @@ fr:
   subscribe: S'abonner
   android: Patiner Montréal (Android)
   iphone : Pank (iPhone)
+  download: Télécharger
   windows: Sports MTL (Windows Phone)
   twitter_account: Patiner Montréal sur Twitter
   facebook_account: Patiner Montréal sur Facebook
@@ -47,6 +48,7 @@ fr:
 
   # Social
   facebook_locale: fr_CA
+  share: Partager
   tweet: Tweeter
   tweet_text: Trouvez toutes les meilleures patinoires extérieures à Montréal à
   follow: Suivre

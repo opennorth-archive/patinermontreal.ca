@@ -4,12 +4,13 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require bootstrap.min
+//= require bootstrap-3.2.0.min
 //= require json2.min
 //= require store.min
-//= require underscore-min
-//= require backbone-min
-//= require backbone.localStorage-min
-//= require leaflet
+//= require underscore-1.5.0.min
+//= require backbone-1.1.2.min
+//= require backbone.localStorage-1.1.13.min
+//= require leaflet-0.8-dev.min
 //= require iso8601.min
+//= require jquery.smartbanner.min
 //= require map
