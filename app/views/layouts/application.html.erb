@@ -28,11 +28,13 @@
   <meta property="og:description" content="Patiner Montréal vous permet de connaître l’état des patinoires extérieures à Montréal et d’indiquer à vos ami(e)s où vous allez jouer. Patiner Montreal lets you find the outdoor rinks in the best condition in Montreal and tell your friends where you’re going to play.">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application' %>
-  <!--[if lt IE 9]> <%= stylesheet_link_tag 'ie7.css' %> <![endif]-->
-  <!--[if lt IE 9]> <%= javascript_include_tag 'respond.min.js' %> <![endif]-->
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-  <!--[if lt IE 9]> <%= stylesheet_link_tag 'font-awesome-ie7.css' %> <![endif]-->
-  <%= javascript_include_tag 'modernizr-2.6.2.min.js' %>
+  <!--[if lt IE 9]>
+  <%= stylesheet_link_tag 'ie7.css' %>
+  <%= stylesheet_link_tag 'font-awesome-ie7.css' %>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= locale %>">
@@ -40,7 +42,6 @@
 <%= yield %>
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script>window.jQuery || document.write("<%=j javascript_include_tag 'jquery-1.11.1.min.js' %>")</script>
 <%= javascript_include_tag 'application' %>
 <% if Rails.env.production? %>
 <script>
