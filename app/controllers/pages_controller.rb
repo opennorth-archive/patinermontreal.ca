@@ -1,13 +1,9 @@
 class PagesController < ApplicationController
   def index
-    if ENV['MAINTENANCE'] && params.keys.none?{|param| param[/\A\d/]}
-      render file: Rails.root.join('maintenance', 'index.html'), layout: false
-    else
-      @rinks = Patinoire.geocoded
-      @fraction = @rinks.ouvert.count / @rinks.tracked.count.to_f
-      @last_updated = Arrondissement.maximum(:date_maj)
-      fresh_when etag: @rinks, last_modified: (@rinks.maximum(:updated_at) || Time.now).utc, public: true
-    end
+    @rinks = Patinoire.geocoded
+    @fraction = @rinks.ouvert.count / @rinks.tracked.count.to_f
+    @last_updated = Arrondissement.maximum(:date_maj)
+    fresh_when etag: @rinks, last_modified: (@rinks.maximum(:updated_at) || Time.now).utc, public: true
   end
 
   def data

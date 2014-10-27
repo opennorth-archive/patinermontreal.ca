@@ -43,14 +43,6 @@ Otherwise:
 
 ## Season Start & End
 
-To end the season and display the sign-up page, run:
-
-    heroku config:add MAINTENANCE=on
-
-To turn off the sign-up page at the beginning of a season, run:
-
-    heroku config:remove MAINTENANCE
-
 To reset the Heroku database at the beginning of a season, run:
 
     heroku pg:reset DATABASE_NAME
