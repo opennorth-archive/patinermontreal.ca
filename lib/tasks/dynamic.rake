@@ -109,14 +109,14 @@ namespace :import do
         end
 
         # CDN Bleu-Blanc-Bouge rink 
-        if arrondissement.cle == 'cdn' && patinoire.nom == 'Patinoire Bleu-Blanc-Bouge (PSE)'
-          patinoire.parc = 'de la Confédération'
-          patinoire.disambiguation = 'réfrigérée'
-        end
-
-        # Temporary solution (early december) for refrigerated rinks
         if patinoire.description == 'Patinoire réfrigérée Bleu-Blanc-Bouge'
-            patinoire.ouvert = true
+          # CDN BBB rink is missing the Park name
+          if arrondissement.cle == 'cdn'
+            patinoire.parc = 'de la Confédération'
+          end            
+          # Temporary solution (early december) for refrigerated rinks
+          patinoire.ouvert = true
+          patinoire.condition = 'N/A'
         end
         
         patinoire.source = 'donnees.ville.montreal.qc.ca'
