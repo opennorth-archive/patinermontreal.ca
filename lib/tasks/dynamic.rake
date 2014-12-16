@@ -81,6 +81,7 @@ namespace :import do
           'Patinoire BBB/aire de glace du parc Hayward'=> 'Hayward',
           'Patinoire décorative Toussaint-Louverture'=> 'Toussaint-Louverture',
           'Patinoire du Glacis'=> 'du Glacis',
+          'Roger Rousseau'=> 'Roger-Rousseau',
         }.reduce(parc) do |string,(from,to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
