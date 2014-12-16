@@ -8,6 +8,7 @@ namespace :import do
       nom_arr = node.at_css('nom_arr').text.
         sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville').
         sub('Villeray-Saint-Michel - Parc-Extension', 'Villeray—Saint-Michel—Parc-Extension').
+        sub('L\'Île-Bizard - Sainte-Geneviève', "L'Île-Bizard—Sainte-Geneviève").
         gsub(' - ', '—')
 
       arrondissement = Arrondissement.find_or_initialize_by_nom_arr(nom_arr)
@@ -100,6 +101,17 @@ namespace :import do
         if patinoire.nom == 'Patinoire de patin libre, Le Prévost no 1 (PPL)'
           patinoire.parc = 'Le Prévost'
           patinoire.disambiguation = nil
+        end
+        
+        # There is no "no 2", also require a valid description
+        if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)', 'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)', 'Patinoire # 1, Parc Robert-Sauvé (PSE)'].include? patinoire.nom
+          patinoire.disambiguation = nil
+          patinoire.description = 'Patinoire de hockey'
+        end
+        
+        # Require a valid description
+        if ['Patinoire # 2 , Parc Eugène-Dostie (PSE)', 'Patinoire # 1 , Parc Eugène-Dostie (PSE)'].include? patinoire.nom
+          patinoire.description = 'Patinoire de hockey'
         end
 
         # There are identical lines.
