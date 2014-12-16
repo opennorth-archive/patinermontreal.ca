@@ -28,7 +28,7 @@ namespace :import do
           'Patinoire avec bandes'
         when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)'
           'Patinoire réfrigérée'
-        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis'
+        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis (PP)'
           'Patinoire de patin libre'
         when 'Patinoire décorative Toussaint-Louverture (PP)'
           'Patinoire décorative'
