@@ -53,7 +53,7 @@ namespace :import do
         patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|no \d)\b/i, 1]).andand.downcase
 #        patinoire.disambiguation ||= "bbb-canadiens" if patinoire.nom[/(Bleu(\W)?Blanc(\W)?Bouge\b)|(\bBBB\b)\b/i, 1]
         patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d),/, 1]
-        patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
+        patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée' || patinoire.description == 'Patinoire réfrigérée Bleu-Blanc-Bouge'
 
         # Expand/correct park names.
         parc = patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1] || patinoire.nom[/ du parc (.+) \(/, 1] || patinoire.nom[/(.+) \(/, 1]
@@ -112,6 +112,12 @@ namespace :import do
         if arrondissement.cle == 'cdn' && patinoire.nom == 'Patinoire Bleu-Blanc-Bouge (PSE)'
           patinoire.parc = 'de la Confédération'
           patinoire.disambiguation = 'réfrigérée'
+        end
+
+        # Temporary solution (early december) for refrigerated rinks
+        if patinoire.disambiguation == 'réfrigérée'
+            patinoire.ouvert = true
+            patinoire.condition = 'N/A'
         end
         
         patinoire.source = 'donnees.ville.montreal.qc.ca'
