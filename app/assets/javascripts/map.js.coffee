@@ -50,6 +50,7 @@ I18n =
     'Patinoire décorative': 'Decorative rink'
     'Patinoire entretenue par les citoyens': 'Rink maintained by citizens'
     'Patinoire réfrigérée': 'Refrigerated rink'
+    'Patinoire réfrigérée Bleu-Blanc-Bouge': 'Refrigerated rink Bleu-Blanc-Bouge'
     'Petite patinoire avec bandes': 'Small rink with boards'
     # Interface statuses
     open: 'Open'

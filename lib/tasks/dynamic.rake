@@ -27,7 +27,7 @@ namespace :import do
         when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)', 'Patinoire BBB/aire de glace du parc Hayward (PSE)'
           'Patinoire avec bandes'
         when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)'
-          'Patinoire réfrigérée'
+          'Patinoire réfrigérée Bleu-Blanc-Bouge'
         when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis (PP)'
           'Patinoire de patin libre'
         when 'Patinoire décorative Toussaint-Louverture (PP)'
@@ -51,6 +51,7 @@ namespace :import do
         patinoire.genre = patinoire.nom[/\((PP|PPL|PSE)\)\z/, 1]
 
         patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|no \d)\b/i, 1]).andand.downcase
+#        patinoire.disambiguation ||= "bbb-canadiens" if patinoire.nom[/(Bleu(\W)?Blanc(\W)?Bouge\b)|(\bBBB\b)\b/i, 1]
         patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d),/, 1]
         patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
 
@@ -107,6 +108,12 @@ namespace :import do
           flip = flip == 1 ? 2 : 1
         end
 
+        # CDN Bleu-Blanc-Bouge rink 
+        if arrondissement.cle == 'cdn' && patinoire.nom == 'Patinoire Bleu-Blanc-Bouge (PSE)'
+          patinoire.parc = 'de la Confédération'
+          patinoire.disambiguation = 'réfrigérée'
+        end
+        
         patinoire.source = 'donnees.ville.montreal.qc.ca'
         begin
           patinoire.save!
