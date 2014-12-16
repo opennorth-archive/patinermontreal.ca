@@ -115,9 +115,8 @@ namespace :import do
         end
 
         # Temporary solution (early december) for refrigerated rinks
-        if patinoire.disambiguation == 'réfrigérée'
+        if patinoire.description == 'Patinoire réfrigérée Bleu-Blanc-Bouge'
             patinoire.ouvert = true
-            patinoire.condition = 'N/A'
         end
         
         patinoire.source = 'donnees.ville.montreal.qc.ca'
