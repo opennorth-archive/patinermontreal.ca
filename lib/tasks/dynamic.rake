@@ -28,8 +28,10 @@ namespace :import do
           'Patinoire avec bandes'
         when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)'
           'Patinoire réfrigérée'
-        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)'
+        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis'
           'Patinoire de patin libre'
+        when 'Patinoire décorative Toussaint-Louverture'
+          'Patinoire décorative'
         else
           patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?(?:,|-| du parc\b)/, 1] || patinoire.nom
         end
@@ -77,8 +79,6 @@ namespace :import do
           'Patinoire Bleu-Blanc-Bouge'       => '',
           'patinoire extérieure'             => '',
           'Patinoire BBB/aire de glace du parc Hayward'=> 'Hayward',
-          'Patinoire décorative Toussaint-Louverture'=> 'Toussaint-Louverture',
-          'Patinoire du Glacis'=> 'du Glacis',
         }.reduce(parc) do |string,(from,to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
