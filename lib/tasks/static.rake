@@ -9,12 +9,24 @@ namespace :import do
       arrondissement.source = 'docs.google.com'
       arrondissement.save!
 
+      # Manually added Bleu-Blanc-Bouge rinks, based on extra field = "bbb"
+      is_bbb = row['extra'] == 'bbb'
+      
       row.delete('nom_arr')
       row.delete('extra')
       row.delete('source_url')
 
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_disambiguation_and_arrondissement_id(row['parc'], row['genre'], row['disambiguation'], arrondissement.id)
       patinoire.attributes = row.to_hash
+
+      # Rename the manually added Bleu-Blanc-Bouge rinks
+      if is_bbb
+        patinoire.description = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
+        # Temporary solution (early december) for refrigerated rinks
+        patinoire.ouvert = true
+        patinoire.condition = 'N/A'
+      end
+      
       patinoire.source = 'docs.google.com'
       patinoire.save!
     end

@@ -8,6 +8,7 @@ namespace :import do
       nom_arr = node.at_css('nom_arr').text.
         sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville').
         sub('Villeray-Saint-Michel - Parc-Extension', 'Villeray—Saint-Michel—Parc-Extension').
+        sub('L\'Île-Bizard - Sainte-Geneviève', "L'Île-Bizard—Sainte-Geneviève").
         gsub(' - ', '—')
 
       arrondissement = Arrondissement.find_or_initialize_by_nom_arr(nom_arr)
@@ -27,9 +28,11 @@ namespace :import do
         when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)', 'Patinoire BBB/aire de glace du parc Hayward (PSE)'
           'Patinoire avec bandes'
         when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)'
-          'Patinoire réfrigérée'
-        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)'
+          'Patinoire réfrigérée Bleu-Blanc-Bouge'
+        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis (PP)'
           'Patinoire de patin libre'
+        when 'Patinoire décorative Toussaint-Louverture (PP)'
+          'Patinoire décorative'
         else
           patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?(?:,|-| du parc\b)/, 1] || patinoire.nom
         end
@@ -49,8 +52,9 @@ namespace :import do
         patinoire.genre = patinoire.nom[/\((PP|PPL|PSE)\)\z/, 1]
 
         patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|no \d)\b/i, 1]).andand.downcase
+#        patinoire.disambiguation ||= "bbb-canadiens" if patinoire.nom[/(Bleu(\W)?Blanc(\W)?Bouge\b)|(\bBBB\b)\b/i, 1]
         patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d),/, 1]
-        patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée'
+        patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée' || patinoire.description == 'Patinoire réfrigérée Bleu-Blanc-Bouge'
 
         # Expand/correct park names.
         parc = patinoire.nom[/, ([^(]+?)(?: no \d)? \(/, 1] || patinoire.nom[/ du parc (.+) \(/, 1] || patinoire.nom[/(.+) \(/, 1]
@@ -77,6 +81,9 @@ namespace :import do
           'Patinoire Bleu-Blanc-Bouge'       => '',
           'patinoire extérieure'             => '',
           'Patinoire BBB/aire de glace du parc Hayward'=> 'Hayward',
+          'Patinoire décorative Toussaint-Louverture'=> 'Toussaint-Louverture',
+          'Patinoire du Glacis'=> 'du Glacis',
+          'Roger Rousseau'=> 'Roger-Rousseau',
         }.reduce(parc) do |string,(from,to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
@@ -95,6 +102,17 @@ namespace :import do
           patinoire.parc = 'Le Prévost'
           patinoire.disambiguation = nil
         end
+        
+        # There is no "no 2", also require a valid description
+        if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)', 'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)', 'Patinoire # 1, Parc Robert-Sauvé (PSE)'].include? patinoire.nom
+          patinoire.disambiguation = nil
+          patinoire.description = 'Patinoire de hockey'
+        end
+        
+        # Require a valid description
+        if ['Patinoire # 2 , Parc Eugène-Dostie (PSE)', 'Patinoire # 1 , Parc Eugène-Dostie (PSE)'].include? patinoire.nom
+          patinoire.description = 'Patinoire de hockey'
+        end
 
         # There are identical lines.
         if patinoire.parc == 'LaSalle' && patinoire.genre == 'PSE'
@@ -102,6 +120,17 @@ namespace :import do
           flip = flip == 1 ? 2 : 1
         end
 
+        # CDN Bleu-Blanc-Bouge rink 
+        if patinoire.description == 'Patinoire réfrigérée Bleu-Blanc-Bouge'
+          # CDN BBB rink is missing the Park name
+          if arrondissement.cle == 'cdn'
+            patinoire.parc = 'de la Confédération'
+          end            
+          # Temporary solution (early december) for refrigerated rinks
+          patinoire.ouvert = true
+          patinoire.condition = 'N/A'
+        end
+        
         patinoire.source = 'donnees.ville.montreal.qc.ca'
         begin
           patinoire.save!

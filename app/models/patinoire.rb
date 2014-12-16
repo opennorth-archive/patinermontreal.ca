@@ -25,6 +25,7 @@ class Patinoire < ActiveRecord::Base
     'Rond de glace',
     'Sentier de glace',
     'Sentier à patiner décoré',
+    'Patinoire réfrigérée Bleu-Blanc-Bouge',
   ], allow_blank: true
   validates_inclusion_of :genre, in: [
     'PP',
@@ -40,6 +41,7 @@ class Patinoire < ActiveRecord::Base
     'petite',
     'grande',
     'réfrigérée',
+    'bbb-canadiens',
   ], allow_blank: true
   validates_inclusion_of :source, in: [
     'docs.google.com',
