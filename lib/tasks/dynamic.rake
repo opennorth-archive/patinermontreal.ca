@@ -129,8 +129,8 @@ namespace :import do
             patinoire.nom = 'Patinoire réfrigérée Bleu-Blanc-Bouge, Parc de la Confédération (PSE)'
           end            
           # Temporary solution (early december) for refrigerated rinks
-          patinoire.ouvert = true
-          patinoire.condition = 'N/A'
+#           patinoire.ouvert = true
+#           patinoire.condition = 'N/A'
         end
         
         patinoire.source = 'donnees.ville.montreal.qc.ca'
