@@ -25,9 +25,9 @@ namespace :import do
         end
 
         description = case patinoire.nom
-        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)', 'Patinoire BBB/aire de glace du parc Hayward (PSE)'
+        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)'
           'Patinoire avec bandes'
-        when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)'
+        when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)', 'Patinoire Bleu Blanc Bouge du parc Hayward (PSE)'
           'Patinoire réfrigérée Bleu-Blanc-Bouge'
         when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis (PP)'
           'Patinoire de patin libre'
@@ -78,9 +78,8 @@ namespace :import do
           'Y-Thériault/Sherbrooke'           => 'Yves-Thériault/Sherbrooke',
           'Patinoire extérieure Domaine Chartier'=> 'Domaine Chartier',
           # Need to do independent research to find where these are.
-          'Patinoire Bleu-Blanc-Bouge'       => '',
           'patinoire extérieure'             => '',
-          'Patinoire BBB/aire de glace du parc Hayward'=> 'Hayward',
+          'Patinoire Bleu Blanc Bouge du parc Hayward (PSE)'=> 'Hayward',
           'Patinoire décorative Toussaint-Louverture'=> 'Toussaint-Louverture',
           'Patinoire du Glacis'=> 'du Glacis',
           'Roger Rousseau'=> 'Roger-Rousseau',
