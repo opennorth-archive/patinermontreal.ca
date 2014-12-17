@@ -125,7 +125,7 @@ namespace :import do
           if arrondissement.cle == 'cdn'
             patinoire.parc = 'de la Confédération'
             # Following line is to have a clean name in the API output
-            patinoire.nom = 'Patinoire réfrigérée Bleu-Blanc-Bouge, Parc de la Confédération (PSE)'
+            patinoire.nom = 'Patinoire Bleu-Blanc-Bouge, parc de la Confédération (PSE)'
           end            
           # Temporary solution (early december) for refrigerated rinks
 #           patinoire.ouvert = true

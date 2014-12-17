@@ -23,8 +23,8 @@ namespace :import do
       if is_bbb
         patinoire.description = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
         # Temporary solution (early december) for refrigerated rinks
-        patinoire.ouvert = true
-        patinoire.condition = 'N/A'
+#         patinoire.ouvert = true
+#         patinoire.condition = 'N/A'
       end
       
       patinoire.source = 'docs.google.com'
