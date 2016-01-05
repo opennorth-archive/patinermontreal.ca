@@ -8,6 +8,7 @@ namespace :import do
       nom_arr = node.at_css('nom_arr').text.
         sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville').
         sub('Villeray-Saint-Michel - Parc-Extension', 'Villeray—Saint-Michel—Parc-Extension').
+        sub('Côte-des-Neiges - Notre-Dame-de-Grâce', 'Côte-des-Neiges—Notre-Dame-de-Grâce').
         sub('L\'Île-Bizard - Sainte-Geneviève', "L'Île-Bizard—Sainte-Geneviève").
         gsub(' - ', '—')
 
@@ -25,13 +26,13 @@ namespace :import do
         end
 
         description = case patinoire.nom
-        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)'
+        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)', 'Patinoire De Gaspé/Bernard (PSE)'
           'Patinoire avec bandes'
-        when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)', 'Patinoire Bleu Blanc Bouge du parc Hayward (PSE)'
+        when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)', 'Patinoire Bleu Blanc Bouge du parc Hayward (PSE)', 'Patinoire Bleu, Blanc, Bouge du parc Le Carignan (PSE)'
           'Patinoire réfrigérée Bleu-Blanc-Bouge'
-        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis (PP)'
+        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis (PP)', 'Patinoire de parin libre du parc Sauvé (PPL)'
           'Patinoire de patin libre'
-        when 'Patinoire décorative Toussaint-Louverture (PP)'
+        when 'Patinoire décorative Toussaint-Louverture (PP)', 'Patinoire décorative Parc Arthur-Therrien (PP)', 'Patinoire du parc Aimé-Léonard (PP)', 'Centre comm R-Goupil, Patinoire décorative (PP)'
           'Patinoire décorative'
         else
           patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?(?:,|-| du parc\b)/, 1] || patinoire.nom
@@ -42,6 +43,7 @@ namespace :import do
           'Pat. avec bandes'           => 'Patinoire avec bandes',
           'Pati déco'                  => 'Patinoire décorative',
           'Patinoire à bandes'         => 'Patinoire avec bandes',
+          'Patnoire à bandes'          => 'Patinoire avec bandes',
           'Patinoire avec bande'       => 'Patinoire avec bandes',
           'Patinoire bandes'           => 'Patinoire avec bandes',
           'Patinoire ext. avec bandes' => 'Patinoire avec bandes',
@@ -79,10 +81,15 @@ namespace :import do
           'Patinoire extérieure Domaine Chartier'=> 'Domaine Chartier',
           # Need to do independent research to find where these are.
           'patinoire extérieure'             => '',
-          'Patinoire Bleu Blanc Bouge du parc Hayward (PSE)'=> 'Hayward',
+          'Patinoire Bleu Blanc Bouge du parc Hayward'=> 'Hayward',
+          'Blanc, Bouge du parc Le Carignan'=> 'Le Carignan',
           'Patinoire décorative Toussaint-Louverture'=> 'Toussaint-Louverture',
           'Patinoire du Glacis'=> 'du Glacis',
           'Roger Rousseau'=> 'Roger-Rousseau',
+#           'Centre comm R-Goupil, Patinoire décorative'=> 'Centre communautaire René-Goupil',
+          'Patinoire décorative Parc Arthur-Therrien'=> 'Arthur-Therrien',
+          'Patinoire du parc Aimé-Léonard'=> 'Aimé-Léonard',
+          'Patinoire De Gaspé/Bernard'=> 'Champ des possibles'
         }.reduce(parc) do |string,(from,to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
@@ -168,6 +175,12 @@ namespace :import do
           genre: 'PSE',
           arrondissement_id: arrondissement.id,
         }
+      when 'Terrain Hodgson - Patinoire de hockey Mini'
+        {
+          parc: 'Hodgson',
+          genre: 'PSE',
+          arrondissement_id: arrondissement.id,
+        }
       when 'Parc Rugby'
         {
           parc: 'Rugby',
@@ -188,9 +201,9 @@ namespace :import do
 
       condition = tr.at_css('td:eq(5)').text.gsub(/[[:space:]]/, ' ').strip
       attributes[:condition] = case condition
-      when 'excellente'
+      when 'excellente', 'Excellent'
         'Excellente'
-      when 'bonne'
+      when 'bonne', 'Bon'
         'Bonne'
       when 'mauvaise'
         'Mauvaise'
