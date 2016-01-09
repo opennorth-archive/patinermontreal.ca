@@ -20,20 +20,28 @@ namespace :import do
       begin
         arrondissement.save!
 
-        patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id(node.at_css('nom').text, arrondissement.id)
+        # Expand/correct rink names to avoid later parsing errors
+        xml_name = node.at_css('nom').text.sub(' du parc ', ', parc ').gsub(/([a-z])\sparc/im, '\1, parc').gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge').strip
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, parc de la Confédération (PSE)' if xml_name == 'Patinoire Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'cdn' 
+        xml_name = 'Patinoire de patin libre, parc du Glacis (PP)' if xml_name == 'Patinoire du Glacis (PP)'
+        xml_name = 'Patinoire décorative, Toussaint-Louverture (PP)' if xml_name == 'Patinoire décorative Toussaint-Louverture (PP)'
+        xml_name = 'Patinoire extérieure, Domaine Chartier (PPL)' if xml_name == 'Patinoire extérieure Domaine Chartier (PPL)'
+        xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)' if xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
+        xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)' if xml_name == 'Patinoire De Gaspé/Bernard (PSE)'
+        xml_name = 'Patinoire décorative, parc Aimé-Léonard (PP)' if xml_name == 'Patinoire, parc Aimé-Léonard (PP)'
+
+        patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id(xml_name, arrondissement.id)
         %w(ouvert deblaye arrose resurface condition).each do |attribute|
           patinoire[attribute] = node.at_css(attribute).text
         end
 
         description = case patinoire.nom
-        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)', 'Patinoire De Gaspé/Bernard (PSE)'
+        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)'
           'Patinoire avec bandes'
-        when 'Patinoire Bleu Blanc Bouge, Parc Willibrord (PSE)', 'Patinoire Bleu-Blanc-Bouge (PSE)', 'Patinoire Bleu Blanc Bouge, François-Perrault-réfr (PSE)', 'Patinoire Bleu Blanc Bouge du parc Hayward (PSE)', 'Patinoire Bleu, Blanc, Bouge du parc Le Carignan (PSE)'
+        when /(.*)Bleu\-Blanc\-Bouge(.*)/
           'Patinoire réfrigérée Bleu-Blanc-Bouge'
-        when 'lalancette (PPL)', 'Patinoire extérieure Domaine Chartier (PPL)', 'Patinoire du Glacis (PP)', 'Patinoire de parin libre du parc Sauvé (PPL)'
+        when 'Patinoire de parin libre, parc Sauvé (PPL)'
           'Patinoire de patin libre'
-        when 'Patinoire décorative Toussaint-Louverture (PP)', 'Patinoire décorative Parc Arthur-Therrien (PP)', 'Patinoire du parc Aimé-Léonard (PP)', 'Centre comm R-Goupil, Patinoire décorative (PP)'
-          'Patinoire décorative'
         else
           patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?(?:,|-| du parc\b)/, 1] || patinoire.nom
         end
@@ -78,18 +86,10 @@ namespace :import do
           'Saint-Aloysis'                    => 'Saint-Aloysius',
           'Sainte-Maria-Goretti'             => 'Maria-Goretti',
           'Y-Thériault/Sherbrooke'           => 'Yves-Thériault/Sherbrooke',
-          'Patinoire extérieure Domaine Chartier'=> 'Domaine Chartier',
+          'Roger Rousseau'                   => 'Roger-Rousseau',
+          'De Gaspé/Bernard'                 => 'Champ des possibles',
           # Need to do independent research to find where these are.
-          'patinoire extérieure'             => '',
-          'Patinoire Bleu Blanc Bouge du parc Hayward'=> 'Hayward',
-          'Blanc, Bouge du parc Le Carignan'=> 'Le Carignan',
-          'Patinoire décorative Toussaint-Louverture'=> 'Toussaint-Louverture',
-          'Patinoire du Glacis'=> 'du Glacis',
-          'Roger Rousseau'=> 'Roger-Rousseau',
-#           'Centre comm R-Goupil, Patinoire décorative'=> 'Centre communautaire René-Goupil',
-          'Patinoire décorative Parc Arthur-Therrien'=> 'Arthur-Therrien',
-          'Patinoire du parc Aimé-Léonard'=> 'Aimé-Léonard',
-          'Patinoire De Gaspé/Bernard'=> 'Champ des possibles'
+          'patinoire extérieure'             => ''
         }.reduce(parc) do |string,(from,to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
@@ -124,20 +124,6 @@ namespace :import do
         if patinoire.parc == 'LaSalle' && patinoire.genre == 'PSE'
           patinoire.disambiguation = "no #{flip}"
           flip = flip == 1 ? 2 : 1
-        end
-
-        # CDN Bleu-Blanc-Bouge rink 
-        if patinoire.description == 'Patinoire réfrigérée Bleu-Blanc-Bouge'
-          # CDN BBB rink is missing the Park name
-          if arrondissement.cle == 'cdn'
-            patinoire.parc = 'de la Confédération'
-            # Following line is to have a clean name in the API output
-            patinoire.nom = 'Patinoire réfrigérée Bleu-Blanc-Bouge, parc de la Confédération (PSE)'
-            patinoire.disambiguation = 'réfrigérée'
-          end            
-          # Temporary solution (early december) for refrigerated rinks
-#           patinoire.ouvert = true
-#           patinoire.condition = 'N/A'
         end
         
         patinoire.source = 'donnees.ville.montreal.qc.ca'
