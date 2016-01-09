@@ -33,6 +33,7 @@ namespace :import do
         patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id(xml_name, arrondissement.id)
         %w(ouvert deblaye arrose resurface condition).each do |attribute|
           patinoire[attribute] = node.at_css(attribute).text
+          patinoire[attribute] = (attribute == 'condition'? 'N/A' : false) if (patinoire[attribute].nil?)
         end
 
         description = case patinoire.nom
