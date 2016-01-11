@@ -162,12 +162,6 @@ namespace :import do
           genre: 'PSE',
           arrondissement_id: arrondissement.id,
         }
-      when 'Terrain Hodgson - Patinoire de hockey Mini'
-        {
-          parc: 'Hodgson',
-          genre: 'PSE',
-          arrondissement_id: arrondissement.id,
-        }
       when 'Parc Rugby'
         {
           parc: 'Rugby',
@@ -179,25 +173,26 @@ namespace :import do
         next
       end
 
+      # conditions are not updated anymore
       attributes.merge!({
-        ouvert: tr.at_css('td:eq(2)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
-        deblaye: tr.at_css('td:eq(3)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
-        arrose: tr.at_css('td:eq(4)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
+#         ouvert: tr.at_css('td:eq(2)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
+#         deblaye: tr.at_css('td:eq(3)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
+#         arrose: tr.at_css('td:eq(4)').text.gsub(/[[:space:]]/, ' ').strip == 'oui',
         source: 'montreal-west.ca',
       })
 
-      condition = tr.at_css('td:eq(5)').text.gsub(/[[:space:]]/, ' ').strip
-      attributes[:condition] = case condition
-      when 'excellente', 'Excellent'
-        'Excellente'
-      when 'bonne', 'Bon'
-        'Bonne'
-      when 'mauvaise'
-        'Mauvaise'
-      else
-        puts "Unknown condition '#{condition}'" unless condition.blank?
-        'N/A'
-      end
+#       condition = tr.at_css('td:eq(5)').text.gsub(/[[:space:]]/, ' ').strip
+#       attributes[:condition] = case condition
+#       when 'excellente', 'Excellent'
+#         'Excellente'
+#       when 'bonne', 'Bon'
+#         'Bonne'
+#       when 'mauvaise'
+#         'Mauvaise'
+#       else
+#         puts "Unknown condition '#{condition}'" unless condition.blank?
+#         'N/A'
+#       end
 
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id attributes[:parc], attributes[:genre], arrondissement.id
       patinoire.attributes = attributes
