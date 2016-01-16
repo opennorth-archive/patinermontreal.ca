@@ -48,6 +48,8 @@ class Patinoire < ActiveRecord::Base
     'donnees.ville.montreal.qc.ca',
     'montreal-west.ca',
     'ville.dorval.qc.ca',
+    'www.laval.ca',
+    'www.ville.ddo.qc.ca',
   ]
   validates_inclusion_of :condition, in: %w(Excellente Bonne Mauvaise N/A), allow_blank: true
 

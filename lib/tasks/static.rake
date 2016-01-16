@@ -97,4 +97,43 @@ namespace :import do
       end
     end
   end
+
+
+  # http://www.patinermontreal.ca/geojson/laval.geojson (or localhost:3000)
+  task laval: :environment do
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
+  end
+  
+  
+  # http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson (or localhost:3000)
+  task ddormeaux: :environment do
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
+  end
+  
+  
+  def import_geojson_for_arrondissement(geojson_uri, nom_arr, source)
+    require 'json'
+    require 'open-uri'
+
+    arrondissement = Arrondissement.find_or_initialize_by_nom_arr(nom_arr)
+    arrondissement.source = source
+    arrondissement.save!
+    
+    collection = JSON.parse(open(geojson_uri, "r:utf-8").read)
+    
+    collection['features'].each do| feature|
+      properties = feature['properties']
+      
+      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id properties['parc'].sub('Parc ', ''), properties['genre'], arrondissement.id
+      
+      patinoire.lng = feature['geometry']['coordinates'][0]
+      patinoire.lat = feature['geometry']['coordinates'][1]
+      patinoire.adresse = properties['adresse']
+      # patinoire.condition = nil
+      
+      patinoire.source = source
+
+      patinoire.save!
+    end
+  end
 end
