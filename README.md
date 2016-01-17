@@ -12,8 +12,7 @@
     bundle exec rake import:manual
     bundle exec rake import:location
     bundle exec rake import:contacts
-    bundle exec rake import:ddormeaux
-    bundle exec rake import:laval
+    bundle exec rake import:geojson
 
 Run `bundle exec rake db:drop` to start over.
 
@@ -42,8 +41,7 @@ Otherwise:
     heroku run rake import:manual
     heroku run rake import:location
     heroku run rake import:contacts
-    heroku run rake import:ddormeaux
-    heroku run rake import:laval
+    heroku run rake import:geojson
 
 ## Season Start & End
 
@@ -80,7 +78,7 @@ Then, find the rink's latitude and longitude somehow (e.g. using [Google Maps](h
 
 ### GeoJSON rinks
 
-Rinks in **Dollard-des-Ormeaux** and **Laval** are handled using static [GeoJSON](http://geojson.org/) files, instead of relying on the google docs [spreadsheet](https://docs.google.com/a/opennorth.ca/spreadsheet/ccc?key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE#gid=2). The two static Tasks parse [dollarddesormeaux.geojson](http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson) and [laval.geojson](http://www.patinermontreal.ca/geojson/laval.geojson) and add the rinks to the database. Currently, these rinks have unknown conditions (`N/A`).
+Rinks in **Dollard-des-Ormeaux, Laval, Vieux-Longueuil and Saint-Hubert** are now handled using static [GeoJSON](http://geojson.org/) files, instead of relying on the google [spreadsheet](https://docs.google.com/a/opennorth.ca/spreadsheet/ccc?key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE#gid=2). The static Task parses [dollarddesormeaux.geojson](http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson), [laval.geojson](http://www.patinermontreal.ca/geojson/laval.geojson), [longueil.geojson](http://www.patinermontreal.ca/geojson/longueil.geojson) and [sainthubert.geojson](http://www.patinermontreal.ca/geojson/sainthubert.geojson) and adds the rinks to the database. Currently, Dollard-des-Ormeaux and Laval have unknown conditions `N/A`. [Vieux-Longueuil](https://www.longueuil.quebec/fr/conditions-sites-hivernaux-vieux-longueuil) and [Saint-Hubert](https://www.longueuil.quebec/fr/conditions-sites-hivernaux-saint-hubert) conditions are parsed from their respective Winter conditions HTML table.
 
 ### Delete a rink
 
