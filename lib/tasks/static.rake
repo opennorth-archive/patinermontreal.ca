@@ -99,7 +99,7 @@ namespace :import do
   end
   
   
-  # http://www.patinermontreal.ca/geojson/longueil.geojson (or localhost:3000)
+  # http://www.patinermontreal.ca/geojson/ (or localhost:3000)
   task geojson: :environment do
     puts "Importing Dollard-des-Ormeaux..."
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
@@ -107,6 +107,8 @@ namespace :import do
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
     puts "Importing Vieux-Longueuil..."
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
+    puts "Importing Saint-Hubert..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
     puts "Done importing GeoJSON rinks"
   end
   

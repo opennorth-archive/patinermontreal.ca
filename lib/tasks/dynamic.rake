@@ -301,12 +301,62 @@ namespace :import do
     end
   end
   
+  # desc 'Add rinks from www.longueuil.quebec'
+  task sthubert: :environment do
+    doc = Nokogiri::HTML(RestClient.get('https://www.longueuil.quebec/fr/conditions-sites-hivernaux-saint-hubert'))
+    
+    # Dernière mise à jour, from third table (most rinks)
+    begin
+      date_maj = Time.parse doc.css('.field-name-body table:eq(3) tr:eq(1) td:eq(1)').text 
+    rescue
+      date_maj = Time.now
+    end
+   
+    arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Saint-Hubert')
+    arrondissement.source = 'www.longueuil.quebec'
+    arrondissement.date_maj = date_maj 
+    arrondissement.save!
+   
+    # First table: Sentiers de ski de fond et pentes à glisser  
+    tr = doc.css('.field-name-body table:eq(2)').css('tr:gt(7)').each do |tr|
+      spanned = tr.css('> td').count == 8 
+      offset = spanned ? -1 : 0
+      attributes = { 
+        parc: 'de la Cité',
+        ouvert: tr.css("td:eq(#{3+offset})").text.downcase().include?('x') ,
+        resurface: tr.css("td:eq(#{5+offset})").text.downcase().include?('x') ,
+        condition: 'N/A'
+      }
+      attributes[:genre] = 'PPL' if tr.css("td:eq(#{2+offset})").text == 'Pavillon'
+      attributes[:genre] = 'PP' if tr.css("td:eq(#{2+offset})").text == 'Bois'
+      
+      attributes[:condition] = 'Excellente' if tr.css("td:eq(#{7+offset})").text.downcase().include?('x')
+      attributes[:condition] = 'Bonne' if tr.css("td:eq(#{8+offset})").text.downcase().include?('x')
+      attributes[:condition] = 'Mauvaise' if tr.css("td:eq(#{9+offset})").text.downcase().include?('x')
+      
+      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
+      patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
+      patinoire.save!
+    end
+
+    # Second table: Patinoires et surfaces glacées 
+    previous = ''
+    doc.css('.field-name-body table:eq(4)').css('tr:gt(2)').each do |tr|
+      attributes = import_html_table_row tr, previous
+      previous = attributes[:parc]
+
+      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
+      patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
+      patinoire.save!
+    end
+  end
+  
   def import_html_table_row(tr, previous_parc)
     spanned = tr.css('> td').count == 10 
     offset = spanned ? -1 : 0
     nom = tr.css("td:eq(#{2+offset})").text.gsub(/[[:space:]]/, ' ').strip
     attributes = { 
-      parc: spanned ? previous_parc : tr.at_css('td').text.gsub(/[[:space:]]/, ' ').strip ,
+      parc: spanned ? previous_parc : tr.at_css('td').text.gsub(/[[:space:]]/, ' ').sub('Parc ', '').strip ,
       genre: case nom
       when 'Surface glacée', 'Suface glacée'
         'PPL'

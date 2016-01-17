@@ -48,6 +48,7 @@ class Arrondissement < ActiveRecord::Base
     # Cities
     'Laval',
     'Vieux-Longueuil',
+    'Saint-Hubert',
   ]
   validates_inclusion_of :source, in: [
     'docs.google.com',
