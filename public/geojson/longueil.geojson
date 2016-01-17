@@ -1,0 +1,706 @@
+{
+	"type": "FeatureCollection",
+	"features": [{
+		"type": "Feature",
+		"properties": {
+			"adresse": "1895, rue Adoncour",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Michel-Chartrand",
+			"url": "https://www.longueuil.quebec/en/parc-michel-chartrand-coordinates"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.4721, 45.543613]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "2700, rue Périgny",
+			"genre": "PSE",
+			"nom": "Patinoire Bleu-Blanc-Bouge",
+			"parc": "Lionel-Groulx",
+			"url": "https://www.longueuil.quebec/en/parc-lionel-groulx"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.460884, 45.525606]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Sacré-Coeur (intersection Laurier)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Adrien-Gamache",
+			"url": "https://www.longueuil.quebec/en/parc-adrien-gamache"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.467716, 45.531878]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Marquette (intersection Maisonneuve)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Anastase-Forget",
+			"url": "https://www.longueuil.quebec/en/parc-anastase-forget"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.4748, 45.512732]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "735, rue Saint-Jean",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Armand-Racicot",
+			"url": "https://www.longueuil.quebec/en/parc-armand-racicot"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.500095, 45.533483]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "735, rue Saint-Jean",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Armand-Racicot",
+			"url": "https://www.longueuil.quebec/en/parc-armand-racicot"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.500095, 45.533483]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Asselin",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Asselin",
+			"url": "https://www.longueuil.quebec/en/parc-asselin"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.443822, 45.537359]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Beauregard (intersection René)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Beauregard",
+			"url": "https://www.longueuil.quebec/en/parc-beauregard"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.488477, 45.507646]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Belcourt",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Belcourt",
+			"url": "https://www.longueuil.quebec/en/parc-belcourt"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.44605, 45.533041]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Berthelet (intersection Berthier)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Berthelet",
+			"url": "https://www.longueuil.quebec/en/parc-berthelet"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.451232, 45.530221]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "1405, rue Laurier",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Carillon",
+			"url": "https://www.longueuil.quebec/en/parc-carillon"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.482425, 45.536617]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "1405, rue Laurier",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Carillon",
+			"url": "https://www.longueuil.quebec/en/parc-carillon"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.482425, 45.536617]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "3085, rue Moreau",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Champvert",
+			"url": "https://www.longueuil.quebec/en/parc-champvert"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.450055, 45.521836]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "3085, rue Moreau",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Champvert",
+			"url": "https://www.longueuil.quebec/en/parc-champvert"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.450055, 45.521836]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "941, rue Duhamel",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Christ-Roi",
+			"url": "https://www.longueuil.quebec/en/parc-christ-roi"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.462885, 45.511331]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "941, rue Duhamel",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Christ-Roi",
+			"url": "https://www.longueuil.quebec/en/parc-christ-roi"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.462885, 45.511331]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue des Muguets (intersection rue des Tulipes)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Dessureaux",
+			"url": "https://www.longueuil.quebec/en/parc-dessureaux"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.453217, 45.552845]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Drapeau (intersection Dandurand et Duclos)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Drapeau",
+			"url": "https://www.longueuil.quebec/en/parc-drapeau"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.462207, 45.518921]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "1000, rue Duvernay",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Fernand-Bouffard",
+			"url": "https://www.longueuil.quebec/en/parc-fernand-bouffard"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.501722, 45.522259]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "301, rue Cuvillier",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Fonrouge",
+			"url": "https://www.longueuil.quebec/en/parc-fonrouge"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.442346, 45.518661]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "301, rue Cuvillier",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Fonrouge",
+			"url": "https://www.longueuil.quebec/en/parc-fonrouge"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.442346, 45.518661]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Gardenville (entre Perrault et Martel)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Gardenville",
+			"url": "https://www.longueuil.quebec/en/parc-gardenville"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.503185, 45.526458]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "120, rue René-Philippe",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Génération",
+			"url": "https://www.longueuil.quebec/en/parc-generation"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.493434, 45.498401]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Beauharnois (intersection Brunet)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Gentilly Est",
+			"url": "https://www.longueuil.quebec/en/parc-gentilly-est"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.449832, 45.541381]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Belcourt (intersection Bagot)",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Gentilly Ouest",
+			"url": "https://www.longueuil.quebec/en/parc-gentilly-ouest"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.454236, 45.533864]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Belcourt (intersection Bagot)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Gentilly Ouest",
+			"url": "https://www.longueuil.quebec/en/parc-gentilly-ouest"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.454236, 45.533864]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Gray (intersection Galaise)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Gray",
+			"url": "https://www.longueuil.quebec/en/parc-gray"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.465592, 45.558409]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": null,
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Hirondelles (des)",
+			"url": "https://www.longueuil.quebec/en/parc-hirondelles"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.477458, 45.559371]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": null,
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Hirondelles (des)",
+			"url": "https://www.longueuil.quebec/en/parc-hirondelles"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.477458, 45.559371]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "1681, rue Bourassa",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Jean-de-Lalande",
+			"url": "https://www.longueuil.quebec/en/parc-jean-lalande"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.477458, 45.559371]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "1681, rue Bourassa",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Jean-de-Lalande",
+			"url": "https://www.longueuil.quebec/en/parc-jean-lalande"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.477458, 45.559371]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue d'Oxford",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Laflamme",
+			"url": "https://www.longueuil.quebec/en/parc-laflamme"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.473494, 45.516267]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue d'Oxford",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Laflamme",
+			"url": "https://www.longueuil.quebec/en/parc-laflamme"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.473494, 45.516267]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "2095, rue Laurier",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Laurier",
+			"url": "https://www.longueuil.quebec/en/parc-laurier"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.472958, 45.5356]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Laviolette",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Laviolette",
+			"url": "https://www.longueuil.quebec/en/parc-laviolette"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.485156, 45.545835]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Laviolette",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Laviolette",
+			"url": "https://www.longueuil.quebec/en/parc-laviolette"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.485156, 45.545835]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "2040, rue Brébeuf",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Lecavalier",
+			"url": "https://www.longueuil.quebec/en/parc-lecavalier"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.480189, 45.525303]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "2040, rue Brébeuf",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Lecavalier",
+			"url": "https://www.longueuil.quebec/en/parc-lecavalier"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.480189, 45.525303]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Saint-Charles Est (intersection de Normandie)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Le Moyne",
+			"url": "https://www.longueuil.quebec/en/parc-moyne"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.505981, 45.54461]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "2300, rue Dollard",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Marquette",
+			"url": "https://www.longueuil.quebec/en/parc-marquette"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.481476, 45.515283]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "2300, rue Dollard",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Marquette",
+			"url": "https://www.longueuil.quebec/en/parc-marquette"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.481476, 45.515283]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue de Newhaven (intersection Quinn)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Newhaven",
+			"url": "https://www.longueuil.quebec/en/parc-newhaven"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.496228, 45.527551]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "450, rue de Normandie",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Normandie (de)",
+			"url": "https://www.longueuil.quebec/en/parc-normandie"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.502526, 45.54074]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Perron (intersection de Dover)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Perron",
+			"url": "https://www.longueuil.quebec/en/parc-perron"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.467633, 45.51895]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "100, place Charles-Le Moyne",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Place Charles-Le Moyne",
+			"url": "https://www.longueuil.quebec/en/esplanade-place-charles-moyne"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.520755, 45.525397]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Racine",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Racine",
+			"url": "https://www.longueuil.quebec/en/parc-racine"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.448217, 45.512929]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "1000, rue De Lorimier",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Raymond",
+			"url": "https://www.longueuil.quebec/en/parc-raymond"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.50523, 45.518711]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "1000, rue De Lorimier",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Raymond",
+			"url": "https://www.longueuil.quebec/en/parc-raymond"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.50523, 45.518711]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue de Lyon (entre Roberval Ouest et Richmond)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Rolland",
+			"url": "https://www.longueuil.quebec/en/parc-rolland"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.45489, 45.51102]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue du Roussillon",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Roussillon",
+			"url": "https://www.longueuil.quebec/en/parc-roussillon"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.494598, 45.541469]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Saint-Charles Ouest (entre Montarville et de Châteauguay)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Saint-Charles",
+			"url": "https://www.longueuil.quebec/en/parc-saint-charles"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.513792, 45.532951]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Grou (intersection Lincourt)",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Saint-Romain",
+			"url": "https://www.longueuil.quebec/en/parc-saint-romain"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.455716, 45.550906]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Grou (intersection Lincourt)",
+			"genre": "PPL",
+			"nom": "Patinoire de patin libre",
+			"parc": "Saint-Romain",
+			"url": "https://www.longueuil.quebec/en/parc-saint-romain"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.455716, 45.550906]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "Rue Lalande (intersection Labrie)",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Thomas-Dubuc",
+			"url": "https://www.longueuil.quebec/en/parc-thomas-dubuc"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.486691, 45.56296]
+		}
+	}]
+}

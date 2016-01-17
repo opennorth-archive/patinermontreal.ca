@@ -97,17 +97,17 @@ namespace :import do
       end
     end
   end
-
-
-  # http://www.patinermontreal.ca/geojson/laval.geojson (or localhost:3000)
-  task laval: :environment do
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
-  end
   
   
-  # http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson (or localhost:3000)
-  task ddormeaux: :environment do
+  # http://www.patinermontreal.ca/geojson/longueil.geojson (or localhost:3000)
+  task geojson: :environment do
+    puts "Importing Dollard-des-Ormeaux..."
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
+    puts "Importing Laval..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
+    puts "Importing Vieux-Longueuil..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
+    puts "Done importing GeoJSON rinks"
   end
   
   
@@ -124,7 +124,14 @@ namespace :import do
     collection['features'].each do| feature|
       properties = feature['properties']
       
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id properties['parc'].sub('Parc ', ''), properties['genre'], arrondissement.id
+      if (properties['nom'] == 'Patinoire Bleu-Blanc-Bouge')
+        patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id "#{properties['nom']}, #{properties['parc']} (#{properties['genre']})", arrondissement.id
+        patinoire.parc = properties['parc']
+        patinoire.genre = properties['genre']
+        patinoire.description = 'Patinoire réfrigérée Bleu-Blanc-Bouge'      
+      else
+        patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id properties['parc'].sub('Parc ', ''), properties['genre'], arrondissement.id
+      end
       
       patinoire.lng = feature['geometry']['coordinates'][0]
       patinoire.lat = feature['geometry']['coordinates'][1]

@@ -50,6 +50,7 @@ class Patinoire < ActiveRecord::Base
     'ville.dorval.qc.ca',
     'www.laval.ca',
     'www.ville.ddo.qc.ca',
+    'www.longueuil.quebec',
   ]
   validates_inclusion_of :condition, in: %w(Excellente Bonne Mauvaise N/A), allow_blank: true
 

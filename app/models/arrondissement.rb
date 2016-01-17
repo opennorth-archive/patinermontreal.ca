@@ -46,7 +46,8 @@ class Arrondissement < ActiveRecord::Base
     'Westmount',
     
     # Cities
-    'Laval'
+    'Laval',
+    'Vieux-Longueuil',
   ]
   validates_inclusion_of :source, in: [
     'docs.google.com',
@@ -55,6 +56,7 @@ class Arrondissement < ActiveRecord::Base
     'ville.dorval.qc.ca',
     'www.laval.ca',
     'www.ville.ddo.qc.ca',
+    'www.longueuil.quebec',
   ]
 
   scope :dynamic, where('date_maj IS NOT NULL')
