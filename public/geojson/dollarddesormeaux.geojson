@@ -1,0 +1,352 @@
+{
+	"type": "FeatureCollection",
+	"features": [{
+		"type": "Feature",
+		"properties": {
+			"adresse": "chemin Durham & place Parklane & place Gauthier",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Alouette"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.843747, 45.477086]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "rue Pinecrest & chemin Belcourt",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Belcourt"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.816458, 45.498269]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "260, chemin Spring Garden",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Coolbrooke"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.792303, 45.498181]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "260, chemin Spring Garden",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Coolbrooke"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.792604, 45.498805]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "2938, chemin Lake",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc du Centenaire"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.816731, 45.486794]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "264, rue Ernest",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Edward Janiszewski"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.839841, 45.487155]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "264, rue Ernest",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Edward Janiszewski"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.840715, 45.486786]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "530, rue Montcalm",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Elmpark"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.84349, 45.467482]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "530, rue Montcalm",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Elmpark"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.844337, 45.467385]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "345, promenade Blue Haven",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Fairview"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.828202, 45.474645]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "345, promenade Blue Haven",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Fairview"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.828019, 45.475074]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "rue Sandra & rue France",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc France"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.829649, 45.498793]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "98 A, rue Fredmir",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Frédérick-Wilson"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.830523, 45.489611]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "98 A, rue Fredmir",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Frédérick-Wilson"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.830137, 45.489645]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "85, chemin Hemingway",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Lake Road"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.831124, 45.483413]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "85, chemin Hemingway",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Lake Road"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.830598, 45.482999]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "rue Anselme-Lavigne & rue Alie",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Pinecrest"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.820068, 45.499621]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "161, rue Sonata",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Spring Garden"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.785942, 45.492706]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "161, rue Sonata",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Spring Garden"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.786449, 45.492471]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "100, chemin Cadman",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Sunnybrooke"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.797805, 45.495071]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "100, chemin Cadman",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Sunnybrooke"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.797269, 45.494778]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "100, rue Fairview",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Terry-Fox"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.823052, 45.496391]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "100, rue Fairview",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Terry-Fox"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.823707, 45.496075]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "boulevard De Salaberry & chemin Tecumseh",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Thornhill"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.819726, 45.478805]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "rue Trottier & croissant Libersan",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Trottier"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.820499, 45.503084]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "531, avenue Westminster",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Westminster"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.845593, 45.472967]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "531, avenue Westminster",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Westminster"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.846087, 45.472997]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "45, promenade Thornton",
+			"genre": "PP",
+			"nom": "Patinoire de patin libre",
+			"parc": "Parc Westwood"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.792486, 45.489253]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"adresse": "45, promenade Thornton",
+			"genre": "PSE",
+			"nom": "Patinoire avec bandes",
+			"parc": "Parc Westwood"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.793258, 45.489141]
+		}
+	}]
+}

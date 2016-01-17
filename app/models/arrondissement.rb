@@ -44,12 +44,20 @@ class Arrondissement < ActiveRecord::Base
     'Sainte-Anne-de-Bellevue',
     'Senneville',
     'Westmount',
+    
+    # Cities
+    'Laval',
+    'Vieux-Longueuil',
+    'Saint-Hubert',
   ]
   validates_inclusion_of :source, in: [
     'docs.google.com',
     'donnees.ville.montreal.qc.ca',
     'montreal-west.ca',
     'ville.dorval.qc.ca',
+    'www.laval.ca',
+    'www.ville.ddo.qc.ca',
+    'www.longueuil.quebec',
   ]
 
   scope :dynamic, where('date_maj IS NOT NULL')

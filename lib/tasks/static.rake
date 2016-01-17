@@ -23,8 +23,8 @@ namespace :import do
       if is_bbb
         patinoire.description = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
         # Temporary solution (early december) for refrigerated rinks
-        patinoire.ouvert = true
-        patinoire.condition = 'N/A'
+#         patinoire.ouvert = true
+#         patinoire.condition = 'N/A'
       end
       
       patinoire.source = 'docs.google.com'
@@ -95,6 +95,54 @@ namespace :import do
         end
         csv << row
       end
+    end
+  end
+  
+  
+  # http://www.patinermontreal.ca/geojson/ (or localhost:3000)
+  task geojson: :environment do
+    puts "Importing Dollard-des-Ormeaux..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
+    puts "Importing Laval..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
+    puts "Importing Vieux-Longueuil..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
+    puts "Importing Saint-Hubert..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
+    puts "Done importing GeoJSON rinks"
+  end
+  
+  
+  def import_geojson_for_arrondissement(geojson_uri, nom_arr, source)
+    require 'json'
+    require 'open-uri'
+
+    arrondissement = Arrondissement.find_or_initialize_by_nom_arr(nom_arr)
+    arrondissement.source = source
+    arrondissement.save!
+    
+    collection = JSON.parse(open(geojson_uri, "r:utf-8").read)
+    
+    collection['features'].each do| feature|
+      properties = feature['properties']
+      
+      if (properties['nom'] == 'Patinoire Bleu-Blanc-Bouge')
+        patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id "#{properties['nom']}, #{properties['parc']} (#{properties['genre']})", arrondissement.id
+        patinoire.parc = properties['parc']
+        patinoire.genre = properties['genre']
+        patinoire.description = 'Patinoire réfrigérée Bleu-Blanc-Bouge'      
+      else
+        patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id properties['parc'].sub('Parc ', ''), properties['genre'], arrondissement.id
+      end
+      
+      patinoire.lng = feature['geometry']['coordinates'][0]
+      patinoire.lat = feature['geometry']['coordinates'][1]
+      patinoire.adresse = properties['adresse']
+      # patinoire.condition = nil
+      
+      patinoire.source = source
+
+      patinoire.save!
     end
   end
 end
