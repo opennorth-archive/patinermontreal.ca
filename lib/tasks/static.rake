@@ -106,7 +106,7 @@ namespace :import do
     puts "Importing Laval..."
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
     puts "Importing Vieux-Longueuil..."
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
     puts "Importing Saint-Hubert..."
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
     puts "Done importing GeoJSON rinks"
