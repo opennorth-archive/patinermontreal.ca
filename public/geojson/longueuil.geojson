@@ -29,7 +29,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Sacré-Coeur (intersection Laurier)",
+			"adresse": "Rue Sacré-Coeur & Laurier",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Adrien-Gamache",
@@ -42,7 +42,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Marquette (intersection Maisonneuve)",
+			"adresse": "Rue Marquette & Maisonneuve",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Anastase-Forget",
@@ -94,7 +94,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Beauregard (intersection René)",
+			"adresse": "Rue Beauregard & René",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Beauregard",
@@ -120,7 +120,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Berthelet (intersection Berthier)",
+			"adresse": "Rue Berthelet & Berthier",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Berthelet",
@@ -211,7 +211,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue des Muguets (intersection rue des Tulipes)",
+			"adresse": "Rue des Muguets & rue des Tulipes",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Dessureaux",
@@ -224,7 +224,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Drapeau (intersection Dandurand et Duclos)",
+			"adresse": "Rue Drapeau & Duclos",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Drapeau",
@@ -302,7 +302,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Beauharnois (intersection Brunet)",
+			"adresse": "Rue Beauharnois & Brunet",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Gentilly Est",
@@ -315,7 +315,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Belcourt (intersection Bagot)",
+			"adresse": "Rue Belcourt & Bagot",
 			"genre": "PSE",
 			"nom": "Patinoire avec bandes",
 			"parc": "Gentilly Ouest",
@@ -328,7 +328,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Belcourt (intersection Bagot)",
+			"adresse": "Rue Belcourt & Bagot",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Gentilly Ouest",
@@ -341,7 +341,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Gray (intersection Galaise)",
+			"adresse": "Rue Gray & Galaise",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Gray",
@@ -497,7 +497,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Saint-Charles Est (intersection de Normandie)",
+			"adresse": "Rue Saint-Charles Est & de Normandie",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Le Moyne",
@@ -536,7 +536,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue de Newhaven (intersection Quinn)",
+			"adresse": "Rue de Newhaven & Quinn",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Newhaven",
@@ -562,7 +562,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Perron (intersection de Dover)",
+			"adresse": "Rue Perron & de Dover",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Perron",
@@ -666,7 +666,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Grou (intersection Lincourt)",
+			"adresse": "Rue Grou & Lincourt",
 			"genre": "PSE",
 			"nom": "Patinoire avec bandes",
 			"parc": "Saint-Romain",
@@ -679,7 +679,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Grou (intersection Lincourt)",
+			"adresse": "Rue Grou & Lincourt",
 			"genre": "PPL",
 			"nom": "Patinoire de patin libre",
 			"parc": "Saint-Romain",
@@ -692,7 +692,7 @@
 	}, {
 		"type": "Feature",
 		"properties": {
-			"adresse": "Rue Lalande (intersection Labrie)",
+			"adresse": "Rue Lalande & Labrie",
 			"genre": "PSE",
 			"nom": "Patinoire avec bandes",
 			"parc": "Thomas-Dubuc",
