@@ -51,6 +51,8 @@ class Patinoire < ActiveRecord::Base
     'www.laval.ca',
     'www.ville.ddo.qc.ca',
     'www.longueuil.quebec',
+    'www.boucherville.ca',
+    'www.ville.brossard.qc.ca',
   ]
   validates_inclusion_of :condition, in: %w(Excellente Bonne Mauvaise N/A), allow_blank: true
 

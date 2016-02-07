@@ -49,6 +49,8 @@ class Arrondissement < ActiveRecord::Base
     'Laval',
     'Vieux-Longueuil',
     'Saint-Hubert',
+    'Boucherville',
+    'Brossard',
   ]
   validates_inclusion_of :source, in: [
     'docs.google.com',
@@ -58,6 +60,8 @@ class Arrondissement < ActiveRecord::Base
     'www.laval.ca',
     'www.ville.ddo.qc.ca',
     'www.longueuil.quebec',
+    'www.boucherville.ca',
+    'www.ville.brossard.qc.ca',
   ]
 
   scope :dynamic, where('date_maj IS NOT NULL')
