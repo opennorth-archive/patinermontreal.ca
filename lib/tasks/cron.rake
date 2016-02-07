@@ -3,5 +3,4 @@ task cron: :environment do
   # Rake::Task['import:dorval'].invoke
   Rake::Task['import:montrealwest'].invoke
   Rake::Task['import:longueuil'].invoke
-  Rake::Task['import:sthubert'].invoke
 end
