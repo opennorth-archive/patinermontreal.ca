@@ -1,0 +1,260 @@
+{
+  "type":"FeatureCollection",
+  "features":[
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"1051, rue Arthur-Dumouchel",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Arthur-Dumouchel",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_4"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.422603,
+          45.598844
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"845, rue de Brouage",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Bois de Brouage",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_5"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.446903,
+          45.594048
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"845, rue de Brouage",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Bois de Brouage",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_5"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.446429,
+          45.593998
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"1075, rue Lionel-Daunais",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Centre multifonctionnel Francine-Gadbois",
+        "url":null
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.428858,
+          45.589561
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"1320, rue de Picardie",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"De la Picardie",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_14"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.420347,
+          45.575555
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"100, rue D’Argenson",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Des Gouverneurs ",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_18"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.443124,
+          45.631971
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"100, rue D’Argenson",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Des Gouverneurs ",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_18"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.442468,
+          45.63128
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"1135, rue du Perche",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Marguerite-A-Tellier",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_22"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.441253,
+          45.576378
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"1135, rue du Perche",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Marguerite-A-Tellier",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_22"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.440675,
+          45.576198
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"200, rue Claude-Dauzat",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Pierre-Boucher",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_25"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.454025,
+          45.588696
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"200, rue Claude-Dauzat",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Pierre-Boucher",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_25"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.454792,
+          45.5879
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"510, chemin du Lac",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Pierre-Laporte",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_26"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.446998,
+          45.602498
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"510, chemin du Lac",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Pierre-Laporte",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_26"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.446239,
+          45.604588
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"652, rue Jacques-Cartier",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Sabrevois",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_27"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.432318,
+          45.601288
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "adresse":"652, rue Jacques-Cartier",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Sabrevois",
+        "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_27"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.432765,
+          45.601901
+        ]
+      }
+    }
+  ]
+}

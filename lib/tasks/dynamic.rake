@@ -250,38 +250,35 @@ namespace :import do
   task longueuil: :environment do
     doc = Nokogiri::HTML(RestClient.get('https://www.longueuil.quebec/fr/conditions-sites-hivernaux-vieux-longueuil'))
     
-    # Dernière mise à jour, from third table (most rinks)
-    begin
-      date_maj = Time.parse doc.css('.field-name-body table:eq(3) tr:eq(1) td:eq(2)').text 
-    rescue
-      date_maj = Time.now
-    end
+    # Vieux-Longueuil conditions
     
     arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Vieux-Longueuil')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = date_maj 
+    arrondissement.date_maj = Time.now
     arrondissement.save!
    
     # First table: Sentiers de ski de fond et pentes à glisser  
-    tr = doc.css('.field-name-body table:eq(1)').css('tr:eq(8)')
+    tr = doc.css('.field-name-body table:eq(1)').css('tr:eq(7)')
     attributes = { 
       parc: 'Michel-Chartrand',
       genre: 'PSE',
-      ouvert: tr.css("td:eq(2)").text.downcase().include?('x') ,
-      resurface: tr.css("td:eq(4)").text.downcase().include?('x') ,
+      ouvert: tr.css("td:eq(4)").text.downcase().include?('x') ,
+      resurface: tr.css("td:eq(2)").text.downcase().include?('x') ,
       condition: 'N/A'
     }
 
-    attributes[:condition] = 'Excellente' if tr.css("td:eq(6)").text.downcase().include?('x')
-    attributes[:condition] = 'Bonne' if tr.css("td:eq(7)").text.downcase().include?('x')
-    attributes[:condition] = 'Mauvaise' if tr.css("td:eq(8)").text.downcase().include?('x')
+    attributes[:condition] = 'Excellente' if tr.css("td:eq(4)").text.downcase().include?('x')
+    attributes[:condition] = 'Bonne' if tr.css("td:eq(5)").text.downcase().include?('x')
+    
+    # Fix for "passable" but not "open"
+    attributes[:ouvert] = true if attributes[:condition] == 'Bonne'
     
     patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
     patinoire.save!
 
     # Second table: Patinoire réfrigérée BBB
-    tr = doc.css('.field-name-body table:eq(2)').css('tr:eq(6)')
+    tr = doc.css('.field-name-body table:eq(2)').css('tr:eq(3)')
     attributes = import_html_table_row tr, nil
     attributes[:parc] = 'Lionel-Groulx'
 
@@ -291,7 +288,7 @@ namespace :import do
     
     # Third table: Patinoires et surfaces glacées 
     previous = ''
-    doc.css('.field-name-body table:eq(3)').css('tr:gt(5)').each do |tr|
+    doc.css('.field-name-body table:eq(3)').css('tr:gt(2)').each do |tr|
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
       
@@ -299,40 +296,32 @@ namespace :import do
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
       patinoire.save!
     end
-  end
-  
-  # desc 'Add rinks from www.longueuil.quebec'
-  task sthubert: :environment do
-    doc = Nokogiri::HTML(RestClient.get('https://www.longueuil.quebec/fr/conditions-sites-hivernaux-saint-hubert'))
+        
+    # Saint-Hubert conditions
     
-    # Dernière mise à jour, from third table (most rinks)
-    begin
-      date_maj = Time.parse doc.css('.field-name-body table:eq(3) tr:eq(1) td:eq(1)').text 
-    rescue
-      date_maj = Time.now
-    end
-   
     arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Saint-Hubert')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = date_maj 
+    arrondissement.date_maj = Time.now 
     arrondissement.save!
    
     # First table: Sentiers de ski de fond et pentes à glisser  
-    tr = doc.css('.field-name-body table:eq(2)').css('tr:gt(7)').each do |tr|
-      spanned = tr.css('> td').count == 8 
+    tr = doc.css('.field-name-body table:eq(4)').css('tr:gt(6)').each do |tr|
+      spanned = tr.css('> td').count == 6 
       offset = spanned ? -1 : 0
       attributes = { 
         parc: 'de la Cité',
-        ouvert: tr.css("td:eq(#{3+offset})").text.downcase().include?('x') ,
-        resurface: tr.css("td:eq(#{5+offset})").text.downcase().include?('x') ,
+        ouvert: tr.css("td:eq(#{5+offset})").text.downcase().include?('x') ,
+        resurface: tr.css("td:eq(#{3+offset})").text.downcase().include?('x') ,
         condition: 'N/A'
       }
       attributes[:genre] = 'PPL' if tr.css("td:eq(#{2+offset})").text == 'Pavillon'
       attributes[:genre] = 'PP' if tr.css("td:eq(#{2+offset})").text == 'Bois'
       
-      attributes[:condition] = 'Excellente' if tr.css("td:eq(#{7+offset})").text.downcase().include?('x')
-      attributes[:condition] = 'Bonne' if tr.css("td:eq(#{8+offset})").text.downcase().include?('x')
-      attributes[:condition] = 'Mauvaise' if tr.css("td:eq(#{9+offset})").text.downcase().include?('x')
+      attributes[:condition] = 'Excellente' if tr.css("td:eq(#{5+offset})").text.downcase().include?('x')
+      attributes[:condition] = 'Bonne' if tr.css("td:eq(#{6+offset})").text.downcase().include?('x')
+
+      # Fix for "passable" but not "open"
+      attributes[:ouvert] = true if attributes[:condition] == 'Bonne'
       
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
@@ -341,7 +330,7 @@ namespace :import do
 
     # Second table: Patinoires et surfaces glacées 
     previous = ''
-    doc.css('.field-name-body table:eq(4)').css('tr:gt(2)').each do |tr|
+    doc.css('.field-name-body table:eq(5)').css('tr:gt(2)').each do |tr|
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
 
@@ -352,7 +341,7 @@ namespace :import do
   end
   
   def import_html_table_row(tr, previous_parc)
-    spanned = tr.css('> td').count == 10 
+    spanned = tr.css('> td').count == 4 
     offset = spanned ? -1 : 0
     nom = tr.css("td:eq(#{2+offset})").text.gsub(/[[:space:]]/, ' ').strip
     attributes = { 
@@ -367,14 +356,14 @@ namespace :import do
         abort 
       end ,
       ouvert: tr.css("td:eq(#{3+offset})").text.downcase().include?('x') ,
-      deblaye: tr.css("td:eq(#{5+offset})").text.downcase().include?('x') ,
-      arrose: tr.css("td:eq(#{7+offset})").text.downcase().include?('x') ,
       condition: 'N/A'
     }
 
-    attributes[:condition] = 'Excellente' if tr.css("td:eq(#{9+offset})").text.downcase().include?('x')
-    attributes[:condition] = 'Bonne' if tr.css("td:eq(#{10+offset})").text.downcase().include?('x')
-    attributes[:condition] = 'Mauvaise' if tr.css("td:eq(#{11+offset})").text.downcase().include?('x')
+    attributes[:condition] = 'Excellente' if tr.css("td:eq(#{3+offset})").text.downcase().include?('x')
+    attributes[:condition] = 'Bonne' if tr.css("td:eq(#{4+offset})").text.downcase().include?('x')
+    
+    # Fix for "passable" but not "open"
+    attributes[:ouvert] = true if attributes[:condition] == 'Bonne'
     
     return attributes
   end

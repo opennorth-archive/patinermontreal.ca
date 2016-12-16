@@ -1,0 +1,357 @@
+{  
+  "type":"FeatureCollection",
+  "features":[  
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"6015, chemin des Prairies",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Centre de plein air"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.430288,
+          45.4247926
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"Cousin & Colomb",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Bassin Colomb"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.438955,
+          45.455706
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"5595, rue Briand",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Briand"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.448002,
+          45.471681
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"5595, rue Briand",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Briand"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.447191,
+          45.47173
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"1745, rue Therrien",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Champlain"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.471954,
+          45.460301
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"1745, rue Therrien",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Champlain"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.472553,
+          45.460212
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"3755, rue Olympia",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Olympia"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.459534,
+          45.439619
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"3755, rue Olympia",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Olympia"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.459705,
+          45.439862
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"3055, boul. de Rome",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Poly-Aréna"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.459233,
+          45.44923
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"3055, boul. de Rome",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Poly-Aréna"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.457995,
+          45.448869
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"850, rue Robert",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Roger"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.48567,
+          45.439907
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"850, rue Robert",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Roger"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.485949,
+          45.439952
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"8405, av. Sorbonne",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Sorbonne"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.480836,
+          45.448204
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"8405, av. Sorbonne",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Sorbonne"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.481131,
+          45.448343
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"2500, av. Athènes",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Saint-Alphonse"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.459735,
+          45.476686
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"2500, av. Athènes",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Saint-Alphonse"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.460466,
+          45.476456
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"7575, rue Trahan",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Trahan"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.484565,
+          45.461027
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"7575, rue Trahan",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Trahan"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.483951,
+          45.460899
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"3500, rue Bréard",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Vanier"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.446915,
+          45.464045
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"3500, rue Bréard",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Vanier"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.447032,
+          45.465114
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"1025, av. Pothier",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Victorin"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.483944,
+          45.471993
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":"1025, av. Pothier",
+        "genre":"PP",
+        "nom":"Patinoire décorative",
+        "parc":"Victorin"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.483695,
+          45.471051
+        ]
+      }
+    }
+  ]
+}
