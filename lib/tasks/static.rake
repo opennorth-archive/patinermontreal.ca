@@ -145,8 +145,12 @@ namespace :import do
       # patinoire.condition = nil
       
       patinoire.source = source
-
-      patinoire.save!
+      
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
   end
 end
