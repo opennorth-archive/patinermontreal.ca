@@ -248,7 +248,7 @@ namespace :import do
   
   # desc 'Add rinks from www.longueuil.quebec'
   task longueuil: :environment do
-    doc = Nokogiri::HTML(RestClient.get('https://www.longueuil.quebec/fr/conditions-sites-hivernaux-vieux-longueuil'))
+    doc = Nokogiri::HTML(RestClient.get('https://www.longueuil.quebec/fr/conditions-sites-hivernaux'))
     
     # Vieux-Longueuil conditions
     
@@ -258,7 +258,7 @@ namespace :import do
     arrondissement.save!
    
     # First table: Sentiers de ski de fond et pentes à glisser  
-    tr = doc.css('.field-name-body table:eq(1)').css('tr:eq(7)')
+    tr = doc.css(".field-name-body table")[0].css("tr:eq(7)")
     attributes = { 
       parc: 'Michel-Chartrand',
       genre: 'PSE',
@@ -275,26 +275,38 @@ namespace :import do
     
     patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-    patinoire.save!
+    begin
+      patinoire.save!
+    rescue => e
+      puts "#{e.inspect}: #{patinoire.inspect}"
+    end
 
     # Second table: Patinoire réfrigérée BBB
-    tr = doc.css('.field-name-body table:eq(2)').css('tr:eq(3)')
+    tr = doc.css(".field-name-body table")[1].css("tr:eq(3)")
     attributes = import_html_table_row tr, nil
     attributes[:parc] = 'Lionel-Groulx'
 
     patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire réfrigérée Bleu-Blanc-Bouge', 'Lionel-Groulx', arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-    patinoire.save!
-    
+    begin
+      patinoire.save!
+    rescue => e
+      puts "#{e.inspect}: #{patinoire.inspect}"
+    end
+   
     # Third table: Patinoires et surfaces glacées 
     previous = ''
-    doc.css('.field-name-body table:eq(3)').css('tr:gt(2)').each do |tr|
+    doc.css('.field-name-body table')[2].css('tr:gt(2)').each do |tr|
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
       
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
         
     # Saint-Hubert conditions
@@ -305,7 +317,7 @@ namespace :import do
     arrondissement.save!
    
     # First table: Sentiers de ski de fond et pentes à glisser  
-    tr = doc.css('.field-name-body table:eq(4)').css('tr:gt(6)').each do |tr|
+    tr = doc.css(".field-name-body table")[3].css("tr:gt(6)").each do |tr|
       spanned = tr.css('> td').count == 6 
       offset = spanned ? -1 : 0
       attributes = { 
@@ -325,18 +337,26 @@ namespace :import do
       
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
 
     # Second table: Patinoires et surfaces glacées 
     previous = ''
-    doc.css('.field-name-body table:eq(5)').css('tr:gt(2)').each do |tr|
+    doc.css(".field-name-body table")[4].css("tr:gt(2)").each do |tr|
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
 
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
   end
   
