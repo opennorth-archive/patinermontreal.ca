@@ -22,7 +22,7 @@ namespace :import do
 
         # Expand/correct rink names to avoid later parsing errors
         xml_name = node.at_css('nom').text.sub(' du parc ', ', parc ').gsub(/([a-z])\sparc/im, '\1, parc').gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge').strip
-        xml_name = 'Patinoire Bleu-Blanc-Bouge, parc de la Confédération (PSE)' if xml_name == 'Patinoire Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'cdn' 
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Confédération (PSE)' if xml_name == 'Patinoire Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'cdn' 
         xml_name = 'Patinoire de patin libre, parc du Glacis (PP)' if xml_name == 'Patinoire du Glacis (PP)'
         xml_name = 'Patinoire décorative, Toussaint-Louverture (PP)' if xml_name == 'Patinoire décorative Toussaint-Louverture (PP)'
         xml_name = 'Patinoire extérieure, Domaine Chartier (PPL)' if xml_name == 'Patinoire extérieure Domaine Chartier (PPL)'
@@ -72,9 +72,11 @@ namespace :import do
         patinoire.parc = {
           'C-de-la-Rousselière'              => 'Clémentine-De La Rousselière',
           'Cité-Jardin'                      => 'de la Cité Jardin',
+          'Confédération'                    => 'de la Confédération',
           'de la Rive-Boisé'                 => 'de la Rive-Boisée',
           'De la Petite-Italie'              => 'Petite Italie',
           'Des Hirondelles'                  => 'des Hirondelles',
+          'Decelle'                          => 'Decelles',
           'Duff court'                       => 'Duff Court',
           'François-Perrault-réfr'           => 'François-Perrault',
           'Ignace-Bourget-anneau de vitesse' => 'Ignace-Bourget',
@@ -123,6 +125,12 @@ namespace :import do
 
         # There are identical lines.
         if patinoire.parc == 'LaSalle' && patinoire.genre == 'PSE'
+          patinoire.disambiguation = "no #{flip}"
+          flip = flip == 1 ? 2 : 1
+        end
+
+        # There are identical lines.
+        if patinoire.parc == 'Decelles' && patinoire.genre == 'PSE'
           patinoire.disambiguation = "no #{flip}"
           flip = flip == 1 ? 2 : 1
         end
