@@ -294,7 +294,7 @@ namespace :import do
     attributes = import_html_table_row tr, nil
     attributes[:parc] = 'Lionel-Groulx'
 
-    patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire Bleu-Blanc-Bouge', 'Lionel-Groulx', arrondissement.id)
+    patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire réfrigérée Bleu-Blanc-Bouge', 'Lionel-Groulx', arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
     begin
       patinoire.save!
