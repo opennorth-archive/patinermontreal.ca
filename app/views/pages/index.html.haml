@@ -21,7 +21,7 @@
           %li#nav-twitter
             = link_to 'https://twitter.com/patinermtl', title: t(:twitter_account), class: 'fa fa-twitter navbar-btn' do
               %span.hide=t :twitter_account
-          %li#nav-thanks
+          -#%li#nav-thanks
             = link_to t(:thanks_modal), '#thanks', 'data-toggle' => 'modal', class: 'navbar-btn'
           %li
             = link_to t(:about_modal), '#about', 'data-toggle' => 'modal', class: 'navbar-btn'
@@ -120,7 +120,7 @@
         %p= t(:license).html_safe
         %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
         %p= t(:sources).html_safe
-%section#thanks.modal.fade
+-#%section#thanks.modal.fade
   .modal-dialog
     .modal-content
       .modal-header
