@@ -22,7 +22,7 @@ namespace :import do
 
         # Expand/correct rink names to avoid later parsing errors
         xml_name = node.at_css('nom').text.sub(' du parc ', ', parc ').gsub(/([a-z])\sparc/im, '\1, parc').gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge').strip
-        xml_name = 'Patinoire Bleu-Blanc-Bouge, parc de la Confédération (PSE)' if xml_name == 'Patinoire Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'cdn' 
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Confédération (PSE)' if xml_name == 'Patinoire Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'cdn' 
         xml_name = 'Patinoire de patin libre, parc du Glacis (PP)' if xml_name == 'Patinoire du Glacis (PP)'
         xml_name = 'Patinoire décorative, Toussaint-Louverture (PP)' if xml_name == 'Patinoire décorative Toussaint-Louverture (PP)'
         xml_name = 'Patinoire extérieure, Domaine Chartier (PPL)' if xml_name == 'Patinoire extérieure Domaine Chartier (PPL)'
@@ -72,9 +72,11 @@ namespace :import do
         patinoire.parc = {
           'C-de-la-Rousselière'              => 'Clémentine-De La Rousselière',
           'Cité-Jardin'                      => 'de la Cité Jardin',
+          'Confédération'                    => 'de la Confédération',
           'de la Rive-Boisé'                 => 'de la Rive-Boisée',
           'De la Petite-Italie'              => 'Petite Italie',
           'Des Hirondelles'                  => 'des Hirondelles',
+          'Decelle'                          => 'Decelles',
           'Duff court'                       => 'Duff Court',
           'François-Perrault-réfr'           => 'François-Perrault',
           'Ignace-Bourget-anneau de vitesse' => 'Ignace-Bourget',
@@ -123,6 +125,12 @@ namespace :import do
 
         # There are identical lines.
         if patinoire.parc == 'LaSalle' && patinoire.genre == 'PSE'
+          patinoire.disambiguation = "no #{flip}"
+          flip = flip == 1 ? 2 : 1
+        end
+
+        # There are identical lines.
+        if patinoire.parc == 'Decelles' && patinoire.genre == 'PSE'
           patinoire.disambiguation = "no #{flip}"
           flip = flip == 1 ? 2 : 1
         end
@@ -248,7 +256,7 @@ namespace :import do
   
   # desc 'Add rinks from www.longueuil.quebec'
   task longueuil: :environment do
-    doc = Nokogiri::HTML(RestClient.get('https://www.longueuil.quebec/fr/conditions-sites-hivernaux-vieux-longueuil'))
+    doc = Nokogiri::HTML(RestClient.get('https://www.longueuil.quebec/fr/conditions-sites-hivernaux'))
     
     # Vieux-Longueuil conditions
     
@@ -258,7 +266,7 @@ namespace :import do
     arrondissement.save!
    
     # First table: Sentiers de ski de fond et pentes à glisser  
-    tr = doc.css('.field-name-body table:eq(1)').css('tr:eq(7)')
+    tr = doc.css(".field-name-body table")[0].css("tr:eq(7)")
     attributes = { 
       parc: 'Michel-Chartrand',
       genre: 'PSE',
@@ -275,26 +283,38 @@ namespace :import do
     
     patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-    patinoire.save!
+    begin
+      patinoire.save!
+    rescue => e
+      puts "#{e.inspect}: #{patinoire.inspect}"
+    end
 
     # Second table: Patinoire réfrigérée BBB
-    tr = doc.css('.field-name-body table:eq(2)').css('tr:eq(3)')
+    tr = doc.css(".field-name-body table")[1].css("tr:eq(3)")
     attributes = import_html_table_row tr, nil
     attributes[:parc] = 'Lionel-Groulx'
 
     patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire réfrigérée Bleu-Blanc-Bouge', 'Lionel-Groulx', arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-    patinoire.save!
-    
+    begin
+      patinoire.save!
+    rescue => e
+      puts "#{e.inspect}: #{patinoire.inspect}"
+    end
+   
     # Third table: Patinoires et surfaces glacées 
     previous = ''
-    doc.css('.field-name-body table:eq(3)').css('tr:gt(2)').each do |tr|
+    doc.css('.field-name-body table')[2].css('tr:gt(2)').each do |tr|
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
       
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
         
     # Saint-Hubert conditions
@@ -305,7 +325,7 @@ namespace :import do
     arrondissement.save!
    
     # First table: Sentiers de ski de fond et pentes à glisser  
-    tr = doc.css('.field-name-body table:eq(4)').css('tr:gt(6)').each do |tr|
+    tr = doc.css(".field-name-body table")[3].css("tr:gt(6)").each do |tr|
       spanned = tr.css('> td').count == 6 
       offset = spanned ? -1 : 0
       attributes = { 
@@ -325,18 +345,26 @@ namespace :import do
       
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
 
     # Second table: Patinoires et surfaces glacées 
     previous = ''
-    doc.css('.field-name-body table:eq(5)').css('tr:gt(2)').each do |tr|
+    doc.css(".field-name-body table")[4].css("tr:gt(2)").each do |tr|
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
 
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
   end
   

@@ -197,6 +197,19 @@ body {
   background: transparent url(/assets/sprite.png) no-repeat 0 0;
 }
 
+#weather .modal-dialog {
+  #weather_openweather {
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
+  iframe#weather_gc {
+    width: 330px;
+    height: 220px;
+    border: none;
+    margin-left: 5px;
+  }
+}
+
 #thanks .modal-dialog {
   width: 730px;
 }
@@ -507,6 +520,9 @@ body {
   .leaflet-left .leaflet-control {
     margin-left: 35px;
   }
+  #weather .modal-dialog {
+    width: 730px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -539,10 +555,14 @@ body {
     left: 0;
     right: 0;
   }
+  #weather_openweather,
   #open-rinks,
   #social,
   #nav-thanks {
     display: none;
+  }
+  #weather .modal-dialog {
+    min-width: 370px;
   }
   #branding-logo {
     margin-left: 10px;

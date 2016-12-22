@@ -26,9 +26,18 @@ namespace :import do
 #         patinoire.ouvert = true
 #         patinoire.condition = 'N/A'
       end
+      if row['disambiguation'] == "réfrigérée" 
+        patinoire.description = "Patinoire réfrigérée"
+        patinoire.ouvert = true
+        patinoire.condition = 'N/A'
+      end
       
       patinoire.source = 'docs.google.com'
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
   end
 
@@ -145,8 +154,12 @@ namespace :import do
       # patinoire.condition = nil
       
       patinoire.source = source
-
-      patinoire.save!
+      
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
   end
 end

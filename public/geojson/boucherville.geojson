@@ -75,7 +75,7 @@
         "adresse":"1320, rue de Picardie",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
-        "parc":"De la Picardie",
+        "parc":"de la Picardie",
         "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_14"
       },
       "geometry":{
@@ -92,7 +92,7 @@
         "adresse":"100, rue D’Argenson",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
-        "parc":"Des Gouverneurs ",
+        "parc":"des Gouverneurs",
         "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_18"
       },
       "geometry":{
@@ -109,7 +109,7 @@
         "adresse":"100, rue D’Argenson",
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
-        "parc":"Des Gouverneurs ",
+        "parc":"des Gouverneurs",
         "url":"http://www.boucherville.ca/cgi-bin/index.cgi?page=residants0_6_5_18"
       },
       "geometry":{

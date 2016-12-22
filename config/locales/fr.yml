@@ -16,6 +16,7 @@ fr:
   # Sidebar
   open_rinks: 'Patinoires ouvertes:'
   about_modal: À propos
+  weather_modal: Météo
   thanks_modal: Remerciez la ville
   newsletter: Infolettre
   newsletter_desc: Restez à jour grâce à notre bulletin
@@ -28,9 +29,9 @@ fr:
   twitter_account: Patiner Montréal sur Twitter
   facebook_account: Patiner Montréal sur Facebook
   windows_size: 156x45
-  sources: 'Sources : Ville de <a href="http://donnees.ville.montreal.qc.ca/archives/fiche-donnees/patinoires" target="_top">Montréal</a>, Ville de <a href="http://www.ville.dorval.qc.ca/fr/loisirs-culture/installations-sports-et-loisirs" target="_top">Dorval</a>, Ville de <a href="http://www.laval.ca/Pages/Fr/Citoyens/donnees-ouvertes.aspx" target="_top">Laval</a>, Ville de <a href="https://www.longueuil.quebec/fr/conditions-sites-hivernaux" target="_top">Longueuil</a>, Ville de <a href="http://www.ville.brossard.qc.ca/loisirs-et-culture/Installations-sportives-et-recreatives/Installations-sportives-et-recreatives/Patinoires.aspx" target="_top">Brossard</a> et Ville de <a href="http://www.boucherville.ca/cgi-bin/index.cgi?page=a29&langue=fra" target="_top">Boucherville</a>.'
-  license: 'Patiner Montreal est un <a href="https://github.com/opennorth/patinermontreal.ca" target="_top">logiciel libre</a> distribué sous <a href="https://raw.github.com/opennorth/patinermontreal.ca/master/MIT-LICENSE.txt" target="_top">license MIT</a>.'
-  data: 'Les données (<a href="%{json_path}" target="_top">JSON</a>, <a href="%{xml_path}" target="_top">XML</a>) sont sous <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="_top">license CC0</a>.'
+  sources: 'Sources : Ville de <a href="http://donnees.ville.montreal.qc.ca/dataset/patinoires" target="_blank">Montréal</a>, Ville de <a href="http://www.ville.dorval.qc.ca/fr/loisirs-culture/installations-sports-et-loisirs" target="_blank">Dorval</a>, Ville de <a href="http://www.laval.ca/Pages/Fr/Citoyens/donnees-ouvertes.aspx" target="_blank">Laval</a>, Ville de <a href="https://www.longueuil.quebec/fr/conditions-sites-hivernaux" target="_blank">Longueuil</a>, Ville de <a href="http://www.ville.brossard.qc.ca/loisirs-et-culture/Installations-sportives-et-recreatives/Installations-sportives-et-recreatives/Patinoires.aspx" target="_blank">Brossard</a> et Ville de <a href="http://boucherville.ca/etat-des-patinoires-et-du-sentier-de-ski-de-fond/" target="_blank">Boucherville</a>.'
+  license: 'Patiner Montreal est un <a href="https://github.com/opennorth/patinermontreal.ca" target="_blank">logiciel libre</a> distribué sous <a href="https://github.com/opennorth-archive/patinermontreal.ca/blob/master/LICENSE" target="_blank">license MIT</a>.'
+  data: 'Les données (<a href="%{json_path}" target="_blank">JSON</a>, <a href="%{xml_path}" target="_blank">XML</a>) sont sous <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="_blank">license CC0</a>.'
   disclaimer: Android est une marque déposée de Google Inc.
 
   # Filters
@@ -45,6 +46,10 @@ fr:
 
   # About
   montrealouvert: Montréal Ouvert
+
+  # Weather
+  weather_title: Conditions météorologiques
+  weather_gc_locale: f
 
   # Social
   facebook_locale: fr_CA

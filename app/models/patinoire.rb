@@ -15,6 +15,7 @@ class Patinoire < ActiveRecord::Base
     'Patinoire avec bandes',
     'Patinoire avec bandes pour enfants',
     'Patinoire de hockey',
+    'Patinoire sport d\'équipe',
     'Patinoire de patin libre',
     'Patinoire décorative',
     'Patinoire extérieure',
