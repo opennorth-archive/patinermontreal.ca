@@ -26,6 +26,11 @@ namespace :import do
 #         patinoire.ouvert = true
 #         patinoire.condition = 'N/A'
       end
+      if row['parc'] == "Stade Olympique" 
+        patinoire.description = "Patinoire réfrigérée"
+        patinoire.ouvert = true
+        patinoire.condition = 'N/A'
+      end
       
       patinoire.source = 'docs.google.com'
       patinoire.save!
