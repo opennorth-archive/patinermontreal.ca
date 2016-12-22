@@ -107,17 +107,17 @@ namespace :import do
   # http://www.patinermontreal.ca/geojson/ (or localhost:3000)
   task geojson: :environment do
     puts "Importing Dollard-des-Ormeaux..."
-    import_geojson_for_arrondissement 'http://localhost:3000/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
     puts "Importing Laval..."
-    import_geojson_for_arrondissement 'http://localhost:3000/geojson/laval.geojson', 'Laval', 'www.laval.ca'
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
     puts "Importing Vieux-Longueuil..."
-    import_geojson_for_arrondissement 'http://localhost:3000/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
     puts "Importing Saint-Hubert..."
-    import_geojson_for_arrondissement 'http://localhost:3000/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
     puts "Importing Boucherville..."
-    import_geojson_for_arrondissement 'http://localhost:3000/geojson/boucherville.geojson', 'Boucherville', 'www.boucherville.ca'
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/boucherville.geojson', 'Boucherville', 'www.boucherville.ca'
     puts "Importing Brossard..."
-    import_geojson_for_arrondissement 'http://localhost:3000/geojson/brossard.geojson', 'Brossard', 'www.ville.brossard.qc.ca'
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/brossard.geojson', 'Brossard', 'www.ville.brossard.qc.ca'
     puts "Done importing GeoJSON rinks"
   end
   
