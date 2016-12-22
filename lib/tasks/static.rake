@@ -33,7 +33,11 @@ namespace :import do
       end
       
       patinoire.source = 'docs.google.com'
-      patinoire.save!
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
     end
   end
 
