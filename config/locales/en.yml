@@ -9,6 +9,7 @@ en:
   # Sidebar
   open_rinks: 'Open rinks:'
   about_modal: About
+  weather_modal: Weather
   thanks_modal: Thank the city
   newsletter: Newsletter
   newsletter_desc: Stay up-to-date on outdoor rinks
@@ -38,6 +39,10 @@ en:
 
   # About
   montrealouvert: Open Data Montréal
+
+  # Weather
+  weather_title: Weather Conditions
+  weather_gc_locale: e
 
   # Social
   facebook_locale: en_US

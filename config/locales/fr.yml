@@ -16,6 +16,7 @@ fr:
   # Sidebar
   open_rinks: 'Patinoires ouvertes:'
   about_modal: À propos
+  weather_modal: Météo
   thanks_modal: Remerciez la ville
   newsletter: Infolettre
   newsletter_desc: Restez à jour grâce à notre bulletin
@@ -45,6 +46,10 @@ fr:
 
   # About
   montrealouvert: Montréal Ouvert
+
+  # Weather
+  weather_title: Conditions météorologiques
+  weather_gc_locale: f
 
   # Social
   facebook_locale: fr_CA
