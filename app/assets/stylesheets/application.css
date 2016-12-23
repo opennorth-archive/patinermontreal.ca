@@ -4,6 +4,7 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require bootstrap.min
  *= require leaflet
+ *= require openweather
  *= require_self
  *= require patinermontreal
 */

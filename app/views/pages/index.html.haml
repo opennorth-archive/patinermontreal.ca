@@ -157,12 +157,9 @@
   var env = '#{Rails.env}';
   var json = #{@rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng], include: {arrondissement: {only: [:nom_arr, :name, :email, :tel, :ext, :date_maj]}})};
 
-  window.myWidgetParam = { id: 21, cityid: 6077243, appid: '99275f98d42492934b7b812f0b77cdbb', containerid: 'openweathermap-widget', };
+  window.myWidgetParam = { id: 21, lang: '#{locale}', cityid: 6077243, appid: '99275f98d42492934b7b812f0b77cdbb', containerid: 'openweathermap-widget' };
 
 :plain
-  <script type="text/javascript" src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
-  <script type="text/javascript" src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js' async="async"></script>
-
   <script type="text/template" id="popup-template">
     <div id="rink-info">
       <a href="#fav" class="fa-stack fa-lg icon favorite <%= ( favorite ? 'active' : '' ) %>" id="favorite-toggle" title="<%= t( favorite ? 'remove_favorite' : 'add_favorite' ) %>">
