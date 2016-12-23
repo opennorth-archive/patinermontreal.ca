@@ -10,7 +10,7 @@
 //= require underscore-1.5.0.min
 //= require backbone-1.1.2.min
 //= require backbone.localStorage-1.1.13.min
-//= require leaflet-0.8-dev.min
+//= require leaflet-1.0.2.min
 //= require iso8601.min
 //= require jquery.smartbanner.min
 //= require map
