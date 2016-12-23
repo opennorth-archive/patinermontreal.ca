@@ -623,7 +623,7 @@
       function GeneratorWidget() {
         _classCallCheck(this, GeneratorWidget);
 
-        this.baseURL = 'http://openweathermap.org/themes/openweathermap/assets/vendor/owm';
+        this.baseURL = '//openweathermap.org/themes/openweathermap/assets/vendor/owm';
 
         this.domElements = {
           id21: {
@@ -631,8 +631,8 @@
             type: 'left',
             schema: 'white',
             dom: '<div class="widget-left"> <div class="widget-left-menu"> <div class="widget-left-menu__layout"> <h1 class="widget-left-menu__header"></h1> <div class="widget-left-menu__links"><a href="//openweathermap.org/" target="_blank" class="widget-left-menu__link">OpenWeatherMap</a></div> </div></div>' 
-            + '<div class="widget-left__body"> <div class="weather-left-card weather-left-card--grayscale"> <div class="weather-left-card__row1"> <img src="" width="128" height="128" alt="" class="weather-left-card__img"/> <div class="weather-left-card__col"> <p class="weather-left-card__number">0<span class="weather-left-card__degree">&176;</span></p> </div></div><div class="weather-left-card__row2"> <p class="weather-left-card__means">-</p><p class="weather-left-card__wind">Wind:</p></div></div>' 
-            + '<div class="widget-left__calendar"> <ul class="calendar calendar--grayscale"> <li class="calendar__item"><img src="" width="32" height="32" alt=""/></li><li class="calendar__item"><img src="" width="32" height="32" alt=""/></li><li class="calendar__item"><img src="" width="32" height="32" alt=""/></li><li class="calendar__item"><img src="" width="32" height="32" alt=""/></li><li class="calendar__item"><img src="" width="32" height="32" alt=""/></li><li class="calendar__item"><img src="" width="32" height="32" alt=""/></li><li class="calendar__item"><img src="" width="32" height="32" alt=""/></li><li class="calendar__item"><img src="" width="32" height="32" alt=""/></li></ul> <div id="graphic" class="widget-left__graphic"></div></div></div></div>'
+            + '<div class="widget-left__body"> <div class="weather-left-card weather-left-card--grayscale"> <div class="weather-left-card__row1"> <img src="" alt="" class="weather-left-card__img"/> <div class="weather-left-card__col"> <p class="weather-left-card__number">0<span class="weather-left-card__degree">&deg;</span></p> </div></div><div class="weather-left-card__row2"> <p class="weather-left-card__means">-</p><p class="weather-left-card__wind"></p></div></div>' 
+            + '<div class="widget-left__calendar"> <ul class="calendar calendar--grayscale"> <li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li></ul> <div id="graphic" class="widget-left__graphic"></div></div></div></div>'
           }
         };
       }
@@ -1126,33 +1126,21 @@
         lang: window.myWidgetParam.lang ? window.myWidgetParam.lang : 'en',
         appid: window.myWidgetParam.appid,
         units: 'metric',
-        textUnitTemp: String.fromCodePoint(0x00B0), // 248
+        textUnitTemp: "&deg;",
         colorPolilyne: colorPolilyne,
         baseURL: generateWidget.baseURL,
-        urlDomain: 'http://api.openweathermap.org'
+        urlDomain: '//api.openweathermap.org'
       };
 
       var controlsWidget = {
         // Первая половина виджетов
-        cityName: document.querySelectorAll('.widget-left-menu__header'),
-        temperature: document.querySelectorAll('.weather-left-card__number'),
-        naturalPhenomenon: document.querySelectorAll('.weather-left-card__means'),
-        windSpeed: document.querySelectorAll('.weather-left-card__wind'),
-        mainIconWeather: document.querySelectorAll('.weather-left-card__img'),
+        cityName: document.querySelector('.widget-left-menu__header'),
+        temperature: document.querySelector('.weather-left-card__number'),
+        naturalPhenomenon: document.querySelector('.weather-left-card__means'),
+        windSpeed: document.querySelector('.weather-left-card__wind'),
+        mainIconWeather: document.querySelector('.weather-left-card__img'),
         calendarItem: document.querySelectorAll('.calendar__item'),
         graphic: document.getElementById('graphic'),
-        // Вторая половина виджетов
-        cityName2: document.querySelectorAll('.widget-right__title'),
-        temperature2: document.querySelectorAll('.weather-right__temperature'),
-        temperatureFeels: document.querySelectorAll('.weather-right__feels'),
-        temperatureMin: document.querySelectorAll('.weather-right-card__temperature-min'),
-        temperatureMax: document.querySelectorAll('.weather-right-card__temperature-max'),
-        naturalPhenomenon2: document.querySelectorAll('.widget-right__description'),
-        windSpeed2: document.querySelectorAll('.weather-right__wind-speed'),
-        mainIconWeather2: document.querySelectorAll('.weather-right__icon'),
-        humidity: document.querySelectorAll('.weather-right__humidity'),
-        pressure: document.querySelectorAll('.weather-right__pressure'),
-        dateReport: document.querySelectorAll(".widget-right__date")
       };
 
       var urls = {
@@ -1165,7 +1153,7 @@
       };
 
       var objWidget = new _weatherWidget2.default(paramsWidget, controlsWidget, urls);
-      if (controlsWidget.cityName.length || controlsWidget.cityName2.length) {
+      if (controlsWidget.cityName) {
         objWidget.render();
       }
     }
@@ -1337,12 +1325,13 @@
        * @param url
        * @returns {Promise}
        */
-
-
       _createClass(WeatherWidget, [{
         key: 'httpGet',
         value: function httpGet(url) {
           var that = this;
+          
+          Promise._unhandledRejectionFn = function(rejectError) {};
+
           return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
@@ -1385,11 +1374,11 @@
               _this2.weather.forecastDaily = response;
               _this2.parseDataFromServer();
             }, function (error) {
-              console.log('Возникла ошибка ' + error);
+              console.log('An error occurred ' + error);
               _this2.parseDataFromServer();
             });
           }, function (error) {
-            console.log('Возникла ошибка ' + error);
+            console.log('An error occurred ' + error);
             _this2.parseDataFromServer();
           });
         }
@@ -1432,7 +1421,7 @@
           var weather = this.weather;
 
           if (weather.fromAPI.name === 'Undefined' || weather.fromAPI.cod === '404') {
-            console.log('Данные от сервера не получены');
+            console.log('The data from the server is not obtained');
             return;
           }
 
@@ -1482,120 +1471,14 @@
       }, {
         key: 'renderWidget',
         value: function renderWidget(metadata) {
-          // Оотрисовка первых четырех виджетов
-          for (var elem in this.controls.cityName) {
-            if (this.controls.cityName.hasOwnProperty(elem)) {
-              this.controls.cityName[elem].innerHTML = metadata.cityName;
-            }
-          }
+          this.controls.cityName.innerHTML = metadata.cityName;
+          this.controls.temperature.innerHTML = metadata.temperature + '<span class=\'weather-left-card__degree\'>' + this.params.textUnitTemp + '</span>';
+          this.controls.mainIconWeather.src = this.params.baseURL + '/img/widgets/' + metadata.icon + '.png';
+          this.controls.mainIconWeather.alt = 'Weather in ' + (metadata.cityName ? metadata.cityName : '');
+          this.controls.naturalPhenomenon.innerText = metadata.weather;
+          this.controls.windSpeed.innerText = metadata.windSpeed;
 
-          for (var _elem in this.controls.temperature) {
-            if (this.controls.temperature.hasOwnProperty(_elem)) {
-              this.controls.temperature[_elem].innerHTML = metadata.temperature + '<span class=\'weather-left-card__degree\'>' + this.params.textUnitTemp + '</span>';
-            }
-          }
-
-          for (var _elem2 in this.controls.mainIconWeather) {
-            if (this.controls.mainIconWeather.hasOwnProperty(_elem2)) {
-              this.controls.mainIconWeather[_elem2].src = this.getURLMainIcon(metadata.icon, true);
-              this.controls.mainIconWeather[_elem2].alt = 'Weather in ' + (metadata.cityName ? metadata.cityName : '');
-            }
-          }
-
-          if (metadata.weather) {
-            for (var _elem3 in this.controls.naturalPhenomenon) {
-              if (this.controls.naturalPhenomenon.hasOwnProperty(_elem3)) {
-                this.controls.naturalPhenomenon[_elem3].innerText = metadata.weather;
-              }
-            }
-          }
-          if (metadata.windSpeed) {
-            for (var _elem4 in this.controls.windSpeed) {
-              if (this.controls.windSpeed.hasOwnProperty(_elem4)) {
-                this.controls.windSpeed[_elem4].innerText = metadata.windSpeed;
-              }
-            }
-          }
-
-          // Отрисовка пяти последних виджетов
-          for (var _elem5 in this.controls.cityName2) {
-            if (this.controls.cityName2.hasOwnProperty(_elem5)) {
-              this.controls.cityName2[_elem5].innerHTML = metadata.cityName;
-            }
-          }
-
-          for (var _elem6 in this.controls.temperature2) {
-            if (this.controls.temperature2.hasOwnProperty(_elem6)) {
-              this.controls.temperature2[_elem6].innerHTML = metadata.temperature + '<span>' + this.params.textUnitTemp + '</span>';
-            }
-            if (this.controls.temperatureFeels.hasOwnProperty(_elem6)) {
-              this.controls.temperatureFeels[_elem6].innerHTML = metadata.temperature + '<span>' + this.params.textUnitTemp + '</span>';
-            }
-          }
-
-          for (var _elem7 in this.controls.temperatureMin) {
-            if (this.controls.temperatureMin.hasOwnProperty(_elem7)) {
-              this.controls.temperatureMin[_elem7].innerHTML = metadata.temperature + '<span>' + this.params.textUnitTemp + '</span>';
-            }
-          }
-
-          for (var _elem8 in this.controls.temperatureMax) {
-            if (this.controls.temperatureMax.hasOwnProperty(_elem8)) {
-              this.controls.temperatureMax[_elem8].innerHTML = metadata.temperature + '<span>' + this.params.textUnitTemp + '</span>';
-            }
-          }
-
-          if (metadata.weather) {
-            for (var _elem9 in this.controls.naturalPhenomenon2) {
-              if (this.controls.naturalPhenomenon2.hasOwnProperty(_elem9)) {
-                this.controls.naturalPhenomenon2[_elem9].innerText = metadata.weather;
-              }
-            }
-          }
-
-          if (metadata.windSpeed2 && metadata.windDirection) {
-            for (var _elem10 in this.controls.windSpeed2) {
-              if (this.controls.windSpeed2.hasOwnProperty(_elem10)) {
-                this.controls.windSpeed2[_elem10].innerText = metadata.windSpeed2 + ' ' + metadata.windDirection;
-              }
-            }
-          }
-
-          for (var _elem11 in this.controls.mainIconWeather2) {
-            if (this.controls.mainIconWeather2.hasOwnProperty(_elem11)) {
-              this.controls.mainIconWeather2[_elem11].src = this.getURLMainIcon(metadata.icon, true);
-              this.controls.mainIconWeather2[_elem11].alt = 'Weather in ' + (metadata.cityName ? metadata.cityName : '');
-            }
-          }
-
-          if (metadata.humidity) {
-            for (var _elem12 in this.controls.humidity) {
-              if (this.controls.humidity.hasOwnProperty(_elem12)) {
-                this.controls.humidity[_elem12].innerText = metadata.humidity;
-              }
-            }
-          }
-
-          if (metadata.pressure) {
-            for (var _elem13 in this.controls.pressure) {
-              if (this.controls.pressure.hasOwnProperty(_elem13)) {
-                this.controls.pressure[_elem13].innerText = metadata.pressure;
-              }
-            }
-          }
-
-          // Прописываем текущую дату в виджеты
-          for (var _elem14 in this.controls.dateReport) {
-            if (this.controls.dateReport.hasOwnProperty(_elem14)) {
-              this.controls.dateReport[_elem14].innerText = this.getTimeDateHHMMMonthDay();
-            }
-          }
-
-          if (this.controls.graphic) {
-            if (this.weather.forecastDaily) {
-              this.prepareDataForGraphic();
-            }
-          }
+          this.prepareDataForGraphic();
         }
       }, {
         key: 'prepareDataForGraphic',
@@ -1627,60 +1510,10 @@
           var that = this;
 
           data.forEach(function (elem, index) {
-            that.controls.calendarItem[index].innerHTML = elem.day + '<img src="http://openweathermap.org/img/w/' + elem.icon + '.png" width="32" height="32" alt="' + elem.day + '">';
+            that.controls.calendarItem[index].innerHTML = elem.day + '<img src="//openweathermap.org/img/w/' + elem.icon + '.png" alt="' + elem.day + '">';
           });
           return data;
         }
-      }, {
-        key: 'getURLMainIcon',
-        value: function getURLMainIcon(nameIcon) {
-          var color = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
-
-          // Создаем и инициализируем карту сопоставлений
-          var mapIcons = new Map();
-
-          if (!color) {
-            //
-            mapIcons.set('01d', '01dbw');
-            mapIcons.set('02d', '02dbw');
-            mapIcons.set('03d', '03dbw');
-            mapIcons.set('03d', '03dbw');
-            mapIcons.set('04d', '04dbw');
-            mapIcons.set('05d', '05dbw');
-            mapIcons.set('06d', '06dbw');
-            mapIcons.set('07d', '07dbw');
-            mapIcons.set('08d', '08dbw');
-            mapIcons.set('09d', '09dbw');
-            mapIcons.set('10d', '10dbw');
-            mapIcons.set('11d', '11dbw');
-            mapIcons.set('13d', '13dbw');
-            // Ночные
-            mapIcons.set('01n', '01dbw');
-            mapIcons.set('02n', '02dbw');
-            mapIcons.set('03n', '03dbw');
-            mapIcons.set('03n', '03dbw');
-            mapIcons.set('04n', '04dbw');
-            mapIcons.set('05n', '05dbw');
-            mapIcons.set('06n', '06dbw');
-            mapIcons.set('07n', '07dbw');
-            mapIcons.set('08n', '08dbw');
-            mapIcons.set('09n', '09dbw');
-            mapIcons.set('10n', '10dbw');
-            mapIcons.set('11n', '11dbw');
-            mapIcons.set('13n', '13dbw');
-
-            if (mapIcons.get(nameIcon)) {
-              return this.params.baseURL + '/img/widgets/' + nameIcon + 'img/' + mapIcons.get(nameIcon) + '.png';
-            }
-            return 'http://openweathermap.org/img/w/' + nameIcon + '.png'; // Захардковежно до времен https
-          }
-          return this.params.baseURL + '/img/widgets/' + nameIcon + '.png';
-        }
-
-        /**
-         * Отрисовка графика с помощью библиотеки D3
-         */
-
       }, {
         key: 'drawGraphicD3',
         value: function drawGraphicD3(data) {

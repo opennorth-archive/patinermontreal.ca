@@ -13,5 +13,6 @@
 //= require leaflet-1.0.2.min
 //= require iso8601.min
 //= require jquery.smartbanner.min
+//= require promise.min
 //= require openweathermap.min
 //= require map

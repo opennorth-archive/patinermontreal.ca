@@ -28,12 +28,6 @@
     vertical-align: top;
     width: 225px
 }
-.widget-left--small,
-.widget-left--small2 {
-    display: inline-block;
-    vertical-align: top;
-    width: auto
-}
 .widget-left-menu {
     width: 100%;
     margin: 0 auto;
@@ -90,53 +84,6 @@
 .widget-left-menu--compact {
     width: 225px
 }
-.widget-left-menu--small,
-.widget-left-menu--small2 {
-    padding-left: 15px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-    min-height: 58px
-}
-.widget-left-menu--small2 {
-    padding-right: 15px
-}
-.widget-left-menu--small .widget-left-menu__header,
-.widget-left-menu--small2 .widget-left-menu__header {
-    padding-right: 10px;
-    margin-top: 21px;
-    float: none;
-    display: inline-block;
-    vertical-align: top
-}
-.widget-left-menu--blue {
-    background-image: -webkit-gradient(linear, right bottom, left top, from(#ddf730), to(#f1f029));
-    background-image: -webkit-linear-gradient(bottom right, #ddf730, #f1f029);
-    background-image: linear-gradient(to top left, #ddf730, #f1f029)
-}
-.widget-left-menu--blue .widget-left-menu__layout,
-.widget-left-menu--brown .widget-left-menu__layout {
-    border-bottom: 2px solid #ff4f98
-}
-.widget-left-menu--brown {
-    background-image: -webkit-gradient(linear, right bottom, left top, from(#feb020), to(#ffd05c));
-    background-image: -webkit-linear-gradient(bottom right, #feb020, #ffd05c);
-    background-image: linear-gradient(to top left, #feb020, #ffd05c)
-}
-.widget-left-menu--small .widget-left-menu--blue,
-.widget-left-menu__links--blue {
-    background-image: -webkit-gradient(linear, right bottom, left top, from(#ddf730), to(#f1f029));
-    background-image: -webkit-linear-gradient(bottom right, #ddf730, #f1f029);
-    background-image: linear-gradient(to top left, #ddf730, #f1f029)
-}
-.widget-left-menu__links--brown {
-    background-image: -webkit-gradient(linear, right bottom, left top, from(#feb020), to(#ffd05c));
-    background-image: -webkit-linear-gradient(bottom right, #feb020, #ffd05c);
-    background-image: linear-gradient(to top left, #feb020, #ffd05c)
-}
-.widget-left-menu__links--compact .widget-left-menu__layout--blue,
-.widget-left-menu__links--compact .widget-left-menu__layout--brown {
-    border-top: 2px solid #ff4f98
-}
 .weather-left-card {
     float: left;
     margin: 0 15px
@@ -153,6 +100,8 @@
     position: absolute;
     left: -9px;
     top: -14px
+    width: 128px;
+    height: 128px;
 }
 .calendar--grayscale li,
 .weather-left-card--grayscale {
@@ -201,31 +150,6 @@
     color: #333;
     text-align: center;
     padding: 2px 0
-}
-.weather-left-card__number--small {
-    padding: 0;
-    display: inline-block;
-    vertical-align: top;
-    margin-bottom: 5px;
-    margin-top: 21px;
-    min-width: 36px;
-    text-align: center;
-    font-size: 18px
-}
-.weather-left-card__number--small .weather-left-card__degree {
-    font-size: 14px;
-    display: inline-block;
-    vertical-align: top
-}
-.weather-left-card__img--small {
-    position: static
-}
-.weather-left-card--compact {
-    float: none;
-    margin: 0 15px
-}
-.weather-left-card__number--small2 .weather-left-card__degree {
-    font-size: 14px
 }
 .calendar {
     list-style: none;
