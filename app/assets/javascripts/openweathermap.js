@@ -631,8 +631,8 @@
             type: 'left',
             schema: 'white',
             dom: '<div class="widget-left"> <div class="widget-left-menu"> <div class="widget-left-menu__layout"> <h1 class="widget-left-menu__header"></h1> <div class="widget-left-menu__links"><a href="//openweathermap.org/" target="_blank" class="widget-left-menu__link">OpenWeatherMap</a></div> </div></div>' 
-            + '<div class="widget-left__body"> <div class="weather-left-card weather-left-card--grayscale"> <div class="weather-left-card__row1"> <img src="" alt="" class="weather-left-card__img"/> <div class="weather-left-card__col"> <p class="weather-left-card__number">0<span class="weather-left-card__degree">&deg;</span></p> </div></div><div class="weather-left-card__row2"> <p class="weather-left-card__means">-</p><p class="weather-left-card__wind"></p></div></div>' 
-            + '<div class="widget-left__calendar"> <ul class="calendar calendar--grayscale"> <li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li></ul> <div id="graphic" class="widget-left__graphic"></div></div></div></div>'
+            + '<div class="widget-left__body"> <div class="weather-left-card"> <div class="weather-left-card__row1"> <img src="" alt="" class="weather-left-card__img"/> <div class="weather-left-card__col"> <p class="weather-left-card__number">0<span class="weather-left-card__degree">&deg;</span></p> </div></div><div class="weather-left-card__row2"> <p class="weather-left-card__means">-</p><p class="weather-left-card__wind"></p></div></div>' 
+            + '<div class="widget-left__calendar"> <ul class="calendar"> <li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li><li class="calendar__item"><img src="" alt=""/></li></ul> <div id="graphic" class="widget-left__graphic"></div></div></div></div>'
           }
         };
       }
@@ -1116,7 +1116,7 @@
       }
 
       // Установка цвета кривых для графика
-      var colorPolilyne = "#000";
+      var colorPolilyne = "#428bca";
       if (generateWidget.selDOMElement.colorPolilyne) {
         colorPolilyne = generateWidget.selDOMElement.colorPolilyne;
       }
@@ -1526,9 +1526,9 @@
             offsetX: 15,
             offsetY: 10,
             width: 420,
-            height: 79,
+            height: 80,
             rawData: [],
-            margin: 10,
+            margin: 13,
             colorPolilyne: this.params.colorPolilyne,
             fontSize: '12px',
             fontColor: '#333',
