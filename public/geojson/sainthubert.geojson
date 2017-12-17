@@ -8,7 +8,7 @@
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
         "parc":"de la Cité",
-        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordinates"
+        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordonees"
       },
       "geometry":{  
         "type":"Point",
@@ -25,7 +25,7 @@
         "genre":"PP",
         "nom":"Patinoire paysagée",
         "parc":"de la Cité",
-        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordinates"
+        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordonees"
       },
       "geometry":{  
         "type":"Point",

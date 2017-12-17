@@ -51,6 +51,7 @@ namespace :import do
           'Anneau à patiner'           => 'Anneau de glace',
           'Pat. avec bandes'           => 'Patinoire avec bandes',
           'Pati déco'                  => 'Patinoire décorative',
+          'Patinoire Décorative'       => 'Patinoire décorative',
           'Patinoire à bandes'         => 'Patinoire avec bandes',
           'Patnoire à bandes'          => 'Patinoire avec bandes',
           'Patinoire avec bande'       => 'Patinoire avec bandes',
