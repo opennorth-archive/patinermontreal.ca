@@ -27,8 +27,8 @@ namespace :import do
         xml_name = 'Patinoire avec bandes, Parc Jeanne-Lapierre (PSE)' if xml_name == 'Patinoire avec bandes, Parc Jean-Lapierre (PSE)' && arrondissement.cle == 'rdp'
         xml_name = 'Patinoire de patin libre, parc du Glacis (PP)' if xml_name == 'Patinoire du Glacis (PP)'
         xml_name = 'Patinoire décorative, Toussaint-Louverture (PP)' if xml_name == 'Patinoire décorative Toussaint-Louverture (PP)'
-        xml_name = 'Patinoire extérieure, Domaine Chartier (PPL)' if xml_name == 'Patinoire extérieure Domaine Chartier (PPL)'
-        xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)' if xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
+#         xml_name = 'Patinoire extérieure, Domaine Chartier (PPL)' if xml_name == 'Patinoire extérieure Domaine Chartier (PPL)'
+#         xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)' if xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
         xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)' if xml_name == 'Patinoire De Gaspé/Bernard (PSE)'
         xml_name = 'Patinoire décorative, parc Aimé-Léonard (PP)' if xml_name == 'Patinoire, parc Aimé-Léonard (PP)'
         xml_name = 'Patinoire de patin libre, parc Hans-Selye (PPL)' if xml_name == 'Patinoire de patin libre,parc Hans-Selye (PPL)'
@@ -84,7 +84,6 @@ namespace :import do
           'Des Hirondelles'                  => 'des Hirondelles',
           'Decelle'                          => 'Decelles',
           'Duff court'                       => 'Duff Court',
-#           'François-Perrault-réfr'           => 'François-Perrault',
           'Ignace-Bourget-anneau de vitesse' => 'Ignace-Bourget',
           'lalancette'                       => 'Lalancette',
           'Lac aux castors'                  => 'Lac aux Castors',
@@ -138,6 +137,13 @@ namespace :import do
 
         # There are identical lines.
         if patinoire.parc == 'Decelles' && patinoire.genre == 'PSE'
+          patinoire.disambiguation = "no #{flip}"
+          flip = flip == 1 ? 2 : 1
+        end
+
+        # There are identical lines, with identical names
+        if patinoire.parc == 'de Mésy' && patinoire.genre == 'PSE'
+          patinoire.nom = "Patinoire avec bandes no #{flip}, de Mésy (PSE)"
           patinoire.disambiguation = "no #{flip}"
           flip = flip == 1 ? 2 : 1
         end
