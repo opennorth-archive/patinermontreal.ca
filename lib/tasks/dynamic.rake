@@ -23,12 +23,15 @@ namespace :import do
         # Expand/correct rink names to avoid later parsing errors
         xml_name = node.at_css('nom').text.sub(' du parc ', ', parc ').gsub(/([a-z])\sparc/im, '\1, parc').gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge').strip
         xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Confédération (PSE)' if xml_name == 'Patinoire Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'cdn' 
+        xml_name = 'Patinoire réfrigérée Bleu-Blanc-Bouge, Parc François-Perrault (PSE)' if xml_name == 'Patinoire réfrigérée Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'vsp'
+        xml_name = 'Patinoire avec bandes, Parc Jeanne-Lapierre (PSE)' if xml_name == 'Patinoire avec bandes, Parc Jean-Lapierre (PSE)' && arrondissement.cle == 'rdp'
         xml_name = 'Patinoire de patin libre, parc du Glacis (PP)' if xml_name == 'Patinoire du Glacis (PP)'
         xml_name = 'Patinoire décorative, Toussaint-Louverture (PP)' if xml_name == 'Patinoire décorative Toussaint-Louverture (PP)'
         xml_name = 'Patinoire extérieure, Domaine Chartier (PPL)' if xml_name == 'Patinoire extérieure Domaine Chartier (PPL)'
         xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)' if xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
         xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)' if xml_name == 'Patinoire De Gaspé/Bernard (PSE)'
         xml_name = 'Patinoire décorative, parc Aimé-Léonard (PP)' if xml_name == 'Patinoire, parc Aimé-Léonard (PP)'
+        xml_name = 'Patinoire de patin libre, parc Hans-Selye (PPL)' if xml_name == 'Patinoire de patin libre,parc Hans-Selye (PPL)'
 
         patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id(xml_name, arrondissement.id)
         %w(ouvert deblaye arrose resurface condition).each do |attribute|
@@ -52,6 +55,8 @@ namespace :import do
           'Pat. avec bandes'           => 'Patinoire avec bandes',
           'Pati déco'                  => 'Patinoire décorative',
           'Patinoire Décorative'       => 'Patinoire décorative',
+          'Sentiers Glacés'            => 'Sentier de glace',
+          'Patinoire de hockey et patin libre' => 'Patinoire de patin libre',
           'Patinoire à bandes'         => 'Patinoire avec bandes',
           'Patnoire à bandes'          => 'Patinoire avec bandes',
           'Patinoire avec bande'       => 'Patinoire avec bandes',
@@ -63,7 +68,7 @@ namespace :import do
 
         patinoire.genre = patinoire.nom[/\((PP|PPL|PSE)\)\z/, 1]
 
-        patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|no \d)\b/i, 1]).andand.downcase
+        patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|est|ouest|no \d)\b/i, 1]).andand.downcase
 #        patinoire.disambiguation ||= "bbb-canadiens" if patinoire.nom[/(Bleu(\W)?Blanc(\W)?Bouge\b)|(\bBBB\b)\b/i, 1]
         patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d),/, 1]
         patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée' || patinoire.description == 'Patinoire réfrigérée Bleu-Blanc-Bouge'
@@ -79,10 +84,9 @@ namespace :import do
           'Des Hirondelles'                  => 'des Hirondelles',
           'Decelle'                          => 'Decelles',
           'Duff court'                       => 'Duff Court',
-          'François-Perrault-réfr'           => 'François-Perrault',
+#           'François-Perrault-réfr'           => 'François-Perrault',
           'Ignace-Bourget-anneau de vitesse' => 'Ignace-Bourget',
           'lalancette'                       => 'Lalancette',
-          'Lac aux Castors'                  => 'Lac aux Castors',
           'Lac aux castors'                  => 'Lac aux Castors',
           'Lac des castors'                  => 'Lac aux Castors',
           'Marc-Aurèle-Fortin'               => 'Hans-Selye',
@@ -100,7 +104,7 @@ namespace :import do
         patinoire.parc.slice!(/\AParc /i)
 
         # Remove disambiguation from description.
-        patinoire.description.slice!(/ (\d|Nord|Sud)\z/)
+        patinoire.description.slice!(/ (\d|Nord|Sud|Est|Ouest)\z/)
 
         # "Aire de patinage libre" with "PSE" is nonsense.
         if patinoire.nom == 'Aire de patinage libre, Kent (sud) (PSE)'
@@ -122,6 +126,8 @@ namespace :import do
         # Require a valid description
         if ['Patinoire # 2 , Parc Eugène-Dostie (PSE)', 'Patinoire # 1 , Parc Eugène-Dostie (PSE)'].include? patinoire.nom
           patinoire.description = 'Patinoire de hockey'
+          patinoire.disambiguation = "no #{flip}"
+          flip = flip == 1 ? 2 : 1
         end
 
         # There are identical lines.
