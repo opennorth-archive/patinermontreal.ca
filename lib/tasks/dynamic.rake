@@ -89,6 +89,7 @@ namespace :import do
           'Lac aux castors'                  => 'Lac aux Castors',
           'Lac des castors'                  => 'Lac aux Castors',
           'Marc-Aurèle-Fortin'               => 'Hans-Selye',
+          'Merci'                            => 'de la Merci',
           'Patinoire bandes Pierre-Bédard'   => 'Pierre-Bédard',
           'Saint-Aloysis'                    => 'Saint-Aloysius',
           'Sainte-Maria-Goretti'             => 'Maria-Goretti',
@@ -142,11 +143,11 @@ namespace :import do
         end
 
         # There are identical lines, with identical names
-        if patinoire.parc == 'de Mésy' && patinoire.genre == 'PSE'
-          patinoire.nom = "Patinoire avec bandes no #{flip}, de Mésy (PSE)"
-          patinoire.disambiguation = "no #{flip}"
-          flip = flip == 1 ? 2 : 1
-        end
+#         if patinoire.parc == 'de Mésy' && patinoire.genre == 'PSE'
+#           patinoire.nom = "Patinoire avec bandes no #{flip}, de Mésy (PSE)"
+#           patinoire.disambiguation = "no #{flip}"
+#           flip = flip == 1 ? 2 : 1
+#         end
         
         patinoire.source = 'donnees.ville.montreal.qc.ca'
         begin
