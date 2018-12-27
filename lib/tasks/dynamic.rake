@@ -168,7 +168,7 @@ namespace :import do
     arrondissement.date_maj = Time.now
     arrondissement.save!
 
-    # http://www.montreal-west.ca/en/outdoor-rinks/
+    # http://www.montreal-west.ca/fr/patinoires-exterieur/
     Nokogiri::HTML(RestClient.get('http://www.montreal-west.ca/fr/patinoires-exterieur/')).css('table[border] tr:gt(1)').each do |tr|
       text = tr.at_css('td:eq(1)').text.gsub(/[[:space:]]/, ' ').strip
       attributes = case text
@@ -283,7 +283,7 @@ namespace :import do
     tr = doc.css(".field-name-body table")[0].css("tr:eq(7)")
     attributes = { 
       parc: 'Michel-Chartrand',
-      genre: 'PSE',
+      genre: 'PPL',
       ouvert: tr.css("td:eq(4)").text.downcase().include?('x') ,
       resurface: tr.css("td:eq(2)").text.downcase().include?('x') ,
       condition: 'N/A'
@@ -321,6 +321,10 @@ namespace :import do
     doc.css('.field-name-body table')[2].css('tr:gt(2)').each do |tr|
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
+
+      if (attributes[:parc] == "Des Sureaux")
+        attributes[:parc] = "des Sureaux"
+      end
       
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
