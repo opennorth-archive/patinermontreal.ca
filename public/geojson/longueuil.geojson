@@ -328,6 +328,7 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "Rue Belcourt & Bagot",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -523,6 +524,7 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "2300, rue Dollard",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -575,6 +577,7 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "100, place Charles-Le Moyne",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
@@ -666,6 +669,7 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "Rue Grou & Lincourt",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
@@ -679,6 +683,7 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "Rue Grou & Lincourt",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -714,32 +719,6 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-73.455792, 45.543987]
-        }
-    }, {
-        "type": "Feature",
-        "properties": {
-            "adresse": "4200, chemin de la Savane",
-            "genre": "PPL",
-            "nom": "Rond de glace",
-            "parc": "Marché public de Longueuil",
-            "url": "https://www.longueuil.quebec/fr/marche-public-de-longueuil"
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-73.431338, 45.513249]
-        }
-    }, {
-        "type": "Feature",
-        "properties": {
-            "adresse": "2060, rue Holmes",
-            "genre": "PSE",
-            "nom": "Patinoire avec bandes",
-            "parc": "Parc Pierre-et-Bernard-Lucas",
-            "url": "https://www.longueuil.quebec/fr/parc-pierre-bernard-lucas"
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-73.473982, 45.492702]
         }
     }]
 }

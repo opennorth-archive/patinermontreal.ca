@@ -353,7 +353,7 @@ namespace :import do
         condition: 'N/A'
       }
       attributes[:genre] = 'PPL' if tr.css("td:eq(#{2+offset})").text == 'Pavillon'
-      attributes[:genre] = 'PP' if tr.css("td:eq(#{2+offset})").text == 'Bois'
+      attributes[:genre] = 'PP' if tr.css("td:eq(#{2+offset})").text == 'Raquette'
       
       attributes[:condition] = 'Excellente' if tr.css("td:eq(#{5+offset})").text.downcase().include?('x')
       attributes[:condition] = 'Bonne' if tr.css("td:eq(#{6+offset})").text.downcase().include?('x')
@@ -393,13 +393,13 @@ namespace :import do
     attributes = { 
       parc: spanned ? previous_parc : tr.at_css('td').text.gsub(/[[:space:]]/, ' ').sub('Parc ', '').strip ,
       genre: case nom
-      when 'Surface glacée', 'Suface glacée'
+      when 'Surface glacée'
         'PPL'
-      when 'Patinoire'
+      when 'Patinoire', 'Patinoire permanente'
         'PSE'
       else  
         puts "Unknown rink '#{nom}'"
-        abort 
+        nil 
       end ,
       ouvert: tr.css("td:eq(#{3+offset})").text.downcase().include?('x') ,
       condition: 'N/A'
