@@ -39,6 +39,8 @@ class Patinoire < ActiveRecord::Base
     'no 3',
     'nord',
     'sud',
+    'est',
+    'ouest',
     'petite',
     'grande',
     'réfrigérée',

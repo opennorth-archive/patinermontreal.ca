@@ -4,10 +4,10 @@
         "type": "Feature",
         "properties": {
             "adresse": "1895, rue Adoncour",
-            "genre": "PSE",
-            "nom": "Patinoire avec bandes",
+            "genre": "PPL",
+            "nom": "Patinoire de patin libre",
             "parc": "Michel-Chartrand",
-            "url": "https://www.longueuil.quebec/en/parc-michel-chartrand-coordinates"
+            "url": "https://www.longueuil.quebec/fr/parc-michel-chartrand-coordinates"
         },
         "geometry": {
             "type": "Point",
@@ -20,7 +20,7 @@
             "genre": "PSE",
             "nom": "Patinoire réfrigérée Bleu-Blanc-Bouge",
             "parc": "Lionel-Groulx",
-            "url": "https://www.longueuil.quebec/en/parc-lionel-groulx"
+            "url": "https://www.longueuil.quebec/fr/parc-lionel-groulx"
         },
         "geometry": {
             "type": "Point",
@@ -33,7 +33,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Adrien-Gamache",
-            "url": "https://www.longueuil.quebec/en/parc-adrien-gamache"
+            "url": "https://www.longueuil.quebec/fr/parc-adrien-gamache"
         },
         "geometry": {
             "type": "Point",
@@ -46,7 +46,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Anastase-Forget",
-            "url": "https://www.longueuil.quebec/en/parc-anastase-forget"
+            "url": "https://www.longueuil.quebec/fr/parc-anastase-forget"
         },
         "geometry": {
             "type": "Point",
@@ -59,7 +59,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Armand-Racicot",
-            "url": "https://www.longueuil.quebec/en/parc-armand-racicot"
+            "url": "https://www.longueuil.quebec/fr/parc-armand-racicot"
         },
         "geometry": {
             "type": "Point",
@@ -72,7 +72,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Armand-Racicot",
-            "url": "https://www.longueuil.quebec/en/parc-armand-racicot"
+            "url": "https://www.longueuil.quebec/fr/parc-armand-racicot"
         },
         "geometry": {
             "type": "Point",
@@ -85,7 +85,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Asselin",
-            "url": "https://www.longueuil.quebec/en/parc-asselin"
+            "url": "https://www.longueuil.quebec/fr/parc-asselin"
         },
         "geometry": {
             "type": "Point",
@@ -98,7 +98,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Beauregard",
-            "url": "https://www.longueuil.quebec/en/parc-beauregard"
+            "url": "https://www.longueuil.quebec/fr/parc-beauregard"
         },
         "geometry": {
             "type": "Point",
@@ -111,7 +111,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Belcourt",
-            "url": "https://www.longueuil.quebec/en/parc-belcourt"
+            "url": "https://www.longueuil.quebec/fr/parc-belcourt"
         },
         "geometry": {
             "type": "Point",
@@ -124,7 +124,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Berthelet",
-            "url": "https://www.longueuil.quebec/en/parc-berthelet"
+            "url": "https://www.longueuil.quebec/fr/parc-berthelet"
         },
         "geometry": {
             "type": "Point",
@@ -137,7 +137,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Carillon",
-            "url": "https://www.longueuil.quebec/en/parc-carillon"
+            "url": "https://www.longueuil.quebec/fr/parc-carillon"
         },
         "geometry": {
             "type": "Point",
@@ -150,7 +150,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Carillon",
-            "url": "https://www.longueuil.quebec/en/parc-carillon"
+            "url": "https://www.longueuil.quebec/fr/parc-carillon"
         },
         "geometry": {
             "type": "Point",
@@ -163,7 +163,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Champvert",
-            "url": "https://www.longueuil.quebec/en/parc-champvert"
+            "url": "https://www.longueuil.quebec/fr/parc-champvert"
         },
         "geometry": {
             "type": "Point",
@@ -176,7 +176,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Champvert",
-            "url": "https://www.longueuil.quebec/en/parc-champvert"
+            "url": "https://www.longueuil.quebec/fr/parc-champvert"
         },
         "geometry": {
             "type": "Point",
@@ -189,7 +189,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Christ-Roi",
-            "url": "https://www.longueuil.quebec/en/parc-christ-roi"
+            "url": "https://www.longueuil.quebec/fr/parc-christ-roi"
         },
         "geometry": {
             "type": "Point",
@@ -202,7 +202,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Christ-Roi",
-            "url": "https://www.longueuil.quebec/en/parc-christ-roi"
+            "url": "https://www.longueuil.quebec/fr/parc-christ-roi"
         },
         "geometry": {
             "type": "Point",
@@ -215,7 +215,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "des Sureaux",
-            "url": "https://www.longueuil.quebec/en/parc-dessureaux"
+            "url": "https://www.longueuil.quebec/fr/parc-dessureaux"
         },
         "geometry": {
             "type": "Point",
@@ -228,7 +228,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Drapeau",
-            "url": "https://www.longueuil.quebec/en/parc-drapeau"
+            "url": "https://www.longueuil.quebec/fr/parc-drapeau"
         },
         "geometry": {
             "type": "Point",
@@ -241,7 +241,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Fernand-Bouffard",
-            "url": "https://www.longueuil.quebec/en/parc-fernand-bouffard"
+            "url": "https://www.longueuil.quebec/fr/parc-fernand-bouffard"
         },
         "geometry": {
             "type": "Point",
@@ -254,7 +254,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Fonrouge",
-            "url": "https://www.longueuil.quebec/en/parc-fonrouge"
+            "url": "https://www.longueuil.quebec/fr/parc-fonrouge"
         },
         "geometry": {
             "type": "Point",
@@ -267,7 +267,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Fonrouge",
-            "url": "https://www.longueuil.quebec/en/parc-fonrouge"
+            "url": "https://www.longueuil.quebec/fr/parc-fonrouge"
         },
         "geometry": {
             "type": "Point",
@@ -280,7 +280,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Gardenville",
-            "url": "https://www.longueuil.quebec/en/parc-gardenville"
+            "url": "https://www.longueuil.quebec/fr/parc-gardenville"
         },
         "geometry": {
             "type": "Point",
@@ -293,7 +293,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Génération",
-            "url": "https://www.longueuil.quebec/en/parc-generation"
+            "url": "https://www.longueuil.quebec/fr/parc-generation"
         },
         "geometry": {
             "type": "Point",
@@ -306,7 +306,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Gentilly Est",
-            "url": "https://www.longueuil.quebec/en/parc-gentilly-est"
+            "url": "https://www.longueuil.quebec/fr/parc-gentilly-est"
         },
         "geometry": {
             "type": "Point",
@@ -319,7 +319,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Gentilly Ouest",
-            "url": "https://www.longueuil.quebec/en/parc-gentilly-ouest"
+            "url": "https://www.longueuil.quebec/fr/parc-gentilly-ouest"
         },
         "geometry": {
             "type": "Point",
@@ -328,11 +328,12 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "Rue Belcourt & Bagot",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Gentilly Ouest",
-            "url": "https://www.longueuil.quebec/en/parc-gentilly-ouest"
+            "url": "https://www.longueuil.quebec/fr/parc-gentilly-ouest"
         },
         "geometry": {
             "type": "Point",
@@ -345,7 +346,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Gray",
-            "url": "https://www.longueuil.quebec/en/parc-gray"
+            "url": "https://www.longueuil.quebec/fr/parc-gray"
         },
         "geometry": {
             "type": "Point",
@@ -358,7 +359,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Hirondelles (des)",
-            "url": "https://www.longueuil.quebec/en/parc-hirondelles"
+            "url": "https://www.longueuil.quebec/fr/parc-hirondelles"
         },
         "geometry": {
             "type": "Point",
@@ -371,7 +372,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Hirondelles (des)",
-            "url": "https://www.longueuil.quebec/en/parc-hirondelles"
+            "url": "https://www.longueuil.quebec/fr/parc-hirondelles"
         },
         "geometry": {
             "type": "Point",
@@ -384,7 +385,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Jean-de-Lalande",
-            "url": "https://www.longueuil.quebec/en/parc-jean-lalande"
+            "url": "https://www.longueuil.quebec/fr/parc-jean-lalande"
         },
         "geometry": {
             "type": "Point",
@@ -397,7 +398,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Jean-de-Lalande",
-            "url": "https://www.longueuil.quebec/en/parc-jean-lalande"
+            "url": "https://www.longueuil.quebec/fr/parc-jean-lalande"
         },
         "geometry": {
             "type": "Point",
@@ -410,7 +411,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Laflamme",
-            "url": "https://www.longueuil.quebec/en/parc-laflamme"
+            "url": "https://www.longueuil.quebec/fr/parc-laflamme"
         },
         "geometry": {
             "type": "Point",
@@ -423,7 +424,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Laflamme",
-            "url": "https://www.longueuil.quebec/en/parc-laflamme"
+            "url": "https://www.longueuil.quebec/fr/parc-laflamme"
         },
         "geometry": {
             "type": "Point",
@@ -436,7 +437,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Laurier",
-            "url": "https://www.longueuil.quebec/en/parc-laurier"
+            "url": "https://www.longueuil.quebec/fr/parc-laurier"
         },
         "geometry": {
             "type": "Point",
@@ -449,7 +450,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Laviolette",
-            "url": "https://www.longueuil.quebec/en/parc-laviolette"
+            "url": "https://www.longueuil.quebec/fr/parc-laviolette"
         },
         "geometry": {
             "type": "Point",
@@ -462,7 +463,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Laviolette",
-            "url": "https://www.longueuil.quebec/en/parc-laviolette"
+            "url": "https://www.longueuil.quebec/fr/parc-laviolette"
         },
         "geometry": {
             "type": "Point",
@@ -475,7 +476,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Lecavalier",
-            "url": "https://www.longueuil.quebec/en/parc-lecavalier"
+            "url": "https://www.longueuil.quebec/fr/parc-lecavalier"
         },
         "geometry": {
             "type": "Point",
@@ -488,7 +489,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Lecavalier",
-            "url": "https://www.longueuil.quebec/en/parc-lecavalier"
+            "url": "https://www.longueuil.quebec/fr/parc-lecavalier"
         },
         "geometry": {
             "type": "Point",
@@ -501,7 +502,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Le Moyne",
-            "url": "https://www.longueuil.quebec/en/parc-moyne"
+            "url": "https://www.longueuil.quebec/fr/parc-le-moyne"
         },
         "geometry": {
             "type": "Point",
@@ -514,7 +515,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Marquette",
-            "url": "https://www.longueuil.quebec/en/parc-marquette"
+            "url": "https://www.longueuil.quebec/fr/parc-marquette"
         },
         "geometry": {
             "type": "Point",
@@ -523,11 +524,12 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "2300, rue Dollard",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Marquette",
-            "url": "https://www.longueuil.quebec/en/parc-marquette"
+            "url": "https://www.longueuil.quebec/fr/parc-marquette"
         },
         "geometry": {
             "type": "Point",
@@ -540,7 +542,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Newhaven",
-            "url": "https://www.longueuil.quebec/en/parc-newhaven"
+            "url": "https://www.longueuil.quebec/fr/parc-newhaven"
         },
         "geometry": {
             "type": "Point",
@@ -553,7 +555,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Normandie (de)",
-            "url": "https://www.longueuil.quebec/en/parc-normandie"
+            "url": "https://www.longueuil.quebec/fr/parc-normandie"
         },
         "geometry": {
             "type": "Point",
@@ -566,7 +568,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Perron",
-            "url": "https://www.longueuil.quebec/en/parc-perron"
+            "url": "https://www.longueuil.quebec/fr/parc-perron"
         },
         "geometry": {
             "type": "Point",
@@ -575,11 +577,12 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "100, place Charles-Le Moyne",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Place Charles-Le Moyne",
-            "url": "https://www.longueuil.quebec/en/esplanade-place-charles-moyne"
+            "url": "https://www.longueuil.quebec/fr/esplanade-place-charles-moyne"
         },
         "geometry": {
             "type": "Point",
@@ -592,7 +595,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Racine",
-            "url": "https://www.longueuil.quebec/en/parc-racine"
+            "url": "https://www.longueuil.quebec/fr/parc-racine"
         },
         "geometry": {
             "type": "Point",
@@ -605,7 +608,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Raymond",
-            "url": "https://www.longueuil.quebec/en/parc-raymond"
+            "url": "https://www.longueuil.quebec/fr/parc-raymond"
         },
         "geometry": {
             "type": "Point",
@@ -618,7 +621,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Raymond",
-            "url": "https://www.longueuil.quebec/en/parc-raymond"
+            "url": "https://www.longueuil.quebec/fr/parc-raymond"
         },
         "geometry": {
             "type": "Point",
@@ -631,7 +634,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Rolland",
-            "url": "https://www.longueuil.quebec/en/parc-rolland"
+            "url": "https://www.longueuil.quebec/fr/parc-rolland"
         },
         "geometry": {
             "type": "Point",
@@ -644,7 +647,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Roussillon",
-            "url": "https://www.longueuil.quebec/en/parc-roussillon"
+            "url": "https://www.longueuil.quebec/fr/parc-roussillon"
         },
         "geometry": {
             "type": "Point",
@@ -657,7 +660,7 @@
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Saint-Charles",
-            "url": "https://www.longueuil.quebec/en/parc-saint-charles"
+            "url": "https://www.longueuil.quebec/fr/parc-saint-charles"
         },
         "geometry": {
             "type": "Point",
@@ -666,11 +669,12 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "Rue Grou & Lincourt",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Saint-Romain",
-            "url": "https://www.longueuil.quebec/en/parc-saint-romain"
+            "url": "https://www.longueuil.quebec/fr/parc-saint-romain"
         },
         "geometry": {
             "type": "Point",
@@ -679,11 +683,12 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "Rue Grou & Lincourt",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
             "parc": "Saint-Romain",
-            "url": "https://www.longueuil.quebec/en/parc-saint-romain"
+            "url": "https://www.longueuil.quebec/fr/parc-saint-romain"
         },
         "geometry": {
             "type": "Point",
@@ -696,7 +701,7 @@
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
             "parc": "Thomas-Dubuc",
-            "url": "https://www.longueuil.quebec/en/parc-thomas-dubuc"
+            "url": "https://www.longueuil.quebec/fr/parc-thomas-dubuc"
         },
         "geometry": {
             "type": "Point",
@@ -714,32 +719,6 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-73.455792, 45.543987]
-        }
-    }, {
-        "type": "Feature",
-        "properties": {
-            "adresse": "4200, chemin de la Savane",
-            "genre": "PPL",
-            "nom": "Rond de glace",
-            "parc": "Marché public de Longueuil",
-            "url": "https://www.longueuil.quebec/fr/marche-public-de-longueuil"
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-73.431338, 45.513249]
-        }
-    }, {
-        "type": "Feature",
-        "properties": {
-            "adresse": "2060, rue Holmes",
-            "genre": "PSE",
-            "nom": "Patinoire avec bandes",
-            "parc": "Parc Pierre-et-Bernard-Lucas",
-            "url": "https://www.longueuil.quebec/fr/parc-pierre-bernard-lucas"
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-73.473982, 45.492702]
         }
     }]
 }

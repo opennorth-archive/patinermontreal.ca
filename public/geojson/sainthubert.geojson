@@ -1,6 +1,20 @@
 {  
   "type":"FeatureCollection",
   "features":[  
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "4200, chemin de la Savane",
+        "genre": "PPL",
+        "nom": "Rond de glace",
+        "parc": "Marché public de Longueuil",
+        "url": "https://www.longueuil.quebec/fr/marche-public-de-longueuil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.431338, 45.513249]
+      }
+    },
     {  
       "type":"Feature",
       "properties":{  
@@ -8,7 +22,7 @@
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
         "parc":"de la Cité",
-        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordinates"
+        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordonees"
       },
       "geometry":{  
         "type":"Point",
@@ -25,7 +39,7 @@
         "genre":"PP",
         "nom":"Patinoire paysagée",
         "parc":"de la Cité",
-        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordinates"
+        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordonees"
       },
       "geometry":{  
         "type":"Point",
@@ -446,10 +460,27 @@
     {  
       "type":"Feature",
       "properties":{  
+        "adresse":"1425-1435, boulevard Gaétan-Boucher",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Marcel-Simard",
+        "url":"https://www.longueuil.quebec/fr/parc-marcel-simard"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.392152,
+          45.495186
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
         "adresse":"3880, rue Labrosse",
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
-        "parc":"Marie-Josée-Vendette",
+        "parc":"Marie-Josée-Vandette",
         "url":"https://www.longueuil.quebec/fr/parc-marie-josee-vandette"
       },
       "geometry":{  

@@ -138,6 +138,9 @@ namespace :import do
     
     collection['features'].each do| feature|
       properties = feature['properties']
+      if (properties['deleted']) 
+        next
+      end
       
       if (properties['nom'] == 'Patinoire Bleu-Blanc-Bouge')
         patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id "#{properties['nom']}, #{properties['parc']} (#{properties['genre']})", arrondissement.id

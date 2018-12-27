@@ -265,7 +265,7 @@ $ ->
     template: _.template $('#popup-template').html()
     # @see L.Marker.bindPopup
     initialize: ->
-      offset = new L.Point 0, -24
+      offset = new L.Point 0, -10
 
       state = if @model.get 'ouvert'
         'on'
