@@ -614,7 +614,7 @@
       "properties": {
         "adresse": "55, boulevard Cartier Ouest",
         "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "nom": "Patinoire Bleu-Blanc-Bouge",
         "parc": "Parc Émile",
         "tel": "4506624959",
         "courriel": null,
@@ -623,8 +623,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.68856417,
-          45.55837657
+          -73.688082,
+          45.558656
         ]
       }
     },

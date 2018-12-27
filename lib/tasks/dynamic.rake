@@ -23,6 +23,7 @@ namespace :import do
         # Expand/correct rink names to avoid later parsing errors
         xml_name = node.at_css('nom').text.sub(' du parc ', ', parc ').gsub(/([a-z])\sparc/im, '\1, parc').gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge').strip
         xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Confédération (PSE)' if xml_name == 'Patinoire Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'cdn' 
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc de Mésy (PSE)' if xml_name == 'Patinoire avec bandes, de Mésy (PSE)' && arrondissement.cle == 'ahc' 
         xml_name = 'Patinoire réfrigérée Bleu-Blanc-Bouge, Parc François-Perrault (PSE)' if xml_name == 'Patinoire réfrigérée Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'vsp'
         xml_name = 'Patinoire avec bandes, Parc Jeanne-Lapierre (PSE)' if xml_name == 'Patinoire avec bandes, Parc Jean-Lapierre (PSE)' && arrondissement.cle == 'rdp'
         xml_name = 'Patinoire de patin libre, parc du Glacis (PP)' if xml_name == 'Patinoire du Glacis (PP)'
@@ -308,7 +309,7 @@ namespace :import do
     attributes = import_html_table_row tr, nil
     attributes[:parc] = 'Lionel-Groulx'
 
-    patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire réfrigérée Bleu-Blanc-Bouge', 'Lionel-Groulx', arrondissement.id)
+    patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire réfrigérée Bleu-Blanc-Bouge', attributes[:parc], arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
     begin
       patinoire.save!

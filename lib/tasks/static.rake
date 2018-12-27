@@ -143,10 +143,10 @@ namespace :import do
       end
       
       if (properties['nom'] == 'Patinoire Bleu-Blanc-Bouge')
-        patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id "#{properties['nom']}, #{properties['parc']} (#{properties['genre']})", arrondissement.id
-        patinoire.parc = properties['parc']
+        patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire réfrigérée Bleu-Blanc-Bouge', properties['parc'], arrondissement.id)
+        patinoire.nom = "#{properties['nom']}, #{properties['parc']} (#{properties['genre']})"
         patinoire.genre = properties['genre']
-        patinoire.description = 'Patinoire réfrigérée Bleu-Blanc-Bouge'      
+        patinoire.disambiguation = 'réfrigérée'
       else
         patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id properties['parc'].sub('Parc ', ''), properties['genre'], arrondissement.id
       end
