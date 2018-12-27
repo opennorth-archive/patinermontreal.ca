@@ -460,6 +460,23 @@
     {  
       "type":"Feature",
       "properties":{  
+        "adresse":"1425-1435, boulevard Gaétan-Boucher",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Marcel-Simard",
+        "url":"https://www.longueuil.quebec/fr/parc-marcel-simard"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates":[  
+          -73.392152,
+          45.495186
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
         "adresse":"3880, rue Labrosse",
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
