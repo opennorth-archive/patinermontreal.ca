@@ -1,0 +1,141 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "385, rue Longtin",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "Optimiste Paul-Godin",
+        "url": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.496053,
+          45.41314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "1300, chemin de Saint-Jean",
+        "genre": "PPL",
+        "nom": "Patinoire de patin libre",
+        "parc": "Lucie-F.-Roussel",
+        "url": "https://www.ville.laprairie.qc.ca/carte-interactive/?mid=4385"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.476987,
+          45.409902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "300, avenue Ernest-Rochette",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "La Clairière",
+        "url": "https://www.ville.laprairie.qc.ca/carte-interactive/?mid=4264"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.479268,
+          45.418186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "175, boulevard des Mésanges ",
+        "genre": "PPL",
+        "nom": "Patinoire de patin libre",
+        "parc": "Émilie-Gamelin",
+        "url": "https://www.ville.laprairie.qc.ca/carte-interactive/?mid=4334"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.463876,
+          45.417037
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "200, rue Saint-Ignace ",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "du Rempart",
+        "url": "https://www.ville.laprairie.qc.ca/carte-interactive/?mid=2250"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.497749,
+          45.419558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "475, rue Conrad-Pelletier",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "du Goéland",
+        "url": "https://www.ville.laprairie.qc.ca/carte-interactive/?mid=4389"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.504586,
+          45.405726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "39, rue Picasso",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "de l’Arrondissement",
+        "url": "https://www.ville.laprairie.qc.ca/carte-interactive/?mid=4352"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.488019,
+          45.39363
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "6675, rue de la Bataille",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "Conrad-Roy",
+        "url": "https://www.ville.laprairie.qc.ca/carte-interactive/?mid=4344"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.395526,
+          45.394774
+        ]
+      }
+    }
+  ]
+}

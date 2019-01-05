@@ -122,6 +122,10 @@ namespace :import do
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/boucherville.geojson', 'Boucherville', 'www.boucherville.ca'
     puts "Importing Brossard..."
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/brossard.geojson', 'Brossard', 'www.ville.brossard.qc.ca'
+    puts "Importing La Prairie..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laprairie.geojson', 'La Prairie', 'www.ville.laprairie.qc.ca'
+    puts "Importing Candiac..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/candiac.geojson', 'Candiac', 'candiac.ca'
     puts "Done importing GeoJSON rinks"
   end
   

@@ -1,0 +1,107 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "175, boulevard Champlain",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "Champlain",
+        "url": "https://candiac.ca/fr/Parc/14/Parc_Champlain"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.526715,
+          45.390344
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "90, avenue de Deauville",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "de Deauville",
+        "url": "https://candiac.ca/fr/Parc/12/Parc_de_Deauville"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.492396,
+          45.384214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "33, rue de Fribourg",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "Haendel",
+        "url": "https://candiac.ca/fr/Parc/10/Parc_Haendel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.518871,
+          45.384791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "55, boulevard Montcalm Sud",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "Montcalm",
+        "url": "https://candiac.ca/fr/Parc/5/Parc_Montcalm"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.506813,
+          45.385816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "112, boulevard Marie-Victorin",
+        "genre": "PPL",
+        "nom": "Patinoire de patin libre",
+        "parc": "André-J.-Côté",
+        "url": "https://candiac.ca/fr/Parc/3/Parc_Andre-J-Cote"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.528644,
+          45.399715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": "130, place Chambord",
+        "genre": "PPL",
+        "nom": "Patinoire de patin libre",
+        "parc": "de Cherbourg",
+        "url": "https://candiac.ca/fr/Parc/13/Parc_de_Cherbourg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.514381,
+          45.382591
+        ]
+      }
+    }
+  ]
+}

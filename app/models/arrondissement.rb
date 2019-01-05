@@ -51,6 +51,8 @@ class Arrondissement < ActiveRecord::Base
     'Saint-Hubert',
     'Boucherville',
     'Brossard',
+    'La Prairie',
+    'Candiac',
   ]
   validates_inclusion_of :source, in: [
     'docs.google.com',
@@ -62,6 +64,8 @@ class Arrondissement < ActiveRecord::Base
     'www.longueuil.quebec',
     'www.boucherville.ca',
     'www.ville.brossard.qc.ca',
+    'www.ville.laprairie.qc.ca',
+    'candiac.ca',
   ]
 
   scope :dynamic, where('date_maj IS NOT NULL')
