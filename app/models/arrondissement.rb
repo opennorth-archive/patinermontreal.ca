@@ -44,7 +44,23 @@ class Arrondissement < ActiveRecord::Base
     'Sainte-Anne-de-Bellevue',
     'Senneville',
     'Westmount',
-    
+
+    # Laval Municipalities
+    'Auteuil',
+    'Chomedey',
+    'Duvernay',
+    'Fabreville',
+    'Îles-Laval',
+    'Laval-des-Rapides',
+    'Laval-Ouest',
+    'Laval-sur-le-Lac',
+    'Pont-Viau',
+    'Saint-François',
+    'Saint-Vincent-de-Paul',
+    'Sainte-Dorothée',
+    'Sainte-Rose',
+    'Vimont',
+
     # Cities
     'Laval',
     'Vieux-Longueuil',

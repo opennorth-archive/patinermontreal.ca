@@ -4,3077 +4,1083 @@
     {
       "type": "Feature",
       "properties": {
-        "adresse": "1208, 37e Avenue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Berge de l'Orée-des-Bois",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7R 4W4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.84533144,
-          45.5732876
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "13, rue Hotte",
-        "genre": "PP",
+        "id": "407",
+        "parc": "Berge aux Quatre-Vent",
+        "genre": "PPL",
         "nom": "Sentier de patinage",
-        "parc": "Berge des Baigneurs",
-        "tel": "4506285568",
-        "courriel": null,
-        "codepostal": "H7L 2R2"
+        "adresse": "925, rue Riviera",
+        "municipalite": "Laval-Ouest"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.78753473,
-          45.61579904
+          -73.8787567901,
+          45.5420347879
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
+        "id": "408",
+        "parc": "Berge des Baigneurs",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
         "adresse": "13, rue Hotte",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
+        "municipalite": "Sainte-Rose"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7875347318,
+          45.6157990383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "408",
         "parc": "Berge des Baigneurs",
-        "tel": "4506285568",
-        "courriel": null,
-        "codepostal": "H7L 2R2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.78753473,
-          45.61579904
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "901, avenue du Parc",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Centre de la nature",
-        "tel": "4506624942",
-        "courriel": "centrenature@ville.laval.qc.ca",
-        "codepostal": "H7E 2T7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.66181308,
-          45.60547334
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4250, boulevard Lévesque Ouest",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Berthiaume-Du Tremblay",
-        "tel": "4509788972",
-        "courriel": null,
-        "codepostal": "H7W 2P8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.7483566,
-          45.53005504
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "886, chemin de la Fourche",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "13, rue Hotte",
+        "municipalite": "Sainte-Rose"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7875347318,
+          45.6157990383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "411",
         "parc": "Parc Bigras",
-        "tel": "4506899190",
-        "courriel": null,
-        "codepostal": "H7Y 1T1"
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "886, chemin de la Fourche",
+        "municipalite": "Îles-Laval"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.85630996,
-          45.51948956
+          -73.8563099570,
+          45.5194895570
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "70, boulevard du Bon-Pasteur",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Bon-Pasteur",
-        "tel": "4506625182",
-        "courriel": null,
-        "codepostal": "H7N 3R2"
+        "id": "412",
+        "parc": "Parc Campeau",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "4560, 4e Rue",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.70760388,
-          45.54974923
+          -73.7593240053,
+          45.5307487436
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "6710, rue Lamirande",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "413",
         "parc": "Parc Champenois",
-        "tel": "4506289359",
-        "courriel": null,
-        "codepostal": "H7L 4Y1"
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "6710, rue Lamirande",
+        "municipalite": "Sainte-Rose"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.79352313,
-          45.59400909
+          -73.7935231306,
+          45.5940090945
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "2585, boulevard des Oiseaux",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "414",
         "parc": "Parc Champfleury",
-        "tel": "4509630676",
-        "courriel": null,
-        "codepostal": "H7L 4M4"
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "2585, boulevard des Oiseaux",
+        "municipalite": "Sainte-Rose"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.77739151,
-          45.58726629
+          -73.7773997210,
+          45.5872815047
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "580, rue des Alouettes",
+        "id": "414",
+        "parc": "Parc Champfleury",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Chénier",
-        "tel": "4506624962",
-        "courriel": null,
-        "codepostal": null
+        "adresse": "2585, boulevard des Oiseaux",
+        "municipalite": "Sainte-Rose"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.68681431,
-          45.58036415
+          -73.7773997210,
+          45.5872815047
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "1881, avenue Dumouchel",
+        "deleted": true,
+        "id": "414",
+        "parc": "Parc Champfleury",
         "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "nom": "Patinoire avec mini-bandes",
+        "adresse": "2585, boulevard des Oiseaux",
+        "municipalite": "Sainte-Rose"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7773997210,
+          45.5872815047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "416",
         "parc": "Parc Chopin",
-        "tel": "4509788914",
-        "courriel": null,
-        "codepostal": "H7S 1J7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73560543,
-          45.57020959
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
         "adresse": "1881, avenue Dumouchel",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Chopin",
-        "tel": "4509788914",
-        "courriel": null,
-        "codepostal": "H7S 1J7"
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.73560543,
-          45.57020959
+          -73.7356054289,
+          45.5702095870
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "665, rue des Jardins-Sainte-Dorothée",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "417",
         "parc": "Parc Couvrette",
-        "tel": "4506899535",
-        "courriel": null,
-        "codepostal": "H7X 2K4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.80818603,
-          45.52136982
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
         "adresse": "665, rue des Jardins-Sainte-Dorothée",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Couvrette",
-        "tel": "4506899535",
-        "courriel": null,
-        "codepostal": "H7X 2K4"
+        "municipalite": "Sainte-Dorothée"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.80818603,
-          45.52136982
+          -73.8081860296,
+          45.5213698198
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
+        "id": "418",
+        "parc": "Parc Curé-Coursol",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
         "adresse": "320, rue Richard",
+        "municipalite": "Chomedey"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7156893474,
+          45.5836399591
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "418",
+        "parc": "Parc Curé-Coursol",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Curé-Coursol",
-        "tel": "4506624961",
-        "courriel": null,
-        "codepostal": "H7M 1T8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.71568935,
-          45.58363996
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "adresse": "320, rue Richard",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Curé-Coursol",
-        "tel": "4506624961",
-        "courriel": null,
-        "codepostal": "H7M 1T8"
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.71568935,
-          45.58363996
+          -73.7156893474,
+          45.5836399591
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "4255, avenue de la Renaissance",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "420",
         "parc": "Parc de la Renaissance",
-        "tel": "4509637281",
-        "courriel": null,
-        "codepostal": "H7L 3X2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.7961667,
-          45.6015381
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "425, rue de Lausanne",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc de Lausanne",
-        "tel": "4506628603",
-        "courriel": null,
-        "codepostal": null
+        "adresse": "4255, avenue de la Renaissance",
+        "municipalite": "Sainte-Rose"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.72083465,
-          45.61667074
+          -73.7961666972,
+          45.6015380975
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "750, 73e Avenue",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc des Coccinelles",
-        "tel": "4509788969",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73787848,
-          45.54149809
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2260, rue des Crécerelles",
+        "id": "421",
+        "parc": "Parc des Ambassadeurs",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc des Crécerelles",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7L 5S2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.76956699,
-          45.6000032
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "69, 1re Avenue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Érables",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7H 2G9"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.77318485,
-          45.64128756
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "5, avenue du Crochet",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc des Prairies",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.69908575,
-          45.55226228
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "100, rue Saint-Saëns Ouest",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Saules",
-        "tel": "4506280931",
-        "courriel": null,
-        "codepostal": "H7H 1J1"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.75560012,
-          45.63674816
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "7415, avenue des Tilleuls",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Tilleuls",
-        "tel": "4506659157",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.60748531,
-          45.65315331
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1465, rue Sérigny",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Dollard-Des Ormeaux",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7E 1N8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67441321,
-          45.59538842
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "55, rue Claude",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Dora",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.59390044,
-          45.68631903
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "745, rue Ovide",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc du Faubourg",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.82927854,
-          45.56778663
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1125, montée du Moulin",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc du Moulin",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7A 2A2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.57922442,
-          45.67408096
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1125, montée du Moulin",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc du Moulin",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7A 2A2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.57922442,
-          45.67408096
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "adresse": "3325, avenue des Ambassadeurs",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc du Royal-22e-Régiment",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
+        "municipalite": "Duvernay"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.68134869,
-          45.6224156
+          -73.6813485779,
+          45.6223823109
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "4919, 4e Rue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc du Sablon",
-        "tel": "4509788970",
-        "courriel": null,
-        "codepostal": null
+        "id": "423",
+        "parc": "Parc des Coccinelles",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "750, 73e Avenue",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.76679674,
-          45.52987669
+          -73.7378784804,
+          45.5414980871
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "1774, rue de Berne",
+        "id": "424",
+        "parc": "Parc des Crécerelles",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "2260, rue des Crécerelles",
+        "municipalite": "Sainte-Rose"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7695681019,
+          45.5999672049
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "425",
+        "parc": "Parc des Érables",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "69, 1re Avenue",
+        "municipalite": "Auteuil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7731525980,
+          45.6412507429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "426",
+        "parc": "Parc des Prairies",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "5, avenue du Crochet",
+        "municipalite": "Laval-des-Rapides"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.6990857543,
+          45.5522622796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "428",
+        "parc": "Parc des Tilleuls",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "7415, avenue des Tilleuls",
+        "municipalite": "Duvernay"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.6074853110,
+          45.6531533064
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "431",
+        "parc": "Parc du Faubourg Dagenais",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "745, rue Ovide",
+        "municipalite": "Fabreville"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8292463066,
+          45.5677516328
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "432",
         "parc": "Parc Dumas",
-        "tel": "4506625296",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "1774, rue de Berne",
+        "municipalite": "Vimont"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.72738491,
-          45.59905565
+          -73.7273488888,
+          45.5990224258
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
+        "id": "433",
+        "parc": "Parc du Moulin",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "1125, montée du Moulin",
+        "municipalite": "Saint-François"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.5791857502,
+          45.6741131304
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "433",
+        "parc": "Parc du Moulin",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "1125, montée du Moulin",
+        "municipalite": "Saint-François"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.5791857502,
+          45.6741131304
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "436",
+        "parc": "Parc Émile",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
         "adresse": "55, boulevard Cartier Ouest",
+        "municipalite": "Laval-des-Rapides"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.688099,
+          45.558669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "436",
+        "parc": "Parc Émile",
         "genre": "PSE",
         "nom": "Patinoire Bleu-Blanc-Bouge",
-        "parc": "Parc Émile",
-        "tel": "4506624959",
-        "courriel": null,
-        "codepostal": "H7N 5T3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.688082,
-          45.558656
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1658, boulevard Mattawa",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Ferme-Ste-Thérèse",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.82262434,
-          45.59999616
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "910, montée Gravel",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Florent",
-        "tel": "4506899543",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.82028423,
-          45.52615158
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2455, rue Frégault",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Frégault",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.76604342,
-          45.56125844
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "816, avenue Josaphat-Demers",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Gilardeau",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7X 3Y1"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.7939475,
-          45.52917746
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "85, boulevard Léger",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Henri-Dunant",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67503827,
-          45.56844654
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "400, rue Jacques",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Isabelle",
-        "tel": "4506284681",
-        "courriel": null,
-        "codepostal": "H7P 5K5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.81427771,
-          45.56730339
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "400, rue Jacques",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Isabelle",
-        "tel": "4506284681",
-        "courriel": null,
-        "codepostal": "H7P 5K5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.81427771,
-          45.56730339
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1125, boulevard Vanier",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Jean-XXIII",
-        "tel": "4506641963",
-        "courriel": null,
-        "codepostal": "H7C 2N2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.65659603,
-          45.61076349
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1350, rue du Relais",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Jolibourg",
-        "tel": "4506899601",
-        "courriel": null,
-        "codepostal": "H7Y 1W2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.85712721,
-          45.52545115
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1630, rue Hébert",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Labelle",
-        "tel": "4509786538",
-        "courriel": null,
-        "codepostal": "H7V 3L8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.75745742,
-          45.55152481
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "3538, rue Lagarde",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Lagarde",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.66596596,
-          45.59826336
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "7189, 21e Avenue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Laval-Ouest",
-        "tel": "4506271370",
-        "courriel": null,
-        "codepostal": "H7R 3G9"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.87105034,
-          45.54079186
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "7189, 21e Avenue",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Laval-Ouest",
-        "tel": "4506271370",
-        "courriel": null,
-        "codepostal": "H7R 3G9"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.87105034,
-          45.54079186
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2245, rue Légaré",
-        "genre": "PP",
-        "nom": "Sentier de patinage",
-        "parc": "Parc Légaré",
-        "tel": "4509788974",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.77912833,
-          45.55447756
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2245, rue Légaré",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Légaré",
-        "tel": "4509788974",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.77912833,
-          45.55447756
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "8050, rue Mylène",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc l'Escale",
-        "tel": "4506627000, poste 5570",
-        "courriel": null,
-        "codepostal": "H7A 1G3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.58679972,
-          45.66648011
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1700, rue Thomas-D'Orsonnens",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Louis-Durocher",
-        "tel": "4506625201",
-        "courriel": null,
-        "codepostal": "H7M 4X7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.70676799,
-          45.60711858
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "790, rue Madeleine",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Madeleine",
-        "tel": "4506285273",
-        "courriel": null,
-        "codepostal": "H7P 3W7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.82229161,
-          45.5772512
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "720, rue Fleury",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Marc-Aurèle-Fortin",
-        "tel": "4506284082",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.80196367,
-          45.58523785
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "3080, rue Marcel-Proust",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Marcel-Proust",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7P 6A5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.75956134,
-          45.57676218
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "6655, rue Duranleau",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Masson",
-        "tel": "4506663712",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.62448067,
-          45.6814425
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1000, rue Montgolfier",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Montgolfier",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7W 4Z2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.78294455,
-          45.53469606
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "327, rue Montmorency",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Paul-Marcel-Maheu",
-        "tel": "4506625183",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.71011335,
-          45.55505277
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "327, rue Montmorency",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Paul-Marcel-Maheu",
-        "tel": "4506625183",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.71011335,
-          45.55505277
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "355, rue Flore",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Pépin",
-        "tel": "4506285346",
-        "courriel": null,
-        "codepostal": "H7P 5L5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.79816983,
-          45.57478145
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2280, rue Marc",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Père-Vimont",
-        "tel": "4506627238",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73252675,
-          45.61745755
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2280, rue Marc",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Père-Vimont",
-        "tel": "4506627238",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73252675,
-          45.61745755
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1170, boulevard Pie-X",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Pie-X",
-        "tel": "4509788976",
-        "courriel": null,
-        "codepostal": "H7V 3B5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.74868669,
-          45.54685159
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "6245, rue de Prince-Rupert",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Prince-Rupert",
-        "tel": "4506289750",
-        "courriel": null,
-        "codepostal": "H7H 1C5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.74929639,
-          45.639224
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "80, rue Ouimet Est",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc René-Patenaude",
-        "tel": "4506625187",
-        "courriel": null,
-        "codepostal": "H7G 2H3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.69132336,
-          45.5738806
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1180, rue Foucher",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Rivard",
-        "tel": "4506615819",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67084407,
-          45.6069728
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "247, rue Robitaille",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Robitaille",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.78973246,
-          45.52434889
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4890, rue Saint-Joseph",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Rodolphe-Lavoie",
-        "tel": "4506617205",
-        "courriel": null,
-        "codepostal": "H7C 1H5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.64852021,
-          45.61081836
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "265, boulevard Léger",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Roger-Provost",
-        "tel": "4506625219",
-        "courriel": null,
-        "codepostal": "H7G 3T4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.68003461,
-          45.57282365
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "222, boulevard du Roi-du-Nord",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Roi-du-Nord",
-        "tel": "4506287009",
-        "courriel": null,
-        "codepostal": "H7L 1W9"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.78457219,
-          45.60857725
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "99, 7e Rue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Claude",
-        "tel": "4506625054",
-        "courriel": null,
-        "codepostal": "H7N 2C8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.69264359,
-          45.56204198
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "5345, rue de Prince-Rupert",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Sainte-Béatrice",
-        "tel": "4506283211",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.74029505,
-          45.62745472
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "705, 18e Avenue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Édouard",
-        "tel": "4506275708",
-        "courriel": null,
-        "codepostal": "H7R 5G4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.85210653,
-          45.55808763
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2430, rue De Meulles",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Saint-Ernest",
-        "tel": "4506624965",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67796347,
-          45.5908658
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4025, rue Gaboury",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Martin",
-        "tel": "4509788978",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.7652917,
-          45.55259208
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "800, rue de Lourdes",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Maurice",
-        "tel": "4506628023",
-        "courriel": null,
-        "codepostal": "H7G 4B2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67793528,
-          45.57910597
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "560, 64e Avenue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Norbert",
-        "tel": "4509788980",
-        "courriel": null,
-        "codepostal": "H7V 2J3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73005334,
-          45.54248144
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "560, 64e Avenue",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Saint-Norbert",
-        "tel": "4509788980",
-        "courriel": null,
-        "codepostal": "H7V 2J3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73005334,
-          45.54248144
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "52, rue Sainte-Jeanne",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Saint-Philippe",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.64354406,
-          45.61120175
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "650, rue de Beauport",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Victor",
-        "tel": "4506625178",
-        "courriel": null,
-        "codepostal": "H7E 4B8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.66882872,
-          45.58345697
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "3120, avenue de La Malbaie",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Val-des-Arbres",
-        "tel": "4506611544",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67712764,
-          45.59936238
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4600, rue Cyrille-Delage",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "École de l'Odyssée-des-Jeunes",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7K 2S4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.74155803,
-          45.61276062
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1130, 37e Avenue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "École de l'Orée-des-Bois",
-        "tel": "4509625860",
-        "courriel": null,
-        "codepostal": "H7R 4W4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.84352743,
-          45.57223574
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "355, rue les Érables",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "École des Chênes",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7R 1A3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.8812026,
-          45.52421795
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "3600, rue Duhamel",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "École Fleur-de-vie",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7R 1K7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.86675076,
-          45.54503713
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "60, rue Paré",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "École Hébert",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7B 1B3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.63636275,
-          45.68461518
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "845, rue Castelnau",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "École Jean-Lemonde",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.80682792,
-          45.52985626
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "925, rue Riviera",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Berge aux Quatre-Vent",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.87875678,
-          45.54203389
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "13, rue Hotte",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Berge des Baigneurs",
-        "tel": "4506285568",
-        "courriel": null,
-        "codepostal": "H7L 2R2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.78753473,
-          45.61579904
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4250, boulevard Lévesque Ouest",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Berthiaume-Du Tremblay",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": "H7W 2P8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.7483566,
-          45.53005504
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1375, rue Bienville",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Bienville",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.75052755,
-          45.65786649
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "886, chemin de la Fourche",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Bigras",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7Y 1T1"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.85630996,
-          45.51948956
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4560, 4e Rue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Campeau",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.75932401,
-          45.53074874
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "6710, rue Lamirande",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Champenois",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7L 4Y1"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.79352313,
-          45.59400909
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2585, boulevard des Oiseaux",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Champfleury",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7L 4M4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.77739151,
-          45.58726629
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2585, boulevard des Oiseaux",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Champfleury",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7L 4M4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.77739151,
-          45.58726629
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "580, rue des Alouettes",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Chénier",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.68681431,
-          45.58036415
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1881, avenue Dumouchel",
-        "genre": "PP",
-        "nom": "Sentier de patinage",
-        "parc": "Parc Chopin",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7S 1J7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73560543,
-          45.57020959
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1881, avenue Dumouchel",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Chopin",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7S 1J7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73560543,
-          45.57020959
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "665, rue des Jardins-Sainte-Dorothée",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Couvrette",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7X 2K4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.80818603,
-          45.52136982
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "320, rue Richard",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Curé-Coursol",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7M 1T8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.71568935,
-          45.58363996
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "320, rue Richard",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Curé-Coursol",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7M 1T8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.71568935,
-          45.58363996
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "335, rue Dalida",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Dalida",
-        "tel": "4506285362",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.79912945,
-          45.57061225
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4255, avenue de la Renaissance",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc de la Renaissance",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7L 3X2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.7961667,
-          45.6015381
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "3325, avenue des Ambassadeurs",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Ambassadeurs",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.68134869,
-          45.6224156
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "3325, avenue des Ambassadeurs",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc des Ambassadeurs",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.68134869,
-          45.6224156
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "355, rue les Érables",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Chênes",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7R 1A3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.8812026,
-          45.52421795
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "750, 73e Avenue",
-        "genre": "PP",
-        "nom": "Sentier de patinage",
-        "parc": "Parc des Coccinelles",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73787848,
-          45.54149809
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2260, rue des Crécerelles",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Crécerelles",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7L 5S2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.76956699,
-          45.6000032
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "69, 1re Avenue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Érables",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": "H7H 2G9"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.77318485,
-          45.64128756
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "5, avenue du Crochet",
-        "genre": "PP",
-        "nom": "Sentier de patinage",
-        "parc": "Parc des Prairies",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.69908575,
-          45.55226228
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "100, rue Saint-Saëns Ouest",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Saules",
-        "tel": "4506280931",
-        "courriel": null,
-        "codepostal": "H7H 1J1"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.75560012,
-          45.63674816
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "7415, avenue des Tilleuls",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc des Tilleuls",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.60748531,
-          45.65315331
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1465, rue Sérigny",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Dollard-des-Ormeaux",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": "H7E 1N8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67441321,
-          45.59538842
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "55, rue Claude",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Dora",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.59390044,
-          45.68631903
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "745, rue Ovide",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc du Faubourg Dagenais",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.82927854,
-          45.56778663
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1774, rue de Berne",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Dumas",
-        "tel": "4506625296",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.72738491,
-          45.59905565
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1125, montée du Moulin",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc du Moulin",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": "H7A 2A2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.57922442,
-          45.67408096
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1125, montée du Moulin",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc du Moulin",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": "H7A 2A2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.57922442,
-          45.67408096
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "3600, rue Duhamel",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "École Fleur-de-vie",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7R 1K7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.86675076,
-          45.54503713
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1130, 37e Avenue",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "École L'Orée-des-Bois",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7R 4W4"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.84352743,
-          45.57223574
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "adresse": "55, boulevard Cartier Ouest",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "municipalite": "Laval-des-Rapides"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.688099,
+          45.558669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "deleted": true,
+        "id": "436",
         "parc": "Parc Émile",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7N 5T3"
+        "genre": "PSE",
+        "nom": "Patinoire avec mini-bandes",
+        "adresse": "55, boulevard Cartier Ouest",
+        "municipalite": "Laval-des-Rapides"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.68856417,
-          45.55837657
+          -73.688337,
+          45.557989
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "1658, boulevard Mattawa",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "437",
         "parc": "Parc Ferme Sainte-Thérèse",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "1658, boulevard Mattawa",
+        "municipalite": "Fabreville"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.82262434,
-          45.59999616
+          -73.8226243359,
+          45.5999961563
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "910, montée Gravel",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "438",
         "parc": "Parc Florent",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "910, montée Gravel",
+        "municipalite": "Sainte-Dorothée"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.82028423,
-          45.52615158
+          -73.8202842330,
+          45.5261515830
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "2455, rue Frégault",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "439",
         "parc": "Parc Frégault",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.76604342,
-          45.56125844
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "60, rue Paré",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Hébert",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7B 1B3"
+        "adresse": "2455, rue Frégault",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.63636275,
-          45.68461518
+          -73.7660407029,
+          45.5612251546
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "85, boulevard Léger",
+        "id": "442",
+        "parc": "Parc Isabelle",
         "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Henri-Dunant",
-        "tel": null,
-        "courriel": null,
-        "codepostal": null
+        "nom": "Sentier de patinage",
+        "adresse": "400, rue Jacques",
+        "municipalite": "Fabreville"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.67503827,
-          45.56844654
+          -73.8142777135,
+          45.5673033851
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "400, rue Jacques",
+        "id": "442",
+        "parc": "Parc Isabelle",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Isabelle",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7P 5K5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.81427771,
-          45.56730339
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "adresse": "400, rue Jacques",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Isabelle",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7P 5K5"
+        "municipalite": "Fabreville"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.81427771,
-          45.56730339
+          -73.8142777135,
+          45.5673033851
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "400, boulevard Sainte-Dorothée",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Jean-Lemonde",
-        "tel": null,
-        "courriel": null,
-        "codepostal": "H7X 1H3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.80697278,
-          45.53036158
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1125, boulevard Vanier",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Jean-XXIII",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": "H7C 2N2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.65659603,
-          45.61076349
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1350, rue du Relais",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
+        "id": "445",
         "parc": "Parc Jolibourg",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7Y 1W2"
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "1350, rue du Relais",
+        "municipalite": "Sainte-Dorothée"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.85712721,
-          45.52545115
+          -73.8571272109,
+          45.5254511460
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "800, avenue Josaphat-Demers",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Josaphat-Demers",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.79362533,
-          45.52877336
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1250, avenue Shorecrest",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
+        "id": "447",
         "parc": "Parc Kennedy",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": "H7W 1R7"
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "1250, avenue Shorecrest",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.75721777,
-          45.54110344
+          -73.7572177711,
+          45.5411034421
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "1630, rue Hébert",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
+        "id": "448",
         "parc": "Parc Labelle",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": "H7V 3L8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.75745742,
-          45.55152481
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "425, rue de Lausanne",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Lausanne",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": null
+        "adresse": "1630, rue Hébert",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.72083465,
-          45.61667074
+          -73.7574574174,
+          45.5515248067
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "425, rue de Lausanne",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
+        "id": "449",
         "parc": "Parc Lausanne",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.72083465,
-          45.61667074
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "7189, 21e Avenue",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "425, rue de Lausanne",
+        "municipalite": "Vimont"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7208346540,
+          45.6166707369
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "deleted": true,
+        "id": "449",
+        "parc": "Parc Lausanne",
+        "genre": "PSE",
+        "nom": "Patinoire avec mini-bandes",
+        "adresse": "425, rue de Lausanne",
+        "municipalite": "Vimont"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7208346540,
+          45.6166707369
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "450",
         "parc": "Parc Laval-Ouest",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7R 3G9"
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "7189, 21e Avenue",
+        "municipalite": "Laval-Ouest"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.87105034,
-          45.54079186
+          -73.8710503436,
+          45.5407918601
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "2245, rue Légaré",
+        "id": "450",
+        "parc": "Parc Laval-Ouest",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "7189, 21e Avenue",
+        "municipalite": "Laval-Ouest"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8710503436,
+          45.5407918601
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "451",
         "parc": "Parc Légaré",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "2245, rue Légaré",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.77912833,
-          45.55447756
+          -73.7791283274,
+          45.5544775603
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "8050, rue Mylène",
+        "id": "451",
+        "parc": "Parc Légaré",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "2245, rue Légaré",
+        "municipalite": "Chomedey"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7791283274,
+          45.5544775603
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "452",
         "parc": "Parc l'Escale",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": "H7A 1G3"
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "8050, rue Mylène",
+        "municipalite": "Saint-François"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.58679972,
-          45.66648011
+          -73.5867997221,
+          45.6664801070
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "1700, rue Thomas-D'Orsonnens",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "453",
         "parc": "Parc Louis-Durocher",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": "H7M 4X7"
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "1700, rue Thomas-D'Orsonnens",
+        "municipalite": "Vimont"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.70676799,
-          45.60711858
+          -73.7067679933,
+          45.6071185839
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "790, rue Madeleine",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Madeleine",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7P 3W7"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.82229161,
-          45.5772512
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "720, rue Fleury",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "455",
         "parc": "Parc Marc-Aurèle-Fortin",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "720, rue Fleury",
+        "municipalite": "Fabreville"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.80196367,
-          45.58523785
+          -73.8019636702,
+          45.5852378502
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "3080, rue Marcel-Proust",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "456",
         "parc": "Parc Marcel-Proust",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7P 6A5"
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "3080, rue Marcel-Proust",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.75956134,
-          45.57676218
+          -73.7595599102,
+          45.5767288851
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "6655, rue Duranleau",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "457",
         "parc": "Parc Masson",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "6655, rue Duranleau",
+        "municipalite": "Saint-François"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.62448067,
-          45.6814425
+          -73.6244729811,
+          45.6814506060
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "46, terrasse Dufferin",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "458",
         "parc": "Parc Notre-Dame",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "46, terrasse Dufferin",
+        "municipalite": "Sainte-Rose"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.78129058,
-          45.62391359
+          -73.7812905784,
+          45.6239135906
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "4600, rue Cyrille-Delage",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "459",
         "parc": "Parc Odyssée-des-Jeunes",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": "H7K 2S4"
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "4600, rue Cyrille-Delage",
+        "municipalite": "Auteuil"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.74155803,
-          45.61276062
+          -73.7415580267,
+          45.6127606160
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "327, rue Montmorency",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "460",
         "parc": "Parc Paul-Marcel-Maheu",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.71011335,
-          45.55505277
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
         "adresse": "327, rue Montmorency",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
+        "municipalite": "Laval-des-Rapides"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7101133538,
+          45.5550527696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "deleted": true,
+        "id": "460",
         "parc": "Parc Paul-Marcel-Maheu",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec mini-bandes",
+        "adresse": "327, rue Montmorency",
+        "municipalite": "Laval-des-Rapides"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.71011335,
-          45.55505277
+          -73.7101133538,
+          45.5550527696
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "355, rue Flore",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
-        "parc": "Parc Pépin",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7P 5L5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.79816983,
-          45.57478145
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2280, rue Marc",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "462",
         "parc": "Parc Père-Vimont",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73252675,
-          45.61745755
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "2280, rue Marc",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Père-Vimont",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73252675,
-          45.61745755
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1170, boulevard Pie-X",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "2280, rue Marc",
+        "municipalite": "Vimont"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7325267515,
+          45.6174575479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "463",
         "parc": "Parc Pie-X",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": "H7V 3B5"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.74868669,
-          45.54685159
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "6245, rue de Prince-Rupert",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Prince-Rupert",
-        "tel": "450662490",
-        "courriel": null,
-        "codepostal": "H7H 1C5"
+        "adresse": "1170, boulevard Pie-X",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.74929639,
-          45.639224
+          -73.7486866875,
+          45.5468515930
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "6245, rue de Prince-Rupert",
+        "id": "464",
+        "parc": "Parc Prince-Rupert",
         "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Prince-Rupert",
-        "tel": "450662490",
-        "courriel": null,
-        "codepostal": "H7H 1C5"
+        "nom": "Sentier de patinage",
+        "adresse": "6245, rue de Prince-Rupert",
+        "municipalite": "Auteuil"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.74929639,
-          45.639224
+          -73.7492963910,
+          45.6392240046
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "80, rue Ouimet Est",
+        "id": "464",
+        "parc": "Parc Prince-Rupert",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "6245, rue de Prince-Rupert",
+        "municipalite": "Auteuil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7492963910,
+          45.6392240046
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "465",
         "parc": "Parc René-Patenaude",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7G 2H3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.69132336,
-          45.5738806
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "1180, rue Foucher",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Rivard",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67084407,
-          45.6069728
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4890, rue Saint-Joseph",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "80, rue Ouimet Est",
+        "municipalite": "Pont-Viau"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.6913233561,
+          45.5738806049
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "467",
         "parc": "Parc Rodolphe-Lavoie",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": "H7C 1H5"
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "4890, rue Saint-Joseph",
+        "municipalite": "Saint-Vincent-de-Paul"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.64852021,
-          45.61081836
+          -73.6485202122,
+          45.6108183630
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "265, boulevard Léger",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "468",
         "parc": "Parc Roger-Provost",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7G 3T4"
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "265, boulevard Léger",
+        "municipalite": "Pont-Viau"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.68003461,
-          45.57282365
+          -73.6800198565,
+          45.5728208206
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "222, boulevard du Roi-du-Nord",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "469",
         "parc": "Parc Roi-du-Nord",
-        "tel": "4509788905",
-        "courriel": null,
-        "codepostal": "H7L 1W9"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.78457219,
-          45.60857725
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "99, 7e Rue",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Claude",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7N 2C8"
+        "adresse": "222, boulevard du Roi-du-Nord",
+        "municipalite": "Sainte-Rose"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.69264359,
-          45.56204198
+          -73.7845721852,
+          45.6085772545
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "99, 7e Rue",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Saint-Claude",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7N 2C8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.69264359,
-          45.56204198
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "5345, rue de Prince-Rupert",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "471",
         "parc": "Parc Sainte-Béatrice",
-        "tel": "4506624906",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "5345, rue de Prince-Rupert",
+        "municipalite": "Auteuil"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.74029505,
-          45.62745472
+          -73.7402950452,
+          45.6274547168
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "705, 18e Avenue",
+        "id": "472",
+        "parc": "Parc Saint-Édouard",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Édouard",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7R 5G4"
+        "adresse": "705, 18e Avenue",
+        "municipalite": "Fabreville"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.85210653,
+          -73.8521065268,
           45.55808763
         ]
       }
@@ -3082,190 +1088,126 @@
     {
       "type": "Feature",
       "properties": {
-        "adresse": "2430, rue De Meulles",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "473",
         "parc": "Parc Saint-Ernest",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "2430, rue De Meulles",
+        "municipalite": "Duvernay"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.67796347,
-          45.5908658
+          -73.6774930684,
+          45.5913282647
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "4025, rue Gaboury",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "474",
         "parc": "Parc Saint-Martin",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": null
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "4025, rue Gaboury",
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.7652917,
-          45.55259208
+          -73.7652916964,
+          45.5525920830
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "800, rue de Lourdes",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "475",
         "parc": "Parc Saint-Maurice",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7G 4B2"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.67793528,
-          45.57910597
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
         "adresse": "800, rue de Lourdes",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Saint-Maurice",
-        "tel": "4506624902",
-        "courriel": null,
-        "codepostal": "H7G 4B2"
+        "municipalite": "Duvernay"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.67793528,
-          45.57910597
+          -73.6779352813,
+          45.5791059682
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "560, 64e Avenue",
+        "id": "476",
+        "parc": "Parc Saint-Norbert",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Saint-Norbert",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": "H7V 2J3"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.73005334,
-          45.54248144
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "adresse": "560, 64e Avenue",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Saint-Norbert",
-        "tel": "4509788903",
-        "courriel": null,
-        "codepostal": "H7V 2J3"
+        "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.73005334,
-          45.54248144
+          -73.7300265238,
+          45.5425100617
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "adresse": "52, rue Sainte-Jeanne",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Saint-Philippe",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": null
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.64354406,
-          45.61120175
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "650, rue de Beauport",
-        "genre": "PSE",
-        "nom": "Patinoire avec bandes",
+        "id": "478",
         "parc": "Parc Saint-Victor",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": "H7E 4B8"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.66882872,
-          45.58345697
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "4300, rue Stéphanie",
-        "genre": "PPL",
-        "nom": "Patinoire de patin libre",
-        "parc": "Parc Stéphanie",
-        "tel": "4509788904",
-        "courriel": null,
-        "codepostal": "H7R 0A6"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.8377831,
-          45.56336362
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "adresse": "3120, avenue de La Malbaie",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
-        "parc": "Parc Val-des-Arbres",
-        "tel": "4506624901",
-        "courriel": null,
-        "codepostal": null
+        "adresse": "650, rue de Beauport",
+        "municipalite": "Duvernay"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.67712764,
-          45.59936238
+          -73.6688287245,
+          45.5834569736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "479",
+        "parc": "Parc Stéphanie",
+        "genre": "PPL",
+        "nom": "Sentier de patinage",
+        "adresse": "4300, rue Stéphanie",
+        "municipalite": "Fabreville"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8378366992,
+          45.5633991745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "480",
+        "parc": "Parc Val-des-Arbres",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "adresse": "3120, avenue de La Malbaie",
+        "municipalite": "Duvernay"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.6771276433,
+          45.5993623847
         ]
       }
     }
