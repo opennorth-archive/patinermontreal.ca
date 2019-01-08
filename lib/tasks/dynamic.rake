@@ -323,10 +323,10 @@ namespace :import do
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
 
-      if (attributes[:parc] == "Des Sureaux")
-        attributes[:parc] = "des Sureaux"
-      end
-      
+      # Expand/correct park names
+      attributes[:parc] = "des Sureaux" if (attributes[:parc] == "Des Sureaux")
+      attributes[:parc] = "de Normandie" if (attributes[:parc] == "Normandie (de)")
+
       patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
       begin
