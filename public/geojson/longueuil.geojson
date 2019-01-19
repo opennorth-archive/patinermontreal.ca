@@ -710,6 +710,7 @@
     }, {
         "type": "Feature",
         "properties": {
+            "deleted": true,
             "adresse": "1755, boulevard Jacques-Cartier Est",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
