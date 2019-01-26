@@ -1,0 +1,56 @@
+{  
+  "type":"FeatureCollection",
+  "features":[  
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": " 755, rue Barden",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc": "Jubilée",
+        "url": "https://www.longueuil.quebec/fr/parc-jubilee"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.470749, 
+          45.483661
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":" 195, rue Empire",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc":"Empire",
+        "url":"https://www.longueuil.quebec/fr/parc-empire"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates": [  
+          -73.490846,
+          45.493401
+        ]
+      }
+    },
+    {  
+      "type":"Feature",
+      "properties":{  
+        "adresse":" 1050, rue de Parklane",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
+        "parc":"René-Veillet",
+        "url":"https://www.longueuil.quebec/fr/parc-rene-veillet"
+      },
+      "geometry":{  
+        "type":"Point",
+        "coordinates": [  
+          -73.451553,
+          45.485871
+        ]
+      }
+    }
+  ]
+}

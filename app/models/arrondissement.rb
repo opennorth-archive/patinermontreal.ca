@@ -65,6 +65,7 @@ class Arrondissement < ActiveRecord::Base
     'Laval',
     'Vieux-Longueuil',
     'Saint-Hubert',
+    'Greenfield Park',
     'Boucherville',
     'Brossard',
     'La Prairie',

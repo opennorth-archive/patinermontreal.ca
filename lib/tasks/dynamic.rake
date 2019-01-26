@@ -278,6 +278,31 @@ namespace :import do
         puts "#{e.inspect}: #{patinoire.inspect}"
       end
     end
+    
+    # Greenfield Park conditions
+    
+    arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Greenfield Park')
+    arrondissement.source = 'www.longueuil.quebec'
+    arrondissement.date_maj = Time.now 
+    arrondissement.save!
+   
+    # Second table: Patinoires et surfaces glacées 
+    previous = ''
+    doc.css(".field-name-body table")[5].css("tr:gt(2)").each do |tr|
+      attributes = import_html_table_row tr, previous
+      previous = attributes[:parc]
+
+      # Expand/correct park names
+      attributes[:parc] = "Jubilée" if (attributes[:parc] == "Jubilee")
+
+      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
+      patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
+      begin
+        patinoire.save!
+      rescue => e
+        puts "#{e.inspect}: #{patinoire.inspect}"
+      end
+    end
   end
   
   def import_html_table_row(tr, previous_parc)

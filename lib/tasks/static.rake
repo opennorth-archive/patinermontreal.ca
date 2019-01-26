@@ -118,6 +118,8 @@ namespace :import do
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
     puts "Importing Saint-Hubert..."
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
+    puts "Importing Greenfield Park..."
+    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/greenfieldpark.geojson', 'Greenfield Park', 'www.longueuil.quebec'
     puts "Importing Boucherville..."
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/boucherville.geojson', 'Boucherville', 'www.boucherville.ca'
     puts "Importing Brossard..."
