@@ -24,7 +24,7 @@ class PagesController < ApplicationController
         })
       end
       format.json do
-        render json: Arrondissement.all.to_json({
+        render json: Arrondissement.all.as_json({
           only: arrondissement_fields,
           include: {
             patinoires: {

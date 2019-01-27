@@ -152,7 +152,7 @@
 
   var locale = '#{locale}';
   var env = '#{Rails.env}';
-  var json = #{@rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng], include: {arrondissement: {only: [:nom_arr, :name, :email, :tel, :ext, :date_maj]}})};
+  var json = #{raw @rinks.to_json(only: [:id, :slug, :genre, :description, :parc, :ouvert, :deblaye, :arrose, :resurface, :condition, :adresse, :tel, :ext, :lat, :lng], include: {arrondissement: {only: [:nom_arr, :name, :email, :tel, :ext, :date_maj]}})};
 
   window.myWidgetParam = { id: 21, lang: '#{locale}', cityid: 6077243, appid: '99275f98d42492934b7b812f0b77cdbb', containerid: 'openweathermap-widget' };
 

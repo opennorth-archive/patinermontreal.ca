@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
-ruby '1.9.3'
+ruby '2.5.1'
 
-gem 'rails', '3.1.10'
+gem 'rails'
 gem 'thin'
 
 # Bundle edge Rails instead:
@@ -16,20 +16,19 @@ gem 'unicode_utils'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
 group :development, :test do
-  gem 'pg'
 end
 
+gem 'pg'
 gem 'haml-rails'
 gem 'jquery-rails'
 

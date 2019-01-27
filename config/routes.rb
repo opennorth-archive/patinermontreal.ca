@@ -1,9 +1,9 @@
 PatinerMontreal::Application.routes.draw do
-  match 'data' => 'pages#data'
-  match 'conditions' => 'pages#conditions'
-  match 'channel' => 'pages#channel'
+  match 'data' => 'pages#data', :via => [:get]
+  match 'conditions' => 'pages#conditions', :via => [:get]
+  match 'channel' => 'pages#channel', :via => [:get]
   %w(favorites favories f f/*filters rinks/:id patinoires/:id).each do |path|
-    match path => 'pages#index'
+    match path => 'pages#index', :via => [:get]
   end
   root :to => 'pages#index'
 

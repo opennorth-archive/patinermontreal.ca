@@ -85,5 +85,5 @@ class Arrondissement < ActiveRecord::Base
     'candiac.ca',
   ]
 
-  scope :dynamic, where('date_maj IS NOT NULL')
+  scope :dynamic, -> { where('date_maj IS NOT NULL') }
 end

@@ -64,12 +64,12 @@ class Patinoire < ActiveRecord::Base
   before_validation :set_nom_and_description
   before_save :normalize
 
-  scope :tracked, where(source: ['donnees.ville.montreal.qc.ca', 'ville.dorval.qc.ca', 'www.longueuil.quebec'])
-  scope :geocoded, where('lat IS NOT NULL')
-  scope :ouvert, where(ouvert: true)
+  scope :tracked, -> { where(source: ['donnees.ville.montreal.qc.ca', 'ville.dorval.qc.ca', 'www.longueuil.quebec']) }
+  scope :geocoded, -> { where('lat IS NOT NULL') }
+  scope :ouvert, -> { where(ouvert: true) }
   # Utility scopes for checking data quality.
-  scope :unaddressed, where(adresse: nil)
-  scope :nongeocoded, where(lat: nil)
+  scope :unaddressed, -> { where(adresse: nil) }
+  scope :nongeocoded, -> { where(lat: nil) }
 
   def name
     "#{description}, #{parc} (#{genre})" # ignore disambiguation
