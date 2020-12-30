@@ -12,7 +12,7 @@ namespace :import do
         sub('L\'Île-Bizard - Sainte-Geneviève', "L'Île-Bizard—Sainte-Geneviève").
         gsub(' - ', '—')
 
-      arrondissement = Arrondissement.find_or_initialize_by_nom_arr(nom_arr)
+      arrondissement = Arrondissement.find_or_initialize_by(nom_arr: nom_arr)
       arrondissement.cle = node.at_css('cle').text
       arrondissement.date_maj = Time.parse node.at_css('date_maj').text
       arrondissement.source = 'donnees.ville.montreal.qc.ca'
@@ -34,7 +34,7 @@ namespace :import do
         xml_name = 'Patinoire décorative, parc Aimé-Léonard (PP)' if xml_name == 'Patinoire, parc Aimé-Léonard (PP)'
         xml_name = 'Patinoire de patin libre, parc Hans-Selye (PPL)' if xml_name == 'Patinoire de patin libre,parc Hans-Selye (PPL)'
 
-        patinoire = Patinoire.find_or_initialize_by_nom_and_arrondissement_id(xml_name, arrondissement.id)
+        patinoire = Patinoire.find_or_initialize_by(nom: xml_name, arrondissement_id: arrondissement.id)
         %w(ouvert deblaye arrose resurface condition).each do |attribute|
           patinoire[attribute] = node.at_css(attribute).text
           patinoire[attribute] = (attribute == 'condition'? 'N/A' : false) if (patinoire[attribute].nil?)
@@ -164,11 +164,11 @@ namespace :import do
   
   # desc 'Add rinks from www.longueuil.quebec'
   task longueuil: :environment do
-    doc = Nokogiri::HTML(RestClient.get('https://www.longueuil.quebec/fr/conditions-sites-hivernaux'))
+    doc = Nokogiri::HTML(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/c8b8abef-6a93-4389-8caf-ec7c41f2861c'))
     
     # Vieux-Longueuil conditions
     
-    arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Vieux-Longueuil')
+    arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Vieux-Longueuil')
     arrondissement.source = 'www.longueuil.quebec'
     arrondissement.date_maj = Time.now
     arrondissement.save!
@@ -189,7 +189,7 @@ namespace :import do
     # Fix for "passable" but not "open"
     attributes[:ouvert] = true if attributes[:condition] == 'Bonne'
     
-    patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
+    patinoire = Patinoire.find_or_initialize_by(parc: attributes[:parc], genre: attributes[:genre], arrondissement_id: arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
     begin
       patinoire.save!
@@ -202,7 +202,7 @@ namespace :import do
     attributes = import_html_table_row tr, nil
     attributes[:parc] = 'Lionel-Groulx'
 
-    patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire réfrigérée Bleu-Blanc-Bouge', attributes[:parc], arrondissement.id)
+    patinoire = Patinoire.find_or_initialize_by(description: 'Patinoire réfrigérée Bleu-Blanc-Bouge', parc: attributes[:parc], arrondissement_id: arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
     begin
       patinoire.save!
@@ -220,7 +220,7 @@ namespace :import do
       attributes[:parc] = "des Sureaux" if (attributes[:parc] == "Des Sureaux")
       attributes[:parc] = "de Normandie" if (attributes[:parc] == "Normandie (de)")
 
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
+      patinoire = Patinoire.find_or_initialize_by(parc: attributes[:parc], genre: attributes[:genre], arrondissement_id: arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
       begin
         patinoire.save!
@@ -231,7 +231,7 @@ namespace :import do
         
     # Saint-Hubert conditions
     
-    arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Saint-Hubert')
+    arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Saint-Hubert')
     arrondissement.source = 'www.longueuil.quebec'
     arrondissement.date_maj = Time.now 
     arrondissement.save!
@@ -255,7 +255,7 @@ namespace :import do
       # Fix for "passable" but not "open"
       attributes[:ouvert] = true if attributes[:condition] == 'Bonne'
       
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
+      patinoire = Patinoire.find_or_initialize_by(parc: attributes[:parc], genre: attributes[:genre], arrondissement_id: arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
       begin
         patinoire.save!
@@ -270,7 +270,7 @@ namespace :import do
       attributes = import_html_table_row tr, previous
       previous = attributes[:parc]
 
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
+      patinoire = Patinoire.find_or_initialize_by(parc: attributes[:parc], genre: attributes[:genre], arrondissement_id: arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
       begin
         patinoire.save!
@@ -295,7 +295,7 @@ namespace :import do
       # Expand/correct park names
       attributes[:parc] = "Jubilée" if (attributes[:parc] == "Jubilee")
 
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id(attributes[:parc], attributes[:genre], arrondissement.id)
+      patinoire = Patinoire.find_or_initialize_by(parc: attributes[:parc], genre: attributes[:genre], arrondissement_id: arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
       begin
         patinoire.save!

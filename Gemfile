@@ -1,12 +1,13 @@
-source 'http://rubygems.org'
-ruby '2.5.1'
+source 'https://rubygems.org'
+ruby '2.7.2'
 
-gem 'rails'
+gem 'rails', '6.0.3'
 gem 'thin'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+gem 'therubyracer'
 gem 'andand'
 gem 'nokogiri'
 gem 'psych'

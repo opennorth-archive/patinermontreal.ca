@@ -4,8 +4,8 @@ namespace :import do
   task manual: :environment do
     require 'csv'
     require 'open-uri'
-    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
-      arrondissement = Arrondissement.find_or_initialize_by_nom_arr(row['nom_arr'])
+    CSV.parse(URI.open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
+      arrondissement = Arrondissement.find_or_initialize_by(nom_arr: row['nom_arr'])
       arrondissement.source = 'docs.google.com'
       arrondissement.save!
 
@@ -16,7 +16,7 @@ namespace :import do
       row.delete('extra')
       row.delete('source_url')
 
-      patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_disambiguation_and_arrondissement_id(row['parc'], row['genre'], row['disambiguation'], arrondissement.id)
+      patinoire = Patinoire.find_or_initialize_by(parc: row['parc'], genre: row['genre'], disambiguation: row['disambiguation'], arrondissement_id: arrondissement.id)
       patinoire.attributes = row.to_hash
 
       # Rename the manually added Bleu-Blanc-Bouge rinks
@@ -45,8 +45,8 @@ namespace :import do
   task contacts: :environment do
     require 'csv'
     require 'open-uri'
-   CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
-      arrondissement = Arrondissement.find_or_initialize_by_nom_arr row['Authority']
+   CSV.parse(URI.open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
+      arrondissement = Arrondissement.find_or_initialize_by(nom_arr: row['Authority'])
       arrondissement.attributes = {
         name: [row['Name'], row['Title']].compact.join(', '),
         email: row['Email'] && row['Email'].strip,
@@ -64,7 +64,7 @@ namespace :import do
     require 'csv'
     require 'open-uri'
     missing = Set.new
-    CSV.parse(open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv', "r:utf-8").read, headers: true) do |row|
+    CSV.parse(URI.open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv', "r:utf-8").read, headers: true) do |row|
       if row['lat'] && row['lng']
         arrondissement = Arrondissement.where(nom_arr: row['nom_arr']).first
         if arrondissement
@@ -136,7 +136,7 @@ namespace :import do
     require 'json'
     require 'open-uri'
 
-    arrondissement = Arrondissement.find_or_initialize_by_nom_arr(nom_arr)
+    arrondissement = Arrondissement.find_or_initialize_by(nom_arr: nom_arr)
     arrondissement.source = source
     arrondissement.save!
     
@@ -149,7 +149,7 @@ namespace :import do
       end
 
       if (properties['municipalite'])
-        arrondissement = Arrondissement.find_or_initialize_by_nom_arr(properties['municipalite'])
+        arrondissement = Arrondissement.find_or_initialize_by(nom_arr: properties['municipalite'])
         arrondissement.source = source
         arrondissement.save!
       end
@@ -157,12 +157,12 @@ namespace :import do
       properties['parc'] = properties['parc'].sub('Parc ', '')
 
       if (properties['nom'] == 'Patinoire Bleu-Blanc-Bouge')
-        patinoire = Patinoire.find_or_initialize_by_description_and_parc_and_arrondissement_id('Patinoire réfrigérée Bleu-Blanc-Bouge', properties['parc'], arrondissement.id)
+        patinoire = Patinoire.find_or_initialize_by(description: 'Patinoire réfrigérée Bleu-Blanc-Bouge', parc: properties['parc'], arrondissement_id: arrondissement.id)
         patinoire.nom = "#{properties['nom']}, #{properties['parc']} (#{properties['genre']})"
         patinoire.genre = properties['genre']
         patinoire.disambiguation = 'réfrigérée'
       else
-        patinoire = Patinoire.find_or_initialize_by_parc_and_genre_and_arrondissement_id properties['parc'], properties['genre'], arrondissement.id
+        patinoire = Patinoire.find_or_initialize_by(parc: properties['parc'], genre: properties['genre'], arrondissement_id: arrondissement.id)
       end
       
       patinoire.lng = feature['geometry']['coordinates'][0]
