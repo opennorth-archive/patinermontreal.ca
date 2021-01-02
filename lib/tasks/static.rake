@@ -110,23 +110,23 @@ namespace :import do
   
   # http://www.patinermontreal.ca/geojson/ (or localhost:3000)
   task geojson: :environment do
-    puts "Importing Dollard-des-Ormeaux..."
+    puts "Importing Dollard-des-Ormeaux…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
-    puts "Importing Laval..."
+    puts "Importing Laval…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
-    puts "Importing Vieux-Longueuil..."
+    puts "Importing Vieux-Longueuil…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
-    puts "Importing Saint-Hubert..."
+    puts "Importing Saint-Hubert…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
-    puts "Importing Greenfield Park..."
+    puts "Importing Greenfield Park…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/greenfieldpark.geojson', 'Greenfield Park', 'www.longueuil.quebec'
-    puts "Importing Boucherville..."
+    puts "Importing Boucherville…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/boucherville.geojson', 'Boucherville', 'www.boucherville.ca'
-    puts "Importing Brossard..."
+    puts "Importing Brossard…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/brossard.geojson', 'Brossard', 'www.ville.brossard.qc.ca'
-    puts "Importing La Prairie..."
+    puts "Importing La Prairie…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laprairie.geojson', 'La Prairie', 'www.ville.laprairie.qc.ca'
-    puts "Importing Candiac..."
+    puts "Importing Candiac…"
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/candiac.geojson', 'Candiac', 'candiac.ca'
     puts "Done importing GeoJSON rinks"
   end

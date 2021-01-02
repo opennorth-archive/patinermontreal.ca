@@ -22,17 +22,13 @@ namespace :import do
 
         # Expand/correct rink names to avoid later parsing errors
         xml_name = node.at_css('nom').text.sub(' du parc ', ', parc ').gsub(/([a-z])\sparc/im, '\1, parc').gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge').strip
-        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Confédération (PSE)' if xml_name == 'Patinoire Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'cdn' 
-        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc de Mésy (PSE)' if xml_name == 'Patinoire avec bandes, de Mésy (PSE)' && arrondissement.cle == 'ahc' 
-        xml_name = 'Patinoire réfrigérée Bleu-Blanc-Bouge, Parc François-Perrault (PSE)' if xml_name == 'Patinoire réfrigérée Bleu-Blanc-Bouge (PSE)' && arrondissement.cle == 'vsp'
-        xml_name = 'Patinoire avec bandes, Parc Jeanne-Lapierre (PSE)' if xml_name == 'Patinoire avec bandes, Parc Jean-Lapierre (PSE)' && arrondissement.cle == 'rdp'
-        xml_name = 'Patinoire de patin libre, parc du Glacis (PP)' if xml_name == 'Patinoire du Glacis (PP)'
-        xml_name = 'Patinoire décorative, Toussaint-Louverture (PP)' if xml_name == 'Patinoire décorative Toussaint-Louverture (PP)'
-        xml_name = 'Patinoire extérieure, Domaine Chartier (PPL)' if xml_name == 'Patinoire extérieure Domaine Chartier (PPL)'
+#        xml_name = 'Patinoire réfrigérée Bleu-Blanc-Bouge, Parc de Mésy (PSE)' if xml_name == 'Patinoire avec bandes, de Mésy (PSE)' && arrondissement.cle == 'ahc' 
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Le Carignan (PSE)' if xml_name == 'Patinoire réfrigérée,Bleu-Blanc-Bouge Le Carignan (PSE)'
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc François-Perrault (PSE)' if xml_name == 'Patinoire réfrigérée, Bleu-Blanc-Bouge F-Perrault (PSE)'
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Hayward (PSE)' if xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
 #         xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)' if xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
-        xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)' if xml_name == 'Patinoire De Gaspé/Bernard (PSE)'
-        xml_name = 'Patinoire décorative, parc Aimé-Léonard (PP)' if xml_name == 'Patinoire, parc Aimé-Léonard (PP)'
-        xml_name = 'Patinoire de patin libre, parc Hans-Selye (PPL)' if xml_name == 'Patinoire de patin libre,parc Hans-Selye (PPL)'
+#        xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)' if xml_name == 'Patinoire De Gaspé/Bernard (PSE)'
+#        xml_name = 'Patinoire de patin libre, parc Hans-Selye (PPL)' if xml_name == 'Patinoire de patin libre,parc Hans-Selye (PPL)'
 
         patinoire = Patinoire.find_or_initialize_by(nom: xml_name, arrondissement_id: arrondissement.id)
         %w(ouvert deblaye arrose resurface condition).each do |attribute|
@@ -41,12 +37,10 @@ namespace :import do
         end
 
         description = case patinoire.nom
-        when 'Patinoire bandes Pierre-Bédard (PSE)', 'patinoire extérieure (PSE)'
+        when 'patinoire extérieure (PSE)' #, 'Patinoire bandes Pierre-Bédard (PSE)'
           'Patinoire avec bandes'
         when /(.*)Bleu\-Blanc\-Bouge(.*)/
           'Patinoire réfrigérée Bleu-Blanc-Bouge'
-        when 'Patinoire de parin libre, parc Sauvé (PPL)'
-          'Patinoire de patin libre'
         else
           patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?(?:,|-| du parc\b)/, 1] || patinoire.nom
         end
@@ -57,12 +51,13 @@ namespace :import do
           'Pati déco'                  => 'Patinoire décorative',
           'Patinoire Décorative'       => 'Patinoire décorative',
           'Sentiers Glacés'            => 'Sentier de glace',
-          'Patinoire de hockey et patin libre' => 'Patinoire de patin libre',
+          'Patinoire sans bandes'      => 'Patinoire extérieure',
           'Patinoire à bandes'         => 'Patinoire avec bandes',
           'Patnoire à bandes'          => 'Patinoire avec bandes',
           'Patinoire avec bande'       => 'Patinoire avec bandes',
           'Patinoire bandes'           => 'Patinoire avec bandes',
           'Patinoire ext. avec bandes' => 'Patinoire avec bandes',
+          'Patinoire de hockey et patin libre' => 'Patinoire de patin libre',
         }.reduce(description) do |string,(from,to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
