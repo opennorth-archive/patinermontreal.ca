@@ -183,13 +183,13 @@ $ ->
     maxZoom: 18
     maxBounds: L.latLngBounds(L.latLng(45.170459, -74.447699), L.latLng(46.035873, -73.147435)) 
 
-  tonerUrl = "http://{S}tile.stamen.com/toner-lite/{Z}/{X}/{Y}.png";
+  tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{Z}/{X}/{Y}.png";
   tilesUrl = tonerUrl.replace(/({[A-Z]})/g, (s) -> s.toLowerCase());
   
   basemap = new L.tileLayer(tilesUrl, {
     subdomains: ['','a.','b.','c.','d.'],
     type: 'png',
-    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+    attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, under <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="https://openstreetmap.org">OpenStreetMap</a>, under <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
   }).addTo(Map);
 
   # Define models.
@@ -477,7 +477,7 @@ $ ->
       'f/' + _.uniq(_.map(kinds.sort().concat(statuses.sort()), (filter) -> t filter)).join '/'
     body: (arrondissement) ->
       string = if arrondissement.name then "Attn: #{arrondissement.name}\r\n\r\n" else ''
-      string += "Serait-il possible de publier l'état de vos patinoires extérieures comme le font plusieurs arrondissements à la Ville de Montréal ? Voir: http://ville.montreal.qc.ca/portal/page?_pageid=5798,94909650&_dad=portal&_schema=PORTAL\r\n\r\nMerci."
+      string += "Serait-il possible de publier l'état de vos patinoires extérieures comme le font plusieurs arrondissements à la Ville de Montréal ? Voir: https://ville.montreal.qc.ca/portal/page?_pageid=5798,94909650&_dad=portal&_schema=PORTAL\r\n\r\nMerci."
       encodeURIComponent string
 
 
@@ -514,7 +514,7 @@ $ ->
   #window.location.replace window.location.pathname
   Backbone.history.start pushState: true
 
-  # http://support.cloudmade.com/answers/general
+  # https://support.cloudmade.com/answers/general
   Map.on 'locationfound', (event) ->
     radius = event.accuracy / 2
     if radius < 1000 

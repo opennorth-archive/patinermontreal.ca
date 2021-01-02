@@ -37,10 +37,10 @@
         %li
           %h3= t :share
           .btn-group.btn-group-justified
-            = link_to "http://twitter.com/share?url=http%3A%2F%2Fpatinermontreal.ca&text=#{t :tweet_text}&via=patinermtl", title: "Twitter", class: "btn btn-default btn-twitter", target: "_blank" do
+            = link_to "https://twitter.com/share?url=http%3A%2F%2Fpatinermontreal.ca&text=#{t :tweet_text}&via=patinermtl", title: "Twitter", class: "btn btn-default btn-twitter", target: "_blank" do
               %span.hide Twitter
               %span.fa.fa-twitter.fa-lg
-            = link_to 'http://www.facebook.com/sharer.php?u=http%3A%2F%2Fpatinermontreal.ca', title: "Facebook", class: "btn btn-default btn-facebook", target: "_blank" do
+            = link_to 'https://www.facebook.com/sharer.php?u=http%3A%2F%2Fpatinermontreal.ca', title: "Facebook", class: "btn btn-default btn-facebook", target: "_blank" do
               %span.hide Facebook
               %span.fa.fa-facebook.fa-lg
         %li.embeded
@@ -48,7 +48,7 @@
             =t :follow
         %li
           %h3= t :newsletter
-          = form_tag 'http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
+          = form_tag 'https://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=1258cb62e9', authenticity_token: false, name: 'mc-embedded-subscribe-form', id: 'mc-embedded-subscribe-form', class: 'validate', target: '_blank' do
             %fieldset
               %legend.hide=t :newsletter
               .form-group
@@ -62,7 +62,7 @@
   %div{:class => 'panel'}
     .panel-body
       #branding.pull-right
-        = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "http://montrealouvert.net/?lang=#{locale}", target: '_top'
+        = link_to image_tag("montrealouvert-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "https://montrealouvert.net/?lang=#{locale}", target: '_top'
       .col-md-8.pull-left
         .btn-toolbar
           #kinds.btn-group
@@ -115,7 +115,7 @@
         %h2=t :about_modal
       .modal-body
         #branding-about.pull-right
-          = link_to image_tag("montrealouvert-about-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "http://montrealouvert.net/?lang=#{locale}", target: '_top'
+          = link_to image_tag("montrealouvert-about-#{locale}.png", alt: t(:montrealouvert), title: t(:montrealouvert)), "https://montrealouvert.net/?lang=#{locale}", target: '_top'
         %p= t(:license).html_safe
         %p= t(:data, json_path: data_path(format: :json), xml_path: data_path(format: :xml)).html_safe
         %p= t(:sources).html_safe
@@ -208,7 +208,7 @@
         <hr />
         <div class="call-to-action twitter">
           <p><%= t('explanation') %></p>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://patinermontreal.ca/<%= url %>" data-size="medium" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://patinermontreal.ca/<%= url %>" data-size="medium" data-text="<%= t('tweet_text_' + genre, {park: parc}) %>" data-via="patinermtl" data-lang="<%= locale %>" data-size="large" data-count="none"><%= t('tweet') %></a>
         </div>
       <% } %>
     </div>
