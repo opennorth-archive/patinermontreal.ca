@@ -28,7 +28,7 @@
           %li
             = link_to t(:about_modal), '#about', 'data-toggle' => 'modal', class: 'navbar-btn'
           %li#language
-            = link_to t(:other_language), "http://#{t :other_locale}.#{request.domain}#{translated_path}", class: 'navbar-btn'
+            = link_to t(:other_language), "/?locale=#{t :other_locale}", class: 'navbar-btn'
 %aside#social
   %h2.hide=t :social
   .navbar.navbar-default
