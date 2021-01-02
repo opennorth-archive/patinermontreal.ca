@@ -32,11 +32,11 @@ To run the updates every hour, run `heroku addons:open scheduler` and add a `rak
 
 If you have already run the Rake tasks to build the database locally, run:
 
-    heroku db:push
+    heroku pg:push
 
 Otherwise:
 
-    heroku run rake db:setup
+    heroku run rake db:schema:load
     heroku run rake cron
     heroku run rake import:manual
     heroku run rake import:location

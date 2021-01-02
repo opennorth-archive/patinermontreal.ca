@@ -2,17 +2,14 @@ source 'https://rubygems.org'
 ruby '2.7.2'
 
 gem 'rails', '6.0.3'
-gem 'thin'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'therubyracer'
+gem 'puma'
+gem 'execjs'
 gem 'andand'
 gem 'nokogiri'
 gem 'psych'
 gem 'rest-client'
 gem 'unicode_utils'
+gem 'activemodel-serializers-xml'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,13 +17,6 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-end
-
-group :production do
-  gem 'rails_12factor'
-end
-
-group :development, :test do
 end
 
 gem 'pg'

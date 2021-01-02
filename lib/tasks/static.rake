@@ -140,7 +140,7 @@ namespace :import do
     arrondissement.source = source
     arrondissement.save!
     
-    collection = JSON.parse(open(geojson_uri, "r:utf-8").read)
+    collection = JSON.parse(URI.open(geojson_uri, "r:utf-8").read)
     
     collection['features'].each do| feature|
       properties = feature['properties']
