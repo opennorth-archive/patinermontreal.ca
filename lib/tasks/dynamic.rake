@@ -27,7 +27,7 @@ namespace :import do
         xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc François-Perrault (PSE)' if xml_name == 'Patinoire réfrigérée, Bleu-Blanc-Bouge F-Perrault (PSE)'
         xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Hayward (PSE)' if xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
 #         xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)' if xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
-#        xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)' if xml_name == 'Patinoire De Gaspé/Bernard (PSE)'
+#        xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)' if xml_name == 'Patinoire De Gaspé/Bernard (PSE)'  && arrondissement.cle == 'ahc'
 #        xml_name = 'Patinoire de patin libre, parc Hans-Selye (PPL)' if xml_name == 'Patinoire de patin libre,parc Hans-Selye (PPL)'
 
         patinoire = Patinoire.find_or_initialize_by(nom: xml_name, arrondissement_id: arrondissement.id)
@@ -112,13 +112,13 @@ namespace :import do
           patinoire.parc = 'Le Prévost'
           patinoire.disambiguation = nil
         end
-        
+
         # There is no "no 2", also require a valid description
         if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)', 'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)', 'Patinoire # 1, Parc Robert-Sauvé (PSE)'].include? patinoire.nom
           patinoire.disambiguation = nil
           patinoire.description = 'Patinoire de hockey'
         end
-        
+
         # Require a valid description
         if ['Patinoire # 2 , Parc Eugène-Dostie (PSE)', 'Patinoire # 1 , Parc Eugène-Dostie (PSE)'].include? patinoire.nom
           patinoire.description = 'Patinoire de hockey'
@@ -144,7 +144,7 @@ namespace :import do
 #           patinoire.disambiguation = "no #{flip}"
 #           flip = flip == 1 ? 2 : 1
 #         end
-        
+
         patinoire.source = 'donnees.ville.montreal.qc.ca'
         begin
           patinoire.save!
@@ -156,21 +156,21 @@ namespace :import do
       end
     end
   end
-  
+
   # desc 'Add rinks from www.longueuil.quebec'
   task longueuil: :environment do
     doc = Nokogiri::HTML(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/c8b8abef-6a93-4389-8caf-ec7c41f2861c'))
-    
+
     # Vieux-Longueuil conditions
-    
+
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Vieux-Longueuil')
     arrondissement.source = 'www.longueuil.quebec'
     arrondissement.date_maj = Time.now
     arrondissement.save!
-   
-    # First table: Sentiers de ski de fond et pentes à glisser  
+
+    # First table: Sentiers de ski de fond et pentes à glisser
     tr = doc.css(".field-name-body table")[0].css("tr:eq(7)")
-    attributes = { 
+    attributes = {
       parc: 'Michel-Chartrand',
       genre: 'PPL',
       ouvert: tr.css("td:eq(4)").text.downcase().include?('x') ,
@@ -180,10 +180,10 @@ namespace :import do
 
     attributes[:condition] = 'Excellente' if tr.css("td:eq(4)").text.downcase().include?('x')
     attributes[:condition] = 'Bonne' if tr.css("td:eq(5)").text.downcase().include?('x')
-    
+
     # Fix for "passable" but not "open"
     attributes[:ouvert] = true if attributes[:condition] == 'Bonne'
-    
+
     patinoire = Patinoire.find_or_initialize_by(parc: attributes[:parc], genre: attributes[:genre], arrondissement_id: arrondissement.id)
     patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
     begin
@@ -204,8 +204,8 @@ namespace :import do
     rescue => e
       puts "#{e.inspect}: #{patinoire.inspect}"
     end
-   
-    # Third table: Patinoires et surfaces glacées 
+
+    # Third table: Patinoires et surfaces glacées
     previous = ''
     doc.css('.field-name-body table')[2].css('tr:gt(2)').each do |tr|
       attributes = import_html_table_row tr, previous
@@ -223,19 +223,19 @@ namespace :import do
         puts "#{e.inspect}: #{patinoire.inspect}"
       end
     end
-        
+
     # Saint-Hubert conditions
-    
+
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Saint-Hubert')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.now 
+    arrondissement.date_maj = Time.now
     arrondissement.save!
-   
-    # First table: Sentiers de ski de fond et pentes à glisser  
+
+    # First table: Sentiers de ski de fond et pentes à glisser
     tr = doc.css(".field-name-body table")[3].css("tr:gt(6)").each do |tr|
-      spanned = tr.css('> td').count == 6 
+      spanned = tr.css('> td').count == 6
       offset = spanned ? -1 : 0
-      attributes = { 
+      attributes = {
         parc: 'de la Cité',
         ouvert: tr.css("td:eq(#{5+offset})").text.downcase().include?('x') ,
         resurface: tr.css("td:eq(#{3+offset})").text.downcase().include?('x') ,
@@ -243,13 +243,13 @@ namespace :import do
       }
       attributes[:genre] = 'PPL' if tr.css("td:eq(#{2+offset})").text == 'Pavillon'
       attributes[:genre] = 'PP' if tr.css("td:eq(#{2+offset})").text == 'Raquette'
-      
+
       attributes[:condition] = 'Excellente' if tr.css("td:eq(#{5+offset})").text.downcase().include?('x')
       attributes[:condition] = 'Bonne' if tr.css("td:eq(#{6+offset})").text.downcase().include?('x')
 
       # Fix for "passable" but not "open"
       attributes[:ouvert] = true if attributes[:condition] == 'Bonne'
-      
+
       patinoire = Patinoire.find_or_initialize_by(parc: attributes[:parc], genre: attributes[:genre], arrondissement_id: arrondissement.id)
       patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
       begin
@@ -259,7 +259,7 @@ namespace :import do
       end
     end
 
-    # Second table: Patinoires et surfaces glacées 
+    # Second table: Patinoires et surfaces glacées
     previous = ''
     doc.css(".field-name-body table")[4].css("tr:gt(2)").each do |tr|
       attributes = import_html_table_row tr, previous
@@ -273,15 +273,15 @@ namespace :import do
         puts "#{e.inspect}: #{patinoire.inspect}"
       end
     end
-    
+
     # Greenfield Park conditions
-    
+
     arrondissement = Arrondissement.find_or_initialize_by_nom_arr('Greenfield Park')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.now 
+    arrondissement.date_maj = Time.now
     arrondissement.save!
-   
-    # Second table: Patinoires et surfaces glacées 
+
+    # Second table: Patinoires et surfaces glacées
     previous = ''
     doc.css(".field-name-body table")[5].css("tr:gt(2)").each do |tr|
       attributes = import_html_table_row tr, previous
@@ -299,21 +299,21 @@ namespace :import do
       end
     end
   end
-  
+
   def import_html_table_row(tr, previous_parc)
-    spanned = tr.css('> td').count == 4 
+    spanned = tr.css('> td').count == 4
     offset = spanned ? -1 : 0
     nom = tr.css("td:eq(#{2+offset})").text.gsub(/[[:space:]]/, ' ').strip
-    attributes = { 
+    attributes = {
       parc: spanned ? previous_parc : tr.at_css('td').text.gsub(/[[:space:]]/, ' ').sub('Parc ', '').strip ,
       genre: case nom
       when 'Surface glacée'
         'PPL'
       when 'Patinoire', 'Patinoire permanente'
         'PSE'
-      else  
+      else
         puts "Unknown rink '#{nom}'"
-        nil 
+        nil
       end ,
       ouvert: tr.css("td:eq(#{3+offset})").text.downcase().include?('x') ,
       condition: 'N/A'
@@ -321,10 +321,10 @@ namespace :import do
 
     attributes[:condition] = 'Excellente' if tr.css("td:eq(#{3+offset})").text.downcase().include?('x')
     attributes[:condition] = 'Bonne' if tr.css("td:eq(#{4+offset})").text.downcase().include?('x')
-    
+
     # Fix for "passable" but not "open"
     attributes[:ouvert] = true if attributes[:condition] == 'Bonne'
-    
+
     return attributes
   end
 end

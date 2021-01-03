@@ -11,7 +11,7 @@ namespace :import do
 
       # Manually added Bleu-Blanc-Bouge rinks, based on extra field = "bbb"
       is_bbb = row['extra'] == 'bbb'
-      
+
       row.delete('nom_arr')
       row.delete('extra')
       row.delete('source_url')
@@ -26,12 +26,12 @@ namespace :import do
 #         patinoire.ouvert = true
 #         patinoire.condition = 'N/A'
       end
-      if row['disambiguation'] == "réfrigérée" 
+      if row['disambiguation'] == "réfrigérée"
         patinoire.description = "Patinoire réfrigérée"
         patinoire.ouvert = true
         patinoire.condition = 'N/A'
       end
-      
+
       patinoire.source = 'docs.google.com'
       begin
         patinoire.save!
@@ -106,8 +106,8 @@ namespace :import do
       end
     end
   end
-  
-  
+
+
   # http://www.patinermontreal.ca/geojson/ (or localhost:3000)
   task geojson: :environment do
     puts "Importing Dollard-des-Ormeaux…"
@@ -130,8 +130,8 @@ namespace :import do
     import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/candiac.geojson', 'Candiac', 'candiac.ca'
     puts "Done importing GeoJSON rinks"
   end
-  
-  
+
+
   def import_geojson_for_arrondissement(geojson_uri, nom_arr, source)
     require 'json'
     require 'open-uri'
@@ -139,12 +139,12 @@ namespace :import do
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: nom_arr)
     arrondissement.source = source
     arrondissement.save!
-    
+
     collection = JSON.parse(URI.open(geojson_uri, "r:utf-8").read)
-    
+
     collection['features'].each do| feature|
       properties = feature['properties']
-      if (properties['deleted']) 
+      if (properties['deleted'])
         next
       end
 
@@ -164,14 +164,14 @@ namespace :import do
       else
         patinoire = Patinoire.find_or_initialize_by(parc: properties['parc'], genre: properties['genre'], arrondissement_id: arrondissement.id)
       end
-      
+
       patinoire.lng = feature['geometry']['coordinates'][0]
       patinoire.lat = feature['geometry']['coordinates'][1]
       patinoire.adresse = properties['adresse']
       # patinoire.condition = nil
-      
+
       patinoire.source = source
-      
+
       begin
         patinoire.save!
       rescue => e
