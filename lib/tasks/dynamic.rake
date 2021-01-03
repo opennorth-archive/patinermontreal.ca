@@ -22,7 +22,7 @@ namespace :import do
 
         # Expand/correct rink names to avoid later parsing errors
         xml_name = node.at_css('nom').text.sub(' du parc ', ', parc ').gsub(/([a-z])\sparc/im, '\1, parc').gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge').strip
-#        xml_name = 'Patinoire réfrigérée Bleu-Blanc-Bouge, Parc de Mésy (PSE)' if xml_name == 'Patinoire avec bandes, de Mésy (PSE)' && arrondissement.cle == 'ahc' 
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc de Mésy (PSE)' if xml_name == 'Patinoire avec bandes, de Mésy (PSE)'
         xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Le Carignan (PSE)' if xml_name == 'Patinoire réfrigérée,Bleu-Blanc-Bouge Le Carignan (PSE)'
         xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc François-Perrault (PSE)' if xml_name == 'Patinoire réfrigérée, Bleu-Blanc-Bouge F-Perrault (PSE)'
         xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Hayward (PSE)' if xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
@@ -80,10 +80,10 @@ namespace :import do
           'Des Hirondelles'                  => 'des Hirondelles',
           'Decelle'                          => 'Decelles',
           'Duff court'                       => 'Duff Court',
+          'étang Jarry'                      => 'Jarry',
           'Ignace-Bourget-anneau de vitesse' => 'Ignace-Bourget',
           'lalancette'                       => 'Lalancette',
-          'Lac aux castors'                  => 'Lac aux Castors',
-          'Lac des castors'                  => 'Lac aux Castors',
+          'Lac aux Castors ,'                => 'Lac aux Castors',
           'Marc-Aurèle-Fortin'               => 'Hans-Selye',
           'Merci'                            => 'de la Merci',
           'Patinoire bandes Pierre-Bédard'   => 'Pierre-Bédard',
@@ -94,7 +94,7 @@ namespace :import do
           'De Gaspé/Bernard'                 => 'Champ des possibles',
           # Need to do independent research to find where these are.
           'patinoire extérieure'             => ''
-        }.reduce(parc) do |string,(from,to)|
+        }.reduce(parc.strip) do |string,(from,to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
         patinoire.parc.slice!(/\AParc /i)
