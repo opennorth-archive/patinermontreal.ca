@@ -153,7 +153,7 @@ window.format_date = (string) ->
 ) Backbone.History.prototype.getFragment
 
 other_locale = t 'other_locale'
-other_domain = $('#language a').attr('href').match(/^http:\/\/[^\/]+\//)[0].replace t('locale'), other_locale
+other_domain = $('#language a').attr('href').match(/^http(s?):\/\/[^\/]+\//)[0].replace t('locale'), other_locale
 
 # Update the language switch link after each navigation event.
 ((_navigate) ->
@@ -193,11 +193,11 @@ $ ->
     zoom: 13
     minZoom: 11
     maxZoom: 18
-    maxBounds: L.latLngBounds(L.latLng(45.170459, -74.447699), L.latLng(46.035873, -73.147435)) 
+    maxBounds: L.latLngBounds(L.latLng(45.170459, -74.447699), L.latLng(46.035873, -73.147435))
 
   tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{Z}/{X}/{Y}.png";
   tilesUrl = tonerUrl.replace(/({[A-Z]})/g, (s) -> s.toLowerCase());
-  
+
   basemap = new L.tileLayer(tilesUrl, {
     subdomains: ['','a.','b.','c.','d.'],
     type: 'png',
@@ -529,7 +529,7 @@ $ ->
   # https://support.cloudmade.com/answers/general
   Map.on 'locationfound', (event) ->
     radius = event.accuracy / 2
-    if radius < 1000 
+    if radius < 1000
       locationIcon = L.Icon.extend
         options:
           iconUrl: "/assets/marker-icon.png"
