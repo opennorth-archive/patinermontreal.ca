@@ -152,6 +152,18 @@ window.format_date = (string) ->
       _getFragment.apply(this, arguments).replace(/\/$/, '').replace(/\?.*/, '')
 ) Backbone.History.prototype.getFragment
 
+other_locale = t 'other_locale'
+other_domain = $('#language a').attr('href').match(/^http:\/\/[^\/]+\//)[0].replace t('locale'), other_locale
+
+# Update the language switch link after each navigation event.
+((_navigate) ->
+    Backbone.History.prototype.navigate = ->
+      _navigate.apply this, arguments
+      $('#language a').attr 'href', _.reduce ['about', 'contact', 'donate', 'api', 'rinks', 'favorites', 'sports-dequipe', 'patin-libre', 'paysagee', 'ouvert', 'deblaye', 'arrose', 'resurface'], (string,component) ->
+        string.replace t(component), t(component, locale: other_locale)
+      , other_domain + Backbone.history.getFragment()
+) Backbone.History.prototype.navigate
+
 $ ->
   window.debug = env is 'development'
 
