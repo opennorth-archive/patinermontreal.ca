@@ -2,7 +2,7 @@
 namespace :import do
   desc 'Add rinks from donnees.ville.montreal.qc.ca'
   task montreal: :environment do
-    flip = 1
+    disambiguation_lasalle = disambiguation_decelles = 1
     Nokogiri::XML(RestClient.get('http://www2.ville.montreal.qc.ca/services_citoyens/pdf_transfert/L29_PATINOIRE.xml')).css('patinoire').each do |node|
       # Add m-dash, except for Ahuntsic-Cartierville.
       nom_arr = node.at_css('nom_arr').text.
@@ -21,14 +21,17 @@ namespace :import do
         arrondissement.save!
 
         # Expand/correct rink names to avoid later parsing errors
-        xml_name = node.at_css('nom').text.sub(' du parc ', ', parc ').gsub(/([a-z])\sparc/im, '\1, parc').gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge').strip
-        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc de Mésy (PSE)' if xml_name == 'Patinoire avec bandes, de Mésy (PSE)'
-        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Le Carignan (PSE)' if xml_name == 'Patinoire réfrigérée,Bleu-Blanc-Bouge Le Carignan (PSE)'
-        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc François-Perrault (PSE)' if xml_name == 'Patinoire réfrigérée, Bleu-Blanc-Bouge F-Perrault (PSE)'
-        xml_name = 'Patinoire Bleu-Blanc-Bouge, Parc Hayward (PSE)' if xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
-#         xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)' if xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
+        xml_name = node.at_css('nom').text
+          #.sub(' du parc ', ', parc ')
+          #.gsub(/([a-z])\sparc/im, '\1, parc')
+          .gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge')
+          .strip
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, parc de Mésy (PSE)' if xml_name == 'Patinoire avec bandes, de Mésy (PSE)'
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, parc Le Carignan (PSE)' if xml_name == 'Patinoire réfrigérée,Bleu-Blanc-Bouge Le Carignan (PSE)'
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, parc François-Perrault (PSE)' if xml_name == 'Patinoire réfrigérée, Bleu-Blanc-Bouge F-Perrault (PSE)'
+        xml_name = 'Patinoire Bleu-Blanc-Bouge, parc Hayward (PSE)' if xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
+#        xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)' if xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
 #        xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)' if xml_name == 'Patinoire De Gaspé/Bernard (PSE)'  && arrondissement.cle == 'ahc'
-#        xml_name = 'Patinoire de patin libre, parc Hans-Selye (PPL)' if xml_name == 'Patinoire de patin libre,parc Hans-Selye (PPL)'
 
         patinoire = Patinoire.find_or_initialize_by(nom: xml_name, arrondissement_id: arrondissement.id)
         %w(ouvert deblaye arrose resurface condition).each do |attribute|
@@ -76,8 +79,6 @@ namespace :import do
           'Cité-Jardin'                      => 'de la Cité Jardin',
           'Confédération'                    => 'de la Confédération',
           'de la Rive-Boisé'                 => 'de la Rive-Boisée',
-          'De la Petite-Italie'              => 'Petite Italie',
-          'Des Hirondelles'                  => 'des Hirondelles',
           'Decelle'                          => 'Decelles',
           'Duff court'                       => 'Duff Court',
           'étang Jarry'                      => 'Jarry',
@@ -102,48 +103,43 @@ namespace :import do
         # Remove disambiguation from description.
         patinoire.description.slice!(/ (\d|Nord|Sud|Est|Ouest)\z/)
 
-        # "Aire de patinage libre" with "PSE" is nonsense.
-        if patinoire.nom == 'Aire de patinage libre, Kent (sud) (PSE)'
-          patinoire.genre = 'PPL'
-        end
-
         # There is no "no 2".
-        if patinoire.nom == 'Patinoire de patin libre, Le Prévost no 1 (PPL)'
-          patinoire.parc = 'Le Prévost'
-          patinoire.disambiguation = nil
-        end
+        # if patinoire.nom == 'Patinoire de patin libre, Le Prévost no 1 (PPL)'
+        #   patinoire.parc = 'Le Prévost'
+        #   patinoire.disambiguation = nil
+        # end
 
         # There is no "no 2", also require a valid description
-        if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)', 'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)', 'Patinoire # 1, Parc Robert-Sauvé (PSE)'].include? patinoire.nom
-          patinoire.disambiguation = nil
-          patinoire.description = 'Patinoire de hockey'
-        end
+        # if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)', 'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)', 'Patinoire # 1, Parc Robert-Sauvé (PSE)'].include? patinoire.nom
+        #   patinoire.disambiguation = nil
+        #   patinoire.description = 'Patinoire de hockey'
+        # end
 
         # Require a valid description
-        if ['Patinoire # 2 , Parc Eugène-Dostie (PSE)', 'Patinoire # 1 , Parc Eugène-Dostie (PSE)'].include? patinoire.nom
-          patinoire.description = 'Patinoire de hockey'
-          patinoire.disambiguation = "no #{flip}"
-          flip = flip == 1 ? 2 : 1
-        end
+        # if ['Patinoire # 2 , Parc Eugène-Dostie (PSE)', 'Patinoire # 1 , Parc Eugène-Dostie (PSE)'].include? patinoire.nom
+        #   patinoire.description = 'Patinoire de hockey'
+        #   patinoire.disambiguation = "no #{flip}"
+        #   flip = flip == 1 ? 2 : 1
+        # end
 
         # There are identical lines.
         if patinoire.parc == 'LaSalle' && patinoire.genre == 'PSE'
-          patinoire.disambiguation = "no #{flip}"
-          flip = flip == 1 ? 2 : 1
+         patinoire.disambiguation = "no #{disambiguation_lasalle}"
+         disambiguation_lasalle = disambiguation_lasalle == 1 ? 2 : 1
         end
 
         # There are identical lines.
         if patinoire.parc == 'Decelles' && patinoire.genre == 'PSE'
-          patinoire.disambiguation = "no #{flip}"
-          flip = flip == 1 ? 2 : 1
+         patinoire.disambiguation = "no #{disambiguation_decelles}"
+         disambiguation_decelles = disambiguation_decelles == 1 ? 2 : 1
         end
 
         # There are identical lines, with identical names
-#         if patinoire.parc == 'de Mésy' && patinoire.genre == 'PSE'
-#           patinoire.nom = "Patinoire avec bandes no #{flip}, de Mésy (PSE)"
-#           patinoire.disambiguation = "no #{flip}"
-#           flip = flip == 1 ? 2 : 1
-#         end
+        # if patinoire.parc == 'de Mésy' && patinoire.genre == 'PSE'
+        #   patinoire.nom = "Patinoire avec bandes no #{flip}, de Mésy (PSE)"
+        #   patinoire.disambiguation = "no #{flip}"
+        #   flip = flip == 1 ? 2 : 1
+        # end
 
         patinoire.source = 'donnees.ville.montreal.qc.ca'
         begin
