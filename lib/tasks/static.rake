@@ -100,7 +100,7 @@ namespace :import do
         if patinoire.adresse?
           raw_q = clean_address(patinoire.adresse)
           q = parser.escape("#{raw_q}, #{nom_arr}", /[^#{URI::PATTERN::UNRESERVED}]/)
-          row << "http://maps.google.com/maps?q=#{q}"
+          row << "https://maps.google.com/maps?q=#{q}"
         end
         csv << row
       end
@@ -108,26 +108,26 @@ namespace :import do
   end
 
 
-  # http://www.patinermontreal.ca/geojson/ (or localhost:3000)
+  # https://www.patinermontreal.ca/geojson/ (or localhost:3000)
   task geojson: :environment do
     puts "Importing Dollard-des-Ormeaux…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
     puts "Importing Laval…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
     puts "Importing Vieux-Longueuil…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
     puts "Importing Saint-Hubert…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
     puts "Importing Greenfield Park…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/greenfieldpark.geojson', 'Greenfield Park', 'www.longueuil.quebec'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/greenfieldpark.geojson', 'Greenfield Park', 'www.longueuil.quebec'
     puts "Importing Boucherville…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/boucherville.geojson', 'Boucherville', 'www.boucherville.ca'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/boucherville.geojson', 'Boucherville', 'www.boucherville.ca'
     puts "Importing Brossard…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/brossard.geojson', 'Brossard', 'www.ville.brossard.qc.ca'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/brossard.geojson', 'Brossard', 'www.ville.brossard.qc.ca'
     puts "Importing La Prairie…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/laprairie.geojson', 'La Prairie', 'www.ville.laprairie.qc.ca'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/laprairie.geojson', 'La Prairie', 'www.ville.laprairie.qc.ca'
     puts "Importing Candiac…"
-    import_geojson_for_arrondissement 'http://www.patinermontreal.ca/geojson/candiac.geojson', 'Candiac', 'candiac.ca'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/candiac.geojson', 'Candiac', 'candiac.ca'
     puts "Done importing GeoJSON rinks"
   end
 
