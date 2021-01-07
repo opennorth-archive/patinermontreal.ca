@@ -40,7 +40,7 @@ namespace :import do
         end
 
         description = case patinoire.nom
-        when 'patinoire extérieure (PSE)' #, 'Patinoire bandes Pierre-Bédard (PSE)'
+        when 'patinoire extérieure (PSE)', /Patinoire # \d\s?,(.*)/
           'Patinoire avec bandes'
         when /(.*)Bleu\-Blanc\-Bouge(.*)/
           'Patinoire réfrigérée Bleu-Blanc-Bouge'
@@ -50,6 +50,7 @@ namespace :import do
 
         patinoire.description = {
           'Anneau à patiner'           => 'Anneau de glace',
+          'Carré de glace'             => 'Rond de glace',
           'Pat. avec bandes'           => 'Patinoire avec bandes',
           'Pati déco'                  => 'Patinoire décorative',
           'Patinoire Décorative'       => 'Patinoire décorative',
@@ -69,7 +70,7 @@ namespace :import do
 
         patinoire.disambiguation = (patinoire.nom[/\A(Petite|Grande)\b/i, 1] || patinoire.nom[/[^-]\b(nord|sud|est|ouest|no \d)\b/i, 1]).andand.downcase
 #        patinoire.disambiguation ||= "bbb-canadiens" if patinoire.nom[/(Bleu(\W)?Blanc(\W)?Bouge\b)|(\bBBB\b)\b/i, 1]
-        patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d),/, 1]
+        patinoire.disambiguation ||= "no #{$1}" if patinoire.nom[/ (\d)\s?,/, 1]
         patinoire.disambiguation ||= 'réfrigérée' if patinoire.description == 'Patinoire réfrigérée' || patinoire.description == 'Patinoire réfrigérée Bleu-Blanc-Bouge'
 
         # Expand/correct park names.
@@ -110,10 +111,9 @@ namespace :import do
         # end
 
         # There is no "no 2", also require a valid description
-        # if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)', 'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)', 'Patinoire # 1, Parc Robert-Sauvé (PSE)'].include? patinoire.nom
-        #   patinoire.disambiguation = nil
-        #   patinoire.description = 'Patinoire de hockey'
-        # end
+        if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)', 'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)', 'Patinoire # 1, Parc Robert-Sauvé (PSE)'].include? patinoire.nom
+          patinoire.disambiguation = nil
+        end
 
         # Require a valid description
         # if ['Patinoire # 2 , Parc Eugène-Dostie (PSE)', 'Patinoire # 1 , Parc Eugène-Dostie (PSE)'].include? patinoire.nom
@@ -219,7 +219,7 @@ namespace :import do
       parc: tr.css('td:eq(1)').text.gsub(/[[:space:]]/, ' ').sub('Parc ', '').strip,
       genre:
       case nom
-      when 'Ronds de glace'
+      when 'Rond de glace', 'Rond de glace'
         'PPL'
       when 'Patinoire', 'Patinoire permanente', 'Patinoire réfrigérée'
         'PSE'
