@@ -2,11 +2,44 @@
   "type":"FeatureCollection",
   "features":[
     {
+      "type": "Feature",
+      "properties": {
+        "deleted":true,
+        "adresse": "4200, chemin de la Savane",
+        "genre": "PPL",
+        "nom": "Rond de glace",
+        "parc": "Marché public de Longueuil",
+        "url": "https://www.longueuil.quebec/fr/marche-public-de-longueuil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.431338, 45.513249]
+      }
+    },
+    {
       "type":"Feature",
       "properties":{
         "adresse":"6201, boulevard Davis",
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
+        "parc":"de la Cité",
+        "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordonees"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.410559,
+          45.487945
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"6202, boulevard Davis",
+        "genre":"PP",
+        "nom":"Patinoire paysagée",
         "parc":"de la Cité",
         "url":"https://www.longueuil.quebec/fr/parc-de-la-cite-coordonees"
       },
@@ -55,6 +88,24 @@
     {
       "type":"Feature",
       "properties":{
+        "deleted":true,
+        "adresse":"6005, boulevard Payer & Boisvert",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Boisvert",
+        "url":"https://www.longueuil.quebec/fr/parc-boisvert"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.428878,
+          45.474754
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
         "adresse":"6940, rue Spriggs",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -83,6 +134,24 @@
         "coordinates":[
           -73.40748,
           45.472268
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"1725, boulevard Édouard",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"D.-E.-Joyal",
+        "url":"https://www.longueuil.quebec/fr/parc-joyal"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.474787,
+          45.501012
         ]
       }
     },
@@ -123,6 +192,42 @@
     {
       "type":"Feature",
       "properties":{
+        "deleted":true,
+        "adresse":"7415, rue des Jonquilles",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"des Glaïeuls",
+        "url":"https://www.longueuil.quebec/fr/parc-glaieuls"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.399803,
+          45.480156
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"7415, rue des Jonquilles",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"des Glaïeuls",
+        "url":"https://www.longueuil.quebec/fr/parc-glaieuls"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.399803,
+          45.480156
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
         "adresse":"3400, rue Rideau",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -157,6 +262,42 @@
     {
       "type":"Feature",
       "properties":{
+        "deleted":true,
+        "adresse":"5200, avenue Jodoin",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Gérard-Carmel",
+        "url":"https://www.longueuil.quebec/fr/parc-gerard-carmel"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.438035,
+          45.488182
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"5200, avenue Jodoin",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Gérard-Carmel",
+        "url":"https://www.longueuil.quebec/fr/parc-gerard-carmel"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.438035,
+          45.488182
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
         "adresse":"3791, rue Windsor",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -185,6 +326,24 @@
         "coordinates":[
           -73.458386,
           45.48662
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"Rue Henri-Cyr",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Henri-Cyr",
+        "url":"https://www.longueuil.quebec/fr/parc-henri-cyr"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.404057,
+          45.495673
         ]
       }
     },
@@ -242,6 +401,77 @@
     {
       "type":"Feature",
       "properties":{
+        "adresse":"4155, rue Shirley",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Joseph-Paré",
+        "url":"https://www.longueuil.quebec/fr/parc-joseph-pare"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.436885,
+          45.512984
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"1780, boulevard Marie",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Jules-Moulin",
+        "url":"https://www.longueuil.quebec/fr/parc-jules-moulin"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.476906,
+          45.5012
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"3950, boulevard Sir-Wilfrid-Laurier",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Le Marquis",
+        "url":"https://www.longueuil.quebec/fr/parc-marquis-maisons-mobiles"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.440193,
+          45.499194
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"480, rue Lucien-Milette",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Lucien-Milette",
+        "url":"https://www.longueuil.quebec/fr/parc-lucien-milette"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.399642,
+          45.506918
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
         "adresse":"1425-1435, boulevard Gaétan-Boucher",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -253,6 +483,204 @@
         "coordinates":[
           -73.392152,
           45.495186
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"1425-1435, boulevard Gaétan-Boucher",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Marcel-Simard",
+        "url":"https://www.longueuil.quebec/fr/parc-marcel-simard"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.392152,
+          45.495186
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"3880, rue Labrosse",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Marie-Josée-Vandette",
+        "url":"https://www.longueuil.quebec/fr/parc-marie-josee-vandette"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.436058,
+          45.494973
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"525, rue Latour",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Meunier",
+        "url":"https://www.longueuil.quebec/fr/parc-meunier"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.407885,
+          45.503488
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"3460, rue Pacific",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Pacific",
+        "url":"https://www.longueuil.quebec/fr/parc-pacific"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.356235,
+          45.452615
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"3450, rue Perras",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Perras",
+        "url":"https://www.longueuil.quebec/fr/parc-perras"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.43133,
+          45.499508
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"3451, rue Perras",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Perras",
+        "url":"https://www.longueuil.quebec/fr/parc-perras"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.43133,
+          45.499508
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted": true,
+        "adresse":"2060, rue Holmes",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Pierre-et-Bernard-Lucas",
+        "url":"https://www.longueuil.quebec/fr/parc-pierre-bernard-lucas"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.473982,
+          45.492702
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"5395, avenue Coursol",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Pierre-Laporte",
+        "url":"https://www.longueuil.quebec/fr/parc-pierre-laporte"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.423095,
+          45.497602
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"5396, avenue Coursol",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Pierre-Laporte",
+        "url":"https://www.longueuil.quebec/fr/parc-pierre-laporte"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.423095,
+          45.497602
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"4680, rue Quevillon",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "parc":"Quevillon",
+        "url":"https://www.longueuil.quebec/fr/parc-quevillon"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.413568,
+          45.469984
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "deleted":true,
+        "adresse":"5205, rue Viger",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "parc":"Viger",
+        "url":"https://www.longueuil.quebec/fr/parc-viger"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.419187,
+          45.527757
         ]
       }
     }
