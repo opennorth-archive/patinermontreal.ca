@@ -7,7 +7,7 @@
         "id": "407",
         "parc": "Berge aux Quatre-Vent",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "925, rue Riviera",
         "municipalite": "Laval-Ouest"
       },
@@ -24,8 +24,8 @@
       "properties": {
         "id": "408",
         "parc": "Berge des Baigneurs",
-        "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "genre": "PP",
+        "nom": "Patinoire décorative",
         "adresse": "13, rue Hotte",
         "municipalite": "Sainte-Rose"
       },
@@ -76,10 +76,11 @@
     {
       "type": "Feature",
       "properties": {
+        "deleted": true,
         "id": "412",
         "parc": "Parc Campeau",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "4560, 4e Rue",
         "municipalite": "Chomedey"
       },
@@ -97,7 +98,7 @@
         "id": "413",
         "parc": "Parc Champenois",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "6710, rue Lamirande",
         "municipalite": "Sainte-Rose"
       },
@@ -115,7 +116,7 @@
         "id": "414",
         "parc": "Parc Champfleury",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "2585, boulevard des Oiseaux",
         "municipalite": "Sainte-Rose"
       },
@@ -206,7 +207,7 @@
         "id": "418",
         "parc": "Parc Curé-Coursol",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "320, rue Richard",
         "municipalite": "Chomedey"
       },
@@ -258,7 +259,7 @@
       "type": "Feature",
       "properties": {
         "id": "421",
-        "parc": "Parc des Ambassadeurs",
+        "parc": "Parc du Royal-22e-Régiment",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
         "adresse": "3325, avenue des Ambassadeurs",
@@ -278,7 +279,7 @@
         "id": "423",
         "parc": "Parc des Coccinelles",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "750, 73e Avenue",
         "municipalite": "Chomedey"
       },
@@ -296,7 +297,7 @@
         "id": "424",
         "parc": "Parc des Crécerelles",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "2260, rue des Crécerelles",
         "municipalite": "Sainte-Rose"
       },
@@ -330,17 +331,17 @@
       "type": "Feature",
       "properties": {
         "id": "426",
-        "parc": "Parc des Prairies",
+        "parc": "Parc Bernard-Landry",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "5, avenue du Crochet",
         "municipalite": "Laval-des-Rapides"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.6990857543,
-          45.5522622796
+          -73.69908575,
+          45.55226228
         ]
       }
     },
@@ -368,7 +369,7 @@
         "id": "431",
         "parc": "Parc du Faubourg Dagenais",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "745, rue Ovide",
         "municipalite": "Fabreville"
       },
@@ -386,7 +387,7 @@
         "id": "432",
         "parc": "Parc Dumas",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "1774, rue de Berne",
         "municipalite": "Vimont"
       },
@@ -403,8 +404,8 @@
       "properties": {
         "id": "433",
         "parc": "Parc du Moulin",
-        "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "genre": "PP",
+        "nom": "Patinoire décorative",
         "adresse": "1125, montée du Moulin",
         "municipalite": "Saint-François"
       },
@@ -440,7 +441,7 @@
         "id": "436",
         "parc": "Parc Émile",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire Bleu-Blanc-Bouge",
         "adresse": "55, boulevard Cartier Ouest",
         "municipalite": "Laval-des-Rapides"
       },
@@ -467,25 +468,6 @@
         "coordinates": [
           -73.688099,
           45.558669
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "deleted": true,
-        "id": "436",
-        "parc": "Parc Émile",
-        "genre": "PSE",
-        "nom": "Patinoire avec mini-bandes",
-        "adresse": "55, boulevard Cartier Ouest",
-        "municipalite": "Laval-des-Rapides"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -73.688337,
-          45.557989
         ]
       }
     },
@@ -549,7 +531,7 @@
         "id": "442",
         "parc": "Parc Isabelle",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "400, rue Jacques",
         "municipalite": "Fabreville"
       },
@@ -586,6 +568,24 @@
         "parc": "Parc Jolibourg",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
+        "adresse": "1350, rue du Relais",
+        "municipalite": "Sainte-Dorothée"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8571272109,
+          45.5254511460
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "446",
+        "parc": "Parc Jolibourg",
+        "genre": "PPL",
+        "nom": "Patinoire de patin libre",
         "adresse": "1350, rue du Relais",
         "municipalite": "Sainte-Dorothée"
       },
@@ -676,7 +676,7 @@
         "id": "450",
         "parc": "Parc Laval-Ouest",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "7189, 21e Avenue",
         "municipalite": "Laval-Ouest"
       },
@@ -711,8 +711,8 @@
       "properties": {
         "id": "451",
         "parc": "Parc Légaré",
-        "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "genre": "PP",
+        "nom": "Sentier de glace",
         "adresse": "2245, rue Légaré",
         "municipalite": "Chomedey"
       },
@@ -801,16 +801,16 @@
       "properties": {
         "id": "456",
         "parc": "Parc Marcel-Proust",
-        "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "genre": "PSE",
+        "nom": "Patinoire avec bandes",
         "adresse": "3080, rue Marcel-Proust",
         "municipalite": "Chomedey"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.7595599102,
-          45.5767288851
+          -73.75956134,
+          45.57676218
         ]
       }
     },
@@ -892,8 +892,8 @@
         "deleted": true,
         "id": "460",
         "parc": "Parc Paul-Marcel-Maheu",
-        "genre": "PSE",
-        "nom": "Patinoire avec mini-bandes",
+        "genre": "PPL",
+        "nom": "Patinoire de patin libre",
         "adresse": "327, rue Montmorency",
         "municipalite": "Laval-des-Rapides"
       },
@@ -947,7 +947,7 @@
         "id": "464",
         "parc": "Parc Prince-Rupert",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "6245, rue de Prince-Rupert",
         "municipalite": "Auteuil"
       },
@@ -1035,7 +1035,7 @@
       "type": "Feature",
       "properties": {
         "id": "469",
-        "parc": "Parc Roi-du-Nord",
+        "parc": "Parc Raymond-Millar",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
         "adresse": "222, boulevard du Roi-du-Nord",
@@ -1181,7 +1181,7 @@
         "id": "479",
         "parc": "Parc Stéphanie",
         "genre": "PPL",
-        "nom": "Sentier de patinage",
+        "nom": "Patinoire de patin libre",
         "adresse": "4300, rue Stéphanie",
         "municipalite": "Fabreville"
       },
@@ -1208,6 +1208,168 @@
         "coordinates": [
           -73.6771276433,
           45.5993623847
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"500",
+        "parc":"Notre-Dame-du-Sourire",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "adresse":"230, rue Sapins",
+        "municipalite":"Duvernay"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.6000278128,
+          45.6574065086
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"501",
+        "parc":"Parc Lagarde",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "adresse":"3538, rue Lagarde",
+        "municipalite":"Saint-Vincent-de-Paul"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.6659697961,
+          45.5982624661
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"502",
+        "parc":"Parc Buteau",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "adresse":"2500, rue Buteau",
+        "municipalite":"Chomedey"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.79244482,
+          45.5533317462
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"503",
+        "parc":"Parc du Sablon",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "adresse":"4919, 4e Rue",
+        "municipalite":"Chomedey"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.7667930911,
+          45.5298754162
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"504",
+        "parc":"Parc Le Boutillier",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "adresse":"1124, rue Le Boutillier",
+        "municipalite":"Chomedey"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.779219361,
+          45.5416478726
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"505",
+        "parc":"Horizon-Jeunesse",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "adresse":"5742, rue Thibault",
+        "municipalite":"Auteuil"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.759155158,
+          45.6248880257
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"506",
+        "parc":"Centre de la nature",
+        "genre":"PSE",
+        "nom":"Patinoire avec bandes",
+        "adresse":"901, avenue du Parc",
+        "municipalite":"Saint-Vincent-de-Paul"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.66181308,
+          45.60547334
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"507",
+        "parc":"Parc Paul-Marcel-Maheu",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "adresse": "327, rue Montmorency",
+        "municipalite": "Laval-des-Rapides"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7101133538,
+          45.5550527696
+        ]
+      }
+    },
+    {
+      "type":"Feature",
+      "properties":{
+        "id":"508",
+        "parc":"Centre de la nature",
+        "genre":"PPL",
+        "nom":"Patinoire de patin libre",
+        "adresse":"901, avenue du Parc",
+        "municipalite":"Saint-Vincent-de-Paul"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[
+          -73.66181308,
+          45.60547334
         ]
       }
     }

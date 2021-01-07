@@ -149,20 +149,22 @@ namespace :import do
       end
 
       if (properties['municipalite'])
-        arrondissement = Arrondissement.find_or_initialize_by(nom_arr: properties['municipalite'])
-        arrondissement.source = source
-        arrondissement.save!
+        municipalite = Arrondissement.find_or_initialize_by(nom_arr: properties['municipalite'])
+        municipalite.source = source
+        municipalite.save!
+        arrondissement_id = municipalite.id
+      else
+        arrondissement_id = arrondissement.id
       end
 
       properties['parc'] = properties['parc'].sub('Parc ', '')
 
       if (properties['nom'] == 'Patinoire Bleu-Blanc-Bouge')
-        patinoire = Patinoire.find_or_initialize_by(description: 'Patinoire réfrigérée Bleu-Blanc-Bouge', parc: properties['parc'], arrondissement_id: arrondissement.id)
+        patinoire = Patinoire.find_or_initialize_by(description: 'Patinoire réfrigérée Bleu-Blanc-Bouge', parc: properties['parc'], genre: properties['genre'], arrondissement_id: arrondissement_id)
         patinoire.nom = "#{properties['nom']}, #{properties['parc']} (#{properties['genre']})"
-        patinoire.genre = properties['genre']
         patinoire.disambiguation = 'réfrigérée'
       else
-        patinoire = Patinoire.find_or_initialize_by(parc: properties['parc'], genre: properties['genre'], arrondissement_id: arrondissement.id)
+        patinoire = Patinoire.find_or_initialize_by(parc: properties['parc'], genre: properties['genre'], arrondissement_id: arrondissement_id)
       end
 
       patinoire.lng = feature['geometry']['coordinates'][0]

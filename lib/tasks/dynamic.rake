@@ -246,4 +246,43 @@ namespace :import do
     content = td.text.strip if content.blank? && offset == 1
     return content
   end
+
+  task laval: :environment do
+    doc = Nokogiri::HTML(URI.open("https://www.laval.ca/Pages/Fr/Activites/patinoires-exterieures.aspx#QuartierNormalc27b7053ad9648ccb5fa4897a6c80800"))
+    json = JSON.parse(doc.xpath('//script[not(@src)]').map{ |js| js.text[/filteredSportFacilitiesConditionsJson_QuartierNormalc27b7053ad9648ccb5fa4897a6c80800\s?=\s?(.*);/,1] }.compact.first)
+
+    pattern_parc = /patinoire extérieure - ((.*au )?parc(-école)?\s?)?/i
+    pattern_pse = /hockey(.*)patinoire/i
+    pattern_pp = /patinage(.*)sentier/i
+    pattern_ppl = /patinage(.*)patinoire/i
+
+    json.each { |rink|
+      attributes = {
+        parc: rink['SportsFacilitiesLocation']['Label'].gsub(pattern_parc, ''),
+        ouvert: rink['SportsFacilitiesStatus']['Label'] == "Ouvert",
+        condition: 'N/A',
+        genre: case
+        when (rink['SportsFacilitiesActivity']['Label'].match(pattern_pse))
+          'PSE'
+        when (rink['SportsFacilitiesActivity']['Label'].match(pattern_pp))
+          'PP'
+        when (rink['SportsFacilitiesActivity']['Label'].match(pattern_ppl))
+          'PPL'
+        else
+          nil
+        end
+      }
+
+      patinoire = Patinoire.find_by(parc: attributes[:parc], genre: attributes[:genre], source: "www.laval.ca")
+      next if patinoire == nil
+
+      patinoire.attributes = attributes
+
+      begin
+       patinoire.save!
+      rescue => e
+       puts "#{e.inspect}: #{patinoire.inspect}"
+      end
+    }
+  end
 end
