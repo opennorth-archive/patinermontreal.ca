@@ -1,6 +1,6 @@
-{  
+{
   "type":"FeatureCollection",
-  "features":[  
+  "features":[
     {
       "type": "Feature",
       "properties": {
@@ -13,40 +13,59 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.470749, 
+          -73.470749,
           45.483661
         ]
       }
     },
-    {  
+    {
+      "type": "Feature",
+      "properties": {
+        "adresse": " 755, rue Barden",
+        "genre": "PPL",
+        "nom": "Patinoire de patin libre",
+        "parc": "Jubilée",
+        "url": "https://www.longueuil.quebec/fr/parc-jubilee"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.470749,
+          45.483661
+        ]
+      }
+    },
+    {
       "type":"Feature",
-      "properties":{  
+      "properties":{
+        "deleted": true,
         "adresse":" 195, rue Empire",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
         "parc":"Empire",
         "url":"https://www.longueuil.quebec/fr/parc-empire"
       },
-      "geometry":{  
+      "geometry":{
         "type":"Point",
-        "coordinates": [  
+        "coordinates": [
           -73.490846,
           45.493401
         ]
       }
     },
-    {  
+    {
       "type":"Feature",
-      "properties":{  
+      "properties":{
+        "deleted": true,
         "adresse":" 1050, rue de Parklane",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
         "parc":"René-Veillet",
         "url":"https://www.longueuil.quebec/fr/parc-rene-veillet"
       },
-      "geometry":{  
+      "geometry":{
         "type":"Point",
-        "coordinates": [  
+        "coordinates": [
           -73.451553,
           45.485871
         ]

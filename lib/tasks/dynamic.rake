@@ -162,10 +162,10 @@ namespace :import do
 
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Vieux-Longueuil')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.now
+    arrondissement.date_maj = Time.parse html.at_css('table:eq(1) + p').text
     arrondissement.save!
 
-    html.css('table')[0].css('tr:gt(1)').each do |tr|
+    html.css('table:eq(1) tr:gt(1)').each do |tr|
       nb_rinks = [tr.css('td:eq(2) p').count, 1].max
       nb_rinks.times do |i|
         attributes = import_html_table_row tr, i + 1
@@ -192,10 +192,10 @@ namespace :import do
 
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Saint-Hubert')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.now
+    arrondissement.date_maj = Time.parse html.at_css('table:eq(2) + p').text
     arrondissement.save!
 
-    html.css('table')[1].css('tr:gt(1)').each do |tr|
+    html.css('table:eq(2) tr:gt(1)').each do |tr|
       nb_rinks = [tr.css('td:eq(2) p').count, 1].max
       nb_rinks.times do |i|
         attributes = import_html_table_row tr, i + 1
@@ -208,6 +208,34 @@ namespace :import do
         end
       end
     end
+
+    # Third table: Greenfield Park conditions
+
+    arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Greenfield Park')
+
+    arrondissement.source = 'www.longueuil.quebec'
+    arrondissement.date_maj = Time.parse html.at_css('table:eq(3) + p').text
+    arrondissement.save!
+
+    html.css('table:eq(3) tr:gt(1)').each do |tr|
+      nb_rinks = [tr.css('td:eq(2) p').count, 1].max
+
+      nb_rinks.times do |i|
+        attributes = import_html_table_row tr, i + 1
+
+        # Expand/correct park names
+        attributes[:parc] = "Jubilée" if (attributes[:parc] == "Jubilee")
+
+        patinoire = Patinoire.find_or_initialize_by(parc: attributes[:parc], genre: attributes[:genre], arrondissement_id: arrondissement.id)
+        patinoire.attributes = attributes.merge({source: 'www.longueuil.quebec'})
+        begin
+         patinoire.save!
+        rescue => e
+         puts "#{e.inspect}: #{patinoire.inspect}"
+        end
+      end
+    end
+
   end
 
   def import_html_table_row(tr, offset = 1)
