@@ -284,5 +284,11 @@ namespace :import do
        puts "#{e.inspect}: #{patinoire.inspect}"
       end
     }
+
+    begin
+     Arrondissement.where(source: "www.laval.ca").update_all(date_maj: Time.now)
+    rescue => e
+     puts "Could not update Arrondissement.date_maj: #{e.inspect}"
+    end
   end
 end
