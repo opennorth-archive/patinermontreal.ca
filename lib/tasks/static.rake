@@ -1,10 +1,13 @@
-# coding: utf-8
 namespace :import do
   desc 'Add manual rinks from Google Spreadsheets'
   task manual: :environment do
     require 'csv'
     require 'open-uri'
-    CSV.parse(URI.open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
+    CSV.parse(
+      URI.open(
+        'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=0&output=csv', 'r:utf-8'
+      ).read, headers: true
+    ) do |row|
       arrondissement = Arrondissement.find_or_initialize_by(nom_arr: row['nom_arr'])
       arrondissement.source = 'docs.google.com'
       arrondissement.save!
@@ -16,18 +19,23 @@ namespace :import do
       row.delete('extra')
       row.delete('source_url')
 
-      patinoire = Patinoire.find_or_initialize_by(parc: row['parc'], genre: row['genre'], disambiguation: row['disambiguation'], arrondissement_id: arrondissement.id)
+      patinoire = Patinoire.find_or_initialize_by(
+        parc: row['parc'],
+        genre: row['genre'],
+        disambiguation: row['disambiguation'],
+        arrondissement_id: arrondissement.id
+      )
       patinoire.attributes = row.to_hash
 
       # Rename the manually added Bleu-Blanc-Bouge rinks
       if is_bbb
         patinoire.description = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
         # Temporary solution (early december) for refrigerated rinks
-#         patinoire.ouvert = true
-#         patinoire.condition = 'N/A'
+        # patinoire.ouvert = true
+        # patinoire.condition = 'N/A'
       end
-      if row['disambiguation'] == "réfrigérée"
-        patinoire.description = "Patinoire réfrigérée"
+      if row['disambiguation'] == 'réfrigérée'
+        patinoire.description = 'Patinoire réfrigérée'
         patinoire.ouvert = true
         patinoire.condition = 'N/A'
       end
@@ -35,7 +43,7 @@ namespace :import do
       patinoire.source = 'docs.google.com'
       begin
         patinoire.save!
-      rescue => e
+      rescue StandardError => e
         puts "#{e.inspect}: #{patinoire.inspect}"
       end
     end
@@ -45,13 +53,18 @@ namespace :import do
   task contacts: :environment do
     require 'csv'
     require 'open-uri'
-   CSV.parse(URI.open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=csv', "r:utf-8").read, headers: true) do |row|
+    CSV.parse(
+      URI.open(
+        'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdFMwSF94MjRxcW1yZ1JYVkdqM1Fzanc&single=true&gid=0&output=csv', 'r:utf-8'
+      ).read,
+      headers: true
+    ) do |row|
       arrondissement = Arrondissement.find_or_initialize_by(nom_arr: row['Authority'])
       arrondissement.attributes = {
         name: [row['Name'], row['Title']].compact.join(', '),
         email: row['Email'] && row['Email'].strip,
         tel: row['Phone'] && row['Phone'].sub(/x\d+/, '').gsub(/\D/, ''),
-        ext: row['Phone'] && row['Phone'][/x(\d+)/, 1],
+        ext: row['Phone'] && row['Phone'][/x(\d+)/, 1]
       }
       arrondissement.source ||= 'docs.google.com'
       arrondissement.save!
@@ -64,15 +77,26 @@ namespace :import do
     require 'csv'
     require 'open-uri'
     missing = Set.new
-    CSV.parse(URI.open('https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv', "r:utf-8").read, headers: true) do |row|
+    CSV.parse(
+      URI.open(
+        'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtzgYYy0ZABtdEgwenRMR2MySmU5NFBDVk5wc1RQVEE&single=true&gid=2&output=csv', 'r:utf-8'
+      ).read,
+      headers: true
+    ) do |row|
       if row['lat'] && row['lng']
         arrondissement = Arrondissement.where(nom_arr: row['nom_arr']).first
         if arrondissement
-          matches = arrondissement.patinoires.where(parc: row['parc'], genre: row['genre'], disambiguation: row['disambiguation']).all
-          if matches.size > 1
-            puts %(#{row['nom_arr'].ljust(40)} #{row['parc']} (#{row['genre']})#{" (#{row['disambiguation']})" if row['disambiguation'].present?} matches many rinks)
-          elsif matches.size == 0
-            missing << %(#{row['nom_arr'].ljust(40)} #{row['parc']} (#{row['genre']})#{" (#{row['disambiguation']})" if row['disambiguation'].present?})
+          matches = arrondissement.patinoires.where(
+            parc: row['parc'],
+            genre: row['genre'],
+            disambiguation: row['disambiguation']
+          ).all
+
+          disambiguation_suffix = " (#{row['disambiguation']})" if row['disambiguation'].present?
+          if matches.size == 0
+            missing << %(#{row['nom_arr'].ljust(40)} #{row['parc']} (#{row['genre']})#{disambiguation_suffix})
+          elsif matches.size > 1
+            puts %(#{row['nom_arr'].ljust(40)} #{row['parc']} (#{row['genre']})#{disambiguation_suffix} matches many rinks)
           else
             matches.first.update_attributes adresse: row['adresse'], lat: row['lat'].to_f, lng: row['lng'].to_f
           end
@@ -82,7 +106,10 @@ namespace :import do
       end
     end
     unless missing.empty?
-      puts "Could not find a borough or rink to match the data from the Google Docs. A dynamic data source may have changed the names of boroughs or rinks, or it may have removed those boroughs or rinks. If the name was changed, the Google Docs must be updated to match, otherwise the rink will not have geocoordinates:"
+      puts 'Could not find a borough or rink to match the data from the Google Docs. '\
+        'A dynamic data source may have changed the names of boroughs or rinks, '\
+        'or it may have removed those boroughs or rinks. If the name was changed, '\
+        'the Google Docs must be updated to match, otherwise the rink will not have geocoordinates:'
       missing.each do |nom_arr|
         puts nom_arr.ljust(40)
       end
@@ -107,30 +134,46 @@ namespace :import do
     end
   end
 
-
   # https://www.patinermontreal.ca/geojson/ (or localhost:3000)
   task geojson: :environment do
-    puts "Importing Dollard-des-Ormeaux…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson', 'Dollard-des-Ormeaux', 'www.ville.ddo.qc.ca'
-    puts "Importing Laval…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/laval.geojson', 'Laval', 'www.laval.ca'
-    puts "Importing Vieux-Longueuil…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/longueuil.geojson', 'Vieux-Longueuil', 'www.longueuil.quebec'
-    puts "Importing Saint-Hubert…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/sainthubert.geojson', 'Saint-Hubert', 'www.longueuil.quebec'
-    puts "Importing Greenfield Park…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/greenfieldpark.geojson', 'Greenfield Park', 'www.longueuil.quebec'
-    puts "Importing Boucherville…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/boucherville.geojson', 'Boucherville', 'www.boucherville.ca'
-    puts "Importing Brossard…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/brossard.geojson', 'Brossard', 'www.ville.brossard.qc.ca'
-    puts "Importing La Prairie…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/laprairie.geojson', 'La Prairie', 'www.ville.laprairie.qc.ca'
-    puts "Importing Candiac…"
-    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/candiac.geojson', 'Candiac', 'candiac.ca'
-    puts "Done importing GeoJSON rinks"
+    puts 'Importing Dollard-des-Ormeaux…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/dollarddesormeaux.geojson',
+                                      'Dollard-des-Ormeaux',
+                                      'www.ville.ddo.qc.ca'
+    puts 'Importing Laval…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/laval.geojson',
+                                      'Laval',
+                                      'www.laval.ca'
+    puts 'Importing Vieux-Longueuil…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/longueuil.geojson',
+                                      'Vieux-Longueuil',
+                                      'www.longueuil.quebec'
+    puts 'Importing Saint-Hubert…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/sainthubert.geojson',
+                                      'Saint-Hubert',
+                                      'www.longueuil.quebec'
+    puts 'Importing Greenfield Park…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/greenfieldpark.geojson',
+                                      'Greenfield Park',
+                                      'www.longueuil.quebec'
+    puts 'Importing Boucherville…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/boucherville.geojson',
+                                      'Boucherville',
+                                      'www.boucherville.ca'
+    puts 'Importing Brossard…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/brossard.geojson',
+                                      'Brossard',
+                                      'www.ville.brossard.qc.ca'
+    puts 'Importing La Prairie…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/laprairie.geojson',
+                                      'La Prairie',
+                                      'www.ville.laprairie.qc.ca'
+    puts 'Importing Candiac…'
+    import_geojson_for_arrondissement 'https://www.patinermontreal.ca/geojson/candiac.geojson',
+                                      'Candiac',
+                                      'candiac.ca'
+    puts 'Done importing GeoJSON rinks'
   end
-
 
   def import_geojson_for_arrondissement(geojson_uri, nom_arr, source)
     require 'json'
@@ -140,15 +183,14 @@ namespace :import do
     arrondissement.source = source
     arrondissement.save!
 
-    collection = JSON.parse(URI.open(geojson_uri, "r:utf-8").read)
+    collection = JSON.parse(URI.open(geojson_uri, 'r:utf-8').read)
 
-    collection['features'].each do| feature|
+    collection['features'].each do |feature|
       properties = feature['properties']
-      if (properties['deleted'])
-        next
-      end
 
-      if (properties['municipalite'])
+      next if properties['deleted']
+
+      if properties['municipalite']
         municipalite = Arrondissement.find_or_initialize_by(nom_arr: properties['municipalite'])
         municipalite.source = source
         municipalite.save!
@@ -159,12 +201,21 @@ namespace :import do
 
       properties['parc'] = properties['parc'].sub('Parc ', '')
 
-      if (properties['nom'] == 'Patinoire Bleu-Blanc-Bouge')
-        patinoire = Patinoire.find_or_initialize_by(description: 'Patinoire réfrigérée Bleu-Blanc-Bouge', parc: properties['parc'], genre: properties['genre'], arrondissement_id: arrondissement_id)
+      if properties['nom'] == 'Patinoire Bleu-Blanc-Bouge'
+        patinoire = Patinoire.find_or_initialize_by(
+          description: 'Patinoire réfrigérée Bleu-Blanc-Bouge',
+          parc: properties['parc'],
+          genre: properties['genre'],
+          arrondissement_id: arrondissement_id
+        )
         patinoire.nom = "#{properties['nom']}, #{properties['parc']} (#{properties['genre']})"
         patinoire.disambiguation = 'réfrigérée'
       else
-        patinoire = Patinoire.find_or_initialize_by(parc: properties['parc'], genre: properties['genre'], arrondissement_id: arrondissement_id)
+        patinoire = Patinoire.find_or_initialize_by(
+          parc: properties['parc'],
+          genre: properties['genre'],
+          arrondissement_id: arrondissement_id
+        )
       end
 
       patinoire.lng = feature['geometry']['coordinates'][0]
@@ -176,7 +227,7 @@ namespace :import do
 
       begin
         patinoire.save!
-      rescue => e
+      rescue StandardError => e
         puts "#{e.inspect}: #{patinoire.inspect}"
       end
     end
