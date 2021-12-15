@@ -186,7 +186,7 @@ namespace :import do
 
         # Expand/correct park names
         attributes[:parc] = 'Michel-Chartrand' if attributes[:parc] == 'Michel Chartrand'
-        attributes[:parc] = 'Catherine-Primot' if attributes[:parc] == 'Catherine-Primot (anciennement Saint-Charles)'
+        attributes[:parc] = 'Catherine-Primot' if attributes[:parc].include?('Catherine-Primot')
         if attributes[:parc] == 'Lionel-Groulx / Bleu Blanc Bouge'
           attributes[:parc] = 'Lionel-Groulx'
           attributes[:description] = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
@@ -264,7 +264,7 @@ namespace :import do
   end
 
   def import_html_table_row(tr, offset = 1)
-    nom = get_td_merged_line(tr.css('td:eq(2)'), offset)
+    nom = get_td_merged_line(tr.css('td:eq(2)'), offset).sub(' ', ' ').strip
     passable = get_td_merged_line(tr.css('td:eq(4)'), offset).downcase.include?('x')
     ouvert = passable || get_td_merged_line(tr.css('td:eq(3)'), offset).downcase.include?('x')
 
@@ -272,7 +272,7 @@ namespace :import do
       parc: tr.css('td:eq(1)').text.gsub(/[[:space:]]/, ' ').sub('Parc ', '').strip,
       genre:
       case nom
-      when 'Rond de glace', 'Rond de glace'
+      when 'Rond de glace'
         'PPL'
       when 'Patinoire', 'Patinoire permanente', 'Patinoire réfrigérée'
         'PSE'
