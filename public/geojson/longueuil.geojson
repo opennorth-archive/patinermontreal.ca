@@ -679,7 +679,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "195, rue de Châteauguay",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",

@@ -25,7 +25,7 @@ namespace :import do
                        # .gsub(/([a-z])\sparc/im, '\1, parc')
                        .gsub(/bleu(.*)blanc(.*)bouge/im, 'Bleu-Blanc-Bouge')
                        .strip
-        if xml_name == 'Patinoire avec bandes, de Mésy (PSE)'
+        if xml_name == 'Patinoire Bleu-Blanc-Bouge, Parc Mésy (PSE)'
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc de Mésy (PSE)'
         elsif xml_name == 'Patinoire réfrigérée,Bleu-Blanc-Bouge Le Carignan (PSE)'
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc Le Carignan (PSE)'
@@ -97,6 +97,7 @@ namespace :import do
           'Duff court' => 'Duff Court',
           'étang Jarry' => 'Jarry',
           'Ignace-Bourget-anneau de vitesse' => 'Ignace-Bourget',
+          'Gédéon-de-Catalogne' => 'Gédéon-De Catalogne',
           'lalancette' => 'Lalancette',
           'Lac aux Castors ,' => 'Lac aux Castors',
           'Marc-Aurèle-Fortin' => 'Hans-Selye',
