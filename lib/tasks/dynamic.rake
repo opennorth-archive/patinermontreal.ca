@@ -1,7 +1,7 @@
 namespace :import do
   desc 'Add rinks from donnees.ville.montreal.qc.ca'
   task montreal: :environment do
-    disambiguation_lasalle = disambiguation_decelles = 1
+    disambiguation_lasalle = disambiguation_decelles = disambiguation_cssl = 1
     Nokogiri::XML(RestClient.get('http://www2.ville.montreal.qc.ca/services_citoyens/pdf_transfert/L29_PATINOIRE.xml')).css('patinoire').each do |node|
       # Add m-dash, except for Ahuntsic-Cartierville.
       nom_arr = node.at_css('nom_arr').text
@@ -33,8 +33,10 @@ namespace :import do
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc François-Perrault (PSE)'
         elsif xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc Hayward (PSE)'
-          # elsif xml_name == 'Centre comm R-Goupil, Patinoire décorative (PP)'
-          #   xml_name = 'Patinoire décorative, C.E.C. René-Goupil (PP)'
+        elsif xml_name == 'Arena Mont-Royal Patinoire Décorative (PP)'
+          xml_name = 'Patinoire décorative, Aréna Mont-Royal (PP)'
+        elsif xml_name == 'Patinoire Émile-Duployé (PP)'
+          xml_name = 'Patinoire réfrigérée Émile-Duployé, La Fontaine (PPL)'
           # elsif xml_name == 'Patinoire De Gaspé/Bernard (PSE)' && arrondissement.cle == 'ahc'
           #   xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)'
         end
@@ -50,6 +52,8 @@ namespace :import do
                         'Patinoire avec bandes'
                       when /(.*)Bleu-Blanc-Bouge(.*)/
                         'Patinoire réfrigérée Bleu-Blanc-Bouge'
+                      when /(.*)réfrigérée(.*)/
+                        'Patinoire réfrigérée'
                       else
                         patinoire.nom[/\A(.+?) ?(?:no [1-3]|nord|sud)?(?:,|-| du parc\b)/, 1] || patinoire.nom
                       end
@@ -62,12 +66,14 @@ namespace :import do
           'Patinoire Décorative' => 'Patinoire décorative',
           'Sentiers Glacés' => 'Sentier de glace',
           'Patinoire sans bandes' => 'Patinoire extérieure',
+          'Patinoire sans bande' => 'Patinoire extérieure',
           'Patinoire à bandes' => 'Patinoire avec bandes',
           'Patnoire à bandes' => 'Patinoire avec bandes',
           'Patinoire avec bande' => 'Patinoire avec bandes',
           'Patinoire bandes' => 'Patinoire avec bandes',
           'Patinoire ext. avec bandes' => 'Patinoire avec bandes',
-          'Patinoire de hockey et patin libre' => 'Patinoire de patin libre'
+          'Patinoire de hockey et patin libre' => 'Patinoire de patin libre',
+          'Patinoire de patin libre étang' => 'Patinoire de patin libre'
         }.reduce(description) do |string, (from, to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
@@ -100,6 +106,7 @@ namespace :import do
           'Gédéon-de-Catalogne' => 'Gédéon-De Catalogne',
           'lalancette' => 'Lalancette',
           'Lac aux Castors ,' => 'Lac aux Castors',
+          'Laurier-MacDonald' => 'Laurier-Macdonald',
           'Marc-Aurèle-Fortin' => 'Hans-Selye',
           'Merci' => 'de la Merci',
           'Patinoire bandes Pierre-Bédard' => 'Pierre-Bédard',
@@ -125,36 +132,28 @@ namespace :import do
         # end
 
         # There is no "no 2", also require a valid description
-        if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)', 'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)',
+        if ['Patinoire # 1, Parc Jonathan-Wilson (PSE)',
+            'Patinoire # 1, Parc Joseph-Avila-Proulx (PSE)',
             'Patinoire # 1, Parc Robert-Sauvé (PSE)'].include? patinoire.nom
           patinoire.disambiguation = nil
         end
 
-        # Require a valid description
-        # if ['Patinoire # 2 , Parc Eugène-Dostie (PSE)', 'Patinoire # 1 , Parc Eugène-Dostie (PSE)'].include? patinoire.nom
-        #   patinoire.description = 'Patinoire de hockey'
-        #   patinoire.disambiguation = "no #{flip}"
-        #   flip = flip == 1 ? 2 : 1
-        # end
+        # Update parc name, fix ty and add disambiguation
+        if patinoire.arrondissement.cle == 'sle' && ['C.C.S.L','C.S.S.L'].any? { |item| patinoire.nom.include?(item) }
+          patinoire.parc = 'Complexe sportif Saint-Léonard'
+          patinoire.disambiguation = "no #{disambiguation_cssl}"
+          disambiguation_cssl += 1
+        end
 
         # There are identical lines.
         if patinoire.parc == 'LaSalle' && patinoire.genre == 'PSE'
           patinoire.disambiguation = "no #{disambiguation_lasalle}"
-          disambiguation_lasalle = disambiguation_lasalle == 1 ? 2 : 1
+          disambiguation_lasalle += 1
         end
-
-        # There are identical lines.
         if patinoire.parc == 'Decelles' && patinoire.genre == 'PSE'
           patinoire.disambiguation = "no #{disambiguation_decelles}"
-          disambiguation_decelles = disambiguation_decelles == 1 ? 2 : 1
+          disambiguation_decelles += 1
         end
-
-        # There are identical lines, with identical names
-        # if patinoire.parc == 'de Mésy' && patinoire.genre == 'PSE'
-        #   patinoire.nom = "Patinoire avec bandes no #{flip}, de Mésy (PSE)"
-        #   patinoire.disambiguation = "no #{flip}"
-        #   flip = flip == 1 ? 2 : 1
-        # end
 
         patinoire.source = 'donnees.ville.montreal.qc.ca'
         begin
