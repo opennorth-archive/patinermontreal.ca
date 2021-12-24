@@ -33,12 +33,10 @@ namespace :import do
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc François-Perrault (PSE)'
         elsif xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc Hayward (PSE)'
-        elsif xml_name == 'Arena Mont-Royal Patinoire Décorative (PP)'
-          xml_name = 'Patinoire décorative, Aréna Mont-Royal (PP)'
-        elsif xml_name == 'Patinoire Émile-Duployé (PP)'
-          xml_name = 'Patinoire réfrigérée Émile-Duployé, La Fontaine (PPL)'
-          # elsif xml_name == 'Patinoire De Gaspé/Bernard (PSE)' && arrondissement.cle == 'ahc'
-          #   xml_name = 'Patinoire avec bandes, De Gaspé/Bernard (PSE)'
+        end
+
+        if xml_name.match(/Émili?e-Duployé/)
+          xml_name = 'Patinoire réfrigérée de l’av. Émile-Duployé, La Fontaine (PP)'
         end
 
         patinoire = Patinoire.find_or_initialize_by(nom: xml_name, arrondissement_id: arrondissement.id)
@@ -95,6 +93,7 @@ namespace :import do
                patinoire.nom[/ du parc (.+) \(/, 1] ||
                patinoire.nom[/(.+) \(/, 1]
         patinoire.parc = {
+          'Arena Mont-Royal' => 'Aréna Mont-Royal',
           'C-de-la-Rousselière' => 'Clémentine-De La Rousselière',
           'Cité-Jardin' => 'de la Cité Jardin',
           'Confédération' => 'de la Confédération',
@@ -138,7 +137,7 @@ namespace :import do
           patinoire.disambiguation = nil
         end
 
-        # Update parc name, fix ty and add disambiguation
+        # Update parc name, fix typo and add disambiguation
         if patinoire.arrondissement.cle == 'sle' && ['C.C.S.L','C.S.S.L'].any? { |item| patinoire.nom.include?(item) }
           patinoire.parc = 'Complexe sportif Saint-Léonard'
           patinoire.disambiguation = "no #{disambiguation_cssl}"
