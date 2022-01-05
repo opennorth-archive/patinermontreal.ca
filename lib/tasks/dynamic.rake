@@ -1,7 +1,7 @@
 namespace :import do
   desc 'Add rinks from donnees.ville.montreal.qc.ca'
   task montreal: :environment do
-    disambiguation_lasalle = disambiguation_decelles = disambiguation_cssl = 1
+    disambiguation_lasalle = disambiguation_decelles = disambiguation_cssl = disambiguation_ibi = 1
     Nokogiri::XML(RestClient.get('http://www2.ville.montreal.qc.ca/services_citoyens/pdf_transfert/L29_PATINOIRE.xml')).css('patinoire').each do |node|
       # Add m-dash, except for Ahuntsic-Cartierville.
       nom_arr = node.at_css('nom_arr').text
@@ -151,6 +151,10 @@ namespace :import do
         end
         if patinoire.parc == 'Decelles' && patinoire.genre == 'PSE'
           patinoire.disambiguation = "no #{disambiguation_decelles}"
+          disambiguation_decelles += 1
+        end
+        if patinoire.parc == 'Eugène-Dostie' && patinoire.genre == 'PPL'
+          patinoire.disambiguation = "no #{disambiguation_ibi}"
           disambiguation_decelles += 1
         end
 
