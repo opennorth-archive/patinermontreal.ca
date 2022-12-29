@@ -22,6 +22,7 @@
     {
       "type": "Feature",
       "properties": {
+        "deleted": true,
         "id": "408",
         "parc": "Berge des Baigneurs",
         "genre": "PP",
@@ -40,6 +41,7 @@
     {
       "type": "Feature",
       "properties": {
+        "deleted": true,
         "id": "408",
         "parc": "Berge des Baigneurs",
         "genre": "PSE",

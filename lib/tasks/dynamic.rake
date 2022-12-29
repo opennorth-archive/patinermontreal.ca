@@ -172,14 +172,17 @@ namespace :import do
 
   # desc 'Add rinks from www.longueuil.quebec'
   task longueuil: :environment do
-    json = JSON.parse(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/c8b8abef-6a93-4389-8caf-ec7c41f2861c'))
+    json = JSON.parse(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/11ceb247-dd3f-40a7-b8c5-d37f633ab545'))
     html = Nokogiri::HTML(json['data']['attributes']['content']['processed'])
+
+    # Last updated timestamp, shared for the 3 tables
+    dateMaj = Time.parse html.at_css('p:eq(2)').text
 
     # First table: Vieux-Longueuil conditions
 
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Vieux-Longueuil')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.parse html.at_css('table:eq(1) + p').text
+    arrondissement.date_maj = dateMaj
     arrondissement.save!
 
     html.css('table:eq(1) tr:gt(1)').each do |tr|
@@ -187,10 +190,8 @@ namespace :import do
       nb_rinks.times do |i|
         attributes = import_html_table_row tr, i + 1
 
-        # Expand/correct park names
-        attributes[:parc] = 'Michel-Chartrand' if attributes[:parc] == 'Michel Chartrand'
-        attributes[:parc] = 'Catherine-Primot' if attributes[:parc].include?('Catherine-Primot')
-        if attributes[:parc] == 'Lionel-Groulx / Bleu Blanc Bouge'
+        # Expand/correct park names      
+        if attributes[:parc][/Lionel-Groulx.*(Bleu.+Blanc.+Bouge)/i, 1]
           attributes[:parc] = 'Lionel-Groulx'
           attributes[:description] = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
         end
@@ -213,7 +214,7 @@ namespace :import do
 
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Saint-Hubert')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.parse html.at_css('table:eq(2) + p').text
+    arrondissement.date_maj = dateMaj
     arrondissement.save!
 
     html.css('table:eq(2) tr:gt(1)').each do |tr|
@@ -239,7 +240,7 @@ namespace :import do
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Greenfield Park')
 
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.parse html.at_css('table:eq(3) + p').text
+    arrondissement.date_maj = dateMaj
     arrondissement.save!
 
     html.css('table:eq(3) tr:gt(1)').each do |tr|
@@ -268,8 +269,15 @@ namespace :import do
 
   def import_html_table_row(tr, offset = 1)
     nom = get_td_merged_line(tr.css('td:eq(2)'), offset).sub(' ', ' ').strip
-    passable = get_td_merged_line(tr.css('td:eq(4)'), offset).downcase.include?('x')
-    ouvert = passable || get_td_merged_line(tr.css('td:eq(3)'), offset).downcase.include?('x')
+    condition = case get_td_merged_image_src(tr.css('td:eq(3)'), offset)
+          when /(.*)vert(.*)/
+            'Excellente'
+          when /(.*)jaune(.*)/
+            'Bonne'
+          else
+            'N/A'
+          end
+    ouvert = condition == 'Excellente' || condition == 'Bonne'
 
     {
       parc: tr.css('td:eq(1)').text.gsub(/[[:space:]]/, ' ').sub('Parc ', '').strip,
@@ -277,26 +285,26 @@ namespace :import do
       case nom
       when 'Rond de glace'
         'PPL'
-      when 'Patinoire', 'Patinoire permanente', 'Patinoire réfrigérée'
+      when 'Patinoire', 'Patinoire permanente', 'Patinoire réfrigérée', 'Patinoire avec bandes'
         'PSE'
       else
         puts "Unknown rink '#{nom}'"
         nil
       end,
       ouvert: ouvert,
-      condition: if passable
-                   'Bonne'
-                 elsif ouvert
-                   'Excellente'
-                 else
-                   'N/A'
-                 end
+      condition: condition
     }
   end
 
   def get_td_merged_line(td, offset)
     content = td.css("p:eq(#{offset})").text.strip
     content = td.text.strip if content.blank? && offset == 1
+    content
+  end
+
+  def get_td_merged_image_src(td, offset)
+    content = String(td.css("p:eq(#{offset}) img"))
+    content = content[/<img.*?src="(.*?)"/, 1].split('/')[-1]
     content
   end
 
