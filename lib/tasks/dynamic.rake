@@ -116,6 +116,8 @@ namespace :import do
           'Y-Thériault/Sherbrooke' => 'Yves-Thériault/Sherbrooke',
           'Roger Rousseau' => 'Roger-Rousseau',
           'De Gaspé/Bernard' => 'Champ des possibles',
+          '77 Bernard E' => "L'Entrepôt 77",
+          'terrasse-serre' => 'Terrasse Serre',
           # Need to do independent research to find where these are.
           'patinoire extérieure' => ''
         }.reduce(parc.strip) do |string, (from, to)|
