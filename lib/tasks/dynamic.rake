@@ -33,6 +33,8 @@ namespace :import do
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc François-Perrault (PSE)'
         elsif xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc Hayward (PSE)'
+        elsif xml_name == 'Patinoire de patin libre sentier, Parc Grier (PPL)'
+          xml_name = 'Sentier de glace, parc Grier (PP)'
         end
 
         if xml_name.match(/Émili?e-Duployé/)
@@ -62,7 +64,7 @@ namespace :import do
           'Pat. avec bandes' => 'Patinoire avec bandes',
           'Pati déco' => 'Patinoire décorative',
           'Patinoire Décorative' => 'Patinoire décorative',
-          'Sentiers Glacés' => 'Sentier de glace',
+          'Sentier glacé' => 'Sentier de glace',
           'Patinoire sans bandes' => 'Patinoire extérieure',
           'Patinoire sans bande' => 'Patinoire extérieure',
           'Patinoire à bandes' => 'Patinoire avec bandes',
@@ -175,8 +177,12 @@ namespace :import do
     json = JSON.parse(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/11ceb247-dd3f-40a7-b8c5-d37f633ab545'))
     html = Nokogiri::HTML(json['data']['attributes']['content']['processed'])
 
-    # Last updated timestamp, shared for the 3 tables
-    dateMaj = Time.parse html.at_css('p:eq(2)').text
+    begin
+      # Last updated timestamp, shared for the 3 tables
+      dateMaj = Time.parse html.at_css('p:eq(3)').text
+    rescue ArgumentError => e
+      puts e.inspect
+    end
 
     # First table: Vieux-Longueuil conditions
 
@@ -190,7 +196,7 @@ namespace :import do
       nb_rinks.times do |i|
         attributes = import_html_table_row tr, i + 1
 
-        # Expand/correct park names      
+        # Expand/correct park names
         if attributes[:parc][/Lionel-Groulx.*(Bleu.+Blanc.+Bouge)/i, 1]
           attributes[:parc] = 'Lionel-Groulx'
           attributes[:description] = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
