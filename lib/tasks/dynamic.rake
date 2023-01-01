@@ -202,6 +202,14 @@ namespace :import do
         if attributes[:parc][/Lionel-Groulx.*(Bleu.+Blanc.+Bouge)/i, 1]
           attributes[:parc] = 'Lionel-Groulx'
           attributes[:description] = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
+        elsif attributes[:parc] == 'Hirondelles'
+          attributes[:parc] = 'des Hirondelles'
+        elsif attributes[:parc] == 'LeMoyne'
+          attributes[:parc] = 'Le Moyne'
+        elsif attributes[:parc] == 'De Normandie'
+          attributes[:parc] = 'de Normandie'
+        elsif attributes[:parc] == 'Des Sureaux'
+          attributes[:parc] = 'des Sureaux'
         end
 
         patinoire = Patinoire.find_or_initialize_by(
@@ -229,6 +237,12 @@ namespace :import do
       nb_rinks = [tr.css('td:eq(2) p').count, 1].max
       nb_rinks.times do |i|
         attributes = import_html_table_row tr, i + 1
+
+        # Expand/correct park names
+        if attributes[:parc] == 'D,-E.-Joyal'
+          attributes[:parc] = 'D.-E.-Joyal'
+        end
+
         patinoire = Patinoire.find_or_initialize_by(
           parc: attributes[:parc],
           genre: attributes[:genre],

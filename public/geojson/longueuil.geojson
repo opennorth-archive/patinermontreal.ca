@@ -4,8 +4,8 @@
         "type": "Feature",
         "properties": {
             "adresse": "1895, rue Adoncour",
-            "genre": "PPL",
-            "nom": "Patinoire de patin libre",
+            "genre": "PSE",
+            "nom": "Patinoire avec bandes",
             "parc": "Michel-Chartrand",
             "url": "https://www.longueuil.quebec/fr/parc-michel-chartrand-coordinates"
         },
@@ -29,7 +29,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Sacré-Coeur & Laurier",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -43,7 +42,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Marquette & Maisonneuve",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -83,7 +81,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Asselin",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -97,7 +94,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Beauregard & René",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -111,7 +107,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Belcourt",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -125,7 +120,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Berthelet & Berthier",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -217,7 +211,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue des Muguets & rue des Tulipes",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -231,7 +224,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Drapeau & Duclos",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -284,7 +276,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Gardenville (entre Perrault et Martel)",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -311,7 +302,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Beauharnois & Brunet",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -352,7 +342,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Gray & Galaise",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -369,7 +358,7 @@
             "adresse": null,
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
-            "parc": "Hirondelles (des)",
+            "parc": "des Hirondelles",
             "url": "https://www.longueuil.quebec/fr/parc-hirondelles"
         },
         "geometry": {
@@ -382,7 +371,7 @@
             "adresse": null,
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
-            "parc": "Hirondelles (des)",
+            "parc": "des Hirondelles",
             "url": "https://www.longueuil.quebec/fr/parc-hirondelles"
         },
         "geometry": {
@@ -392,7 +381,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "1681, rue Bourassa",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
@@ -420,7 +408,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue d'Oxford",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
@@ -448,7 +435,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "2095, rue Laurier",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
@@ -514,7 +500,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Saint-Charles Est & de Normandie",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -555,7 +540,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue de Newhaven & Quinn",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -569,7 +553,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "450, rue de Normandie",
             "genre": "PSE",
             "nom": "Patinoire avec bandes",
@@ -583,7 +566,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Perron & de Dover",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -611,7 +593,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue Racine",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -665,7 +646,6 @@
     }, {
         "type": "Feature",
         "properties": {
-            "deleted": true,
             "adresse": "Rue du Roussillon",
             "genre": "PPL",
             "nom": "Patinoire de patin libre",
@@ -729,6 +709,19 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-73.486691, 45.56296]
+        }
+    }, {
+        "type": "Feature",
+        "properties": {
+            "adresse": "90, rue de La Barre",
+            "genre": "PPL",
+            "nom": "Patinoire de patin libre",
+            "parc": "Gilles-Latulippe",
+            "url": "https://longueuil.quebec/fr/parc-gilles-latulippe"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-73.521790, 45.527650]
         }
     }, {
         "type": "Feature",
