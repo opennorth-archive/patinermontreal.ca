@@ -159,7 +159,7 @@ namespace :import do
         end
         if patinoire.parc == 'Eugène-Dostie' && patinoire.genre == 'PPL'
           patinoire.disambiguation = "no #{disambiguation_ibi}"
-          disambiguation_decelles += 1
+          disambiguation_ibi += 1
         end
 
         patinoire.source = 'donnees.ville.montreal.qc.ca'
