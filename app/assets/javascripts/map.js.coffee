@@ -195,11 +195,10 @@ $ ->
     maxZoom: 18
     maxBounds: L.latLngBounds(L.latLng(45.170459, -74.447699), L.latLng(46.035873, -73.147435))
 
-  tilesUrl = "https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.{ext}";
+  tilesUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
 
   basemap = new L.tileLayer(tilesUrl, {
-    ext: 'png',
-    attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; OpenStreetMap contributors, &copy; CartoDB'
   }).addTo(Map);
 
   # Define models.
