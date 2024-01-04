@@ -195,13 +195,11 @@ $ ->
     maxZoom: 18
     maxBounds: L.latLngBounds(L.latLng(45.170459, -74.447699), L.latLng(46.035873, -73.147435))
 
-  tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{Z}/{X}/{Y}.png";
-  tilesUrl = tonerUrl.replace(/({[A-Z]})/g, (s) -> s.toLowerCase());
+  tilesUrl = "https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.{ext}";
 
   basemap = new L.tileLayer(tilesUrl, {
-    subdomains: ['','a.','b.','c.','d.'],
-    type: 'png',
-    attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, under <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="https://openstreetmap.org">OpenStreetMap</a>, under <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+    ext: 'png',
+    attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(Map);
 
   # Define models.
