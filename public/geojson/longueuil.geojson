@@ -737,5 +737,19 @@
             "type": "Point",
             "coordinates": [-73.455792, 45.543987]
         }
-    }]
+    }, {
+        "type": "Feature",
+        "properties": {
+            "adresse": "2500, boulevard Fernand-Lafontaine",
+            "genre": "PSE",
+            "nom": "Patinoire avec bandes",
+            "parc": "Parcours du Cerf",
+            "url": "http://www.parcoursducerf.com/"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-73.448737, 45.562167]
+        }
+    }
+  ]
 }

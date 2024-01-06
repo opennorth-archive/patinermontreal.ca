@@ -182,15 +182,11 @@ namespace :import do
 
   # desc 'Add rinks from www.longueuil.quebec'
   task longueuil: :environment do
-    json = JSON.parse(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/11ceb247-dd3f-40a7-b8c5-d37f633ab545'))
+    json = JSON.parse(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/a478b666-6dcb-4d7e-94fa-17f5bd06d960'))
     html = Nokogiri::HTML(json['data']['attributes']['content']['processed'])
 
-    begin
-      # Last updated timestamp, shared for the 3 tables
-      dateMaj = Time.parse html.at_css('p:eq(3)').text
-    rescue ArgumentError => e
-      puts e.inspect
-    end
+    # Last updated timestamp, shared for the 3 tables
+    dateMaj = Time.now
 
     # First table: Vieux-Longueuil conditions
 
@@ -208,14 +204,9 @@ namespace :import do
         if attributes[:parc][/Lionel-Groulx.*(Bleu.+Blanc.+Bouge)/i, 1]
           attributes[:parc] = 'Lionel-Groulx'
           attributes[:description] = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
-        elsif attributes[:parc] == 'Hirondelles'
-          attributes[:parc] = 'des Hirondelles'
-        elsif attributes[:parc] == 'LeMoyne'
-          attributes[:parc] = 'Le Moyne'
+          attributes[:disambiguation] = 'réfrigérée'
         elsif attributes[:parc] == 'De Normandie'
           attributes[:parc] = 'de Normandie'
-        elsif attributes[:parc] == 'Des Sureaux'
-          attributes[:parc] = 'des Sureaux'
         end
 
         patinoire = Patinoire.find_or_initialize_by(
@@ -297,10 +288,10 @@ namespace :import do
 
   def import_html_table_row(tr, offset = 1)
     nom = get_td_merged_line(tr.css('td:eq(2)'), offset).sub(' ', ' ').strip
-    condition = case get_td_merged_image_src(tr.css('td:eq(3)'), offset)
-          when /(.*)vert(.*)/
+    condition = case get_td_merged_image_uuid(tr.css('td:eq(3)'), offset)
+          when 'c2c95685-3b18-41c3-861d-7598ce8c8e13'
             'Excellente'
-          when /(.*)jaune(.*)/
+          when '54e867cd-35b6-4fda-b08d-e2da0919d68a'
             'Bonne'
           else
             'N/A'
@@ -313,7 +304,7 @@ namespace :import do
       case nom
       when 'Rond de glace'
         'PPL'
-      when 'Patinoire', 'Patinoire permanente', 'Patinoire réfrigérée', 'Patinoire avec bandes'
+      when 'Patinoire', 'Patinoire permanente', /(.*)réfrigérée(.*)/, 'Patinoire avec bandes'
         'PSE'
       else
         puts "Unknown rink '#{nom}'"
@@ -330,9 +321,9 @@ namespace :import do
     content
   end
 
-  def get_td_merged_image_src(td, offset)
-    content = String(td.css("p:eq(#{offset}) img"))
-    content = content[/<img.*?src="(.*?)"/, 1].split('/')[-1]
+  def get_td_merged_image_uuid(td, offset)
+    content = String(td.css("img:eq(#{offset})"))
+    content = content[/<img.*?data-entity-uuid="(.*?)"/, 1]
     content
   end
 

@@ -72,7 +72,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted": true,
         "adresse":" 1050, rue de Parklane",
         "genre": "PSE",
         "nom": "Patinoire avec bandes",
