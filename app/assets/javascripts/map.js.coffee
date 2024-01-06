@@ -195,13 +195,10 @@ $ ->
     maxZoom: 18
     maxBounds: L.latLngBounds(L.latLng(45.170459, -74.447699), L.latLng(46.035873, -73.147435))
 
-  tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{Z}/{X}/{Y}.png";
-  tilesUrl = tonerUrl.replace(/({[A-Z]})/g, (s) -> s.toLowerCase());
+  tilesUrl = "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
 
   basemap = new L.tileLayer(tilesUrl, {
-    subdomains: ['','a.','b.','c.','d.'],
-    type: 'png',
-    attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, under <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="https://openstreetmap.org">OpenStreetMap</a>, under <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+    attribution: '&copy; OpenStreetMap contributors, &copy; CartoDB'
   }).addTo(Map);
 
   # Define models.

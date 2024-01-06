@@ -1,8 +1,8 @@
 namespace :import do
   desc 'Add rinks from donnees.ville.montreal.qc.ca'
   task montreal: :environment do
-    disambiguation_lasalle = disambiguation_decelles = disambiguation_cssl = disambiguation_ibi = 1
-    Nokogiri::XML(RestClient.get('http://www2.ville.montreal.qc.ca/services_citoyens/pdf_transfert/L29_PATINOIRE.xml')).css('patinoire').each do |node|
+    disambiguation_lasalle = disambiguation_decelles = disambiguation_cssl = disambiguation_ibi = disambiguation_sle = 1
+    Nokogiri::XML(RestClient.get('https://www2.ville.montreal.qc.ca/services_citoyens/pdf_transfert/L29_PATINOIRE.xml')).css('patinoire').each do |node|
       # Add m-dash, except for Ahuntsic-Cartierville.
       nom_arr = node.at_css('nom_arr').text
                     .sub('Ahuntsic - Cartierville', 'Ahuntsic-Cartierville')
@@ -33,6 +33,8 @@ namespace :import do
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc François-Perrault (PSE)'
         elsif xml_name == 'Patinoire ext avec bandes (BBB) , parc Hayward (PSE)'
           xml_name = 'Patinoire Bleu-Blanc-Bouge, parc Hayward (PSE)'
+        elsif xml_name == 'Patinoire de patin libre sentier, Parc Grier (PPL)'
+          xml_name = 'Sentier de glace, parc Grier (PP)'
         end
 
         if xml_name.match(/Émili?e-Duployé/)
@@ -62,7 +64,7 @@ namespace :import do
           'Pat. avec bandes' => 'Patinoire avec bandes',
           'Pati déco' => 'Patinoire décorative',
           'Patinoire Décorative' => 'Patinoire décorative',
-          'Sentiers Glacés' => 'Sentier de glace',
+          'Sentier glacé' => 'Sentier de glace',
           'Patinoire sans bandes' => 'Patinoire extérieure',
           'Patinoire sans bande' => 'Patinoire extérieure',
           'Patinoire à bandes' => 'Patinoire avec bandes',
@@ -71,7 +73,9 @@ namespace :import do
           'Patinoire bandes' => 'Patinoire avec bandes',
           'Patinoire ext. avec bandes' => 'Patinoire avec bandes',
           'Patinoire de hockey et patin libre' => 'Patinoire de patin libre',
-          'Patinoire de patin libre étang' => 'Patinoire de patin libre'
+          'Patinoire de patin libre étang' => 'Patinoire de patin libre',
+          'Patinoire de patinage libre' => 'Patinoire de patin libre',
+          'Patinoire ext. sans bandes' => 'Patinoire de patin libre',
         }.reduce(description) do |string, (from, to)|
           string.sub(/#{Regexp.escape from}\z/, to)
         end
@@ -114,6 +118,8 @@ namespace :import do
           'Y-Thériault/Sherbrooke' => 'Yves-Thériault/Sherbrooke',
           'Roger Rousseau' => 'Roger-Rousseau',
           'De Gaspé/Bernard' => 'Champ des possibles',
+          '77 Bernard E' => "L'Entrepôt 77",
+          'terrasse-serre' => 'Terrasse Serre',
           # Need to do independent research to find where these are.
           'patinoire extérieure' => ''
         }.reduce(parc.strip) do |string, (from, to)|
@@ -155,7 +161,11 @@ namespace :import do
         end
         if patinoire.parc == 'Eugène-Dostie' && patinoire.genre == 'PPL'
           patinoire.disambiguation = "no #{disambiguation_ibi}"
-          disambiguation_decelles += 1
+          disambiguation_ibi += 1
+        end
+        if patinoire.parc == 'Ladauversière' && patinoire.genre == 'PPL'
+          patinoire.disambiguation = "no #{disambiguation_sle}"
+          disambiguation_sle += 1
         end
 
         patinoire.source = 'donnees.ville.montreal.qc.ca'
@@ -172,14 +182,17 @@ namespace :import do
 
   # desc 'Add rinks from www.longueuil.quebec'
   task longueuil: :environment do
-    json = JSON.parse(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/c8b8abef-6a93-4389-8caf-ec7c41f2861c'))
+    json = JSON.parse(RestClient.get('https://cms.longueuil.quebec/fr/api/paragraph/accordion_item/a478b666-6dcb-4d7e-94fa-17f5bd06d960'))
     html = Nokogiri::HTML(json['data']['attributes']['content']['processed'])
+
+    # Last updated timestamp, shared for the 3 tables
+    dateMaj = Time.now
 
     # First table: Vieux-Longueuil conditions
 
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Vieux-Longueuil')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.parse html.at_css('table:eq(1) + p').text
+    arrondissement.date_maj = dateMaj
     arrondissement.save!
 
     html.css('table:eq(1) tr:gt(1)').each do |tr|
@@ -188,11 +201,12 @@ namespace :import do
         attributes = import_html_table_row tr, i + 1
 
         # Expand/correct park names
-        attributes[:parc] = 'Michel-Chartrand' if attributes[:parc] == 'Michel Chartrand'
-        attributes[:parc] = 'Catherine-Primot' if attributes[:parc].include?('Catherine-Primot')
-        if attributes[:parc] == 'Lionel-Groulx / Bleu Blanc Bouge'
+        if attributes[:parc][/Lionel-Groulx.*(Bleu.+Blanc.+Bouge)/i, 1]
           attributes[:parc] = 'Lionel-Groulx'
           attributes[:description] = 'Patinoire réfrigérée Bleu-Blanc-Bouge'
+          attributes[:disambiguation] = 'réfrigérée'
+        elsif attributes[:parc] == 'De Normandie'
+          attributes[:parc] = 'de Normandie'
         end
 
         patinoire = Patinoire.find_or_initialize_by(
@@ -213,13 +227,19 @@ namespace :import do
 
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Saint-Hubert')
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.parse html.at_css('table:eq(2) + p').text
+    arrondissement.date_maj = dateMaj
     arrondissement.save!
 
     html.css('table:eq(2) tr:gt(1)').each do |tr|
       nb_rinks = [tr.css('td:eq(2) p').count, 1].max
       nb_rinks.times do |i|
         attributes = import_html_table_row tr, i + 1
+
+        # Expand/correct park names
+        if attributes[:parc] == 'D,-E.-Joyal'
+          attributes[:parc] = 'D.-E.-Joyal'
+        end
+
         patinoire = Patinoire.find_or_initialize_by(
           parc: attributes[:parc],
           genre: attributes[:genre],
@@ -239,7 +259,7 @@ namespace :import do
     arrondissement = Arrondissement.find_or_initialize_by(nom_arr: 'Greenfield Park')
 
     arrondissement.source = 'www.longueuil.quebec'
-    arrondissement.date_maj = Time.parse html.at_css('table:eq(3) + p').text
+    arrondissement.date_maj = dateMaj
     arrondissement.save!
 
     html.css('table:eq(3) tr:gt(1)').each do |tr|
@@ -268,8 +288,15 @@ namespace :import do
 
   def import_html_table_row(tr, offset = 1)
     nom = get_td_merged_line(tr.css('td:eq(2)'), offset).sub(' ', ' ').strip
-    passable = get_td_merged_line(tr.css('td:eq(4)'), offset).downcase.include?('x')
-    ouvert = passable || get_td_merged_line(tr.css('td:eq(3)'), offset).downcase.include?('x')
+    condition = case get_td_merged_image_uuid(tr.css('td:eq(3)'), offset)
+          when 'c2c95685-3b18-41c3-861d-7598ce8c8e13'
+            'Excellente'
+          when '54e867cd-35b6-4fda-b08d-e2da0919d68a'
+            'Bonne'
+          else
+            'N/A'
+          end
+    ouvert = condition == 'Excellente' || condition == 'Bonne'
 
     {
       parc: tr.css('td:eq(1)').text.gsub(/[[:space:]]/, ' ').sub('Parc ', '').strip,
@@ -277,26 +304,26 @@ namespace :import do
       case nom
       when 'Rond de glace'
         'PPL'
-      when 'Patinoire', 'Patinoire permanente', 'Patinoire réfrigérée'
+      when 'Patinoire', 'Patinoire permanente', /(.*)réfrigérée(.*)/, 'Patinoire avec bandes'
         'PSE'
       else
         puts "Unknown rink '#{nom}'"
         nil
       end,
       ouvert: ouvert,
-      condition: if passable
-                   'Bonne'
-                 elsif ouvert
-                   'Excellente'
-                 else
-                   'N/A'
-                 end
+      condition: condition
     }
   end
 
   def get_td_merged_line(td, offset)
     content = td.css("p:eq(#{offset})").text.strip
     content = td.text.strip if content.blank? && offset == 1
+    content
+  end
+
+  def get_td_merged_image_uuid(td, offset)
+    content = String(td.css("img:eq(#{offset})"))
+    content = content[/<img.*?data-entity-uuid="(.*?)"/, 1]
     content
   end
 

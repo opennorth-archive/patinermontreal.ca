@@ -8,6 +8,7 @@ gem 'andand'
 gem 'nokogiri'
 gem 'psych'
 gem 'rest-client'
+gem 'net-http'
 gem 'unicode_utils'
 gem 'activemodel-serializers-xml'
 

@@ -140,10 +140,9 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"1725, boulevard Édouard",
-        "genre":"PSE",
-        "nom":"Patinoire avec bandes",
+        "genre":"PPL",
+        "nom":"Rond de glace",
         "parc":"D.-E.-Joyal",
         "url":"https://www.longueuil.quebec/fr/parc-joyal"
       },
@@ -262,7 +261,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"5200, avenue Jodoin",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -280,7 +278,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"5200, avenue Jodoin",
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
@@ -436,7 +433,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"3950, boulevard Sir-Wilfrid-Laurier",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -543,7 +539,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"3460, rue Pacific",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -561,7 +556,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"3450, rue Perras",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -579,7 +573,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"3451, rue Perras",
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
@@ -615,7 +608,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"5395, avenue Coursol",
         "genre":"PSE",
         "nom":"Patinoire avec bandes",
@@ -633,7 +625,6 @@
     {
       "type":"Feature",
       "properties":{
-        "deleted":true,
         "adresse":"5396, avenue Coursol",
         "genre":"PPL",
         "nom":"Patinoire de patin libre",
